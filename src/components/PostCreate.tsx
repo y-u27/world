@@ -1,5 +1,7 @@
+// 投稿フォーム
+"use client";
+
 import { Box, Button, Input, Text } from "@chakra-ui/react";
-import React from "react";
 
 const PostCreate = () => {
   return (
@@ -15,8 +17,8 @@ const PostCreate = () => {
           <Input type="text" height={200} width={500} />
           <Text>日時</Text>
           <Input type="date" width={500} />
-          <Box mt='5%' px='45%'>
-            <Button>投稿</Button>
+          <Box mt="5%" px="45%">
+            <Button _hover={{background:"#FAF089",color:"#319795"}}>投稿</Button>
           </Box>
         </Box>
       </Box>
