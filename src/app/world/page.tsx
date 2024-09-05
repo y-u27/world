@@ -1,11 +1,10 @@
-import WorldTopPage from "@/components/WorldTopPage";
-import { Box } from "@chakra-ui/react";
+import WorldMapPage from "@/components/WorldMapPage";
 
 const worldTopPage = () => {
   return (
-    <Box>
-      <WorldTopPage />
-    </Box>
+    <>
+      <WorldMapPage />
+    </>
   );
 };
 
