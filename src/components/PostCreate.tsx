@@ -12,12 +12,12 @@ const PostCreate = () => {
       <Box display="flex" justifyContent="center">
         <Box flexDirection="column">
           <Text>タイトル</Text>
-          <Input type="text" width="350px" />
+          <Input type="text" width="320px" />
           <Text>投稿内容</Text>
-          <Input type="text" height={200} width="350px" />
+          <Input type="text" height={200} width="320px" />
           <Text>日時</Text>
-          <Input type="date" width="350px" />
-          <Box mt="5%" px="45%">
+          <Input type="date" width="320px" />
+          <Box mt="5%" px="43%">
             <Button _hover={{background:"#FAF089",color:"#319795"}}>投稿</Button>
           </Box>
         </Box>
