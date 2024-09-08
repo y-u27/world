@@ -16,7 +16,7 @@ import {
 const HowToBlock = () => {
   return (
     <>
-      <Box m="10px">
+      {/* <Box m="10px"> */}
         <Popover>
           <PopoverTrigger>
             <Button>使い方</Button>
@@ -33,10 +33,10 @@ const HowToBlock = () => {
             </PopoverBody>
           </PopoverContent>
         </Popover>
-      </Box>
-      <Box m="10px" position="fixed" bottom="0">
-        <Button>ログアウト</Button>
-      </Box>
+      {/* </Box> */}
+      {/* <Box m="10px" position="fixed" bottom="0"> */}
+        <Button position="fixed" bottom="0">ログアウト</Button>
+      {/* </Box> */}
     </>
   );
 };
