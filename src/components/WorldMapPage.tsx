@@ -7,24 +7,24 @@ import { GoogleMap, LoadScript } from "@react-google-maps/api";
 
 const WorldMapPage = () => {
   const mapContainerStyle = {
-    width: "80%",
-    height: "530px",
+    width: "100vw",
+    height: "95vh",
   };
 
   // 東京の緯度軽度
   const center = {
     lat: 35.6762,
-    lng: 139.6503,
+    lng: 155.6503,
   };
 
   // 世界全体表示
-  const zoom = 2;
+  const zoom = 2.2;
 
   const options = {
-    disableDefaultUI: true, // デフォルトのUI（ズームコントロールなど）を無効化
-    draggable: false, // ドラッグを無効化
+    disableDefaultUI: false, // デフォルトのUI（ズームコントロールなど）を無効化
+    draggable: true, // ドラッグを無効化
     zoomControl: false, // ズーム操作を無効化
-    scrollwheel: false, // スクロールホイールによるズームを無効化
+    scrollwheel: true, // スクロールホイールによるズームを無効化
     disableDoubleClickZoom: true, // ダブルクリックによるズームを無効化
   };
 
@@ -36,15 +36,17 @@ const WorldMapPage = () => {
 
   return (
     <>
-      <HowToBlock />
-      <LoadScript googleMapsApiKey={googleMapsApiKey}>
-        <GoogleMap
-          mapContainerStyle={mapContainerStyle}
-          center={center}
-          zoom={zoom}
-          options={options}
-        ></GoogleMap>
-      </LoadScript>
+      <Box>
+        <HowToBlock />
+        <LoadScript googleMapsApiKey={googleMapsApiKey}>
+          <GoogleMap
+            mapContainerStyle={mapContainerStyle}
+            center={center}
+            zoom={zoom}
+            options={options}
+          ></GoogleMap>
+        </LoadScript>
+      </Box>
     </>
   );
 };
