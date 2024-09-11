@@ -3,9 +3,28 @@
 
 import { Box } from "@chakra-ui/react";
 import HowToBlock from "./HowToBlock";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  LoadScript,
+  InfoWindow,
+  Marker,
+} from "@react-google-maps/api";
+import { useState } from "react";
+import Link from "next/link";
 
 const WorldMapPage = () => {
+  const [size, setSize] = useState<undefined | google.maps.Size>(undefined);
+  const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
+
+  const InfoWindowOptions = {
+    pixelOffset: size,
+  };
+
+  // const createOffsetSize = () => {
+  //   return setSize(new window.google.maps.Size(0, -45));
+  // };
+
+  //
   const mapContainerStyle = {
     width: "100vw",
     height: "95vh",
@@ -18,7 +37,31 @@ const WorldMapPage = () => {
   };
 
   // 世界全体表示
-  const zoom = 2.2;
+  const zoom = 2.3;
+
+  // 各国のリスト
+  const countries = [
+    {
+      name: "Australia",
+      lat: -33.8688,
+      lng: 151.2093,
+    },
+    {
+      name: "China",
+      lat: 34,
+      lng: 117,
+    },
+    {
+      name:"America",
+      lat:38,
+      lng:-77
+    }
+  ];
+
+  const mapStyle = {
+    background: "white",
+    fontSize: 10,
+  };
 
   const options = {
     disableDefaultUI: false, // デフォルトのUI（ズームコントロールなど）を無効化
@@ -44,7 +87,29 @@ const WorldMapPage = () => {
             center={center}
             zoom={zoom}
             options={options}
-          ></GoogleMap>
+          >
+            {countries.map((country) => (
+              <Marker
+                key={country.name}
+                position={{ lat: country.lat, lng: country.lng }}
+                onClick={() => setSelectedCountry(country.name)}
+              />
+            ))}
+            {countries.map((country) =>
+              selectedCountry === country.name ? (
+                <InfoWindow
+                  key={country.name}
+                  position={{ lat: country.lat, lng: country.lng }}
+                  options={InfoWindowOptions}
+                  onCloseClick={() => setSelectedCountry(null)}
+                >
+                  <Link href="/world/1">
+                    <Box style={mapStyle}>{country.name}</Box>
+                  </Link>
+                </InfoWindow>
+              ) : null
+            )}
+          </GoogleMap>
         </LoadScript>
       </Box>
     </>
