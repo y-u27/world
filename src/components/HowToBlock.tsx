@@ -28,10 +28,10 @@ const HowToBlock = () => {
               <PopoverCloseButton />
               <PopoverHeader>世界地図を使った投稿Webアプリ</PopoverHeader>
               <PopoverBody>
-                ①好きな国や行ったことがある国の地図をクリック
+                ①好きな国や行ったことがある国の赤いピンをクリック
               </PopoverBody>
               <PopoverBody>
-                ②国が表示されるので、おすすめスポットや食べ物を投稿してみましょう
+                ②国名のポップアップをクリックして、その国の地図が表示されたら、おすすめスポットや食べ物を投稿してみましょう
               </PopoverBody>
             </PopoverContent>
           </Popover>
