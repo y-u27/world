@@ -9,6 +9,14 @@ import Link from 'next/link';
 
 const googleMapsApiKey = process.env.NEXT_PUBLIC_MAPS_API_KEY;
 
+const DEFAULT_OPTIONS = {
+  disableDefaultUI: false, // デフォルトのUI（ズームコントロールなど）を無効化
+  draggable: true, // ドラッグを無効化
+  zoomControl: false, // ズーム操作を無効化
+  scrollwheel: true, // スクロールホイールによるズームを無効化
+  disableDoubleClickZoom: true, // ダブルクリックによるズームを無効化
+};
+
 const WorldMapPage = () => {
   // const [size, setSize] = useState<undefined | google.maps.Size>(undefined);
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
@@ -21,6 +29,7 @@ const WorldMapPage = () => {
       lng: number;
     }[]
   >([]);
+  const [options, setOptions] = useState(DEFAULT_OPTIONS);
 
   /** 特定の国をクリックしたときの処理 */
   const handleMapClick = (e: google.maps.MapMouseEvent) => {
@@ -67,14 +76,6 @@ const WorldMapPage = () => {
     fontSize: 10,
   };
 
-  const options = {
-    disableDefaultUI: false, // デフォルトのUI（ズームコントロールなど）を無効化
-    draggable: true, // ドラッグを無効化
-    zoomControl: false, // ズーム操作を無効化
-    scrollwheel: true, // スクロールホイールによるズームを無効化
-    disableDoubleClickZoom: true, // ダブルクリックによるズームを無効化
-  };
-
   if (!googleMapsApiKey) {
     return <Box>Google Maps API キーが見つかりません。</Box>;
   }
@@ -93,6 +94,9 @@ const WorldMapPage = () => {
               console.log(e);
               handleMapClick(e);
               setZoom(5);
+              setOptions((prevoptions) => {
+                return { ...prevoptions, draggable: false, scrollwheel: false, disableDefaultUI: false };
+              });
             }}
           >
             {markedCountries.map((country) => (
@@ -104,7 +108,11 @@ const WorldMapPage = () => {
                   key={country.name}
                   position={{ lat: country.lat, lng: country.lng }}
                   options={InfoWindowOptions}
-                  onCloseClick={() => setSelectedCountry(null)}
+                  onCloseClick={() => {
+                    setSelectedCountry(null);
+                    setOptions(DEFAULT_OPTIONS);
+                    setZoom(2.3);
+                  }}
                 >
                   <Link href="/world/1">
                     <Box style={mapStyle}>{country.name}</Box>
