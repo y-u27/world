@@ -21,9 +21,11 @@ const PostCreate = () => {
               <Text>日時</Text>
               <Input type="date" width="420px" />
               <Box m="20px" px="38%">
+                <Link href="/world/1">
                 <Button _hover={{ background: "#FAF089", color: "#319795" }}>
                   投稿
                 </Button>
+                </Link>
               </Box>
             </Box>
           </Box>
