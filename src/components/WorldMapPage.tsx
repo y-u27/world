@@ -52,10 +52,70 @@ const WorldMapPage = () => {
       lng: 117,
     },
     {
-      name:"America",
-      lat:38,
-      lng:-77
-    }
+      name: "America",
+      lat: 38,
+      lng: -85,
+    },
+    {
+      name: "Japan",
+      lat: 35.6762,
+      lng: 139.6503,
+    },
+    {
+      name: "the United Kingdom",
+      lat: 51.5074,
+      lng: -0.1278,
+    },
+    {
+      name: "French",
+      lat: 48.8566,
+      lng: 2.3522,
+    },
+    {
+      name: "German",
+      lat: 52.52,
+      lng: 13.405,
+    },
+    {
+      name: "Canada",
+      lat: 45.4215,
+      lng: -75.6972,
+    },
+    {
+      name: "Russia",
+      lat: 55.7558,
+      lng: 100.6173,
+    },
+    {
+      name: "India",
+      lat: 28.6139,
+      lng: 77.209,
+    },
+    {
+      name: "Brazil",
+      lat: -15.8267,
+      lng: -47.9218,
+    },
+    {
+      name: "South Africa",
+      lat: -25.7479,
+      lng: 28.2293,
+    },
+    {
+      name: "Italy",
+      lat: 41.9028,
+      lng: 12.4964,
+    },
+    {
+      name: "Korea",
+      lat: 37.5665,
+      lng: 126.978,
+    },
+    {
+      name: "Thailand",
+      lat: 13.7563,
+      lng: 100.5018,
+    },
   ];
 
   const mapStyle = {
