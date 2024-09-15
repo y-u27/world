@@ -13,11 +13,11 @@ import { useState } from "react";
 import Link from "next/link";
 
 const WorldMapPage = () => {
-  const [size, setSize] = useState<undefined | google.maps.Size>(undefined);
+  // const [size, setSize] = useState<undefined | google.maps.Size>(undefined);
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
 
   const InfoWindowOptions = {
-    pixelOffset: size,
+    maxWidth: 100,
   };
 
   // const createOffsetSize = () => {
@@ -45,76 +45,91 @@ const WorldMapPage = () => {
       name: "Australia",
       lat: -33.8688,
       lng: 151.2093,
+      flag: "🇦🇺",
     },
     {
       name: "China",
       lat: 34,
       lng: 117,
+      flag:"🇨🇳"
     },
     {
       name: "America",
       lat: 38,
       lng: -85,
+      flag:"🇺🇸"
     },
     {
       name: "Japan",
       lat: 35.6762,
       lng: 139.6503,
+      flag:"🇯🇵"
     },
     {
       name: "the United Kingdom",
       lat: 51.5074,
       lng: -0.1278,
+      flag:"🇬🇧"
     },
     {
       name: "French",
       lat: 48.8566,
       lng: 2.3522,
+      flag:"🇫🇷"
     },
     {
       name: "German",
       lat: 52.52,
       lng: 13.405,
+      flag:"🇩🇪"
     },
     {
       name: "Canada",
       lat: 45.4215,
       lng: -75.6972,
+      flag:"🇨🇦"
     },
     {
       name: "Russia",
       lat: 55.7558,
       lng: 100.6173,
+      flag:"🇷🇺"
     },
     {
       name: "India",
       lat: 28.6139,
       lng: 77.209,
+      flag:"🇮🇳"
     },
     {
       name: "Brazil",
       lat: -15.8267,
       lng: -47.9218,
+      flag:"🇧🇷"
     },
     {
       name: "South Africa",
       lat: -25.7479,
       lng: 28.2293,
+      flag:"🇿🇦"
     },
     {
       name: "Italy",
       lat: 41.9028,
       lng: 12.4964,
+      flag:"🇮🇹"
     },
     {
       name: "Korea",
       lat: 37.5665,
       lng: 126.978,
+      flag:"🇰🇷"
     },
     {
       name: "Thailand",
       lat: 13.7563,
       lng: 100.5018,
+      flag:"🇹🇭"
     },
   ];
 
@@ -164,7 +179,10 @@ const WorldMapPage = () => {
                   onCloseClick={() => setSelectedCountry(null)}
                 >
                   <Link href="/world/1">
-                    <Box style={mapStyle}>{country.name}</Box>
+                    <Box style={mapStyle}>
+                      {country.flag}
+                      {country.name}
+                    </Box>
                   </Link>
                 </InfoWindow>
               ) : null
