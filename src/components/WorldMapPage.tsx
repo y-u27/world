@@ -12,8 +12,10 @@ import {
 import { useState } from "react";
 import Link from "next/link";
 
+// google map api
 const googleMapsApiKey = process.env.NEXT_PUBLIC_MAPS_API_KEY;
 
+// オプションのデフォルト値
 const DEFAULT_OPTIONS = {
   disableDefaultUI: false, // デフォルトのUI（ズームコントロールなど）を無効化
   draggable: true, // ドラッグを無効化
@@ -23,9 +25,13 @@ const DEFAULT_OPTIONS = {
 };
 
 const WorldMapPage = () => {
+  // 国を選択するuseState
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
+  // ↓各国の緯度経度の初期値
   const [mapCenter, setMapCenter] = useState({ lat: 35.6762, lng: 155.6503 });
+  // ↓それぞれの国をズームの初期値
   const [zoom, setZoom] = useState(2.3);
+  // ↓各国のマップの名前・緯度経度の型の初期値?
   const [markedCountries, setMarkedCountries] = useState<
     {
       name: string;
@@ -33,25 +39,34 @@ const WorldMapPage = () => {
       lng: number;
     }[]
   >([]);
+  // ↓マップのオプション
   const [options, setOptions] = useState(DEFAULT_OPTIONS);
 
+  // クリックした地点の中心座標と国名を取得
+  // TIPS: LoadScript読み込むことで、windowオブジェクトからGoogle Map APIが利用できる
   const handleMapClick = (e: google.maps.MapMouseEvent) => {
     const lat = e.latLng?.lat() || 35.6762;
     const lng = e.latLng?.lng() || 155.6503;
-
+    
+    // TIPS: Geocoder は、緯度経度から住所を取得するためのクラス
     const geocoder = new window.google.maps.Geocoder();
+    // 第一引数のlocationにlat(緯度)とlng(経度)、第二引数にresultsとstatusを渡す
     geocoder.geocode({ location: { lat, lng } }, (results, status) => {
+      // if文 ①statusがOKかつresultsの場合、resultsからcountryを含むresultを見つける
       if (status === "OK" && results) {
         const country = results.find((result) =>
           result.types.includes("country")
         );
+        // ②さらにcountryの場合、国の住所・緯度経度・条件に一つでも合う国にマーカーを表示させる
         if (country) {
           setSelectedCountry(country.formatted_address);
           setMapCenter({ lat, lng });
+          // ↓以前にマーカーを表示した国が以前の国名と国の住所と一致しているかを判定している?
           setMarkedCountries((prevMarkedCountries) => {
             const isExist = prevMarkedCountries.some(
               (prevCountry) => prevCountry.name === country.formatted_address
             );
+            // ③①と②がどちらも存在する場合、マーカーを表示し、マーカー＋国の住所＋緯度経度を表示させる
             if (isExist) return prevMarkedCountries;
             return [
               ...prevMarkedCountries,
@@ -59,6 +74,7 @@ const WorldMapPage = () => {
             ];
           });
         }
+        // 上記以外の場合、「国情報の取得に失敗」のメッセージをconsoleに出力する
       } else {
         console.error("国情報の取得に失敗");
       }
@@ -73,103 +89,6 @@ const WorldMapPage = () => {
     width: "100vw",
     height: "95vh",
   };
-
-  // 世界全体表示
-  // const zoom = 2.3;
-
-  // 各国のリスト
-  // const countries = [
-  //   {
-  //     name: "Australia",
-  //     lat: -33.8688,
-  //     lng: 151.2093,
-  //     flag: "🇦🇺",
-  //   },
-  //   {
-  //     name: "China",
-  //     lat: 34,
-  //     lng: 117,
-  //     flag: "🇨🇳",
-  //   },
-  //   {
-  //     name: "America",
-  //     lat: 38,
-  //     lng: -85,
-  //     flag: "🇺🇸",
-  //   },
-  //   {
-  //     name: "Japan",
-  //     lat: 35.6762,
-  //     lng: 139.6503,
-  //     flag: "🇯🇵",
-  //   },
-  //   {
-  //     name: "the United Kingdom",
-  //     lat: 51.5074,
-  //     lng: -0.1278,
-  //     flag: "🇬🇧",
-  //   },
-  //   {
-  //     name: "French",
-  //     lat: 48.8566,
-  //     lng: 2.3522,
-  //     flag: "🇫🇷",
-  //   },
-  //   {
-  //     name: "German",
-  //     lat: 52.52,
-  //     lng: 13.405,
-  //     flag: "🇩🇪",
-  //   },
-  //   {
-  //     name: "Canada",
-  //     lat: 45.4215,
-  //     lng: -75.6972,
-  //     flag: "🇨🇦",
-  //   },
-  //   {
-  //     name: "Russia",
-  //     lat: 55.7558,
-  //     lng: 100.6173,
-  //     flag: "🇷🇺",
-  //   },
-  //   {
-  //     name: "India",
-  //     lat: 28.6139,
-  //     lng: 77.209,
-  //     flag: "🇮🇳",
-  //   },
-  //   {
-  //     name: "Brazil",
-  //     lat: -15.8267,
-  //     lng: -47.9218,
-  //     flag: "🇧🇷",
-  //   },
-  //   {
-  //     name: "South Africa",
-  //     lat: -25.7479,
-  //     lng: 28.2293,
-  //     flag: "🇿🇦",
-  //   },
-  //   {
-  //     name: "Italy",
-  //     lat: 41.9028,
-  //     lng: 12.4964,
-  //     flag: "🇮🇹",
-  //   },
-  //   {
-  //     name: "Korea",
-  //     lat: 37.5665,
-  //     lng: 126.978,
-  //     flag: "🇰🇷",
-  //   },
-  //   {
-  //     name: "Thailand",
-  //     lat: 13.7563,
-  //     lng: 100.5018,
-  //     flag: "🇹🇭",
-  //   },
-  // ];
 
   const mapStyle = {
     background: "white",
@@ -220,13 +139,11 @@ const WorldMapPage = () => {
                   onCloseClick={() => {
                     setSelectedCountry(null);
                     setOptions(DEFAULT_OPTIONS);
-                    setZoom(2.3)
+                    setZoom(2.3);
                   }}
                 >
                   <Link href="/world/1">
-                    <Box style={mapStyle}>
-                      {country.name}
-                    </Box>
+                    <Box style={mapStyle}>{country.name}</Box>
                   </Link>
                 </InfoWindow>
               ) : null
