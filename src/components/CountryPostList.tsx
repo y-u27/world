@@ -1,9 +1,11 @@
 "use client";
 
 // 各国表示＋投稿一覧
-import { Box, Portal } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import PostLists from "./PostLists";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
+
+const googleMapsApiKey = process.env.NEXT_PUBLIC_MAPS_API_KEY;
 
 const CountryPostList = () => {
   const mapContainerStyle = {
@@ -27,8 +29,6 @@ const CountryPostList = () => {
     scrollwheel: false, // スクロールホイールによるズームを無効化
     disableDoubleClickZoom: true, // ダブルクリックによるズームを無効化
   };
-
-  const googleMapsApiKey = process.env.NEXT_PUBLIC_MAPS_API_KEY;
 
   if (!googleMapsApiKey) {
     return <Box>Google Maps API キーが見つかりません。</Box>;
