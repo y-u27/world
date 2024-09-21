@@ -1,5 +1,7 @@
+// 投稿機能（投稿フォーム遷移）→○
 "use client";
 
+import { postType } from "@/app/types/postType";
 import {
   Drawer,
   DrawerBody,
@@ -19,13 +21,38 @@ import {
   CardHeader,
   Flex,
   Avatar,
+  Divider,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+
+interface ApiResponce {
+  data: postType[];
+}
+
+async function fetchAllWorldPost(): Promise<postType[]> {
+  const res = await fetch(`http://localhost:3000/api/world-posts`, {
+    cache: "no-store",
+  });
+
+  const postData: ApiResponce = await res.json();
+  return postData.data;
+}
 
 const PostLists = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
+  const [mapPostCards, setMapPostCards] = useState<postType[]>([]);
+
+  useEffect(() => {
+    const getPostData = async () => {
+      const postDatas: postType[] = await fetchAllWorldPost();
+      console.log(Array.isArray(postDatas));
+      setMapPostCards(postDatas);
+    };
+    getPostData();
+  }, []);
+
   return (
     <>
       <Box position="fixed" left="90%" top="8%" zIndex={1000}>
@@ -45,28 +72,33 @@ const PostLists = () => {
           <DrawerCloseButton />
           <DrawerHeader>国名</DrawerHeader>
           <DrawerBody>
-            <Card>
-              <CardHeader>
-                <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-                  <Avatar name="Segun Adebayo" bg="blue.300" size="md" />
-                  <Box>
-                    <Heading size="sm">Segun Adebayo</Heading>
-                    <Text>Creator, Chakra UI</Text>
-                  </Box>
-                </Flex>
-              </CardHeader>
-              <CardBody>
-                <Stack>
-                  <Box>
-                    <Heading size="md">タイトル</Heading>
-                    <Text>投稿</Text>
-                    <Heading size="md">投稿内容</Heading>
-                    <Text>投稿内容を表示させる</Text>
-                    <Text>2024-09-17 21:00</Text>
-                  </Box>
-                </Stack>
-              </CardBody>
-            </Card>
+            {mapPostCards.map((mapPost) => (
+              <Card mb="4%" key={mapPost.id}>
+                <CardHeader>
+                  <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
+                    <Avatar name="Segun Adebayo" bg="blue.300" size="md" />
+                    <Box>
+                      <Heading size="sm">Segun Adebayo</Heading>
+                      <Text>Creator, Chakra UI</Text>
+                    </Box>
+                  </Flex>
+                </CardHeader>
+                <CardBody>
+                  <Stack>
+                    <Box>
+                      <Heading size="md">タイトル：{mapPost.title}</Heading>
+                      <Divider />
+                      <Text>投稿内容：{mapPost.content}</Text>
+                      <br />
+                      <Divider />
+                      <Text fontSize="xs">
+                        {mapPost.createdAt.toLocaleString()}
+                      </Text>
+                    </Box>
+                  </Stack>
+                </CardBody>
+              </Card>
+            ))}
           </DrawerBody>
           <DrawerFooter>
             <Link href="/world/create">
