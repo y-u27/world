@@ -9,8 +9,9 @@ import {
   InfoWindow,
   Marker,
 } from "@react-google-maps/api";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
+import PostLists from "./PostLists";
 
 // google map api
 const googleMapsApiKey = process.env.NEXT_PUBLIC_MAPS_API_KEY;
@@ -47,7 +48,7 @@ const WorldMapPage = () => {
   const handleMapClick = (e: google.maps.MapMouseEvent) => {
     const lat = e.latLng?.lat() || 35.6762;
     const lng = e.latLng?.lng() || 155.6503;
-    
+
     // TIPS: Geocoder は、緯度経度から住所を取得するためのクラス
     const geocoder = new window.google.maps.Geocoder();
     // 第一引数のlocationにlat(緯度)とlng(経度)、第二引数にresultsとstatusを渡す
@@ -103,6 +104,7 @@ const WorldMapPage = () => {
     <>
       <Box>
         <HowToBlock />
+        <PostLists />
         <LoadScript googleMapsApiKey={googleMapsApiKey}>
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
