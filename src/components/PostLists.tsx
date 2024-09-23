@@ -113,11 +113,11 @@ const PostLists = () => {
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
-      <Box position="fixed" bottom="0" zIndex={1000}>
+      {/* <Box position="fixed" bottom="0" zIndex={1000}>
         <Link href="/world">
           <Button>トップページへ戻る</Button>
         </Link>
-      </Box>
+      </Box> */}
     </>
   );
 };
