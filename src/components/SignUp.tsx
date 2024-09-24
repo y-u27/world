@@ -8,6 +8,7 @@ import {
   HStack,
   Input,
   Text,
+  VStack,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { TiArrowBackOutline } from "react-icons/ti";
@@ -30,7 +31,10 @@ const SignUp = () => {
           <Text mt="5%">パスワード</Text>
           <Input type="text" width="300px" />
           <HStack p="50px">
-            <Avatar size="xl" />
+            <VStack>
+              <Avatar size="lg" />
+              <Input type="file" />
+            </VStack>
             <Button
               ml="50px"
               w="100px"
