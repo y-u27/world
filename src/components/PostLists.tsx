@@ -2,6 +2,7 @@
 "use client";
 
 import { postType } from "@/app/types/postType";
+import { HamburgerIcon } from "@chakra-ui/icons";
 import {
   Drawer,
   DrawerBody,
@@ -22,6 +23,7 @@ import {
   Flex,
   Avatar,
   Divider,
+  Spacer,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -80,6 +82,10 @@ const PostLists = () => {
                     <Box>
                       <Heading size="sm">Segun Adebayo</Heading>
                       <Text>Creator, Chakra UI</Text>
+                    </Box>
+                    <Spacer />
+                    <Box>
+                      <HamburgerIcon />
                     </Box>
                   </Flex>
                 </CardHeader>
