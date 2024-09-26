@@ -1,8 +1,4 @@
 // 世界地図表示
-// →stateを使ってボタンを表示する
-// 4. ウィンドウを閉じた時に投稿一覧ボタンを非表示する
-// →トリガーは、InfoWindowコンポーネントのonCloseClickを使う
-// →stateを使ってボタンを非表示する
 
 "use client";
 
@@ -108,14 +104,15 @@ const WorldMapPage = () => {
   // 2. 任意の場所の国にzoomする
   // 3. 画面右上に投稿一覧ボタンが表示される
   // →トリガーは、GoogleMapコンポーネントのonClickかonZoomChangedを使う
+  // →stateを使ってボタンを表示する
   const [zoomPostList, setZoomPostList] = useState(false);
-
+  
   const handleZoomCancell = () => {};
-
+  
   if (!googleMapsApiKey) {
     return <Box>Google Maps API キーが見つかりません。</Box>;
   }
-
+  
   return (
     <>
       <Box>
@@ -145,26 +142,29 @@ const WorldMapPage = () => {
               });
             }}
             // onZoomChanged={}
-          >
+            >
             {markedCountries.map((country) => (
               <Marker
-                key={country.name}
-                position={{ lat: country.lat, lng: country.lng }}
-                onClick={() => setSelectedCountry(country.name)}
+              key={country.name}
+              position={{ lat: country.lat, lng: country.lng }}
+              onClick={() => setSelectedCountry(country.name)}
               />
             ))}
             {markedCountries.map((country) =>
               selectedCountry === country.name ? (
+                // 4. ウィンドウを閉じた時に投稿一覧ボタンを非表示する
+                // →トリガーは、InfoWindowコンポーネントのonCloseClickを使う
+                // →stateを使ってボタンを非表示する
                 <InfoWindow
-                  key={country.name}
-                  position={{ lat: country.lat, lng: country.lng }}
-                  options={InfoWindowOptions}
-                  onCloseClick={() => {
-                    setSelectedCountry(null);
-                    setOptions(DEFAULT_OPTIONS);
-                    setZoom(2.3);
-                    setZoomPostList(true);
-                  }}
+                key={country.name}
+                position={{ lat: country.lat, lng: country.lng }}
+                options={InfoWindowOptions}
+                onCloseClick={() => {
+                  setSelectedCountry(null);
+                  setOptions(DEFAULT_OPTIONS);
+                  setZoom(2.3);
+                  setZoomPostList(true);
+                }}
                 >
                   <Box style={mapStyle}>{country.name}</Box>
                 </InfoWindow>
