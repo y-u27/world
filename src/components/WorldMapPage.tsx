@@ -1,7 +1,12 @@
 // 世界地図表示
+// →stateを使ってボタンを表示する
+// 4. ウィンドウを閉じた時に投稿一覧ボタンを非表示する
+// →トリガーは、InfoWindowコンポーネントのonCloseClickを使う
+// →stateを使ってボタンを非表示する
+
 "use client";
 
-import { Box } from "@chakra-ui/react";
+import { Box, Button, useDisclosure } from "@chakra-ui/react";
 import HowToBlock from "./HowToBlock";
 import {
   GoogleMap,
@@ -42,6 +47,8 @@ const WorldMapPage = () => {
   >([]);
   // ↓マップのオプション
   const [options, setOptions] = useState(DEFAULT_OPTIONS);
+  const btnRef = useRef<HTMLButtonElement | null>(null);
+  const { onOpen } = useDisclosure();
 
   // クリックした地点の中心座標と国名を取得
   // TIPS: LoadScript読み込むことで、windowオブジェクトからGoogle Map APIが利用できる
@@ -96,6 +103,13 @@ const WorldMapPage = () => {
     fontSize: 10,
   };
 
+  // 投稿一覧ボタンの出しわけ
+  // 1. 地図上の任意の場所をクリックする
+  // 2. 任意の場所の国にzoomする
+  // 3. 画面右上に投稿一覧ボタンが表示される
+  // →トリガーは、GoogleMapコンポーネントのonClickかonZoomChangedを使う
+  const [zoomPostList, setZoomPostList] = useState(false);
+
   if (!googleMapsApiKey) {
     return <Box>Google Maps API キーが見つかりません。</Box>;
   }
@@ -104,7 +118,11 @@ const WorldMapPage = () => {
     <>
       <Box>
         <HowToBlock />
-        <PostLists />
+        {zoomPostList && (
+          <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
+            投稿一覧
+          </Button>
+        )}
         <LoadScript googleMapsApiKey={googleMapsApiKey}>
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
@@ -124,6 +142,7 @@ const WorldMapPage = () => {
                 };
               });
             }}
+            // onZoomChanged={}
           >
             {markedCountries.map((country) => (
               <Marker
@@ -142,11 +161,10 @@ const WorldMapPage = () => {
                     setSelectedCountry(null);
                     setOptions(DEFAULT_OPTIONS);
                     setZoom(2.3);
+                    setZoomPostList(true)
                   }}
                 >
-                  <Link href="/world/1">
-                    <Box style={mapStyle}>{country.name}</Box>
-                  </Link>
+                  <Box style={mapStyle}>{country.name}</Box>
                 </InfoWindow>
               ) : null
             )}

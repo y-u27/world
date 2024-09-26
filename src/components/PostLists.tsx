@@ -58,9 +58,9 @@ const PostLists = () => {
   return (
     <>
       <Box position="fixed" left="90%" top="8%" zIndex={1000}>
-        <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
+        {/* <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
           投稿一覧
-        </Button>
+        </Button> */}
       </Box>
       <Drawer
         isOpen={isOpen}
