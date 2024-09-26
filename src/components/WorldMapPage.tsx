@@ -110,6 +110,8 @@ const WorldMapPage = () => {
   // →トリガーは、GoogleMapコンポーネントのonClickかonZoomChangedを使う
   const [zoomPostList, setZoomPostList] = useState(false);
 
+  const handleZoomCancell = () => {};
+
   if (!googleMapsApiKey) {
     return <Box>Google Maps API キーが見つかりません。</Box>;
   }
@@ -161,7 +163,7 @@ const WorldMapPage = () => {
                     setSelectedCountry(null);
                     setOptions(DEFAULT_OPTIONS);
                     setZoom(2.3);
-                    setZoomPostList(true)
+                    setZoomPostList(true);
                   }}
                 >
                   <Box style={mapStyle}>{country.name}</Box>
