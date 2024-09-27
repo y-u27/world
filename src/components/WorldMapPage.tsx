@@ -11,7 +11,6 @@ import {
   Marker,
 } from "@react-google-maps/api";
 import { useRef, useState } from "react";
-import Link from "next/link";
 import PostLists from "./PostLists";
 
 // google map api
@@ -106,22 +105,22 @@ const WorldMapPage = () => {
   // →トリガーは、GoogleMapコンポーネントのonClickかonZoomChangedを使う
   // →stateを使ってボタンを表示する
   const [zoomPostList, setZoomPostList] = useState(false);
-  
-  const handleZoomCancell = () => {};
-  
+  // ↓国名のウィンドウを閉じた時の「投稿一覧ボタン」を非表示にするstate
+  const [zoomPostListHidden, setZoomPostListHidden] = useState(true);
+
+  const handleZoom = () => {
+    setZoomPostList(!zoomPostList);
+  };
+
   if (!googleMapsApiKey) {
     return <Box>Google Maps API キーが見つかりません。</Box>;
   }
-  
+
   return (
     <>
       <Box>
         <HowToBlock />
-        {zoomPostList && (
-          <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
-            投稿一覧
-          </Button>
-        )}
+        {zoomPostList && <PostLists />}
         <LoadScript googleMapsApiKey={googleMapsApiKey}>
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
@@ -141,13 +140,13 @@ const WorldMapPage = () => {
                 };
               });
             }}
-            // onZoomChanged={}
-            >
+            onZoomChanged={handleZoom}
+          >
             {markedCountries.map((country) => (
               <Marker
-              key={country.name}
-              position={{ lat: country.lat, lng: country.lng }}
-              onClick={() => setSelectedCountry(country.name)}
+                key={country.name}
+                position={{ lat: country.lat, lng: country.lng }}
+                onClick={() => setSelectedCountry(country.name)}
               />
             ))}
             {markedCountries.map((country) =>
@@ -156,15 +155,15 @@ const WorldMapPage = () => {
                 // →トリガーは、InfoWindowコンポーネントのonCloseClickを使う
                 // →stateを使ってボタンを非表示する
                 <InfoWindow
-                key={country.name}
-                position={{ lat: country.lat, lng: country.lng }}
-                options={InfoWindowOptions}
-                onCloseClick={() => {
-                  setSelectedCountry(null);
-                  setOptions(DEFAULT_OPTIONS);
-                  setZoom(2.3);
-                  setZoomPostList(true);
-                }}
+                  key={country.name}
+                  position={{ lat: country.lat, lng: country.lng }}
+                  options={InfoWindowOptions}
+                  onCloseClick={() => {
+                    setSelectedCountry(null);
+                    setOptions(DEFAULT_OPTIONS);
+                    setZoom(2.3);
+                    setZoomPostListHidden(false);
+                  }}
                 >
                   <Box style={mapStyle}>{country.name}</Box>
                 </InfoWindow>
