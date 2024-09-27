@@ -27,13 +27,14 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { BiLike } from "react-icons/bi";
 
 interface ApiResponce {
   data: postType[];
 }
 
 async function fetchAllWorldPost(): Promise<postType[]> {
-  const res = await fetch(`http://localhost:3000/api/world-posts`, {
+  const res = await fetch(`https://world-map-sns.vercel.app/api/world-posts`, {
     cache: "no-store",
   });
 
@@ -58,9 +59,9 @@ const PostLists = () => {
   return (
     <>
       <Box position="fixed" left="90%" top="8%" zIndex={1000}>
-        {/* <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
+        <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
           投稿一覧
-        </Button> */}
+        </Button>
       </Box>
       <Drawer
         isOpen={isOpen}
@@ -81,8 +82,10 @@ const PostLists = () => {
                     <Avatar name="Segun Adebayo" bg="blue.300" size="md" />
                     <Box>
                       <Heading size="sm">Segun Adebayo</Heading>
-                      <Text>Creator, Chakra UI</Text>
                     </Box>
+                      <Button flex="1" variant="ghost" leftIcon={<BiLike />}>
+                        Like
+                      </Button>
                     <Spacer />
                     <Box>
                       <HamburgerIcon />
