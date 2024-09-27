@@ -19,7 +19,7 @@ const createPost = async (
   content: string | undefined,
   createAt: string | undefined
 ) => {
-  const res = await fetch(`http://localhost:3000/api/world-posts`, {
+  const res = await fetch(`https://world-map-sns.vercel.app/api/world-posts`, {
     method: "POST",
     headers: {
       "Content-Type": "application / json",
@@ -32,7 +32,7 @@ const createPost = async (
 const PostCreate = () => {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLInputElement | null>(null);
-  const createAtRef = useRef<string | null>(null);
+  const createAtRef = useRef<HTMLInputElement | null>(null);
   const toast = useToast();
   const router = useRouter();
 
@@ -47,7 +47,7 @@ const PostCreate = () => {
       isClosable: true,
     });
 
-    const currentDate = new Date().toISOString();
+    const currentDate = createAtRef.current?.value || new Date().toISOString();
     await createPost(
       titleRef.current?.value,
       contentRef.current?.value,
@@ -77,7 +77,7 @@ const PostCreate = () => {
                 ref={contentRef}
               />
               <Text>日時</Text>
-              <Input type="date" width="420px" ref={createAtRef} />
+              <Input type="datetime-local" width="420px" ref={createAtRef} />
               <Box m="20px" px="38%">
                 <Link href="/world/1">
                   <Button
