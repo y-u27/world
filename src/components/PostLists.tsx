@@ -33,28 +33,35 @@ interface ApiResponce {
   data: postType[];
 }
 
-async function fetchAllWorldPost(): Promise<postType[]> {
-  const res = await fetch(`https://world-map-sns.vercel.app/api/world-posts`, {
-    cache: "no-store",
-  });
+interface paramsProps {
+  id: number;
+}
+
+async function fetchAllWorldPost({ id }: paramsProps): Promise<postType[]> {
+  const res = await fetch(
+    `https://world-map-sns.vercel.app/api/world-posts/${id}`,
+    {
+      cache: "no-store",
+    }
+  );
 
   const postData: ApiResponce = await res.json();
   return postData.data;
 }
 
-const PostLists = () => {
+const PostLists = ({ id }: paramsProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<postType[]>([]);
 
   useEffect(() => {
     const getPostData = async () => {
-      const postDatas: postType[] = await fetchAllWorldPost();
+      const postDatas: postType[] = await fetchAllWorldPost({ id });
       console.log(Array.isArray(postDatas));
       setMapPostCards(postDatas);
     };
     getPostData();
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -83,9 +90,9 @@ const PostLists = () => {
                     <Box>
                       <Heading size="sm">Segun Adebayo</Heading>
                     </Box>
-                      <Button flex="1" variant="ghost" leftIcon={<BiLike />}>
-                        Like
-                      </Button>
+                    <Button flex="1" variant="ghost" leftIcon={<BiLike />}>
+                      Like
+                    </Button>
                     <Spacer />
                     <Box>
                       <HamburgerIcon />
