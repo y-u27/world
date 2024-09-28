@@ -42,8 +42,8 @@ const WorldMapPage = () => {
   >([]);
   // ↓マップのオプション
   const [options, setOptions] = useState(DEFAULT_OPTIONS);
-  const btnRef = useRef<HTMLButtonElement | null>(null);
-  const { onOpen } = useDisclosure();
+  // ↓国名のstate
+  const [countryName, setCountryName] = useState("");
 
   // クリックした地点の中心座標と国名を取得
   // TIPS: LoadScript読み込むことで、windowオブジェクトからGoogle Map APIが利用できる
@@ -63,6 +63,7 @@ const WorldMapPage = () => {
         // ②さらにcountryの場合、国の住所・緯度経度・条件に一つでも合う国にマーカーを表示させる
         if (country) {
           setSelectedCountry(country.formatted_address);
+          setCountryName(country.formatted_address);
           setMapCenter({ lat, lng });
           // ↓以前にマーカーを表示した国が以前の国名と国の住所と一致しているかを判定している?
           setMarkedCountries((prevMarkedCountries) => {
@@ -120,7 +121,7 @@ const WorldMapPage = () => {
     <>
       <Box>
         <HowToBlock />
-        {zoomPostList && <PostLists />}
+        {zoomPostList && <PostLists country={countryName} />}
         <LoadScript googleMapsApiKey={googleMapsApiKey}>
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
