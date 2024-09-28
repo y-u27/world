@@ -37,8 +37,12 @@ interface ApiResponce {
 //   id: number;
 // }
 
+type CountryProps = {
+  country: string;
+};
+
 async function fetchAllWorldPost(): Promise<postType[]> {
-  const res = await fetch(`https://world-map-sns.vercel.app/api/world-posts`, {
+  const res = await fetch(`http://localhost:3000/api/world-posts`, {
     cache: "no-store",
   });
 
@@ -46,7 +50,7 @@ async function fetchAllWorldPost(): Promise<postType[]> {
   return postData.data;
 }
 
-const PostLists = () => {
+const PostLists: React.FC<CountryProps> = ({ country }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<postType[]>([]);
@@ -77,7 +81,7 @@ const PostLists = () => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>国名</DrawerHeader>
+          <DrawerHeader>{country}</DrawerHeader>
           <DrawerBody>
             {mapPostCards.map((mapPost) => (
               <Card mb="4%" key={mapPost.id}>
