@@ -19,7 +19,7 @@ const createPost = async (
   content: string | undefined,
   createAt: string | undefined
 ) => {
-  const res = await fetch(`https://world-map-sns.vercel.app/api/world-posts`, {
+  const res = await fetch(`http://localhost:3000/api/world-posts`, {
     method: "POST",
     headers: {
       "Content-Type": "application / json",
