@@ -33,35 +33,32 @@ interface ApiResponce {
   data: postType[];
 }
 
-interface paramsProps {
-  id: number;
-}
+// interface paramsProps {
+//   id: number;
+// }
 
-async function fetchAllWorldPost({ id }: paramsProps): Promise<postType[]> {
-  const res = await fetch(
-    `https://world-map-sns.vercel.app/api/world-posts/${id}`,
-    {
-      cache: "no-store",
-    }
-  );
+async function fetchAllWorldPost(): Promise<postType[]> {
+  const res = await fetch(`https://world-map-sns.vercel.app/api/world-posts`, {
+    cache: "no-store",
+  });
 
   const postData: ApiResponce = await res.json();
   return postData.data;
 }
 
-const PostLists = ({ id }: paramsProps) => {
+const PostLists = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<postType[]>([]);
 
   useEffect(() => {
     const getPostData = async () => {
-      const postDatas: postType[] = await fetchAllWorldPost({ id });
+      const postDatas: postType[] = await fetchAllWorldPost();
       console.log(Array.isArray(postDatas));
       setMapPostCards(postDatas);
     };
     getPostData();
-  }, [id]);
+  }, []);
 
   return (
     <>

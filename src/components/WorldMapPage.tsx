@@ -44,7 +44,6 @@ const WorldMapPage = () => {
   const [options, setOptions] = useState(DEFAULT_OPTIONS);
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const { onOpen } = useDisclosure();
-  const id = 1;
 
   // クリックした地点の中心座標と国名を取得
   // TIPS: LoadScript読み込むことで、windowオブジェクトからGoogle Map APIが利用できる
@@ -121,7 +120,7 @@ const WorldMapPage = () => {
     <>
       <Box>
         <HowToBlock />
-        {zoomPostList && <PostLists id={id} />}
+        {zoomPostList && <PostLists />}
         <LoadScript googleMapsApiKey={googleMapsApiKey}>
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
