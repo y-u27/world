@@ -1,11 +1,20 @@
 "use client";
 
-import { Box, Button, Card, CardBody, Input, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Card,
+  CardBody,
+  HStack,
+  Input,
+  Text,
+} from "@chakra-ui/react";
 import Link from "next/link";
+import { TiArrowBackOutline } from "react-icons/ti";
 
 const Login = () => {
   return (
-    <Card width="400px" height="450px" mx="36%" mt="5%" boxShadow="2xl">
+    <Card width="400px" height="480px" mx="36%" mt="5%" boxShadow="2xl">
       <CardBody>
         <Text pt="5%" textAlign="center" fontFamily="revert" fontSize="3xl">
           ログイン
@@ -29,20 +38,28 @@ const Login = () => {
             ログイン
           </Button>
           <Box display="flex" justifyContent="center" mr="4%" mt="10px">
-            <Button
-              w="146px"
-              _hover={{ background: "#1e90ff", color: "#e0ffff" }}
-            >
-              Google
-            </Button>
-            <Link href="/sign">
+            <HStack spacing="2px">
               <Button
-                ml="6%"
-                w="145px"
-                _hover={{ background: "#f08080", color: "white" }}
+                w="146px"
+                _hover={{ background: "#1e90ff", color: "#e0ffff" }}
               >
-                新規登録
+                Google
               </Button>
+              <Link href="/login/sign">
+                <Button
+                  ml="6%"
+                  w="145px"
+                  _hover={{ background: "#f08080", color: "white" }}
+                >
+                  新規登録
+                </Button>
+              </Link>
+            </HStack>
+          </Box>
+          <Box mt="24px">
+            <TiArrowBackOutline />
+            <Link href="/">
+              <Text>トップページへ戻る</Text>
             </Link>
           </Box>
         </Box>

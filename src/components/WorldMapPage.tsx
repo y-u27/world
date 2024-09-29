@@ -2,8 +2,7 @@
 
 "use client";
 
-import { Box, Button, useDisclosure } from "@chakra-ui/react";
-import HowToBlock from "./HowToBlock";
+import { Box, Button } from "@chakra-ui/react";
 import {
   GoogleMap,
   LoadScript,
@@ -120,7 +119,6 @@ const WorldMapPage = () => {
   return (
     <>
       <Box>
-        <HowToBlock />
         {zoomPostList && <PostLists country={countryName} />}
         <LoadScript googleMapsApiKey={googleMapsApiKey}>
           <GoogleMap
@@ -173,6 +171,9 @@ const WorldMapPage = () => {
           </GoogleMap>
         </LoadScript>
       </Box>
+      <Button position="fixed" bottom="5">
+        ログアウト
+      </Button>
     </>
   );
 };

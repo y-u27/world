@@ -44,7 +44,7 @@ const SignUp = () => {
             </Button>
           </HStack>
           <TiArrowBackOutline />
-          <Link href="/">
+          <Link href="/login">
             <Text>ログインへ戻る</Text>
           </Link>
         </Box>
