@@ -1,7 +1,7 @@
 import SignUp from '@/components/SignUp'
 import { Box } from '@chakra-ui/react'
 
-const signPage = () => {
+const signInPage = () => {
   return (
     <Box>
       <SignUp/>
@@ -9,4 +9,4 @@ const signPage = () => {
   )
 }
 
-export default signPage
+export default signInPage
