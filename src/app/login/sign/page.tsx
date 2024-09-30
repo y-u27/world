@@ -1,12 +1,12 @@
-import SignUp from '@/components/SignUp'
-import { Box } from '@chakra-ui/react'
+import SignUp from "@/components/SignUp";
+import { Box } from "@chakra-ui/react";
 
 const signInPage = () => {
   return (
     <Box>
-      <SignUp/>
+      <SignUp />
     </Box>
-  )
-}
+  );
+};
 
-export default signInPage
+export default signInPage;
