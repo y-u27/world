@@ -13,11 +13,7 @@ const IntroHowTo = () => {
   return (
     <>
       <Box position="relative" w="80%" ml="10%" mt="60px">
-        <Box
-          bgColor="yellow.50"
-          p="6"
-          position="relative"
-          >
+        <Box bgColor="yellow.50" p="6" position="relative">
           <Heading
             position="absolute"
             top="-20px"
@@ -28,8 +24,9 @@ const IntroHowTo = () => {
             bgColor="teal.100"
             borderRadius={10}
             size="lg"
-            bgGradient="linear(to-r, yellow.400, pink.200)"
-            >
+            bgGradient="linear(to-r, teal.300, blue.200,gray.100)"
+            fontWeight="none"
+          >
             どんなサイトか？
           </Heading>
           <Text w="100%" ml="2%">
@@ -41,11 +38,7 @@ const IntroHowTo = () => {
         </Box>
       </Box>
       <Box position="relative" w="80%" ml="10%" mt="40px">
-        <Box
-          p="6"
-          position="relative"
-          bgColor="yellow.50"
-          >
+        <Box p="6" position="relative" bgColor="yellow.50">
           <Heading
             position="absolute"
             top="-20px"
@@ -56,7 +49,8 @@ const IntroHowTo = () => {
             bgColor="teal.100"
             borderRadius={10}
             size="lg"
-            bgGradient="linear(to-r, yellow.400, pink.200)"
+            bgGradient="linear(to-r, teal.300, blue.200,gray.100)"
+            fontWeight="none"
           >
             使い方
           </Heading>
@@ -69,6 +63,7 @@ const IntroHowTo = () => {
               「投稿一覧」が表示されたら、実際に投稿してみましょう！
             </ListItem>
           </OrderedList>
+          
         </Box>
       </Box>
       <Box m="24px">
