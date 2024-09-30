@@ -2,7 +2,12 @@
 "use client";
 
 import { postType } from "@/app/types/postType";
-import { HamburgerIcon } from "@chakra-ui/icons";
+import {
+  CloseIcon,
+  DeleteIcon,
+  EditIcon,
+  HamburgerIcon,
+} from "@chakra-ui/icons";
 import {
   Drawer,
   DrawerBody,
@@ -24,8 +29,15 @@ import {
   Avatar,
   Divider,
   Spacer,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  IconButton,
+  useToast,
 } from "@chakra-ui/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { BiLike } from "react-icons/bi";
 
@@ -33,9 +45,9 @@ interface ApiResponce {
   data: postType[];
 }
 
-// interface paramsProps {
-//   id: number;
-// }
+interface paramsProps {
+  id: number;
+}
 
 type CountryProps = {
   country: string;
@@ -50,10 +62,53 @@ async function fetchAllWorldPost(): Promise<postType[]> {
   return postData.data;
 }
 
-const PostLists: React.FC<CountryProps> = ({ country }) => {
+const PostLists: React.FC<CountryProps> = (
+  { country },
+  { id }: paramsProps
+) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<postType[]>([]);
+  const toast = useToast();
+  const router = useRouter();
+
+  const handleDeletePost = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/world-posts/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (response.ok) {
+        toast({
+          title: "投稿削除",
+          description: "投稿を削除しました",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+        router.push("/world");
+        router.refresh();
+      } else {
+        toast({
+          title: "投稿削除失敗",
+          description: "投稿を削除できませんでした",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "エラー発生",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
 
   useEffect(() => {
     const getPostData = async () => {
@@ -96,7 +151,24 @@ const PostLists: React.FC<CountryProps> = ({ country }) => {
                     </Button>
                     <Spacer />
                     <Box>
-                      <HamburgerIcon />
+                      <Menu>
+                        <MenuButton
+                          as={IconButton}
+                          aria-label="Options"
+                          icon={<HamburgerIcon />}
+                          variant="outline"
+                        />
+                        <MenuList>
+                          <MenuItem icon={<EditIcon />}>編集</MenuItem>
+                          <MenuItem
+                            icon={<DeleteIcon />}
+                            onClick={handleDeletePost}
+                          >
+                            削除
+                          </MenuItem>
+                          <MenuItem icon={<CloseIcon />}>閉じる</MenuItem>
+                        </MenuList>
+                      </Menu>
                     </Box>
                   </Flex>
                 </CardHeader>
