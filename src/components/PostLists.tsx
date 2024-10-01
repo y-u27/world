@@ -1,4 +1,3 @@
-// 投稿機能（投稿フォーム遷移）→○
 "use client";
 
 import { postType } from "@/app/types/postType";
@@ -46,7 +45,9 @@ interface ApiResponce {
 }
 
 interface paramsProps {
-  id: number;
+  mapPost: {
+    id: number;
+  };
 }
 
 type CountryProps = {
@@ -64,7 +65,7 @@ async function fetchAllWorldPost(): Promise<postType[]> {
 
 const PostLists: React.FC<CountryProps> = (
   { country },
-  { id }: paramsProps
+  { mapPost }: paramsProps
 ) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
@@ -75,7 +76,7 @@ const PostLists: React.FC<CountryProps> = (
   const handleDeletePost = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/world-posts/${id}`,
+        `http://localhost:3000/api/world-posts/${mapPost.id}`,
         {
           method: "DELETE",
         }
