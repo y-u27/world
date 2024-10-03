@@ -25,3 +25,8 @@ model User {
   name String?
   image String
 }
+
+model Likes {
+  id Int @id @default(autoincrement())
+  
+}
