@@ -36,18 +36,11 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { BiLike } from "react-icons/bi";
 
 interface ApiResponce {
   data: postType[];
-}
-
-interface paramsProps {
-  mapPost: {
-    id: number;
-  };
 }
 
 type CountryProps = {
@@ -64,19 +57,20 @@ async function fetchAllWorldPost(): Promise<postType[]> {
 }
 
 const PostLists: React.FC<CountryProps> = (
-  { country },
-  { mapPost }: paramsProps
+  { country }
 ) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<postType[]>([]);
   const toast = useToast();
-  const router = useRouter();
+  const [isEditing, setIsEditing] = useState(true);
 
-  const handleDeletePost = async () => {
+  const handleEdotPost = () => {};
+
+  const handleDeletePost = async (id: number) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/world-posts/${mapPost.id}`,
+        `http://localhost:3000/api/world-posts/${id}`,
         {
           method: "DELETE",
         }
@@ -90,8 +84,10 @@ const PostLists: React.FC<CountryProps> = (
           duration: 3000,
           isClosable: true,
         });
-        router.push("/world");
-        router.refresh();
+        // 削除された投稿を除いた新しいリストに更新
+        setMapPostCards((prevPostCards) =>
+          prevPostCards.filter((post) => post.id !== id)
+        );
       } else {
         toast({
           title: "投稿削除失敗",
@@ -160,10 +156,15 @@ const PostLists: React.FC<CountryProps> = (
                           variant="outline"
                         />
                         <MenuList>
-                          <MenuItem icon={<EditIcon />}>編集</MenuItem>
+                          <MenuItem
+                            icon={<EditIcon />}
+                            // onChange={handleEdotPost}
+                          >
+                            編集
+                          </MenuItem>
                           <MenuItem
                             icon={<DeleteIcon />}
-                            onClick={handleDeletePost}
+                            onClick={() => handleDeletePost(mapPost.id)}
                           >
                             削除
                           </MenuItem>
@@ -203,11 +204,6 @@ const PostLists: React.FC<CountryProps> = (
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
-      {/* <Box position="fixed" bottom="0" zIndex={1000}>
-        <Link href="/world">
-          <Button>トップページへ戻る</Button>
-        </Link>
-      </Box> */}
     </>
   );
 };
