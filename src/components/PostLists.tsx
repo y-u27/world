@@ -34,6 +34,8 @@ import {
   MenuItem,
   IconButton,
   useToast,
+  FormControl,
+  Input,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -56,16 +58,29 @@ async function fetchAllWorldPost(): Promise<postType[]> {
   return postData.data;
 }
 
-const PostLists: React.FC<CountryProps> = (
-  { country }
-) => {
+const PostLists: React.FC<CountryProps> = ({ country }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<postType[]>([]);
   const toast = useToast();
-  const [isEditing, setIsEditing] = useState(true);
 
-  const handleEdotPost = () => {};
+  const handleEditPost = async (
+    title: string,
+    content: string,
+    createAt: Date,
+    id: number
+  ) => {
+    const response = await fetch(
+      `http://localhost:3000/api/world-posts/${id}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify({ title, content, createAt }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  };
 
   const handleDeletePost = async (id: number) => {
     try {
@@ -158,7 +173,7 @@ const PostLists: React.FC<CountryProps> = (
                         <MenuList>
                           <MenuItem
                             icon={<EditIcon />}
-                            // onChange={handleEdotPost}
+                            // onChange={handleEditPost}
                           >
                             編集
                           </MenuItem>
