@@ -59,7 +59,7 @@ const WorldMapPage = () => {
         const country = results.find((result) =>
           result.types.includes("country")
         );
-        // ②さらにcountryの場合、国の住所・緯度経度・条件に一つでも合う国にマーカーを表示させる
+        // ②さらにcountryの場合、国の住所・緯度経度・条件に一つでも合う国にマーカーと上部に国名を表示させる
         if (country) {
           setSelectedCountry(country.formatted_address);
           setCountryName(country.formatted_address);
