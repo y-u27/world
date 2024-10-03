@@ -5,13 +5,20 @@ import {
   ListItem,
   OrderedList,
   Text,
+  VStack,
 } from "@chakra-ui/react";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const IntroHowTo = () => {
   return (
     <>
+      <Box>
+        <Link href="/login">
+          <Button w="100px">ログイン</Button>
+        </Link>
+      </Box>
       <Box position="relative" w="80%" ml="10%" mt="60px">
         <Box bgColor="yellow.50" p="6" position="relative">
           <Heading
@@ -54,22 +61,38 @@ const IntroHowTo = () => {
           >
             使い方
           </Heading>
-          <OrderedList w="100%" ml="2%">
-            <ListItem>好きな国や行ったことがある国をクリック</ListItem>
-            <ListItem>
-              その国の地図が表示されたら、右上にある「投稿一覧」ボタンをクリック
-            </ListItem>
-            <ListItem>
-              「投稿一覧」が表示されたら、実際に投稿してみましょう！
-            </ListItem>
-          </OrderedList>
-          
+          <VStack>
+            <OrderedList w="100%" ml="2%">
+              <ListItem w="100%" ml="2%">
+                好きな国や行ったことがある国をクリック
+              </ListItem>
+              <Box px="240px">
+                <Image
+                  src="/sample/スクリーンショット 2024-09-30 20.28.38.jpeg"
+                  alt="Top Image"
+                  width={900}
+                  height={800}
+                />
+              </Box>
+              <br />
+              <ListItem w="100%" ml="2%">
+                その国の地図が表示されたら、右上にある「投稿一覧」ボタンをクリック
+              </ListItem>
+              <Box px="240px">
+                <Image
+                  src="/sample/スクリーンショット 2024-09-30 20.28.54.jpeg"
+                  alt="Top Image"
+                  width={900}
+                  height={800}
+                />
+              </Box>
+              <br />
+              <ListItem w="100%" ml="2%">
+                「投稿一覧」が表示されたら、実際に投稿してみましょう！
+              </ListItem>
+            </OrderedList>
+          </VStack>
         </Box>
-      </Box>
-      <Box m="24px">
-        <Link href="/login">
-          <Button w="50px">ログイン</Button>
-        </Link>
       </Box>
     </>
   );
