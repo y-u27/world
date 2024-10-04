@@ -28,5 +28,6 @@ model User {
 
 model Likes {
   id Int @id @default(autoincrement())
-  
+  userId Int
+  postId Int
 }
