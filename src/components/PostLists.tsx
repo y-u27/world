@@ -1,5 +1,6 @@
 "use client";
 
+import { likeType } from "@/app/types/likeType";
 import { postType } from "@/app/types/postType";
 import {
   CloseIcon,
@@ -43,12 +44,14 @@ import { BiLike } from "react-icons/bi";
 
 interface ApiResponce {
   data: postType[];
+  data1: likeType[];
 }
 
 type CountryProps = {
   country: string;
 };
 
+// ↓全投稿データ取得
 async function fetchAllWorldPost(): Promise<postType[]> {
   const res = await fetch(`http://localhost:3000/api/world-posts`, {
     cache: "no-store",
@@ -58,11 +61,24 @@ async function fetchAllWorldPost(): Promise<postType[]> {
   return postData.data;
 }
 
+// ↓いいねデータ取得
+async function fetchAllLikesPost(): Promise<likeType[]> {
+  const res = await fetch(`http://localhost:3000/api/likes`, {
+    cache: "no-store",
+  });
+
+  const likesData: ApiResponce = await res.json();
+  return likesData.data1;
+}
+
 const PostLists: React.FC<CountryProps> = ({ country }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<postType[]>([]);
   const toast = useToast();
+
+  // いいねボタンをクリックした時にいいねが
+  const handleLikesPost = async () => {};
 
   const handleEditPost = async (
     title: string,
@@ -158,7 +174,12 @@ const PostLists: React.FC<CountryProps> = ({ country }) => {
                     <Box>
                       <Heading size="sm">Segun Adebayo</Heading>
                     </Box>
-                    <Button flex="1" variant="ghost" leftIcon={<BiLike />}>
+                    <Button
+                      flex="1"
+                      variant="ghost"
+                      leftIcon={<BiLike />}
+                      // onClick={handleLikesPost}
+                    >
                       Like
                     </Button>
                     <Spacer />
