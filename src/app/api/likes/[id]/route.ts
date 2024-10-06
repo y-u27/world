@@ -3,49 +3,52 @@
 import prisma from "@/app/lib/prismaClient";
 import { NextResponse } from "next/server";
 
-// いいねデータ取得
-export async function GET() {
-  try {
-    const likePostData = await prisma.likes.findMany({
-      include: {
-        user: true,
-        post: true,
-      },
-    });
-    return NextResponse.json(
-      {
-        success: true,
-        message: "いいねデータ取得",
-        data: likePostData,
-      },
-      {
-        status: 200,
-      }
-    );
-  } catch (error) {
-    console.log(error);
+interface Params {
+  id: string;
+}
+
+// 特定のいいねデータ取得
+export async function GET(request: Request, { params }: { params: Params }) {
+  const id = parseInt(params.id);
+
+  const likePostData = await prisma.likes.findUnique({
+    where: { id },
+  });
+
+  if (!likePostData) {
     return NextResponse.json(
       {
         success: false,
-        message: "いいねデータ取得失敗",
+        message: "いいねデータ取得に失敗",
+        data: null,
       },
       {
-        status: 200,
+        status: 404,
       }
     );
   }
+  return NextResponse.json(
+    {
+      success: true,
+      message: "いいねデータ取得に成功しました",
+      data: likePostData,
+    },
+    {
+      status: 200,
+    }
+  );
 }
 
-// いいねデータ作成
-export async function POST(request: Request) {
+// 特定のいいねデータ作成
+export async function POST(request: Request, { params }: { params: Params }) {
   const { userId, postId } = await request.json();
 
   const newLikePostData = await prisma.likes.create({
     data: {
       userId,
       postId,
-    }
-  })
+    },
+  });
   return NextResponse.json(
     {
       success: true,
@@ -55,5 +58,26 @@ export async function POST(request: Request) {
     {
       status: 201,
     }
-  ) 
+  );
+}
+
+// いいねデータ削除
+export async function DELETE(request: Request, { params }: { params: Params }) {
+  const id = parseInt(params.id);
+
+  await prisma.likes.delete({
+    where: {
+      id,
+    },
+  });
+  return NextResponse.json(
+    {
+      success: true,
+      message: "いいね削除",
+      data: null,
+    },
+    {
+      status: 200,
+    }
+  );
 }
