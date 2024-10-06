@@ -35,8 +35,6 @@ import {
   MenuItem,
   IconButton,
   useToast,
-  FormControl,
-  Input,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -61,24 +59,45 @@ async function fetchAllWorldPost(): Promise<postType[]> {
   return postData.data;
 }
 
-// ↓いいねデータ取得
-async function fetchAllLikesPost(): Promise<likeType[]> {
-  const res = await fetch(`http://localhost:3000/api/likes`, {
-    cache: "no-store",
-  });
-
-  const likesData: ApiResponce = await res.json();
-  return likesData.data1;
-}
-
 const PostLists: React.FC<CountryProps> = ({ country }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<postType[]>([]);
   const toast = useToast();
 
-  // いいねボタンをクリックした時にいいねが
-  const handleLikesPost = async () => {};
+  // いいねボタンをクリック・解除した時の処理
+  const handleLikesPost = async (
+    userId: number,
+    postId: number,
+    id: number
+  ) => {
+    try {
+      const likeResponse = await fetch(
+        `http://localhost:3000/api/likes/${id}`,
+        {
+          method: "GET",
+        }
+      );
+
+      const likeData = await likeResponse.json();
+
+      if (likeData.liked) {
+        await fetch(`http://localhost:3000/api/likes/${id}`, {
+          method: "DELETE",
+        });
+      } else {
+        const response = await fetch(`http://localhost:3000/api/likes/${id}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId, postId }),
+        });
+      }
+    } catch (error) {
+      console.error("Failed to toggle like", error);
+    }
+  };
 
   const handleEditPost = async (
     title: string,
@@ -178,7 +197,13 @@ const PostLists: React.FC<CountryProps> = ({ country }) => {
                       flex="1"
                       variant="ghost"
                       leftIcon={<BiLike />}
-                      // onClick={handleLikesPost}
+                      onClick={() =>
+                        handleLikesPost(
+                          mapPost.userId,
+                          mapPost.postId,
+                          mapPost.id
+                        )
+                      }
                     >
                       Like
                     </Button>
