@@ -1,6 +1,5 @@
 "use client";
 
-import { likeType } from "@/app/types/likeType";
 import { postType } from "@/app/types/postType";
 import {
   CloseIcon,
@@ -35,14 +34,13 @@ import {
   MenuItem,
   IconButton,
   useToast,
+  FormControl,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { BiLike } from "react-icons/bi";
 
 interface ApiResponce {
   data: postType[];
-  data1: likeType[];
 }
 
 type CountryProps = {
@@ -64,39 +62,12 @@ const PostLists: React.FC<CountryProps> = ({ country }) => {
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<postType[]>([]);
   const toast = useToast();
+  const [editPostId, setEditPostId] = useState<number | null>(null);
 
-  // いいねボタンをクリック・解除した時の処理
-  const handleLikesPost = async (
-    userId: number,
-    postId: number,
-    id: number
-  ) => {
-    try {
-      const likeResponse = await fetch(
-        `http://localhost:3000/api/likes/${id}`,
-        {
-          method: "GET",
-        }
-      );
+  // const 
 
-      const likeData = await likeResponse.json();
-
-      if (likeData.liked) {
-        await fetch(`http://localhost:3000/api/likes/${id}`, {
-          method: "DELETE",
-        });
-      } else {
-        const response = await fetch(`http://localhost:3000/api/likes/${id}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ userId, postId }),
-        });
-      }
-    } catch (error) {
-      console.error("Failed to toggle like", error);
-    }
+  const handleEditClick = (id: number) => {
+    setEditPostId(id);
   };
 
   const handleEditPost = async (
@@ -193,20 +164,6 @@ const PostLists: React.FC<CountryProps> = ({ country }) => {
                     <Box>
                       <Heading size="sm">Segun Adebayo</Heading>
                     </Box>
-                    <Button
-                      flex="1"
-                      variant="ghost"
-                      leftIcon={<BiLike />}
-                      onClick={() =>
-                        handleLikesPost(
-                          mapPost.userId,
-                          mapPost.postId,
-                          mapPost.id
-                        )
-                      }
-                    >
-                      Like
-                    </Button>
                     <Spacer />
                     <Box>
                       <Menu>
@@ -248,6 +205,17 @@ const PostLists: React.FC<CountryProps> = ({ country }) => {
                       </Text>
                     </Box>
                   </Stack>
+                {/* {editPostId === mapPost.id ? (
+                  <Form>
+                  <input/>
+                  <button></button>
+                  </Form>
+                ):(
+                  <CardBody>
+                  <Text></Text>
+                  <Button></Button>
+                  </CardBody>
+                )} */}
                 </CardBody>
               </Card>
             ))}
