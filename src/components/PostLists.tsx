@@ -34,7 +34,6 @@ import {
   MenuItem,
   IconButton,
   useToast,
-  FormControl,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -49,7 +48,7 @@ type CountryProps = {
 
 // ↓全投稿データ取得
 async function fetchAllWorldPost(): Promise<postType[]> {
-  const res = await fetch(`http://localhost:3000/api/world-posts`, {
+  const res = await fetch(`http://localhost:3000/api/world-posts?country-name=xxxxx`, {
     cache: "no-store",
   });
 
@@ -62,31 +61,6 @@ const PostLists: React.FC<CountryProps> = ({ country }) => {
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<postType[]>([]);
   const toast = useToast();
-  const [editPostId, setEditPostId] = useState<number | null>(null);
-
-  // const 
-
-  const handleEditClick = (id: number) => {
-    setEditPostId(id);
-  };
-
-  const handleEditPost = async (
-    title: string,
-    content: string,
-    createAt: Date,
-    id: number
-  ) => {
-    const response = await fetch(
-      `http://localhost:3000/api/world-posts/${id}`,
-      {
-        method: "PATCH",
-        body: JSON.stringify({ title, content, createAt }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-  };
 
   const handleDeletePost = async (id: number) => {
     try {
@@ -174,12 +148,9 @@ const PostLists: React.FC<CountryProps> = ({ country }) => {
                           variant="outline"
                         />
                         <MenuList>
-                          <MenuItem
-                            icon={<EditIcon />}
-                            // onChange={handleEditPost}
-                          >
-                            編集
-                          </MenuItem>
+                          <Link href="/world/edit">
+                            <MenuItem icon={<EditIcon />}>編集</MenuItem>
+                          </Link>
                           <MenuItem
                             icon={<DeleteIcon />}
                             onClick={() => handleDeletePost(mapPost.id)}
@@ -205,17 +176,6 @@ const PostLists: React.FC<CountryProps> = ({ country }) => {
                       </Text>
                     </Box>
                   </Stack>
-                {/* {editPostId === mapPost.id ? (
-                  <Form>
-                  <input/>
-                  <button></button>
-                  </Form>
-                ):(
-                  <CardBody>
-                  <Text></Text>
-                  <Button></Button>
-                  </CardBody>
-                )} */}
                 </CardBody>
               </Card>
             ))}
