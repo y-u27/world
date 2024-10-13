@@ -22,13 +22,14 @@ export async function GET() {
 
 // 投稿データの作成
 export async function POST(request: Request) {
-  const { title, content, createdAt } = await request.json();
+  const { title, content, createdAt, countryName } = await request.json();
 
   const newWorldPostData = await prisma.post.create({
     data: {
       title,
       content,
-      createdAt,
+      createdAt: createdAt || new Date(),
+      countryName,
     },
   });
   return NextResponse.json(
@@ -42,6 +43,3 @@ export async function POST(request: Request) {
     }
   );
 }
-
-
-

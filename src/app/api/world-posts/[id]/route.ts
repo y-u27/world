@@ -7,14 +7,19 @@ import { NextResponse } from "next/server";
 
 interface Params {
   id: string;
+  countryName: string | undefined;
 }
 
 // 特定の投稿データの取得
-export async function GET(request: Request, { params }: { params: Params }) {
+export async function GET(
+  request: Request,
+  { params }: { params: Params },
+  { countryName }: { countryName: Params }
+) {
   const id = parseInt(params.id);
 
   const worldPostData = await prisma.post.findUnique({
-    where: { id },
+    where: { id, countryName },
   });
 
   if (!worldPostData) {
@@ -45,7 +50,7 @@ export async function GET(request: Request, { params }: { params: Params }) {
 export async function PATCH(request: Request, { params }: { params: Params }) {
   const id = parseInt(params.id);
 
-  const { title, content, createdAt } = await request.json();
+  const { title, content, createdAt, countryName } = await request.json();
 
   const newWorldPostData = await prisma.post.update({
     where: {
@@ -54,7 +59,8 @@ export async function PATCH(request: Request, { params }: { params: Params }) {
     data: {
       title,
       content,
-      createdAt,
+      createdAt: createdAt || new Date(),
+      countryName,
     },
   });
   return NextResponse.json(
