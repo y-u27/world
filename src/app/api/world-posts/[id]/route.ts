@@ -2,28 +2,26 @@
 // PUT→〜/api/worldPosts/[id]：特定の投稿を更新する
 // DELETE→〜/api/worldPosts/[id]：特定の投稿を削除する
 
-import prisma from "@/app/lib/prismaClient";
-import { NextResponse } from "next/server";
+import prisma from '@/app/lib/prismaClient';
+import { NextResponse } from 'next/server';
 
 interface Params {
   id: string;
-  countryName: string;
 }
 
 // 特定の投稿データの取得
 export async function GET(request: Request, { params }: { params: Params }) {
   const id = parseInt(params.id);
-  const { countryName } = params;
 
   const worldPostData = await prisma.post.findFirst({
-    where: { id, countryName },
+    where: { id },
   });
 
   if (!worldPostData) {
     return NextResponse.json(
       {
         success: false,
-        message: "投稿データ取得に失敗しました",
+        message: '投稿データ取得に失敗しました',
         data: null,
       },
       {
@@ -34,7 +32,7 @@ export async function GET(request: Request, { params }: { params: Params }) {
   return NextResponse.json(
     {
       success: true,
-      message: "投稿データ取得に成功しました",
+      message: '投稿データ取得に成功しました',
       data: worldPostData,
     },
     {
@@ -46,14 +44,12 @@ export async function GET(request: Request, { params }: { params: Params }) {
 // 特定の投稿データの更新
 export async function PATCH(request: Request, { params }: { params: Params }) {
   const id = parseInt(params.id);
-  const { countryName } = params;
 
   const { title, content, createdAt } = await request.json();
 
   const newWorldPostData = await prisma.post.update({
     where: {
       id,
-      countryName,
     },
     data: {
       title,
@@ -64,7 +60,7 @@ export async function PATCH(request: Request, { params }: { params: Params }) {
   return NextResponse.json(
     {
       success: true,
-      message: "投稿更新",
+      message: '投稿更新',
       data: newWorldPostData,
     },
     {
@@ -85,7 +81,7 @@ export async function DELETE(request: Request, { params }: { params: Params }) {
   return NextResponse.json(
     {
       success: true,
-      message: "投稿削除",
+      message: '投稿削除',
       data: null,
     },
     {

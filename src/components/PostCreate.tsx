@@ -17,15 +17,19 @@ import { useRef } from "react";
 const createPost = async (
   title: string | undefined,
   content: string | undefined,
-  createAt: string | undefined
+  createAt: string | undefined,
+  countryName: string | undefined
 ) => {
-  const res = await fetch(`http://localhost:3000/api/world-posts`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application / json",
-    },
-    body: JSON.stringify({ title, content, createAt }),
-  });
+  const res = await fetch(
+    `http://localhost:3000/api/world-posts`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application / json",
+      },
+      body: JSON.stringify({ title, content, createAt, countryName }),
+    }
+  );
   return res.json();
 };
 
@@ -33,6 +37,7 @@ const PostCreate = () => {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLInputElement | null>(null);
   const createAtRef = useRef<HTMLInputElement | null>(null);
+  const countryNameRef = useRef<HTMLInputElement | null>(null);
   const toast = useToast();
   const router = useRouter();
 
@@ -51,7 +56,8 @@ const PostCreate = () => {
     await createPost(
       titleRef.current?.value,
       contentRef.current?.value,
-      currentDate
+      currentDate,
+      countryNameRef.current?.value
     );
 
     router.push("/world");
