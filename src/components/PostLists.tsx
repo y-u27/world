@@ -47,10 +47,13 @@ type CountryProps = {
 };
 
 // ↓全投稿データ取得
-async function fetchAllWorldPost(): Promise<postType[]> {
-  const res = await fetch(`http://localhost:3000/api/world-posts?country-name=xxxxx`, {
-    cache: "no-store",
-  });
+async function fetchAllWorldPost(country: string): Promise<postType[]> {
+  const res = await fetch(
+    `http://localhost:3000/api/world-posts?country-name=${country}`,
+    {
+      cache: "no-store",
+    }
+  );
 
   const postData: ApiResponce = await res.json();
   return postData.data;
@@ -104,12 +107,17 @@ const PostLists: React.FC<CountryProps> = ({ country }) => {
 
   useEffect(() => {
     const getPostData = async () => {
-      const postDatas: postType[] = await fetchAllWorldPost();
-      console.log(Array.isArray(postDatas));
-      setMapPostCards(postDatas);
+      try {
+        const postDatas: postType[] = await fetchAllWorldPost(country);
+        // console.log(Array.isArray(postDatas));
+        setMapPostCards(postDatas || []);
+      } catch (error) {
+        console.error("データ取得エラー", error);
+        setMapPostCards([]);
+      }
     };
     getPostData();
-  }, []);
+  }, [country]);
 
   return (
     <>
