@@ -21,7 +21,7 @@ const createPost = async (
   countryName: string | undefined
 ) => {
   const res = await fetch(
-    `http://localhost:3000/api/world-posts`,
+    `http://localhost:3000/api/world-posts?country-name=xxxxx`,
     {
       method: "POST",
       headers: {
