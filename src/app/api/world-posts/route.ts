@@ -10,7 +10,6 @@ export async function GET(request: NextRequest) {
   const encodedCountryName = searchParams.get("country-name");
   if (!encodedCountryName) return NextResponse.json({ success: false, message: "国名が指定されていません" }, { status: 400 });
   const decodedCountryName = decodeURIComponent(encodedCountryName);
-  console.log("countryName", decodedCountryName);
   const worldPostData = await prisma.post.findMany({
     where: {
       countryName: decodedCountryName,
