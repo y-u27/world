@@ -8,12 +8,13 @@ import {
   LoadScript,
   InfoWindow,
   Marker,
+  useLoadScript,
 } from "@react-google-maps/api";
 import { useRef, useState } from "react";
 import PostLists from "./PostLists";
 
 // google map api
-const googleMapsApiKey = process.env.NEXT_PUBLIC_MAPS_API_KEY;
+const googleMapsApiKey = process.env.NEXT_PUBLIC_MAPS_API_KEY!;
 
 // オプションのデフォルト値
 const DEFAULT_OPTIONS = {
@@ -25,6 +26,11 @@ const DEFAULT_OPTIONS = {
 };
 
 const WorldMapPage = () => {
+  const { isLoaded } = useLoadScript({
+    id: "google-map-script",
+    googleMapsApiKey,
+    libraries: ["geometry", "drawing"],
+  });
   // 国を選択するuseState
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   // ↓各国の緯度経度の初期値
@@ -112,7 +118,7 @@ const WorldMapPage = () => {
     setZoomPostList(!zoomPostList);
   };
 
-  if (!googleMapsApiKey) {
+  if (!isLoaded) {
     return <Box>Google Maps API キーが見つかりません。</Box>;
   }
 
@@ -120,7 +126,8 @@ const WorldMapPage = () => {
     <>
       <Box>
         {zoomPostList && <PostLists country={countryName} />}
-        <LoadScript googleMapsApiKey={googleMapsApiKey}>
+        {/* <LoadScript googleMapsApiKey={googleMapsApiKey}> */}
+        {isLoaded && (
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
             center={mapCenter}
@@ -169,7 +176,8 @@ const WorldMapPage = () => {
               ) : null
             )}
           </GoogleMap>
-        </LoadScript>
+        )}
+        {/* </LoadScript> */}
       </Box>
       <Button position="fixed" bottom="5">
         ログアウト
