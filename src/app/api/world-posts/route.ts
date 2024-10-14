@@ -1,12 +1,21 @@
 // GET→〜/api/world-posts：投稿の一覧を取得する
 // POST→〜/api/world-posts：投稿を新規作成する
 
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/app/lib/prismaClient";
 
 // 全投稿データを取得
-export async function GET() {
-  const worldPostData = await prisma.post.findMany();
+export async function GET(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams;
+  const encodedCountryName = searchParams.get("country-name");
+  if (!encodedCountryName) return NextResponse.json({ success: false, message: "国名が指定されていません" }, { status: 400 });
+  const decodedCountryName = decodeURIComponent(encodedCountryName);
+  console.log("countryName", decodedCountryName);
+  const worldPostData = await prisma.post.findMany({
+    where: {
+      countryName: decodedCountryName,
+    },
+  });
   // 取得した投稿データを返す
   return NextResponse.json(
     {
