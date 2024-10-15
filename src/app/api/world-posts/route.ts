@@ -1,8 +1,8 @@
 // GET→〜/api/world-posts：投稿の一覧を取得する
 // POST→〜/api/world-posts：投稿を新規作成する
 
-import { NextResponse, NextRequest } from 'next/server';
-import prisma from '@/app/lib/prismaClient';
+import { NextResponse, NextRequest } from "next/server";
+import prisma from "@/app/lib/prismaClient";
 
 // 全投稿データを取得
 export async function GET(request: NextRequest) {
@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        message: '国名が指定されていません',
+        message: "国名が指定されていません",
       },
       {
         status: 400,
@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
   return NextResponse.json(
     {
       success: true,
-      message: '投稿データ取得',
+      message: "投稿データ取得",
       data: worldPostData,
     },
     {
@@ -44,21 +44,21 @@ export async function GET(request: NextRequest) {
 }
 
 // 投稿データの作成
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const { title, content, createdAt, countryName } = await request.json();
-
+  
   const newWorldPostData = await prisma.post.create({
     data: {
       title,
       content,
-      createdAt: createdAt || new Date(),
+      createdAt: createdAt ? new Date(createdAt) : new Date(),
       countryName,
     },
   });
   return NextResponse.json(
     {
       success: true,
-      message: '投稿完了！',
+      message: "投稿完了！",
       data: newWorldPostData,
     },
     {
