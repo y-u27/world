@@ -25,19 +25,14 @@ const editPost = async (
   countryName: string | undefined,
   id: number
 ) => {
-  const res = await fetch(`http://localhost:3000/api/world-posts/${id}`, {
+  const res = await fetch(`http://localhost:3000/api/world-posts?countryName=${countryName}/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ title, content, createAt, countryName }),
   });
-  if (!res.ok) {
-    throw new Error("Failed to update the post");
-  }
-
-  const data = await res.json();
-  return data;
+  return res.json();
 };
 
 const PostEdit = ({ id }: editProps) => {
@@ -81,16 +76,15 @@ const PostEdit = ({ id }: editProps) => {
           </Text>
           <Box display="flex" justifyContent="center">
             <Box flexDirection="column">
-              <Text>タイトル</Text>
-              <Input type="text" width="420px" ref={titleRef} />
-              <Text>投稿内容</Text>
+              <Input type="text" placeholder="国名" width="420px" ref={countryNameRef} />
+              <Input type="text" placeholder="タイトル" width="420px" ref={titleRef} />
               <Input
                 type="text"
+                placeholder="投稿内容"
                 height="200px"
                 width="420px"
                 ref={contentRef}
               />
-              <Text>日時</Text>
               <Input type="datetime-local" width="420px" ref={createAtRef} />
               <Box m="20px" px="38%">
                 <Link href={`/world/${id}`}>
