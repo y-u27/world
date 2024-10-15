@@ -9,6 +9,7 @@ import {
   Input,
   Text,
   useToast,
+  VStack,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -21,7 +22,7 @@ const createPost = async (
   countryName: string | undefined
 ) => {
   const res = await fetch(
-    `http://localhost:3000/api/world-posts?country-name=xxxxx`,
+    `http://localhost:3000/api/world-posts?country-name=${countryName}`,
     {
       method: "POST",
       headers: {
@@ -71,19 +72,30 @@ const PostCreate = () => {
           <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
             投稿フォーム
           </Text>
-          <Box display="flex" justifyContent="center">
+          <Box display="flex" justifyContent="center" mx={10} mt={5}>
             <Box flexDirection="column">
-              <Text>タイトル</Text>
-              <Input type="text" width="420px" ref={titleRef} />
-              <Text>投稿内容</Text>
-              <Input
-                type="text"
-                height="200px"
-                width="420px"
-                ref={contentRef}
-              />
-              <Text>日時</Text>
-              <Input type="datetime-local" width="420px" ref={createAtRef} />
+              <VStack spacing={4}>
+                <Input
+                  type="text"
+                  placeholder="国名"
+                  width="420px"
+                  ref={countryNameRef}
+                />
+                <Input
+                  type="text"
+                  placeholder="タイトル"
+                  width="420px"
+                  ref={titleRef}
+                />
+                <Input
+                  type="text"
+                  placeholder="投稿内容"
+                  height="200px"
+                  width="420px"
+                  ref={contentRef}
+                />
+                <Input type="datetime-local" width="420px" ref={createAtRef} />
+              </VStack>
               <Box m="20px" px="38%">
                 <Link href="/world/1">
                   <Button
