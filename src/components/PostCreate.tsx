@@ -16,10 +16,10 @@ import { useRouter } from "next/navigation";
 import { useRef } from "react";
 
 const createPost = async (
+  countryName: string | undefined,
   title: string | undefined,
   content: string | undefined,
-  createAt: string | undefined,
-  countryName: string | undefined
+  createAt: string | undefined
 ) => {
   const res = await fetch(
     `http://localhost:3000/api/world-posts?country-name=${countryName}`,
@@ -28,7 +28,7 @@ const createPost = async (
       headers: {
         "Content-Type": "application / json",
       },
-      body: JSON.stringify({ title, content, createAt, countryName }),
+      body: JSON.stringify({ countryName, title, content, createAt }),
     }
   );
   return res.json();
@@ -55,10 +55,10 @@ const PostCreate = () => {
 
     const currentDate = createAtRef.current?.value || new Date().toISOString();
     await createPost(
+      countryNameRef.current?.value,
       titleRef.current?.value,
       contentRef.current?.value,
-      currentDate,
-      countryNameRef.current?.value
+      currentDate
     );
 
     router.push("/world");
@@ -97,7 +97,7 @@ const PostCreate = () => {
                 <Input type="datetime-local" width="420px" ref={createAtRef} />
               </VStack>
               <Box m="20px" px="38%">
-                <Link href="/world/1">
+                <Link href="/world">
                   <Button
                     _hover={{ background: "#FAF089", color: "#319795" }}
                     onClick={handleMapPost}
