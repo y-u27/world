@@ -3,7 +3,7 @@
 // DELETE→〜/api/worldPosts/[id]：特定の投稿を削除する
 
 import prisma from "@/app/lib/prismaClient";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 interface Params {
   id: string;
@@ -42,10 +42,13 @@ export async function GET(request: Request, { params }: { params: Params }) {
 }
 
 // 特定の投稿データの更新
-export async function PATCH(request: Request, { params }: { params: Params }) {
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: Params }
+) {
   const id = parseInt(params.id);
 
-  const { title, content, createdAt, countryName } = await request.json();
+  const { title, countryName, content, createdAt } = await request.json();
 
   const newWorldPostData = await prisma.post.update({
     where: {
@@ -53,9 +56,9 @@ export async function PATCH(request: Request, { params }: { params: Params }) {
     },
     data: {
       title,
+      countryName,
       content,
       createdAt: createdAt ? new Date(createdAt) : new Date(),
-      countryName,
     },
   });
   return NextResponse.json(
