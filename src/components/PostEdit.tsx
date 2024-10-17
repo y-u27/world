@@ -25,7 +25,7 @@ const editPost = async (
   countryName: string | undefined,
   id: number
 ) => {
-  const res = await fetch(`http://localhost:3000/api/world-posts?countryName=${countryName}/${id}`, {
+  const res = await fetch(`http://localhost:3000/api/world-posts/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
