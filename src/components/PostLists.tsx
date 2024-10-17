@@ -43,6 +43,7 @@ interface ApiResponce {
 }
 
 type CountryProps = {
+  id: number;
   country: string;
 };
 
@@ -59,7 +60,7 @@ async function fetchAllWorldPost(country: string): Promise<postType[]> {
   return postData.data;
 }
 
-const PostLists: React.FC<CountryProps> = ({ country }) => {
+const PostLists: React.FC<CountryProps> = ({ id, country }: CountryProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<postType[]>([]);
@@ -156,7 +157,7 @@ const PostLists: React.FC<CountryProps> = ({ country }) => {
                           variant="outline"
                         />
                         <MenuList>
-                          <Link href="/world/edit">
+                          <Link href={`/world/edit/${mapPost.id}`}>
                             <MenuItem icon={<EditIcon />}>編集</MenuItem>
                           </Link>
                           <MenuItem
