@@ -156,7 +156,7 @@ const PostLists: React.FC<CountryProps> = ({ country }) => {
                           variant="outline"
                         />
                         <MenuList>
-                          <Link href="/world/edit">
+                          <Link href={`/world/edit/${mapPost.id}`}>
                             <MenuItem icon={<EditIcon />}>編集</MenuItem>
                           </Link>
                           <MenuItem
