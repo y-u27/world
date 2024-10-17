@@ -13,7 +13,7 @@ interface Params {
 export async function GET(request: Request, { params }: { params: Params }) {
   const id = parseInt(params.id);
 
-  const worldPostData = await prisma.post.findFirst({
+  const worldPostData = await prisma.post.findUnique({
     where: { id },
   });
 
@@ -48,7 +48,7 @@ export async function PATCH(
 ) {
   const id = parseInt(params.id);
 
-  const { title, countryName, content, createdAt } = await request.json();
+  const { title, content, createdAt } = await request.json();
 
   const newWorldPostData = await prisma.post.update({
     where: {
@@ -56,7 +56,6 @@ export async function PATCH(
     },
     data: {
       title,
-      countryName,
       content,
       createdAt: createdAt ? new Date(createdAt) : new Date(),
     },
