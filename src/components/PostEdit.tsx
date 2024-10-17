@@ -19,20 +19,19 @@ interface editProps {
 }
 
 const editPost = async (
-  countryName: string | undefined,
   title: string | undefined,
   content: string | undefined,
   createdAt: string | undefined,
   id: number
 ) => {
   const res = await fetch(
-    `http://localhost:3000/api/world-posts/${countryName}/${id}`,
+    `http://localhost:3000/api/world-posts/${id}`,
     {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ countryName, title, content, createdAt }),
+      body: JSON.stringify({ title, content, createdAt }),
     }
   );
   return res.json();
@@ -42,7 +41,6 @@ const PostEdit = ({ id }: editProps) => {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLInputElement | null>(null);
   const createdAtRef = useRef<HTMLInputElement | null>(null);
-  const countryNameRef = useRef<HTMLInputElement | null>(null);
   const toast = useToast();
   const router = useRouter();
 
@@ -59,7 +57,6 @@ const PostEdit = ({ id }: editProps) => {
 
     const currentDate = createdAtRef.current?.value || new Date().toISOString();
     await editPost(
-      countryNameRef.current?.value,
       titleRef.current?.value,
       contentRef.current?.value,
       currentDate,
@@ -67,7 +64,6 @@ const PostEdit = ({ id }: editProps) => {
     );
 
     router.push("/world");
-    router.refresh();
   };
 
   return (
@@ -79,12 +75,6 @@ const PostEdit = ({ id }: editProps) => {
           </Text>
           <Box display="flex" justifyContent="center">
             <Box flexDirection="column">
-              <Input
-                type="text"
-                placeholder="国名"
-                width="420px"
-                ref={countryNameRef}
-              />
               <Input
                 type="text"
                 placeholder="タイトル"
@@ -100,14 +90,12 @@ const PostEdit = ({ id }: editProps) => {
               />
               <Input type="datetime-local" width="420px" ref={createdAtRef} />
               <Box m="20px" px="38%">
-                <Link href={`/world`}>
                   <Button
                     _hover={{ background: "#FAF089", color: "#319795" }}
                     onClick={handleMapPost}
                   >
                     編集完了
                   </Button>
-                </Link>
               </Box>
             </Box>
           </Box>
