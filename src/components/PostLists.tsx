@@ -37,6 +37,7 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import UserImage from "./UserImage";
 
 interface ApiResponce {
   data: postType[];
@@ -143,7 +144,8 @@ const PostLists: React.FC<CountryProps> = ({ id, country }: CountryProps) => {
               <Card mb="4%" key={mapPost.id}>
                 <CardHeader>
                   <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-                    <Avatar name="Segun Adebayo" bg="blue.300" size="md" />
+                    {/*ユーザーアイコンは設定していれば表示する、していなければ表示しない→*/}
+                    <UserImage/>
                     <Box>
                       <Heading size="sm">Segun Adebayo</Heading>
                     </Box>
