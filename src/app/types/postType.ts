@@ -5,4 +5,6 @@ export interface postType {
   title: string;
   content: string;
   createdAt: Date;
+  imageUrl: string;
+  imagePath: string;
 }
