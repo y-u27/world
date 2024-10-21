@@ -1,5 +1,4 @@
 // 世界地図表示
-
 "use client";
 
 import { Box, Button } from "@chakra-ui/react";
@@ -10,8 +9,13 @@ import {
   Marker,
   useLoadScript,
 } from "@react-google-maps/api";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import PostLists from "./PostLists";
+
+type CountryProps = {
+  id: number;
+  countryName: string;
+};
 
 // google map api
 const googleMapsApiKey = process.env.NEXT_PUBLIC_MAPS_API_KEY!;
@@ -25,7 +29,7 @@ const DEFAULT_OPTIONS = {
   disableDoubleClickZoom: true, // ダブルクリックによるズームを無効化
 };
 
-const WorldMapPage = () => {
+const WorldMapPage = ({ id, countryName }: CountryProps) => {
   const { isLoaded } = useLoadScript({
     id: "google-map-script",
     googleMapsApiKey,
@@ -48,7 +52,7 @@ const WorldMapPage = () => {
   // ↓マップのオプション
   const [options, setOptions] = useState(DEFAULT_OPTIONS);
   // ↓国名のstate
-  const [countryName, setCountryName] = useState("");
+  const [countryNames, setCountryNames] = useState("");
 
   // クリックした地点の中心座標と国名を取得
   // TIPS: LoadScript読み込むことで、windowオブジェクトからGoogle Map APIが利用できる
@@ -68,7 +72,7 @@ const WorldMapPage = () => {
         // ②さらにcountryの場合、国の住所・緯度経度・条件に一つでも合う国にマーカーと上部に国名を表示させる
         if (country) {
           setSelectedCountry(country.formatted_address);
-          setCountryName(country.formatted_address);
+          setCountryNames(country.formatted_address);
           setMapCenter({ lat, lng });
           // ↓以前にマーカーを表示した国が以前の国名と国の住所と一致しているかを判定している?
           setMarkedCountries((prevMarkedCountries) => {
@@ -125,7 +129,9 @@ const WorldMapPage = () => {
   return (
     <>
       <Box>
-        {zoomPostList && <PostLists country={countryName} />}
+        {zoomPostList && selectedCountry && (
+          <PostLists id={id} countryName={selectedCountry} />
+        )}
         {/* <LoadScript googleMapsApiKey={googleMapsApiKey}> */}
         {isLoaded && (
           <GoogleMap
