@@ -45,7 +45,7 @@ interface ApiResponce {
 
 type CountryProps = {
   id: number;
-  country: string;
+  countryName: string;
 };
 
 // ↓全投稿データ取得
@@ -61,7 +61,7 @@ async function fetchAllWorldPost(country: string): Promise<postType[]> {
   return postData.data;
 }
 
-const PostLists: React.FC<CountryProps> = ({ id, country }: CountryProps) => {
+const PostLists: React.FC<CountryProps> = ({ id, countryName }: CountryProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<postType[]>([]);
@@ -110,7 +110,7 @@ const PostLists: React.FC<CountryProps> = ({ id, country }: CountryProps) => {
   useEffect(() => {
     const getPostData = async () => {
       try {
-        const postDatas: postType[] = await fetchAllWorldPost(country);
+        const postDatas: postType[] = await fetchAllWorldPost(countryName);
         // console.log(Array.isArray(postDatas));
         setMapPostCards(postDatas || []);
       } catch (error) {
@@ -119,7 +119,7 @@ const PostLists: React.FC<CountryProps> = ({ id, country }: CountryProps) => {
       }
     };
     getPostData();
-  }, [country]);
+  }, [countryName]);
 
   return (
     <>
@@ -138,14 +138,14 @@ const PostLists: React.FC<CountryProps> = ({ id, country }: CountryProps) => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>{country}</DrawerHeader>
+          <DrawerHeader>{countryName}</DrawerHeader>
           <DrawerBody>
             {mapPostCards.map((mapPost) => (
               <Card mb="4%" key={mapPost.id}>
                 <CardHeader>
                   <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-                    {/*ユーザーアイコンは設定していれば表示する、していなければ表示しない→*/}
-                    <UserImage/>
+                    {/*ユーザーアイコンは設定していれば表示する、していなければ表示しない→●●● ? (表示):(非表示)*/}
+                    <UserImage imagePath={mapPost.imagePath} />
                     <Box>
                       <Heading size="sm">Segun Adebayo</Heading>
                     </Box>
