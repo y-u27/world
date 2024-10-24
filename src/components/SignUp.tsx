@@ -17,44 +17,27 @@ import { supabase } from "../../utils/supabase/supabase";
 
 const SignUp = () => {
   const [file, setFile] = useState<File | null>(null);
-  const [imageIconUrl, setImageIconUrl] = useState<string | null>(null);
-  const [email, setEmali] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [selectImageUrl, setSelectImageUrl] = useState<string | null>(null);
 
-  const handleImageChange = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const avatarFile = event.target.files?.[0];
-    if (avatarFile) {
-      setFile(avatarFile);
-    }
-  };
-
-  const handleSignUp = async () => {
+  const handleUploadImage = async () => {
     if (!file) return;
 
-    try {
-      const { data, error } = await supabase.storage
+    const { data, error } = await supabase.storage
+      .from("user-image-buket")
+      .upload(`public/${file.name}`, file);
+
+    if (error) {
+      console.error("画像アップロードに失敗しました", error);
+    } else {
+      console.log("画像アップロードに成功しました", data);
+
+      const { data: urlData } = supabase.storage
         .from("user-image-buket")
-        .upload(`public/${email}-avatar.png`, file);
+        .getPublicUrl(`public/${file.name}`);
 
-      if (error) throw error;
-
-      const { data: publicData } = await supabase.storage
-        .from("user-image-buket")
-        .getPublicUrl(`public/${email}-avatar.png`);
-
-      const imageIconUrl = publicData?.publicUrl || "";
-
-      const { error: signUpError } = await supabase
-        .from("user")
-        .insert([{ email, password, image: imageIconUrl }]);
-
-      if (signUpError) throw signUpError;
-      alert("ユーザー登録が完了しました");
-    } catch (error) {
-      console.error("登録エラー！", error);
-      alert("登録中にエラーが発生しました");
+      if (urlData?.publicUrl) {
+        setSelectImageUrl(urlData.publicUrl);
+      }
     }
   };
 
@@ -71,29 +54,28 @@ const SignUp = () => {
           flexDirection="column"
         >
           <Text>メールアドレス</Text>
-          <Input
-            type="text"
-            value={email}
-            onChange={(e) => setEmali(e.target.value)}
-            width="300px"
-          />
+          <Input type="text" width="300px" />
           <Text mt="5%">パスワード</Text>
-          <Input
-            type="text"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            width="300px"
-          />
+          <Input type="text" width="300px" />
           <HStack p="50px">
             <VStack>
-              <Avatar src={imageIconUrl || ""} size="lg" />
-              <Input type="file" onChange={handleImageChange} />
+              <Avatar size="lg" src={selectImageUrl || undefined} />
+              <Input
+                type="file"
+                onChange={(e) => {
+                  const selectedFiles = e.target.files?.[0] || null;
+                  setFile(selectedFiles);
+                  if (selectedFiles) {
+                    handleUploadImage();
+                  }
+                }}
+              />
+              {/* <Button onClick={handleUploadImage}>画像アップロード</Button> */}
             </VStack>
             <Button
               ml="50px"
               w="100px"
               _hover={{ background: "#f08080", color: "white" }}
-              onClick={handleSignUp}
             >
               登録
             </Button>
