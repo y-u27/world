@@ -11,8 +11,11 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { TiArrowBackOutline } from "react-icons/ti";
+import { signIn, useSession } from "next-auth/react";
 
 const Login = () => {
+  const { data: session, status } = useSession();
+
   return (
     <Card width="400px" height="480px" mx="36%" mt="5%" boxShadow="2xl">
       <CardBody>
@@ -42,6 +45,7 @@ const Login = () => {
               <Button
                 w="146px"
                 _hover={{ background: "#1e90ff", color: "#e0ffff" }}
+                onClick={() => signIn("google")}
               >
                 Google
               </Button>
