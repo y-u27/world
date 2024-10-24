@@ -1,12 +1,16 @@
-import { Avatar, Box, Button, Input } from "@chakra-ui/react";
+import { Avatar, Box } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { supabase } from "../../utils/supabase/supabase";
 
 type UserImageProps = {
-  imagePath: string | null;
+  imagePath: string;
 };
 
-const UserImage: React.FC<UserImageProps> = ({ imagePath }) => {
+const UserImage: React.FC<UserImageProps> = ({
+  imagePath,
+}: {
+  imagePath: string;
+}) => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   useEffect(() => {
@@ -15,23 +19,17 @@ const UserImage: React.FC<UserImageProps> = ({ imagePath }) => {
 
       const { data } = await supabase.storage
         .from("user-image-buket")
-        .getPublicUrl("IMG_2483.jpeg");
-
-      if (data) {
-        setImageUrl(imagePath);
-      }
+        .getPublicUrl(imagePath);
+      setImageUrl(data.publicUrl);
     };
     fetchImage();
   }, [imagePath]);
 
+  if (!imageUrl) return <Box>Loading...</Box>
+
   return (
     <Box>
-      <Avatar
-        name="User Icon"
-        src={imageUrl || undefined}
-        bg="blue.300"
-        size="md"
-      />
+      <Avatar name="User Icon" src={imageUrl} bg="blue.300" size="md" />
     </Box>
   );
 };
