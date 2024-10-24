@@ -37,7 +37,8 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import UserImage from "./UserImage";
+// import UserImage from "./UserImage";
+import UserImages from "./UserImages";
 
 interface ApiResponce {
   data: postType[];
@@ -61,7 +62,10 @@ async function fetchAllWorldPost(country: string): Promise<postType[]> {
   return postData.data;
 }
 
-const PostLists: React.FC<CountryProps> = ({ id, countryName }: CountryProps) => {
+const PostLists: React.FC<CountryProps> = ({
+  id,
+  countryName,
+}: CountryProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<postType[]>([]);
@@ -145,7 +149,7 @@ const PostLists: React.FC<CountryProps> = ({ id, countryName }: CountryProps) =>
                 <CardHeader>
                   <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
                     {/*ユーザーアイコンは設定していれば表示する、していなければ表示しない→●●● ? (表示):(非表示)*/}
-                    <UserImage imagePath={mapPost.imagePath} />
+                    <UserImages />
                     <Box>
                       <Heading size="sm">Segun Adebayo</Heading>
                     </Box>
