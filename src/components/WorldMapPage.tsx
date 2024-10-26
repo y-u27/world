@@ -11,6 +11,8 @@ import {
 } from "@react-google-maps/api";
 import { useState } from "react";
 import PostLists from "./PostLists";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 type CountryProps = {
   id: number;
@@ -53,6 +55,7 @@ const WorldMapPage = ({ id, countryName }: CountryProps) => {
   const [options, setOptions] = useState(DEFAULT_OPTIONS);
   // ↓国名のstate
   const [countryNames, setCountryNames] = useState("");
+  const router = useRouter();
 
   // クリックした地点の中心座標と国名を取得
   // TIPS: LoadScript読み込むことで、windowオブジェクトからGoogle Map APIが利用できる
@@ -126,6 +129,11 @@ const WorldMapPage = ({ id, countryName }: CountryProps) => {
     return <Box>Google Maps API キーが見つかりません。</Box>;
   }
 
+  const handleLogout = async () => {
+    await signOut({ redirect: false });
+    router.push("/");
+  };
+
   return (
     <>
       <Box>
@@ -185,7 +193,7 @@ const WorldMapPage = ({ id, countryName }: CountryProps) => {
         )}
         {/* </LoadScript> */}
       </Box>
-      <Button position="fixed" bottom="5">
+      <Button position="fixed" bottom="5" onClick={handleLogout}>
         ログアウト
       </Button>
     </>

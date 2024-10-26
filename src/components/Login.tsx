@@ -12,9 +12,26 @@ import {
 import Link from "next/link";
 import { TiArrowBackOutline } from "react-icons/ti";
 import { signIn, useSession } from "next-auth/react";
+import { useEffect } from "react";
+import { redirect } from "next/navigation";
 
 const Login = () => {
   const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      redirect("/world");
+    }
+  }, [session, status]);
+
+  const handleLogin = (provider: string) => async (event: React.MouseEvent) => {
+    event.preventDefault();
+    const result = await signIn(provider);
+
+    if (result) {
+      redirect("/world");
+    }
+  };
 
   return (
     <Card width="400px" height="480px" mx="36%" mt="5%" boxShadow="2xl">
@@ -37,6 +54,7 @@ const Login = () => {
             _hover={{ background: "#FAF089", color: "#319795" }}
             mt="10%"
             mx="3%"
+            onClick={handleLogin("credentials")}
           >
             ログイン
           </Button>
@@ -45,7 +63,7 @@ const Login = () => {
               <Button
                 w="146px"
                 _hover={{ background: "#1e90ff", color: "#e0ffff" }}
-                onClick={() => signIn("google")}
+                onClick={handleLogin("google")}
               >
                 Google
               </Button>
