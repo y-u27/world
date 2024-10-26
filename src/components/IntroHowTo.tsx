@@ -14,11 +14,6 @@ import React from "react";
 const IntroHowTo = () => {
   return (
     <>
-      <Box>
-        <Link href="/login">
-          <Button w="100px">ログイン</Button>
-        </Link>
-      </Box>
       <Box position="relative" w="80%" ml="10%" mt="60px">
         <Box bgColor="yellow.50" p="6" position="relative">
           <Heading
@@ -44,7 +39,7 @@ const IntroHowTo = () => {
           </Text>
         </Box>
       </Box>
-      <Box position="relative" w="80%" ml="10%" mt="40px">
+      <Box position="relative" w="80%" ml="10%" mt="40px" mb="5%">
         <Box p="6" position="relative" bgColor="yellow.50">
           <Heading
             position="absolute"
@@ -90,8 +85,41 @@ const IntroHowTo = () => {
               <ListItem w="100%" ml="2%">
                 「投稿一覧」が表示されたら、実際に投稿してみましょう！
               </ListItem>
+              <Box px="240px">
+                <Image
+                  src="/sample/スクリーンショット 2024-10-25 23.52.49.jpeg"
+                  alt="Top Image"
+                  width={900}
+                  height={800}
+                />
+              </Box>
             </OrderedList>
           </VStack>
+        </Box>
+        <Box position="relative" ml="20%" mt="40px">
+          <Link href="/login">
+            <Button
+              w="650px"
+              bg="cyan.400"
+              // color="black"
+              boxShadow="xl"
+              overflow="hidden"
+              _before={{
+                content: `""`,
+                display: "inline-block",
+                position:"absolute",
+                top:"0",
+                width:"100%",
+                height:"100%",
+                backgroundColor: "cyan.100",
+                transition: "0.7s",
+                right:"100%"
+              }}
+              _hover={{ _before: { right: "0" } }}
+            >
+              ログインして投稿してみる
+            </Button>
+          </Link>
         </Box>
       </Box>
     </>
