@@ -148,10 +148,9 @@ const PostLists: React.FC<CountryProps> = ({
               <Card mb="4%" key={mapPost.id}>
                 <CardHeader>
                   <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-                    {/*ユーザーアイコンは設定していれば表示する、していなければ表示しない→●●● ? (表示):(非表示)*/}
                     <UserImages />
                     <Box>
-                      <Heading size="sm">Segun Adebayo</Heading>
+                      <Heading size="sm">world map sns</Heading>
                     </Box>
                     <Spacer />
                     <Box>
