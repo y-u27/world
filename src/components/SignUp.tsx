@@ -18,6 +18,12 @@ import { supabase } from "../../utils/supabase/supabase";
 const SignUp = () => {
   const [file, setFile] = useState<File | null>(null);
   const [selectImageUrl, setSelectImageUrl] = useState<string | null>(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+  };
 
   const handleUploadImage = async () => {
     if (!file) return;
@@ -54,9 +60,9 @@ const SignUp = () => {
           flexDirection="column"
         >
           <Text>メールアドレス</Text>
-          <Input type="text" width="300px" />
+          <Input type="text" width="300px" onChange={(e)=> setEmail(e.target.value)} />
           <Text mt="5%">パスワード</Text>
-          <Input type="text" width="300px" />
+          <Input type="text" width="300px" onChange={(e)=> setPassword(e.target.value)} />
           <HStack p="50px">
             <VStack>
               <Avatar size="lg" src={selectImageUrl || undefined} />
@@ -70,9 +76,9 @@ const SignUp = () => {
                   }
                 }}
               />
-              {/* <Button onClick={handleUploadImage}>画像アップロード</Button> */}
             </VStack>
             <Button
+              type="submit"
               ml="50px"
               w="100px"
               _hover={{ background: "#f08080", color: "white" }}
