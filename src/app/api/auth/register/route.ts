@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/app/lib/prismaClient";
+// ↓bcrypt:パスワード暗号化
 import bcrypt from "bcrypt";
 
 export async function POST(request: NextRequest) {
