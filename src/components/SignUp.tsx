@@ -14,15 +14,36 @@ import Link from "next/link";
 import { useState } from "react";
 import { TiArrowBackOutline } from "react-icons/ti";
 import { supabase } from "../../utils/supabase/supabase";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const SignUp = () => {
   const [file, setFile] = useState<File | null>(null);
   const [selectImageUrl, setSelectImageUrl] = useState<string | null>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isImageUploaded, setIsImageUploaded] = useState(false);
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
+    if (!isImageUploaded) {
+      console.log("画像アップロードが完了していません");
+      return;
+    }
+
+    const response = await fetch(`http://localhost:3000/api/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password, image: selectImageUrl }),
+    });
+    if (response.ok) {
+      signIn();
+      router.push("/world");
+    } else {
+      console.log("error");
+    }
   };
 
   const handleUploadImage = async () => {
@@ -43,6 +64,7 @@ const SignUp = () => {
 
       if (urlData?.publicUrl) {
         setSelectImageUrl(urlData.publicUrl);
+        setIsImageUploaded(true);
       }
     }
   };
@@ -60,32 +82,41 @@ const SignUp = () => {
           flexDirection="column"
         >
           <Text>メールアドレス</Text>
-          <Input type="text" width="300px" onChange={(e)=> setEmail(e.target.value)} />
+          <Input
+            type="text"
+            width="300px"
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <Text mt="5%">パスワード</Text>
-          <Input type="text" width="300px" onChange={(e)=> setPassword(e.target.value)} />
-          <HStack p="50px">
-            <VStack>
-              <Avatar size="lg" src={selectImageUrl || undefined} />
-              <Input
-                type="file"
-                onChange={(e) => {
-                  const selectedFiles = e.target.files?.[0] || null;
-                  setFile(selectedFiles);
-                  if (selectedFiles) {
-                    handleUploadImage();
-                  }
-                }}
-              />
-            </VStack>
-            <Button
-              type="submit"
-              ml="50px"
-              w="100px"
-              _hover={{ background: "#f08080", color: "white" }}
-            >
-              登録
-            </Button>
-          </HStack>
+          <Input
+            type="password"
+            width="300px"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+            <HStack p="50px">
+              <VStack>
+                <Avatar size="lg" src={selectImageUrl || undefined} />
+                <Input
+                  type="file"
+                  onChange={(e) => {
+                    const selectedFiles = e.target.files?.[0] || null;
+                    setFile(selectedFiles);
+                    if (selectedFiles) {
+                      handleUploadImage();
+                    }
+                  }}
+                />
+              </VStack>
+              <Button
+                type="submit"
+                ml="50px"
+                w="100px"
+                _hover={{ background: "#f08080", color: "white" }}
+                onClick={handleSubmit}
+              >
+                登録
+              </Button>
+            </HStack>
           <TiArrowBackOutline />
           <Link href="/login">
             <Text>ログインへ戻る</Text>
