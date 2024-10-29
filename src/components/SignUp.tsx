@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Avatar,
   Box,
@@ -39,15 +40,18 @@ const SignUp = () => {
       body: JSON.stringify({ email, password, image: selectImageUrl }),
     });
     if (response.ok) {
-      signIn();
+      await signIn();
       router.push("/world");
     } else {
       console.log("error");
     }
   };
 
+  // ユーザーが新しくアップロードする画像を Supabase に保存し、その後取得したURLをアイコンに使用できる処理
   const handleUploadImage = async () => {
     if (!file) return;
+
+    console.log("画像アップロードを開始します", file);
 
     const { data, error } = await supabase.storage
       .from("user-image-buket")
@@ -65,6 +69,9 @@ const SignUp = () => {
       if (urlData?.publicUrl) {
         setSelectImageUrl(urlData.publicUrl);
         setIsImageUploaded(true);
+        console.log("アップロードされた画像URL:", urlData.publicUrl);
+      } else {
+        console.error("画像URL取得に失敗");
       }
     }
   };
@@ -93,30 +100,31 @@ const SignUp = () => {
             width="300px"
             onChange={(e) => setPassword(e.target.value)}
           />
-            <HStack p="50px">
-              <VStack>
-                <Avatar size="lg" src={selectImageUrl || undefined} />
-                <Input
-                  type="file"
-                  onChange={(e) => {
-                    const selectedFiles = e.target.files?.[0] || null;
-                    setFile(selectedFiles);
-                    if (selectedFiles) {
-                      handleUploadImage();
-                    }
-                  }}
-                />
-              </VStack>
-              <Button
-                type="submit"
-                ml="50px"
-                w="100px"
-                _hover={{ background: "#f08080", color: "white" }}
-                onClick={handleSubmit}
-              >
-                登録
-              </Button>
-            </HStack>
+          <HStack p="50px">
+            <VStack>
+              <Avatar src={selectImageUrl || undefined} />
+              <Input
+                type="file"
+                onChange={(e) => {
+                  const selectedFiles = e.target.files?.[0] || null;
+                  setFile(selectedFiles);
+                  if (selectedFiles) {
+                    handleUploadImage();
+                  }
+                }}
+                fontSize="20%"
+              />
+            </VStack>
+            <Button
+              type="submit"
+              ml="50px"
+              w="100px"
+              _hover={{ background: "#f08080", color: "white" }}
+              onClick={handleSubmit}
+            >
+              登録
+            </Button>
+          </HStack>
           <TiArrowBackOutline />
           <Link href="/login">
             <Text>ログインへ戻る</Text>
