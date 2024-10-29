@@ -6,7 +6,9 @@ import {
   Button,
   Card,
   CardBody,
+  HStack,
   Input,
+  Stack,
   Text,
   useToast,
   VStack,
@@ -14,6 +16,7 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
+import { TiArrowBackOutline } from "react-icons/ti";
 
 const createPost = async (
   countryName: string | undefined,
@@ -94,17 +97,32 @@ const PostCreate = () => {
                   width="420px"
                   ref={contentRef}
                 />
-                <Input type="datetime-local" width="420px" ref={createAtRef} />
+                {/* <Input type="datetime-local" width="420px" ref={createAtRef} /> */}
               </VStack>
-              <Box m="20px" px="38%">
-                <Link href="/world">
-                  <Button
-                    _hover={{ background: "#FAF089", color: "#319795" }}
-                    onClick={handleMapPost}
-                  >
-                    投稿
-                  </Button>
-                </Link>
+              <Box display="flex" justifyContent="center" mr="18%" mt="5%">
+                <HStack spacing="30px">
+                  <Box>
+                    <Link href="/world">
+                      <Button
+                        size="sm"
+                        _hover={{ bg: "green.100", color: "blue.600" }}
+                      >
+                        <TiArrowBackOutline />
+                        戻る
+                      </Button>
+                    </Link>
+                  </Box>
+                  <Box>
+                    <Link href="/world">
+                      <Button
+                        _hover={{ background: "#FAF089", color: "#319795" }}
+                        onClick={handleMapPost}
+                      >
+                        投稿
+                      </Button>
+                    </Link>
+                  </Box>
+                </HStack>
               </Box>
             </Box>
           </Box>
