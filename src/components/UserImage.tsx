@@ -1,3 +1,5 @@
+// 既に存在する画像パス（imagePath）を使って Supabase から URL を取得し、そのURLをアイコンとして表示するコンポーネント
+
 import { Avatar, Box } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { supabase } from "../../utils/supabase/supabase";
