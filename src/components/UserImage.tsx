@@ -17,6 +17,7 @@ const UserImage: React.FC<UserImageProps> = ({
 
   useEffect(() => {
     const fetchImage = async () => {
+      // ↓imagePathが存在しない場合、APIの呼び出しやこの行以降の処理を中断し、何も返さないようにしている
       if (!imagePath) return;
 
       const { data } = await supabase.storage
