@@ -180,14 +180,11 @@ const PostLists: React.FC<CountryProps> = ({
                 <CardBody>
                   <Stack>
                     <Box>
-                      <Heading size="md">タイトル：{mapPost.title}</Heading>
+                      <Heading size="md">{mapPost.title}</Heading>
                       <Divider />
-                      <Text>投稿内容：{mapPost.content}</Text>
                       <br />
-                      <Divider />
-                      <Text fontSize="xs">
-                        {mapPost.createdAt.toLocaleString()}
-                      </Text>
+                      <Text>{mapPost.content}</Text>
+                      <br />
                     </Box>
                   </Stack>
                 </CardBody>
