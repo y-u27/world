@@ -23,14 +23,13 @@ const SignUp = () => {
   const [selectImageUrl, setSelectImageUrl] = useState<string | null>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isImageUploaded, setIsImageUploaded] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    if (!isImageUploaded) {
-      console.log("画像アップロードが完了していません");
+    if (!email || !password) {
+      alert("メールアドレスとパスワードは必須です");
       return;
     }
 
@@ -68,7 +67,6 @@ const SignUp = () => {
 
       if (urlData?.publicUrl) {
         setSelectImageUrl(urlData.publicUrl);
-        setIsImageUploaded(true);
         console.log("アップロードされた画像URL:", urlData.publicUrl);
       } else {
         console.error("画像URL取得に失敗");
