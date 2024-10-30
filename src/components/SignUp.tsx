@@ -47,7 +47,7 @@ const SignUp = () => {
   };
 
   // ユーザーが新しくアップロードする画像を Supabase に保存し、その後取得したURLをアイコンに使用できる処理
-  const handleUploadImage = async (selectedFiles: File) => {
+  const handleUploadImage = async (file: File) => {
     if (!file) return;
 
     console.log("画像アップロードを開始します", file);
@@ -55,7 +55,7 @@ const SignUp = () => {
     const filePath = `public/${uuidv4()}`;
     const { data, error } = await supabase.storage
       .from("user-image-buket")
-      .upload(`public/${filePath}`, file);
+      .upload(`${filePath}`, file);
 
     if (error) {
       console.error("画像アップロードに失敗しました", error);
@@ -64,7 +64,7 @@ const SignUp = () => {
 
       const { data: urlData } = supabase.storage
         .from("user-image-buket")
-        .getPublicUrl(`public/${filePath}`);
+        .getPublicUrl(`${filePath}`);
 
       if (urlData?.publicUrl) {
         setSelectImageUrl(urlData.publicUrl);
