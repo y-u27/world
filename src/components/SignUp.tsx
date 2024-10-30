@@ -17,6 +17,7 @@ import { TiArrowBackOutline } from "react-icons/ti";
 import { supabase } from "../../utils/supabase/supabase";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { v4 as uuidv4 } from "uuid";
 
 const SignUp = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -39,7 +40,6 @@ const SignUp = () => {
       body: JSON.stringify({ email, password, image: selectImageUrl }),
     });
     if (response.ok) {
-      await signIn();
       router.push("/world");
     } else {
       console.log("error");
@@ -47,14 +47,15 @@ const SignUp = () => {
   };
 
   // ユーザーが新しくアップロードする画像を Supabase に保存し、その後取得したURLをアイコンに使用できる処理
-  const handleUploadImage = async () => {
+  const handleUploadImage = async (selectedFiles: File) => {
     if (!file) return;
 
     console.log("画像アップロードを開始します", file);
 
+    const filePath = `public/${uuidv4()}`;
     const { data, error } = await supabase.storage
       .from("user-image-buket")
-      .upload(`public/${file.name}`, file);
+      .upload(`public/${filePath}`, file);
 
     if (error) {
       console.error("画像アップロードに失敗しました", error);
@@ -63,7 +64,7 @@ const SignUp = () => {
 
       const { data: urlData } = supabase.storage
         .from("user-image-buket")
-        .getPublicUrl(`public/${file.name}`);
+        .getPublicUrl(`public/${filePath}`);
 
       if (urlData?.publicUrl) {
         setSelectImageUrl(urlData.publicUrl);
@@ -107,7 +108,7 @@ const SignUp = () => {
                   const selectedFiles = e.target.files?.[0] || null;
                   setFile(selectedFiles);
                   if (selectedFiles) {
-                    handleUploadImage();
+                    handleUploadImage(selectedFiles);
                   }
                 }}
                 fontSize="20%"
