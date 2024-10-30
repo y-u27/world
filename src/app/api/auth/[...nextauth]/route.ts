@@ -16,7 +16,7 @@ const handler = NextAuth({
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize() {
         const user = {
           id: "1",
           name: "User",
