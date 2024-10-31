@@ -4,7 +4,7 @@ import prisma from "@/app/lib/prismaClient";
 import bcrypt from "bcrypt";
 
 export async function POST(request: NextRequest) {
-  const { email, password, name, image } = await request.json();
+  const { name, email, password, image } = await request.json();
 
   if (!email || !password) {
     return NextResponse.json(
@@ -18,9 +18,9 @@ export async function POST(request: NextRequest) {
 
     const newUser = await prisma.user.create({
       data: {
+        name,
         email,
         password: hashedPassword,
-        name,
         image: image || "",
       },
     });
