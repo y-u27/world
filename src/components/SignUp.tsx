@@ -22,6 +22,7 @@ import { v4 as uuidv4 } from "uuid";
 const SignUp = () => {
   const [file, setFile] = useState<File | null>(null);
   const [selectImageUrl, setSelectImageUrl] = useState<string | null>(null);
+  const [name,setName] = useState("")
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -37,7 +38,7 @@ const SignUp = () => {
     const response = await fetch(`http://localhost:3000/api/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password, image: selectImageUrl }),
+      body: JSON.stringify({ name, email, password, image: selectImageUrl }),
     });
     if (response.ok) {
       router.push("/world");
@@ -87,6 +88,12 @@ const SignUp = () => {
           justifyContent="center"
           flexDirection="column"
         >
+          <Text>名前</Text>
+          <Input
+            type="text"
+            width="300px"
+            onChange={(e) => setName(e.target.value)}
+          />
           <Text>メールアドレス</Text>
           <Input
             type="text"
