@@ -5,6 +5,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import Header from "@/components/Header";
 import Link from "next/link";
 import { SessionProvider } from "next-auth/react";
+import LoginUser from "@/components/LoginUser";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
             <Link href="/world">
               <Header />
             </Link>
+            <LoginUser/>
             {children}
           </ChakraProvider>
         </SessionProvider>
