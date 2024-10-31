@@ -23,7 +23,6 @@ model Post {
 
 model User {
   id Int @id @default(autoincrement())
-  userId Int @default(autoincrement())
   email String
   password String
   name String?
