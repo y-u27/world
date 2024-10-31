@@ -1,6 +1,9 @@
 import { Box, Heading } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
+import React, { useEffect, useState } from "react";
 
 const Header = () => {
+  
   return (
     <>
       <Box>
@@ -15,6 +18,7 @@ const Header = () => {
         >
           World Map SNS
         </Heading>
+        
       </Box>
     </>
   );
