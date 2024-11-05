@@ -17,14 +17,16 @@ model Post {
   id Int @id @default(autoincrement())
   title String
   content String
-  createdAt  DateTime  @default(now())
+  createdAt DateTime @default(now())
   countryName String?
+  userId Int
+  user User @relation(fields: [userId], references: [id])
 }
-
 model User {
   id Int @id @default(autoincrement())
   email String
   password String
   name String?
   image String
+  posts Post[]
 }
