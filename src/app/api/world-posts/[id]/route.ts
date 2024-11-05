@@ -48,7 +48,7 @@ export async function PATCH(
 ) {
   const id = parseInt(params.id);
 
-  const { title, content, createdAt } = await request.json();
+  const { title, content } = await request.json();
 
   const newWorldPostData = await prisma.post.update({
     where: {
@@ -57,7 +57,6 @@ export async function PATCH(
     data: {
       title,
       content,
-      createdAt: createdAt ? new Date(createdAt) : new Date(),
     },
   });
   return NextResponse.json(
