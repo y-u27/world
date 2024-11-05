@@ -13,6 +13,7 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
@@ -22,7 +23,7 @@ const createPost = async (
   countryName: string | undefined,
   title: string | undefined,
   content: string | undefined,
-  createAt: string | undefined
+  userId: string
 ) => {
   const res = await fetch(
     `http://localhost:3000/api/world-posts?country-name=${countryName}`,
@@ -31,7 +32,7 @@ const createPost = async (
       headers: {
         "Content-Type": "application / json",
       },
-      body: JSON.stringify({ countryName, title, content, createAt }),
+      body: JSON.stringify({ countryName, title, content, userId }),
     }
   );
   return res.json();
@@ -40,14 +41,31 @@ const createPost = async (
 const PostCreate = () => {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLInputElement | null>(null);
-  const createAtRef = useRef<HTMLInputElement | null>(null);
   const countryNameRef = useRef<HTMLInputElement | null>(null);
   const toast = useToast();
   const router = useRouter();
+  const { data: session } = useSession();
 
   const handleMapPost = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!session?.user?.id) {
+      toast({
+        title: "エラー",
+        description: "ユーザーが認証されていません",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
+
+    await createPost(
+      countryNameRef.current?.value,
+      titleRef.current?.value,
+      contentRef.current?.value,
+      session?.user.id
+    );
     toast({
       title: "投稿完了！",
       description: "投稿が完了しました",
@@ -55,14 +73,6 @@ const PostCreate = () => {
       duration: 5000,
       isClosable: true,
     });
-
-    const currentDate = createAtRef.current?.value || new Date().toISOString();
-    await createPost(
-      countryNameRef.current?.value,
-      titleRef.current?.value,
-      contentRef.current?.value,
-      currentDate
-    );
 
     router.push("/world");
     router.refresh();
@@ -97,7 +107,6 @@ const PostCreate = () => {
                   width="420px"
                   ref={contentRef}
                 />
-                {/* <Input type="datetime-local" width="420px" ref={createAtRef} /> */}
               </VStack>
               <Box display="flex" justifyContent="center" mr="18%" mt="5%">
                 <HStack spacing="30px">
