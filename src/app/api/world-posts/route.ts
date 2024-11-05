@@ -29,6 +29,9 @@ export async function GET(request: NextRequest) {
     where: {
       countryName: decodedCountryName,
     },
+    include: {
+      user: true,
+    },
   });
   // 取得した投稿データを返す
   return NextResponse.json(
@@ -45,14 +48,26 @@ export async function GET(request: NextRequest) {
 
 // 投稿データの作成
 export async function POST(request: NextRequest) {
-  const { title, content, createdAt, countryName } = await request.json();
-  
+  const { title, content, countryName, userId } = await request.json();
+
+  if (!userId) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "ユーザーIDが指定されていません",
+      },
+      {
+        status: 400,
+      }
+    );
+  }
+
   const newWorldPostData = await prisma.post.create({
     data: {
       title,
       content,
-      createdAt: createdAt ? new Date(createdAt) : new Date(),
       countryName,
+      userId,
     },
   });
   return NextResponse.json(
