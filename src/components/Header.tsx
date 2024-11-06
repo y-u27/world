@@ -1,4 +1,4 @@
-import { Avatar, Box, Heading, Text } from "@chakra-ui/react";
+import { Avatar, Box, Heading } from "@chakra-ui/react";
 import { createClient } from "@supabase/supabase-js";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
@@ -13,13 +13,21 @@ const Header = () => {
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
 
   useEffect(() => {
+    console.log("セッション情報", session);
+
     const fetchAvatarUrl = async () => {
-      if (session?.user?.id) {
+      if (session?.user?.email) {
         const { data } = supabase.storage
           .from("user-image-buket")
-          .getPublicUrl(`${session?.user?.id}/icon.png`);
+          .getPublicUrl(`public/${session?.user?.email}`);
 
-        setAvatarUrl(data?.publicUrl ?? "/default-avatar.png");
+        if (!data?.publicUrl) {
+          console.error("画像URL取得に失敗");
+          setAvatarUrl("/default-avatar.jpeg");
+        } else {
+          console.log("画像URL", data.publicUrl);
+          setAvatarUrl(data.publicUrl);
+        }
       }
     };
     fetchAvatarUrl();
@@ -39,10 +47,17 @@ const Header = () => {
         >
           World Map SNS
           {session && (
-            <Box display="flex" justifyContent="flex-end" position="absolute" top="1px" right="10px" padding="10px">
+            <Box
+              display="flex"
+              justifyContent="flex-end"
+              position="absolute"
+              top="1px"
+              right="10px"
+              padding="10px"
+            >
               <Avatar
-              size="sm"
-                src={avatarUrl ?? "/default-avatar.png"}
+                size="sm"
+                src={avatarUrl ?? "/default-avatar.jpeg"}
                 name={session.user?.name ?? "ユーザー"}
               />
             </Box>
