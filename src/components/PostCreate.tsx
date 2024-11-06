@@ -16,7 +16,7 @@ import {
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { TiArrowBackOutline } from "react-icons/ti";
 
 const createPost = async (
@@ -45,6 +45,11 @@ const PostCreate = () => {
   const toast = useToast();
   const router = useRouter();
   const { data: session } = useSession();
+
+  useEffect(() => {
+    console.log("セッション情報", session);
+    console.log("ステータス", status);
+  }, [session, status]);
 
   const handleMapPost = async (e: React.FormEvent) => {
     e.preventDefault();
