@@ -32,7 +32,7 @@ const handler = NextAuth({
           (await bcrypt.compare(credentials!.password, user.password))
         ) {
           return {
-            id: user.id,
+            id: user.id.toString(),
             email: user.email,
             name: user.name,
             password: user.password,
