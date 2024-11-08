@@ -3,6 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "@/app/lib/prismaClient";
 import bcrypt from "bcrypt";
+import { Prisma } from "@prisma/client";
 
 const handler = NextAuth({
   providers: [
@@ -24,7 +25,7 @@ const handler = NextAuth({
         }
 
         const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
+          where: { email: credentials.email } as Prisma.UserWhereUniqueInput,
         });
 
         if (
@@ -32,10 +33,9 @@ const handler = NextAuth({
           (await bcrypt.compare(credentials!.password, user.password))
         ) {
           return {
-            id: user.id,
+            id: user.id.toString(),
             email: user.email,
             name: user.name,
-            password: user.password,
           };
         } else {
           return null;
@@ -43,17 +43,21 @@ const handler = NextAuth({
       },
     }),
   ],
-  callbacks:{
-    async session({session,token}) {
-      session.user.id = token.id
-      return session
+  callbacks: {
+    async session({ session, token }) {
+      session.user.id = token.id;
+      session.user.name = token.name;
+      session.user.email = token.email;
+      return session;
     },
-    async jwt({token,user}) {
-      if(user) {
-        token.id = user.id
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.name = user.name;
+        token.email = user.email;
       }
-      return token
-    }
+      return token;
+    },
   },
   secret: process.env.SECRET,
 });
