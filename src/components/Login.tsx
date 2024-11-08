@@ -13,23 +13,26 @@ import Link from "next/link";
 import { TiArrowBackOutline } from "react-icons/ti";
 import { signIn, useSession } from "next-auth/react";
 import { useEffect } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     if (status === "authenticated") {
-      redirect("/world");
+      router.push("/world");
     }
   }, [session, status]);
 
   const handleLogin = (provider: string) => async (event: React.MouseEvent) => {
     event.preventDefault();
-    const result = await signIn(provider);
+    const result = await signIn(provider, { redirect: false });
 
-    if (result) {
-      redirect("/world");
+    if (result?.ok) {
+      router.push("/world");
+    } else {
+      alert("ログイン失敗");
     }
   };
 
@@ -48,7 +51,7 @@ const Login = () => {
           <Text>メールアドレス</Text>
           <Input type="text" width="300px" mx="10px" />
           <Text mt="5%">パスワード</Text>
-          <Input type="text" width="300px" mx="10px" />
+          <Input type="password" width="300px" mx="10px" />
           <Button
             width="300px"
             _hover={{ background: "#FAF089", color: "#319795" }}
