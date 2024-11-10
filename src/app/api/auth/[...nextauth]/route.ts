@@ -20,13 +20,18 @@ const handler = NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
+        console.log("入力されてメールアドレス", credentials?.email);
+        console.log("入力されたパスワード", credentials?.password);
+
         if (!credentials?.email || !credentials.password) {
+          console.log("メールアドレスまたはパスワードが未入力です");
           return null;
         }
 
         const user = await prisma.user.findUnique({
           where: { email: credentials.email } as Prisma.UserWhereUniqueInput,
         });
+        console.log("データベースで見つかったユーザー", user);
 
         if (
           user &&
