@@ -1,11 +1,11 @@
 import WorldMapPage from "@/components/WorldMapPage";
+import { useSearchParams } from "next/navigation";
 
-type CountryProps = {
-  id: number;
-  countryName: string;
-};
+const worldTopPage = () => {
+  const searchParams = useSearchParams();
+  const id = Number(searchParams.get("id"));
+  const countryName = searchParams.get("countryName") || "";
 
-const worldTopPage = ({ id, countryName }: CountryProps) => {
   return (
     <>
       <WorldMapPage id={id} countryName={countryName} />
