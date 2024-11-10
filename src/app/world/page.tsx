@@ -1,3 +1,5 @@
+"use client";
+
 import WorldMapPage from "@/components/WorldMapPage";
 import { useSearchParams } from "next/navigation";
 
