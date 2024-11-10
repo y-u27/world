@@ -12,12 +12,15 @@ import {
 import Link from "next/link";
 import { TiArrowBackOutline } from "react-icons/ti";
 import { signIn, useSession } from "next-auth/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const Login = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -27,12 +30,26 @@ const Login = () => {
 
   const handleLogin = (provider: string) => async (event: React.MouseEvent) => {
     event.preventDefault();
-    const result = await signIn(provider, { redirect: false });
+    if (provider === "credentials") {
+      const result = await signIn(provider, {
+        redirect: false,
+        email,
+        password,
+      });
 
-    if (result?.ok) {
-      router.push("/world");
+      if (result?.ok) {
+        router.push("/world");
+      } else {
+        alert("ログイン失敗");
+      }
     } else {
-      alert("ログイン失敗");
+      const result = await signIn(provider, { redirect: false });
+
+      if (result?.ok) {
+        router.push("/world");
+      } else {
+        alert("Googleログイン失敗");
+      }
     }
   };
 
@@ -49,9 +66,21 @@ const Login = () => {
           flexDirection="column"
         >
           <Text>メールアドレス</Text>
-          <Input type="text" width="300px" mx="10px" />
+          <Input
+            type="text"
+            width="300px"
+            mx="10px"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <Text mt="5%">パスワード</Text>
-          <Input type="password" width="300px" mx="10px" />
+          <Input
+            type="password"
+            width="300px"
+            mx="10px"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <Button
             width="300px"
             _hover={{ background: "#FAF089", color: "#319795" }}
