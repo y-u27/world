@@ -3,7 +3,7 @@
 import WorldMapPage from "@/components/WorldMapPage";
 import { useSearchParams } from "next/navigation";
 
-const worldTopPage = () => {
+const WorldTopPage = () => {
   const searchParams = useSearchParams();
   const id = Number(searchParams.get("id"));
   const countryName = searchParams.get("countryName") || "";
@@ -15,4 +15,4 @@ const worldTopPage = () => {
   );
 };
 
-export default worldTopPage;
+export default WorldTopPage;
