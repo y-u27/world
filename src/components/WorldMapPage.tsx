@@ -12,7 +12,7 @@ import {
 import { useState } from "react";
 import PostLists from "./PostLists";
 import { signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type CountryProps = {
   id: number;
@@ -31,7 +31,11 @@ const DEFAULT_OPTIONS = {
   disableDoubleClickZoom: true, // ダブルクリックによるズームを無効化
 };
 
-const WorldMapPage = ({ id, countryName }: CountryProps) => {
+const WorldMapPage = () => {
+  const searchParams = useSearchParams();
+  const id = Number(searchParams.get("id"));
+  const countryName = searchParams.get("countryName") || "";
+
   const { isLoaded } = useLoadScript({
     id: "google-map-script",
     googleMapsApiKey,
