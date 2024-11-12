@@ -28,6 +28,7 @@ const handler = NextAuth({
           return null;
         }
 
+        await prisma.$connect();
         const user = await prisma.user.findUnique({
           where: { email: credentials.email } as Prisma.UserWhereUniqueInput,
         });
