@@ -40,10 +40,10 @@ const Header = () => {
           color="#000080"
           bgColor="#b0c4de"
           textAlign="center"
-          h={10}
+          h="100%"
           size="md"
           textShadow="1px 1px #ffffff"
-          p={2}
+          p={3}
         >
           World Map SNS
           {session && (
