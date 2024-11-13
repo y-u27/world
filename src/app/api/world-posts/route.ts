@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
       title,
       content,
       countryName,
-      userId,
+      userId: Number(userId),
     },
   });
   return NextResponse.json(
