@@ -41,6 +41,7 @@ const handler = NextAuth({
             id: user.id.toString(),
             email: user.email,
             name: user.name,
+            image: user.image,
           };
         } else {
           return null;
@@ -53,6 +54,7 @@ const handler = NextAuth({
       session.user.id = token.id;
       session.user.name = token.name;
       session.user.email = token.email;
+      session.user.image = token.image;
       return session;
     },
     async jwt({ token, user }) {
@@ -60,6 +62,7 @@ const handler = NextAuth({
         token.id = user.id;
         token.name = user.name;
         token.email = user.email;
+        token.image = user.image;
       }
       return token;
     },
