@@ -1,12 +1,14 @@
+import prisma from "@/app/lib/prismaClient";
 import { Avatar, Box, Heading } from "@chakra-ui/react";
-import { createClient } from "@supabase/supabase-js";
+import { User } from "@prisma/client";
+// import { createClient } from "@supabase/supabase-js";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+// const supabase = createClient(
+//   process.env.NEXT_PUBLIC_SUPABASE_URL!,
+//   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+// );
 
 const Header = () => {
   const { data: session } = useSession();
@@ -17,17 +19,27 @@ const Header = () => {
 
     const fetchAvatarUrl = async () => {
       if (session?.user?.email) {
-        const { data } = supabase.storage
-          .from("user-image-buket")
-          .getPublicUrl(`public/${session?.user?.email}`);
+        // const { data } = supabase.storage
+        //   .from("user-image-buket")
+        //   .getPublicUrl(`public/${session?.user?.email}`);
 
-        if (!data?.publicUrl) {
+        const response = await fetch(`http://localhost:3000/api/user`);
+        const { data }: { data: User } = await response.json();
+
+        if (!data.image) {
           console.error("画像URL取得に失敗");
           setAvatarUrl("/default-avatar.jpeg");
         } else {
-          console.log("画像URL", data.publicUrl);
-          setAvatarUrl(data.publicUrl);
+          console.log("画像URL", data.image);
+          setAvatarUrl(data.image);
         }
+        // if (!data?.publicUrl) {
+        //   console.error("画像URL取得に失敗");
+        //   setAvatarUrl("/default-avatar.jpeg");
+        // } else {
+        //   console.log("画像URL", data.publicUrl);
+        //   setAvatarUrl(data.publicUrl);
+        // }
       }
     };
     fetchAvatarUrl();
