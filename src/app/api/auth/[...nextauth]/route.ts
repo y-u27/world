@@ -1,11 +1,11 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "@/app/lib/prismaClient";
 import bcrypt from "bcrypt";
 import { Prisma } from "@prisma/client";
 
-const handler = NextAuth({
+export const handler:NextAuthOptions = NextAuth({
   providers: [
     // ↓Googleログイン
     GoogleProvider({
@@ -18,10 +18,12 @@ const handler = NextAuth({
       credentials: {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
+        image: { label: "Image", type: "image" },
       },
       async authorize(credentials, req) {
         console.log("入力されてメールアドレス", credentials?.email);
         console.log("入力されたパスワード", credentials?.password);
+        console.log("設定された画像", credentials?.image);
 
         if (!credentials?.email || !credentials.password) {
           console.log("メールアドレスまたはパスワードが未入力です");
