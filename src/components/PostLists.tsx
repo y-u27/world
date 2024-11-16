@@ -37,8 +37,6 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-// import UserImage from "./UserImage";
-import UserImages from "./UserImages";
 import UserImage from "./UserImage";
 
 interface ApiResponce {
