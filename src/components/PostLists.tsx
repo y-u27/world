@@ -39,6 +39,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 // import UserImage from "./UserImage";
 import UserImages from "./UserImages";
+import UserImage from "./UserImage";
 
 interface ApiResponce {
   data: postType[];
@@ -49,10 +50,14 @@ type CountryProps = {
   countryName: string;
 };
 
+type UserImageProps = {
+  imagePath: string;
+};
+
 // ↓全投稿データ取得
 async function fetchAllWorldPost(country: string): Promise<postType[]> {
   const res = await fetch(
-    `https://world-map-sns.vercel.app/api/world-posts?country-name=${country}`,
+    `http://localhost:3000/api/world-posts?country-name=${country}`,
     {
       cache: "no-store",
     }
@@ -62,10 +67,10 @@ async function fetchAllWorldPost(country: string): Promise<postType[]> {
   return postData.data;
 }
 
-const PostLists: React.FC<CountryProps> = ({
-  id,
-  countryName,
-}: CountryProps) => {
+const PostLists: React.FC<CountryProps> = (
+  { id, countryName }: CountryProps,
+  { imagePath }: { imagePath: string }
+) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<postType[]>([]);
@@ -148,7 +153,7 @@ const PostLists: React.FC<CountryProps> = ({
               <Card mb="4%" key={mapPost.id}>
                 <CardHeader>
                   <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-                    <UserImages />
+                    <UserImage imagePath={imagePath} />
                     <Box>
                       <Heading size="sm">world map sns</Heading>
                     </Box>
