@@ -4,7 +4,7 @@
 import { Box, Button } from "@chakra-ui/react";
 import {
   GoogleMap,
-  LoadScript,
+  // LoadScript,
   InfoWindow,
   Marker,
   useLoadScript,
