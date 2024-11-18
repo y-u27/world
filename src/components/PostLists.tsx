@@ -151,9 +151,9 @@ const PostLists: React.FC<CountryProps> = (
               <Card mb="4%" key={mapPost.id}>
                 <CardHeader>
                   <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-                    <UserImage imagePath={imagePath} />
+                    <UserImage imagePath={mapPost.imagePath} />
                     <Box>
-                      <Heading size="sm">world map sns</Heading>
+                      <Heading size="sm">{mapPost.name}</Heading>
                     </Box>
                     <Spacer />
                     <Box>
