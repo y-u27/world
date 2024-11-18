@@ -2,9 +2,9 @@ export interface postType {
   id: number;
   userId: number;
   postId: number;
+  name:string;
   title: string;
   content: string;
-  createdAt: Date;
   imageUrl: string;
   imagePath: string;
 }
