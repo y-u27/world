@@ -15,7 +15,6 @@ datasource db {
 
 model Post {
   id Int @id @default(autoincrement())
-  name String? @default("")
   image String?
   title String
   content String
