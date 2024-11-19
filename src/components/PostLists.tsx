@@ -1,6 +1,6 @@
 "use client";
 
-import { postType } from "@/app/types/postType";
+import { PostResponse } from "@/app/types/postType";
 import {
   CloseIcon,
   DeleteIcon,
@@ -40,7 +40,7 @@ import { useEffect, useRef, useState } from "react";
 import UserImage from "./UserImage";
 
 interface ApiResponce {
-  data: postType[];
+  data: PostResponse[];
 }
 
 type CountryProps = {
@@ -53,7 +53,7 @@ type UserImageProps = {
 };
 
 // ↓全投稿データ取得
-async function fetchAllWorldPost(country: string): Promise<postType[]> {
+async function fetchAllWorldPost(country: string): Promise<PostResponse[]> {
   const res = await fetch(
     `http://localhost:3000/api/world-posts?country-name=${country}`,
     {
@@ -71,7 +71,7 @@ const PostLists: React.FC<CountryProps> = (
 ) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
-  const [mapPostCards, setMapPostCards] = useState<postType[]>([]);
+  const [mapPostCards, setMapPostCards] = useState<PostResponse[]>([]);
   const toast = useToast();
 
   const handleDeletePost = async (id: number) => {
@@ -117,7 +117,7 @@ const PostLists: React.FC<CountryProps> = (
   useEffect(() => {
     const getPostData = async () => {
       try {
-        const postDatas: postType[] = await fetchAllWorldPost(countryName);
+        const postDatas: PostResponse[] = await fetchAllWorldPost(countryName);
         // console.log(Array.isArray(postDatas));
         setMapPostCards(postDatas || []);
       } catch (error) {
@@ -147,13 +147,13 @@ const PostLists: React.FC<CountryProps> = (
           <DrawerCloseButton />
           <DrawerHeader>{countryName}</DrawerHeader>
           <DrawerBody>
-            {mapPostCards.map((mapPost) => (
+            {mapPostCards.map((mapPost) =>  (
               <Card mb="4%" key={mapPost.id}>
                 <CardHeader>
                   <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-                    <UserImage imagePath={mapPost.imagePath} />
+                    <UserImage imagePath={mapPost.user.image} />
                     <Box>
-                      <Heading size="sm">{mapPost.name}</Heading>
+                      <Heading size="sm">{mapPost.title}</Heading>
                     </Box>
                     <Spacer />
                     <Box>

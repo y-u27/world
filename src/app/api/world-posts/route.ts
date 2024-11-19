@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
       countryName: decodedCountryName,
     },
     include: {
-      user: true,
+      user: { select: { image: true } },
     },
   });
   // 取得した投稿データを返す
