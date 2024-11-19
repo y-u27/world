@@ -1,10 +1,11 @@
-export interface postType {
+export interface PostResponse {
   id: number;
   userId: number;
-  postId: number;
-  name:string;
+  user: {
+    image: string;
+  };
   title: string;
   content: string;
-  imageUrl: string;
-  imagePath: string;
+  countryName: string;
+  createdAt: string;
 }
