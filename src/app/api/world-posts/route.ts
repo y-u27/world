@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
       countryName: decodedCountryName,
     },
     include: {
-      user: true,
+      user: { select: { image: true, name: true } },
     },
   });
   // 取得した投稿データを返す
@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
 
 // 投稿データの作成
 export async function POST(request: NextRequest) {
-  const { name, image, title, content, countryName, userId } = await request.json();
+  const { title, content, countryName, userId } = await request.json();
 
   if (!userId) {
     return NextResponse.json(
@@ -64,8 +64,6 @@ export async function POST(request: NextRequest) {
 
   const newWorldPostData = await prisma.post.create({
     data: {
-      // name,
-      // image,
       title,
       content,
       countryName,
