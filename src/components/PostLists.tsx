@@ -1,6 +1,6 @@
 "use client";
 
-import { postType } from "@/app/types/postType";
+import { PostResponse } from "@/app/types/postType";
 import {
   CloseIcon,
   DeleteIcon,
@@ -25,7 +25,6 @@ import {
   Heading,
   CardHeader,
   Flex,
-  Avatar,
   Divider,
   Spacer,
   Menu,
@@ -39,8 +38,8 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import UserImage from "./UserImage";
 
-interface ApiResponce {
-  data: postType[];
+interface ApiResponse {
+  data: PostResponse[];
 }
 
 type CountryProps = {
@@ -48,12 +47,8 @@ type CountryProps = {
   countryName: string;
 };
 
-type UserImageProps = {
-  imagePath: string;
-};
-
 // ↓全投稿データ取得
-async function fetchAllWorldPost(country: string): Promise<postType[]> {
+async function fetchAllWorldPost(country: string): Promise<PostResponse[]> {
   const res = await fetch(
     `http://localhost:3000/api/world-posts?country-name=${country}`,
     {
@@ -61,17 +56,16 @@ async function fetchAllWorldPost(country: string): Promise<postType[]> {
     }
   );
 
-  const postData: ApiResponce = await res.json();
+  const postData: ApiResponse = await res.json();
   return postData.data;
 }
 
 const PostLists: React.FC<CountryProps> = (
-  { id, countryName }: CountryProps,
-  { imagePath }: { imagePath: string }
+  { id, countryName }: CountryProps
 ) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
-  const [mapPostCards, setMapPostCards] = useState<postType[]>([]);
+  const [mapPostCards, setMapPostCards] = useState<PostResponse[]>([]);
   const toast = useToast();
 
   const handleDeletePost = async (id: number) => {
@@ -117,8 +111,7 @@ const PostLists: React.FC<CountryProps> = (
   useEffect(() => {
     const getPostData = async () => {
       try {
-        const postDatas: postType[] = await fetchAllWorldPost(countryName);
-        // console.log(Array.isArray(postDatas));
+        const postDatas: PostResponse[] = await fetchAllWorldPost(countryName);
         setMapPostCards(postDatas || []);
       } catch (error) {
         console.error("データ取得エラー", error);
@@ -151,9 +144,9 @@ const PostLists: React.FC<CountryProps> = (
               <Card mb="4%" key={mapPost.id}>
                 <CardHeader>
                   <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-                    <UserImage imagePath={mapPost.imagePath} />
+                    <UserImage imagePath={mapPost.user.image} />
                     <Box>
-                      <Heading size="sm">{mapPost.name}</Heading>
+                      <Heading size="sm">{mapPost.user.name}</Heading>
                     </Box>
                     <Spacer />
                     <Box>
