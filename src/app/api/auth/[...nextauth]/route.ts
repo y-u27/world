@@ -5,7 +5,7 @@ import prisma from "@/app/lib/prismaClient";
 import bcrypt from "bcrypt";
 import { Prisma } from "@prisma/client";
 
-export const handler:NextAuthOptions = NextAuth({
+const authOptions: NextAuthOptions = NextAuth({
   providers: [
     // ↓Googleログイン
     GoogleProvider({
@@ -72,4 +72,4 @@ export const handler:NextAuthOptions = NextAuth({
   secret: process.env.SECRET,
 });
 
-export { handler as GET, handler as POST };
+export default NextAuth(authOptions);
