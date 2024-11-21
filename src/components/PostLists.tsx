@@ -50,7 +50,7 @@ type CountryProps = {
 // ↓全投稿データ取得
 async function fetchAllWorldPost(country: string): Promise<PostResponse[]> {
   const res = await fetch(
-    `https://world-map-sns.vercel.app/api/world-posts?country-name=${country}`,
+    `http://localhost:3000/api/world-posts?country-name=${country}`,
     {
       cache: "no-store",
     }
