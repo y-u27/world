@@ -1,13 +1,13 @@
 import prisma from "@/app/lib/prismaClient";
 import { getServerSession, Session } from "next-auth";
-import { handler } from "../auth/[...nextauth]/route";
+import { authOptions } from "../../../../lib/auth";
 
 // ユーザー情報を取得するAPI
 export async function GET() {
   // セッション情報取得
   let session: Session | null;
   try {
-    session = await getServerSession(handler);
+    session = await getServerSession(authOptions);
 
     // 取得できたセッション情報が空の場合→401エラーを返す
     if (!session) {

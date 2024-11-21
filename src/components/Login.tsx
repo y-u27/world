@@ -26,7 +26,7 @@ const Login = () => {
     if (status === "authenticated") {
       router.push("/world");
     }
-  }, [session, status]);
+  }, [router, session, status]);
 
   const handleLogin = (provider: string) => async (event: React.MouseEvent) => {
     event.preventDefault();

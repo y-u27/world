@@ -1,16 +1,15 @@
-"use client";
-
 import WorldMapPage from "@/components/WorldMapPage";
-import { useSearchParams } from "next/navigation";
 
-const WorldTopPage = () => {
-  const searchParams = useSearchParams();
-  const id = Number(searchParams.get("id"));
-  const countryName = searchParams.get("countryName") || "";
+const WorldTopPage = ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) => {
+  const { id } = searchParams;
 
   return (
     <>
-      <WorldMapPage id={id} countryName={countryName} />
+      <WorldMapPage id={Number(id)} />
     </>
   );
 };
