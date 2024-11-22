@@ -87,7 +87,7 @@ const IntroHowTo = () => {
               </ListItem>
               <Box px="240px">
                 <Image
-                  src="/sample/スクリーンショット 2024-10-25 23.52.49.jpeg"
+                  src="/sample/スクリーンショット 2024-11-22 21.51.17.jpeg"
                   alt="Top Image"
                   width={900}
                   height={800}
