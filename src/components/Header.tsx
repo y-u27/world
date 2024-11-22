@@ -19,7 +19,7 @@ const Header = () => {
 
     const fetchAvatarUrl = async () => {
       if (session?.user?.email) {
-        const response = await fetch(`http://localhost:3000/api/user`);
+        const response = await fetch(`https://world-map-sns.vercel.app/api/user`);
         const { data }: { data: User } = await response.json();
 
         if (!data.image) {

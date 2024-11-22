@@ -50,7 +50,7 @@ type CountryProps = {
 // ↓全投稿データ取得
 async function fetchAllWorldPost(country: string): Promise<PostResponse[]> {
   const res = await fetch(
-    `http://localhost:3000/api/world-posts?country-name=${country}`,
+    `https://world-map-sns.vercel.app/api/world-posts?country-name=${country}`,
     {
       cache: "no-store",
     }
@@ -71,7 +71,7 @@ const PostLists: React.FC<CountryProps> = (
   const handleDeletePost = async (id: number) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/world-posts/${id}`,
+        `https://world-map-sns.vercel.app/api/world-posts/${id}`,
         {
           method: "DELETE",
         }
