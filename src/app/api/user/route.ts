@@ -1,6 +1,6 @@
-import prisma from "@/app/lib/prisma/prismaClient";
-import { getServerSession, Session } from "next-auth";
-import { authOptions } from "../../../../lib/auth";
+import prisma from '@/app/lib/prisma/prismaClient';
+import { getServerSession, Session } from 'next-auth';
+import { authOptions } from '../../lib/auth';
 
 // ユーザー情報を取得するAPI
 export async function GET() {
@@ -13,7 +13,7 @@ export async function GET() {
     if (!session) {
       return Response.json(
         {
-          message: "ログインしていません",
+          message: 'ログインしていません',
         },
         {
           status: 401,
@@ -24,7 +24,7 @@ export async function GET() {
     // セッション情報の取得に失敗した場合→500エラーを返す
     return Response.json(
       {
-        message: "セッション情報の取得に失敗",
+        message: 'セッション情報の取得に失敗',
       },
       {
         status: 500,
@@ -51,7 +51,7 @@ export async function GET() {
   } catch (error) {
     return Response.json(
       {
-        message: "ユーザー情報取得に失敗",
+        message: 'ユーザー情報取得に失敗',
       },
       {
         status: 500,
