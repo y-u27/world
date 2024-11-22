@@ -14,9 +14,9 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 import { TiArrowBackOutline } from "react-icons/ti";
-import { supabase } from "../../utils/supabase/supabase";
 import { useRouter } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
+import { supabase } from "@/app/lib/supabase/supabase";
 
 const SignUp = () => {
   const [file, setFile] = useState<File | null>(null);

@@ -2,7 +2,7 @@
 // POST→〜/api/world-posts：投稿を新規作成する
 
 import { NextResponse, NextRequest } from "next/server";
-import prisma from "@/app/lib/prismaClient";
+import prisma from "@/app/lib/prisma/prismaClient";
 
 // 全投稿データを取得
 export async function GET(request: NextRequest) {

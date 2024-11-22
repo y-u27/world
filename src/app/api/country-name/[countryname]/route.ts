@@ -1,6 +1,6 @@
 // 国名取得API
 
-import prisma from "@/app/lib/prismaClient";
+import prisma from "@/app/lib/prisma/prismaClient";
 import { NextResponse } from "next/server";
 
 export async function GET(
