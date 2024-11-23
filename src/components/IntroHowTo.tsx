@@ -25,9 +25,9 @@ const IntroHowTo = () => {
             transform="rotate(-3deg)"
             bgColor="teal.100"
             borderRadius={10}
-            size="lg"
             bgGradient="linear(to-r, teal.300, blue.200,gray.100)"
             fontWeight="none"
+            size={["md", "lg", "xl"]}
           >
             どんなサイトか？
           </Heading>
@@ -74,7 +74,7 @@ const IntroHowTo = () => {
                   width={900}
                   height={800}
                   style={{ width: "100%", height: "auto" }}
-                  />
+                />
               </Box>
               <br />
               <ListItem w="100%" ml="2%">
@@ -87,7 +87,7 @@ const IntroHowTo = () => {
                   width={900}
                   height={800}
                   style={{ width: "100%", height: "auto" }}
-                  />
+                />
               </Box>
               <br />
               <ListItem w="100%" ml="2%">
