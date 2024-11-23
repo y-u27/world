@@ -39,18 +39,24 @@ const IntroHowTo = () => {
           </Text>
         </Box>
       </Box>
-      <Box position="relative" w="80%" ml="10%" mt="40px" mb="5%">
-        <Box p="6" position="relative" bgColor="yellow.50">
+      <Box
+        position="relative"
+        w={["90%", "80%", "70%"]}
+        ml={["5%", "10%", "15%"]}
+        mt="40px"
+        mb="5%"
+      >
+        <Box p={[4, 6, 8]} position="relative" bgColor="yellow.50">
           <Heading
             position="absolute"
             top="-20px"
             left="20px"
             bg="white"
-            px={4}
+            px={[2, 4, 6]}
             transform="rotate(-3deg)"
             bgColor="teal.100"
             borderRadius={10}
-            size="lg"
+            size={["md", "lg", "xl"]}
             bgGradient="linear(to-r, teal.300, blue.200,gray.100)"
             fontWeight="none"
           >
@@ -61,12 +67,13 @@ const IntroHowTo = () => {
               <ListItem w="100%" ml="2%">
                 好きな国や行ったことがある国をクリック
               </ListItem>
-              <Box px="240px">
+              <Box px={[0, "10%", "240px"]}>
                 <Image
                   src="/sample/スクリーンショット 2024-09-30 20.28.38.jpeg"
                   alt="Top Image"
                   width={900}
                   height={800}
+                  style={{ width: "100%", height: "auto" }}
                 />
               </Box>
               <br />
@@ -99,7 +106,7 @@ const IntroHowTo = () => {
         <Box position="relative" ml="20%" mt="40px">
           <Link href="/login">
             <Button
-              w="650px"
+              w={["90%", "70%", "650px"]}
               bg="cyan.400"
               // color="black"
               boxShadow="xl"
@@ -107,13 +114,13 @@ const IntroHowTo = () => {
               _before={{
                 content: `""`,
                 display: "inline-block",
-                position:"absolute",
-                top:"0",
-                width:"100%",
-                height:"100%",
+                position: "absolute",
+                top: "0",
+                width: "100%",
+                height: "100%",
                 backgroundColor: "cyan.100",
                 transition: "0.7s",
-                right:"100%"
+                right: "100%",
               }}
               _hover={{ _before: { right: "0" } }}
             >
