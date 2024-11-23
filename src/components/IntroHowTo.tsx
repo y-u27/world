@@ -74,7 +74,7 @@ const IntroHowTo = () => {
                   width={900}
                   height={800}
                   style={{ width: "100%", height: "auto" }}
-                />
+                  />
               </Box>
               <br />
               <ListItem w="100%" ml="2%">
@@ -86,7 +86,8 @@ const IntroHowTo = () => {
                   alt="Top Image"
                   width={900}
                   height={800}
-                />
+                  style={{ width: "100%", height: "auto" }}
+                  />
               </Box>
               <br />
               <ListItem w="100%" ml="2%">
@@ -98,6 +99,7 @@ const IntroHowTo = () => {
                   alt="Top Image"
                   width={900}
                   height={800}
+                  style={{ width: "100%", height: "auto" }}
                 />
               </Box>
             </OrderedList>
