@@ -14,14 +14,14 @@ import React from "react";
 const IntroHowTo = () => {
   return (
     <>
-      <Box position="relative" w="80%" ml="10%" mt="60px">
-        <Box bgColor="yellow.50" p="6" position="relative">
+      <Box position="relative" w={["90%", "80%", "70%"]} ml={["5%", "10%", "15%"]} mt="60px">
+        <Box bgColor="yellow.50" p={[4, 6, 8]} position="relative">
           <Heading
             position="absolute"
             top="-20px"
             left="20px"
             bg="white"
-            px={4}
+            px={[2, 4, 6]}
             transform="rotate(-3deg)"
             bgColor="teal.100"
             borderRadius={10}
