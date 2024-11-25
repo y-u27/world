@@ -27,29 +27,45 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const handleSubmit =
+    (provider: string) => async (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
 
-    if (!email || !password) {
-      alert("メールアドレスとパスワードは必須です");
-      return;
-    }
-
-    const response = await fetch(
-      `https://world-map-sns.vercel.app/api/auth/register`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password, image: selectImageUrl }),
+      if (!email || !password) {
+        alert("メールアドレスとパスワードは必須です");
+        return;
       }
-    );
-    if (response.ok) {
-      await signIn();
-      router.push("/world");
-    } else {
-      console.log("error");
-    }
-  };
+
+      const response = await fetch(
+        `https://world-map-sns.vercel.app/api/auth/register`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+            image: selectImageUrl,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        alert("登録失敗");
+        return;
+      }
+
+      const result = await signIn(provider, {
+        redirect: false,
+        email,
+        password,
+      });
+      if (result?.error) {
+        alert("登録失敗");
+      } else {
+        router.push("/world");
+      }
+    };
 
   // ユーザーが新しくアップロードする画像を Supabase に保存し、その後取得したURLをアイコンに使用できる処理
   const handleUploadImage = async (file: File) => {
@@ -130,7 +146,7 @@ const SignUp = () => {
               ml="50px"
               w="100px"
               _hover={{ background: "#f08080", color: "white" }}
-              onClick={handleSubmit}
+              onClick={handleSubmit("credentials")}
             >
               登録
             </Button>
