@@ -17,11 +17,12 @@ import { TiArrowBackOutline } from "react-icons/ti";
 import { supabase } from "../../utils/supabase/supabase";
 import { useRouter } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
+import { signIn } from "next-auth/react";
 
 const SignUp = () => {
   const [file, setFile] = useState<File | null>(null);
   const [selectImageUrl, setSelectImageUrl] = useState<string | null>(null);
-  const [name,setName] = useState("")
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -34,12 +35,16 @@ const SignUp = () => {
       return;
     }
 
-    const response = await fetch(`https://world-map-sns.vercel.app/api/auth/register`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, password, image: selectImageUrl }),
-    });
+    const response = await fetch(
+      `https://world-map-sns.vercel.app/api/auth/register`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password, image: selectImageUrl }),
+      }
+    );
     if (response.ok) {
+      await signIn();
       router.push("/world");
     } else {
       console.log("error");
