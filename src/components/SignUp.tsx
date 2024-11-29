@@ -154,16 +154,16 @@ const SignUp = () => {
                 }}
                 fontSize="20%"
               />
+              <Button
+                type="submit"
+                ml={[0, "50px"]}
+                w={["10px", 0]}
+                _hover={{ background: "#f08080", color: "white" }}
+                onClick={handleSubmit("credentials")}
+              >
+                登録
+              </Button>
             </VStack>
-            <Button
-              type="submit"
-              ml={[0,"50px"]}
-              w={["10px",0]}
-              _hover={{ background: "#f08080", color: "white" }}
-              onClick={handleSubmit("credentials")}
-            >
-              登録
-            </Button>
           </HStack>
           <TiArrowBackOutline />
           <Link href="/login">
