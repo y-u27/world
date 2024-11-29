@@ -65,7 +65,7 @@ const Login = () => {
           ログイン
         </Text>
         <Box
-          p={["5%","4%","3%","5%"]}
+          p="5%"
           display="flex"
           justifyContent="center"
           flexDirection="column"
@@ -74,7 +74,7 @@ const Login = () => {
           <Input
             type="text"
             width="100px"
-            maxWidth="300px"
+            maxWidth="500px"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -82,7 +82,7 @@ const Login = () => {
           <Input
             type="password"
             width="100px"
-            maxWidth="300px"
+            maxWidth="500px"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
