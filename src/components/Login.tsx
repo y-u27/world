@@ -73,7 +73,7 @@ const Login = () => {
           <Text>メールアドレス</Text>
           <Input
             type="text"
-            width="500px"
+            width="400px"
             maxWidth="800px"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -81,13 +81,13 @@ const Login = () => {
           <Text mt="5%">パスワード</Text>
           <Input
             type="password"
-            width="500px"
+            width="400px"
             maxWidth="800px"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <Button
-            width="500px"
+            width="400px"
             maxWidth="800px"
             _hover={{ background: "#FAF089", color: "#319795" }}
             mt="10%"
