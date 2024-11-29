@@ -97,7 +97,12 @@ const SignUp = () => {
   };
 
   return (
-    <Card width="380px" mx="540px" mt="3%" boxShadow="2xl">
+    <Card
+      width={["90%", "70%", "50%", "380px"]}
+      mx="auto"
+      mt="3%"
+      boxShadow="2xl"
+    >
       <CardBody>
         <Text pt="5%" textAlign="center" fontFamily="revert" fontSize="3xl">
           新規登録
@@ -111,22 +116,31 @@ const SignUp = () => {
           <Text>名前</Text>
           <Input
             type="text"
-            width="300px"
+            width="100%"
+            maxWidth="500px"
             onChange={(e) => setName(e.target.value)}
           />
           <Text>メールアドレス</Text>
           <Input
             type="text"
-            width="300px"
+            width="100%"
+            maxWidth="500px"
             onChange={(e) => setEmail(e.target.value)}
           />
           <Text mt="5%">パスワード</Text>
           <Input
             type="password"
-            width="300px"
+            width="100%"
+            maxWidth="500px"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <HStack p="50px">
+          <HStack
+            spacing={[4, 6, 8]}
+            flexDirection={["column", "row"]}
+            alignItems="center"
+            justifyContent="center"
+            p="20px"
+          >
             <VStack>
               <Avatar src={selectImageUrl || undefined} />
               <Input
@@ -143,8 +157,8 @@ const SignUp = () => {
             </VStack>
             <Button
               type="submit"
-              ml="50px"
-              w="100px"
+              ml={[0,"50px"]}
+              w={["10px",0]}
               _hover={{ background: "#f08080", color: "white" }}
               onClick={handleSubmit("credentials")}
             >
