@@ -86,7 +86,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Box p="5%">
+          <Box pb="5%">
             <Button
               width="100%"
               maxWidth="500px"
