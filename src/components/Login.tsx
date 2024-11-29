@@ -73,7 +73,7 @@ const Login = () => {
           <Text>メールアドレス</Text>
           <Input
             type="text"
-            width="100px"
+            width="300px"
             maxWidth="500px"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -81,7 +81,7 @@ const Login = () => {
           <Text mt="5%">パスワード</Text>
           <Input
             type="password"
-            width="100px"
+            width="300px"
             maxWidth="500px"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
