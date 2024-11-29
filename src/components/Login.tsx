@@ -56,7 +56,6 @@ const Login = () => {
   return (
     <Card
       width={["90%", "70%", "50%", "380px"]}
-      height="480px"
       mx="auto"
       mt="5%"
       boxShadow="2xl"
@@ -66,7 +65,7 @@ const Login = () => {
           ログイン
         </Text>
         <Box
-          p="5%"
+          p={["5%","4%","3%","5%"]}
           display="flex"
           justifyContent="center"
           flexDirection="column"
@@ -74,30 +73,31 @@ const Login = () => {
           <Text>メールアドレス</Text>
           <Input
             type="text"
-            width="300px"
-            maxWidth="500px"
+            width="100px"
+            maxWidth="300px"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <Text mt="5%">パスワード</Text>
           <Input
             type="password"
-            width="300px"
-            maxWidth="500px"
+            width="100px"
+            maxWidth="300px"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <Button
-            width="300px"
+            width="100px"
+            maxWidth="300px"
             _hover={{ background: "#FAF089", color: "#319795" }}
             mt="10%"
-            mx="3%"
+            mx="auto"
             onClick={handleLogin("credentials")}
           >
             ログイン
           </Button>
-          <Box display="flex" justifyContent="center" mr="4%" mt="10px">
-            <HStack spacing="2px">
+          <Box display="flex" justifyContent="center" mt="10px">
+            <HStack spacing="10px">
               <Button
                 w="146px"
                 _hover={{ background: "#1e90ff", color: "#e0ffff" }}
@@ -107,8 +107,7 @@ const Login = () => {
               </Button>
               <Link href="/login/sign">
                 <Button
-                  ml="6%"
-                  w="145px"
+                  w="146px"
                   _hover={{ background: "#f08080", color: "white" }}
                 >
                   新規登録
