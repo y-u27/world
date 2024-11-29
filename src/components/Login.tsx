@@ -54,7 +54,13 @@ const Login = () => {
   };
 
   return (
-    <Card width="400px" height="480px" mx="36%" mt="5%" boxShadow="2xl">
+    <Card
+      width={["90%", "70%", "50%", "380px"]}
+      height="480px"
+      mx="auto"
+      mt="5%"
+      boxShadow="2xl"
+    >
       <CardBody>
         <Text pt="5%" textAlign="center" fontFamily="revert" fontSize="3xl">
           ログイン
@@ -69,6 +75,7 @@ const Login = () => {
           <Input
             type="text"
             width="300px"
+            maxWidth="500px"
             mx="10px"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -77,6 +84,7 @@ const Login = () => {
           <Input
             type="password"
             width="300px"
+            maxWidth="500px"
             mx="10px"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
