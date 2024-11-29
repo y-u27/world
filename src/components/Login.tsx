@@ -99,7 +99,7 @@ const Login = () => {
           <Box display="flex" justifyContent="center" mt="10px">
             <HStack spacing="10px">
               <Button
-                w="100%"
+                w="50%"
                 maxWidth="500px"
                 _hover={{ background: "#1e90ff", color: "#e0ffff" }}
                 onClick={handleLogin("google")}
@@ -108,7 +108,7 @@ const Login = () => {
               </Button>
               <Link href="/login/sign">
                 <Button
-                  w="100%"
+                  w="50%"
                   maxWidth="500px"
                   _hover={{ background: "#f08080", color: "white" }}
                 >
