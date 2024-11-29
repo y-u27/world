@@ -86,29 +86,30 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button
-          pb="5%"
-            width="100%"
-            maxWidth="500px"
-            _hover={{ background: "#FAF089", color: "#319795" }}
-            mt="10%"
-            mx="auto"
-            onClick={handleLogin("credentials")}
-          >
-            ログイン
-          </Button>
-          <Button
-          pb="5%"
-            w="100%"
-            maxWidth="500px"
-            _hover={{ background: "#1e90ff", color: "#e0ffff" }}
-            onClick={handleLogin("google")}
-          >
-            Google
-          </Button>
+          <Box pb="5%">
+            <Button
+              width="100%"
+              maxWidth="500px"
+              _hover={{ background: "#FAF089", color: "#319795" }}
+              mt="10%"
+              mx="auto"
+              onClick={handleLogin("credentials")}
+            >
+              ログイン
+            </Button>
+          </Box>
+          <Box pb="5%">
+            <Button
+              w="100%"
+              maxWidth="500px"
+              _hover={{ background: "#1e90ff", color: "#e0ffff" }}
+              onClick={handleLogin("google")}
+            >
+              Google
+            </Button>
+          </Box>
           <Link href="/login/sign">
             <Button
-            pb="5%"
               w="100%"
               maxWidth="500px"
               _hover={{ background: "#f08080", color: "white" }}
