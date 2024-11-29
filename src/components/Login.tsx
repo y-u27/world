@@ -96,10 +96,10 @@ const Login = () => {
           >
             ログイン
           </Button>
-          <Box display="flex" justifyContent="center" mt="10px">
-            <HStack spacing="10px">
+          {/* <Box display="flex" justifyContent="center" mt="10px">
+            <HStack spacing="10px"> */}
               <Button
-                w="200%"
+                w="100%"
                 maxWidth="500px"
                 _hover={{ background: "#1e90ff", color: "#e0ffff" }}
                 onClick={handleLogin("google")}
@@ -108,15 +108,15 @@ const Login = () => {
               </Button>
               <Link href="/login/sign">
                 <Button
-                  w="200%"
+                  w="100%"
                   maxWidth="500px"
                   _hover={{ background: "#f08080", color: "white" }}
                 >
                   新規登録
                 </Button>
               </Link>
-            </HStack>
-          </Box>
+            {/* </HStack>
+          </Box> */}
           <Box mt="24px">
             <TiArrowBackOutline />
             <Link href="/">
