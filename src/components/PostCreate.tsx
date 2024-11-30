@@ -90,20 +90,23 @@ const PostCreate = () => {
                 <Input
                   type="text"
                   placeholder="国名"
-                  width="420px"
+                  width="100%"
+                  maxWidth="500px"
                   ref={countryNameRef}
                 />
                 <Input
                   type="text"
                   placeholder="タイトル"
-                  width="420px"
+                  width="100%"
+                  maxWidth="500px"
                   ref={titleRef}
                 />
                 <Input
                   type="text"
                   placeholder="投稿内容"
                   height="200px"
-                  width="420px"
+                  width="100%"
+                  maxWidth="500px"
                   ref={contentRef}
                 />
               </VStack>
