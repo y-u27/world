@@ -79,7 +79,7 @@ const PostCreate = () => {
 
   return (
     <>
-      <Card width="500px" mx="460px" mt="50px" boxShadow="2xl">
+      <Card width={["90%", "70%", "50%", "380px"]} mx="auto" mt="50px" boxShadow="2xl">
         <CardBody>
           <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
             投稿フォーム
