@@ -79,7 +79,7 @@ const PostEdit = ({ id }: editProps) => {
                 <Input
                   type="text"
                   placeholder="タイトル"
-                  width="200%"
+                  width="130%"
                   maxWidth="500px"
                   ref={titleRef}
                   mt="5%"
@@ -88,7 +88,7 @@ const PostEdit = ({ id }: editProps) => {
                   type="text"
                   placeholder="投稿内容"
                   height="200px"
-                  width="200%"
+                  width="130%"
                   maxWidth="500px"
                   ref={contentRef}
                 />

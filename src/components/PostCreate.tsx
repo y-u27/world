@@ -97,7 +97,7 @@ const PostCreate = () => {
                 <Input
                   type="text"
                   placeholder="タイトル"
-                  width="100%"
+                  width="130%"
                   maxWidth="500px"
                   ref={titleRef}
                 />
@@ -105,7 +105,7 @@ const PostCreate = () => {
                   type="text"
                   placeholder="投稿内容"
                   height="200px"
-                  width="100%"
+                  width="130%"
                   maxWidth="500px"
                   ref={contentRef}
                 />
