@@ -80,7 +80,7 @@ const IntroHowTo = () => {
               <ListItem w="100%" ml="2%">
                 その国の地図が表示されたら、右上にある「投稿一覧」ボタンをクリック
               </ListItem>
-              <Box px="240px">
+              <Box px={[0, "10%", "240px"]}>
                 <Image
                   src="/sample/スクリーンショット 2024-09-30 20.28.54.jpeg"
                   alt="Top Image"
@@ -93,7 +93,7 @@ const IntroHowTo = () => {
               <ListItem w="100%" ml="2%">
                 「投稿一覧」が表示されたら、実際に投稿してみましょう！
               </ListItem>
-              <Box px="240px">
+              <Box px={[0, "10%", "240px"]}>
                 <Image
                   src="/sample/スクリーンショット 2024-11-22 21.51.17.jpeg"
                   alt="Top Image"
