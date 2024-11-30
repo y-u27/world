@@ -3,6 +3,7 @@ import { Avatar, Box, Heading } from "@chakra-ui/react";
 import { User } from "@prisma/client";
 // import { createClient } from "@supabase/supabase-js";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 // const supabase = createClient(
@@ -19,7 +20,9 @@ const Header = () => {
 
     const fetchAvatarUrl = async () => {
       if (session?.user?.email) {
-        const response = await fetch(`https://world-map-sns.vercel.app/api/user`);
+        const response = await fetch(
+          `https://world-map-sns.vercel.app/api/user`
+        );
         const { data }: { data: User } = await response.json();
 
         if (!data.image) {
@@ -60,7 +63,9 @@ const Header = () => {
                 size="sm"
                 src={avatarUrl ?? "/default-avatar.jpeg"}
                 name={session.user?.name ?? "ユーザー"}
-              />
+              >
+                <Link href="/myPage"></Link>
+              </Avatar>
             </Box>
           )}
         </Heading>
