@@ -90,7 +90,7 @@ const PostCreate = () => {
                 <Input
                   type="text"
                   placeholder="国名"
-                  width="100%"
+                  width="200%"
                   maxWidth="500px"
                   ref={countryNameRef}
                 />

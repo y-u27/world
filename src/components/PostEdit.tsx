@@ -68,7 +68,7 @@ const PostEdit = ({ id }: editProps) => {
 
   return (
     <>
-      <Card width="500px" mx="460px" mt="50px" boxShadow="2xl">
+      <Card width={["90%", "70%", "50%", "380px"]} mx="auto" mt="50px" boxShadow="2xl">
         <CardBody>
           <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
             編集フォーム
@@ -79,7 +79,8 @@ const PostEdit = ({ id }: editProps) => {
                 <Input
                   type="text"
                   placeholder="タイトル"
-                  width="420px"
+                  width="200%"
+                  maxWidth="500px"
                   ref={titleRef}
                   mt="5%"
                 />
@@ -87,7 +88,8 @@ const PostEdit = ({ id }: editProps) => {
                   type="text"
                   placeholder="投稿内容"
                   height="200px"
-                  width="420px"
+                  width="200%"
+                  maxWidth="500px"
                   ref={contentRef}
                 />
               </VStack>
