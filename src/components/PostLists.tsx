@@ -190,7 +190,9 @@ const PostLists: React.FC<CountryProps> = (
           <DrawerFooter>
             <Link href="/world/create">
               <Button
-                mr="176px"
+                // mr="176px"
+                ml={[0, "50px"]}
+                w={["10px", 0]}
                 onClick={onClose}
                 _hover={{ background: "#FAF089", color: "#319795" }}
               >
