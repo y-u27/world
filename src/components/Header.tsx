@@ -59,13 +59,13 @@ const Header = () => {
               right="10px"
               padding="10px"
             >
-              <Avatar
-                size="sm"
-                src={avatarUrl ?? "/default-avatar.jpeg"}
-                name={session.user?.name ?? "ユーザー"}
-              >
-                <Link href="/myPage"></Link>
-              </Avatar>
+              <Link href="/myPage">
+                <Avatar
+                  size="sm"
+                  src={avatarUrl ?? "/default-avatar.jpeg"}
+                  name={session.user?.name ?? "ユーザー"}
+                />
+              </Link>
             </Box>
           )}
         </Heading>
