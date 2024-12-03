@@ -5,12 +5,12 @@ import prisma from "@/app/lib/prismaClient";
 import bcrypt from "bcrypt";
 import { Prisma } from "@prisma/client";
 
-export const authOptions:NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     // ↓Googleログイン
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || '',
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
     }),
     // ↓独自ログイン
     CredentialsProvider({
@@ -71,4 +71,3 @@ export const authOptions:NextAuthOptions = {
   },
   secret: process.env.SECRET,
 };
-
