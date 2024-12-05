@@ -60,9 +60,10 @@ async function fetchAllWorldPost(country: string): Promise<PostResponse[]> {
   return postData.data;
 }
 
-const PostLists: React.FC<CountryProps> = (
-  { id, countryName }: CountryProps
-) => {
+const PostLists: React.FC<CountryProps> = ({
+  id,
+  countryName,
+}: CountryProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<PostResponse[]>([]);
@@ -144,7 +145,10 @@ const PostLists: React.FC<CountryProps> = (
               <Card mb="4%" key={mapPost.id}>
                 <CardHeader>
                   <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-                    <UserImage imagePath={mapPost.user.image} />
+                    <UserImage
+                      imagePath={mapPost.user.image}
+                      userName={mapPost.user.name}
+                    />
                     <Box>
                       <Heading size="sm">{mapPost.user.name}</Heading>
                     </Box>
