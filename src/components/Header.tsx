@@ -1,15 +1,9 @@
 import prisma from "@/app/lib/prismaClient";
 import { Avatar, Box, Heading } from "@chakra-ui/react";
 import { User } from "@prisma/client";
-// import { createClient } from "@supabase/supabase-js";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-// const supabase = createClient(
-//   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-//   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-// );
 
 const Header = () => {
   const { data: session } = useSession();

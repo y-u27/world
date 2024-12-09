@@ -3,11 +3,13 @@ import React from "react";
 
 const UserInformation = () => {
   return (
-    <Card>
-      <CardBody>
-        <Text>登録情報</Text>
-      </CardBody>
-    </Card>
+    <>
+      <Card>
+        <CardBody>
+          <Text>登録情報</Text>
+        </CardBody>
+      </Card>
+    </>
   );
 };
 
