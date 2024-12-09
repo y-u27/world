@@ -1,11 +1,11 @@
-import MyPage from '@/components/MyPage'
+import UserInformation from '@/components/UserInformation'
 import { Box } from '@chakra-ui/react'
 import React from 'react'
 
 const myPage = () => {
   return (
     <Box>
-      <MyPage/>
+      <UserInformation/>
     </Box>
   )
 }
