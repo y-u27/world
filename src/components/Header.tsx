@@ -59,7 +59,7 @@ const Header = () => {
               right="10px"
               padding="10px"
             >
-              <Link href="/myPage">
+              <Link href="/mypage">
                 <Avatar
                   size="sm"
                   src={avatarUrl ?? "/default-avatar.jpeg"}
