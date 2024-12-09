@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const Header = () => {
+const Header = (id: string) => {
   const { data: session } = useSession();
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
 
@@ -53,7 +53,7 @@ const Header = () => {
               right="10px"
               padding="10px"
             >
-              <Link href="/my">
+              <Link href={`/user/${id}`}>
                 <Avatar
                   size="sm"
                   src={avatarUrl ?? "/default-avatar.jpeg"}

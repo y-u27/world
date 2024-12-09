@@ -1,7 +1,7 @@
 import UserInformation from "@/components/UserInformation";
 import { Box } from "@chakra-ui/react";
 
-const myPage = () => {
+const userPage = () => {
   return (
     <Box>
       <UserInformation />
@@ -9,4 +9,4 @@ const myPage = () => {
   );
 };
 
-export default myPage;
+export default userPage;
