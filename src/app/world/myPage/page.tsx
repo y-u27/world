@@ -2,7 +2,7 @@ import UserInformation from '@/components/UserInformation'
 import { Box } from '@chakra-ui/react'
 import React from 'react'
 
-const myPage = () => {
+const mypage = () => {
   return (
     <Box>
       <UserInformation/>
@@ -10,4 +10,4 @@ const myPage = () => {
   )
 }
 
-export default myPage
+export default mypage;
