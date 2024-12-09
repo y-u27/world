@@ -5,9 +5,10 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const Header = (id: string) => {
+const Header = () => {
   const { data: session } = useSession();
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+  const [userId, setUserId] = useState<number | null>(null);
 
   useEffect(() => {
     console.log("セッション情報", session);
@@ -25,6 +26,7 @@ const Header = (id: string) => {
         } else {
           console.log("画像URL", data.image);
           setAvatarUrl(data.image);
+          setUserId(data.id);
         }
       }
     };
@@ -53,7 +55,7 @@ const Header = (id: string) => {
               right="10px"
               padding="10px"
             >
-              <Link href={`/user/${id}`}>
+              <Link href={`/user/${userId}`}>
                 <Avatar
                   size="sm"
                   src={avatarUrl ?? "/default-avatar.jpeg"}
