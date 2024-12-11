@@ -1,12 +1,21 @@
-import { Box, Card, CardBody, Text } from "@chakra-ui/react";
-import React from "react";
+import { Avatar, Box, Card, CardBody, Text } from "@chakra-ui/react";
+import UserImage from "./UserImage";
 
-const UserInformation = () => {
+type UserInformationProps = {
+  imagePath: string
+  userName: string
+}
+
+const UserInformation:React.FC<UserInformationProps> = ({imagePath,userName}) => {
   return (
     <>
-      <Card>
+      <Card width={["90%", "70%", "50%", "380px"]} mx="auto" mt="50px" boxShadow="2xl">
         <CardBody>
-          <Text>登録情報</Text>
+          <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">登録情報</Text>
+          <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">名前</Text>
+          <Box>
+            <UserImage imagePath={imagePath} userName={userName}/>
+          </Box>
         </CardBody>
       </Card>
     </>
