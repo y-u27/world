@@ -2,41 +2,31 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/lib/auth";
 import UserInformation from "@/components/UserInformation";
 import { Box } from "@chakra-ui/react";
+import { redirect } from "next/navigation";
 
-export async function getServerSideProps(context: any) {
-  const session = await getServerSession(context.req, context.res, authOptions);
+export const dynamic = "force-dynamic";
+
+export default async function UserPage({ params }: { params: { id: string } }) {
+  const session = await getServerSession(authOptions);
 
   if (!session) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
+    redirect("/login");
   }
 
-  return {
-    props: {
-      user: {
-        id: session.user.id,
-        name: session.user.name || "ゲスト",
-        image: session.user.image || "/default-avatar.png",
-        email: session.user.email,
-      },
-    },
+  const user = {
+    id: session.user.id,
+    name: session.user.name || "ゲスト",
+    image: session.user.image || "/default-avatar.png",
+    email: session.user.email,
   };
-}
 
-const userPage = ({
-  user,
-}: {
-  user: { id: string; name: string; image: string; email: string };
-}) => {
-  return (
+  if (user.id !== params.id) {
+    redirect("/error");
+  }
+
+  return(
     <Box>
-      <UserInformation imagePath={user.image} userName={user.name} />
+      <UserInformation imagePath={user.image} userName={user.name}/>
     </Box>
-  );
-};
-
-export default userPage;
+  )
+}
