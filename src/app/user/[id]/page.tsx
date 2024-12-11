@@ -4,8 +4,6 @@ import UserInformation from "@/components/UserInformation";
 import { Box } from "@chakra-ui/react";
 import { redirect } from "next/navigation";
 
-export const dynamic = "force-dynamic";
-
 export default async function UserPage({ params }: { params: { id: string } }) {
   const session = await getServerSession(authOptions);
 
