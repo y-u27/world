@@ -2,11 +2,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/lib/auth";
 import UserInformation from "@/components/UserInformation";
 import { Box } from "@chakra-ui/react";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "User Profile",
-};
 
 export async function getServerSideProps(context: any) {
   const session = await getServerSession(context.req, context.res, authOptions);
