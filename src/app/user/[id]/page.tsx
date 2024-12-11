@@ -8,6 +8,7 @@ export default async function UserPage({ params }: { params: { id: string } }) {
   const session = await getServerSession(authOptions);
 
   if (!session) {
+    console.log("Session:", session);
     redirect("/login");
   }
 
@@ -19,12 +20,14 @@ export default async function UserPage({ params }: { params: { id: string } }) {
   };
 
   if (user.id !== params.id) {
+    console.log("params.id:",params.id)
+    console.log("user.id:",user.id)
     redirect("/error");
   }
 
-  return(
+  return (
     <Box>
-      <UserInformation imagePath={user.image} userName={user.name}/>
+      <UserInformation imagePath={user.image} userName={user.name} />
     </Box>
-  )
+  );
 }
