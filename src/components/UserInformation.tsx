@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, CardBody, Text } from "@chakra-ui/react";
+import { Box, Card, CardBody, Text } from "@chakra-ui/react";
 import UserImage from "./UserImage";
 
 type UserInformationProps = {
