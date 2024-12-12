@@ -1,3 +1,5 @@
+"use client";
+
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/lib/auth";
 import UserInformation from "@/components/UserInformation";
