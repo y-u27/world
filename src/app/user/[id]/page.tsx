@@ -30,7 +30,7 @@ export default async function UserPage({ params }: { params: { id: string } }) {
         }
 
         setUser({
-          id: session.use.id,
+          id: session.user.id,
           name: session.user.name || "ゲスト",
           image: session.user.image || "/default-avatar.png",
           email: session.user.email,
