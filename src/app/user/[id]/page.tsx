@@ -15,7 +15,7 @@ export default async function UserPage({ params }: { params: { id: string } }) {
   const router = useRouter();
 
   useEffect(() => {
-    const fecthUserData = async () => {
+    const fetchUserData = async () => {
       try {
         const res = await fetch(`https://world-map-sns.vercel.app/api/get-session`);
         if (!res.ok) {
@@ -32,7 +32,7 @@ export default async function UserPage({ params }: { params: { id: string } }) {
         setUser({
           id: session.user.id,
           name: session.user.name || "ゲスト",
-          image: session.user.image || "/default-avatar.png",
+          image: session.user.image || "/default-avatar.jpeg",
           email: session.user.email,
         });
       } catch (error) {
@@ -41,7 +41,7 @@ export default async function UserPage({ params }: { params: { id: string } }) {
       }
     };
 
-    fecthUserData();
+    fetchUserData();
   }, [params.id, router]);
 
   if (!user) {
