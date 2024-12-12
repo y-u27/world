@@ -1,27 +1,51 @@
 "use client";
 
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/lib/auth";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import UserInformation from "@/components/UserInformation";
 import { Box } from "@chakra-ui/react";
-import { redirect } from "next/navigation";
 
 export default async function UserPage({ params }: { params: { id: string } }) {
-  const session = await getServerSession(authOptions);
+  const [user, setUser] = useState<{
+    id: string;
+    name: string;
+    image: string;
+    email: string;
+  } | null>(null);
+  const router = useRouter();
 
-  if (!session) {
-    redirect("/login");
-  }
+  useEffect(() => {
+    const fecthUserData = async () => {
+      try {
+        const res = await fetch("/api/getSession");
+        if (!res.ok) {
+          router.push("/login");
+          return;
+        }
+        const session = await res.json();
 
-  const user = {
-    id: session.user.id,
-    name: session.user.name || "ゲスト",
-    image: session.user.image || "/default-avatar.png",
-    email: session.user.email,
-  };
+        if (!session || session.user.id !== params.id) {
+          router.push(session ? "/error" : "/login");
+          return;
+        }
 
-  if (user.id !== params.id) {
-    redirect("/error");
+        setUser({
+          id: session.use.id,
+          name: session.user.name || "ゲスト",
+          image: session.user.image || "/default-avatar.png",
+          email: session.user.email,
+        });
+      } catch (error) {
+        console.error("セッション取得エラー:", error);
+        router.push("/login");
+      }
+    };
+
+    fecthUserData();
+  }, [params.id, router]);
+
+  if (!user) {
+    return <Box>Loading...</Box>;
   }
 
   return (
