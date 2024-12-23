@@ -17,7 +17,7 @@ export default async function UserPage({ params }: { params: { id: string } }) {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const res = await fetch(`https://world-map-sns.vercel.app/api/get-session`);
+        const res = await fetch(`/api/get-session`);
         if (!res.ok) {
           router.push("/login");
           return;
