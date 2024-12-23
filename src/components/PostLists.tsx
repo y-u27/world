@@ -70,10 +70,9 @@ const PostLists: React.FC<CountryProps> = ({
   const [mapPostCards, setMapPostCards] = useState<PostResponse[]>([]);
   const toast = useToast();
 
-  // 画面幅に応じたDrawerサイズを設定
   const drawerSize = useBreakpointValue({
     base: { left: "80%", top: "5%" },
-    md: { left: "90%", top: "8%" },
+    md: { left: "50%", top: "8%" },
   });
 
   const handleDeletePost = async (id: number) => {
