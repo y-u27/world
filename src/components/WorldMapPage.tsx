@@ -1,7 +1,7 @@
 // 世界地図表示
 "use client";
 
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, useMediaQuery } from "@chakra-ui/react";
 import {
   GoogleMap,
   // LoadScript,
@@ -56,6 +56,9 @@ const WorldMapPage = ({ id }: CountryProps) => {
   const [countryNames, setCountryNames] = useState("");
   const router = useRouter();
 
+  // メディアクエリ（レスポンシブ対応）
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
+
   // クリックした地点の中心座標と国名を取得
   // TIPS: LoadScript読み込むことで、windowオブジェクトからGoogle Map APIが利用できる
   const handleMapClick = (e: google.maps.MapMouseEvent) => {
@@ -102,7 +105,7 @@ const WorldMapPage = ({ id }: CountryProps) => {
 
   const mapContainerStyle = {
     width: "100vw",
-    height: "95vh",
+    height: isLargerThan768 ? "95vh" : "70vh",
   };
 
   const mapStyle = {
