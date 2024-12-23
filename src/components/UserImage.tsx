@@ -31,7 +31,7 @@ const UserImage: React.FC<UserImageProps> = ({
     <Box>
       <Avatar
         name="User Icon"
-        src={imagePath}
+        src={imagePath || "/default-avatar.jpeg"}
         bg="blue.300"
         size="md"
         onClick={onOpen}
