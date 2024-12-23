@@ -103,14 +103,13 @@ const WorldMapPage = ({ id }: CountryProps) => {
     maxWidth: 100,
   };
 
-  const mapContainerStyle = {
-    width: "100vw",
-    height: isLargerThan768 ? "95vh" : "70vh",
-  };
+  const mapContainerStyle = isLargerThan768
+    ? { width: "100vw", height: "95vh" }
+    : { width: "100vw", height: "70vh" };
 
   const mapStyle = {
     background: "white",
-    fontSize: 10,
+    fontSize: isLargerThan768 ? "14px" : "10px",
   };
 
   // 投稿一覧ボタンの出しわけ
@@ -195,7 +194,12 @@ const WorldMapPage = ({ id }: CountryProps) => {
         )}
         {/* </LoadScript> */}
       </Box>
-      <Button position="fixed" bottom="5" onClick={handleLogout}>
+      <Button
+        position="fixed"
+        bottom={isLargerThan768 ? "5" : "2"}
+        fontSize={isLargerThan768 ? "md" : "sm"}
+        onClick={handleLogout}
+      >
         ログアウト
       </Button>
     </>
