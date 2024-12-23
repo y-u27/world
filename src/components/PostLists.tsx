@@ -71,8 +71,8 @@ const PostLists: React.FC<CountryProps> = ({
   const toast = useToast();
 
   const drawerSize = useBreakpointValue({
-    base: { left: "40%", top: "5%" },
-    md: { left: "50%", top: "8%" },
+    base: { left: "80%", top: "5%" },
+    md: { left: "90%", top: "8%" },
   });
 
   const handleDeletePost = async (id: number) => {
@@ -144,7 +144,10 @@ const PostLists: React.FC<CountryProps> = ({
         size={drawerSize}
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent
+          maxWidth={{ base: "100%", md: "50%" }}
+          marginLeft={{ base: "0", md: "auto" }}
+        >
           <DrawerCloseButton />
           <DrawerHeader>{countryName}</DrawerHeader>
           <DrawerBody>
