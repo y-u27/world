@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, Card, CardBody, Text } from "@chakra-ui/react";
 import UserImage from "./UserImage";
 
