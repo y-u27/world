@@ -145,7 +145,7 @@ const PostLists: React.FC<CountryProps> = ({
       >
         <DrawerOverlay />
         <DrawerContent
-          maxWidth={{ base: "60%", md: "30%" }}
+          maxWidth={{ base: "80%", md: "45%" }}
           marginLeft={{ base: "0", md: "auto" }}
         >
           <DrawerCloseButton />
@@ -211,7 +211,7 @@ const PostLists: React.FC<CountryProps> = ({
           <DrawerFooter>
             <Link href="/world/create">
               <Button
-                ml={{ base: "auto", md: "176px" }}
+                mr={{ base: "auto", md: "176px" }}
                 onClick={onClose}
                 _hover={{ background: "#FAF089", color: "#319795" }}
               >
