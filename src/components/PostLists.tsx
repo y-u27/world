@@ -33,6 +33,7 @@ import {
   MenuItem,
   IconButton,
   useToast,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -68,6 +69,12 @@ const PostLists: React.FC<CountryProps> = ({
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<PostResponse[]>([]);
   const toast = useToast();
+
+  // 画面幅に応じたDrawerサイズを設定
+  const drawerSize = useBreakpointValue({
+    base: { left: "80%", top: "5%" },
+    md: { left: "90%", top: "8%" },
+  });
 
   const handleDeletePost = async (id: number) => {
     try {
@@ -134,7 +141,8 @@ const PostLists: React.FC<CountryProps> = ({
         placement="right"
         onClose={onClose}
         finalFocusRef={btnRef}
-        size="md"
+        // サイズを動的に変更
+        size={drawerSize}
       >
         <DrawerOverlay />
         <DrawerContent>
@@ -142,7 +150,14 @@ const PostLists: React.FC<CountryProps> = ({
           <DrawerHeader>{countryName}</DrawerHeader>
           <DrawerBody>
             {mapPostCards.map((mapPost) => (
-              <Card mb="4%" key={mapPost.id}>
+              <Card
+                mb="4%"
+                key={mapPost.id}
+                // カード幅をレスポンシブに変更
+                width={{ base: "100%", md: "90%" }}
+                // カードを中央に配置
+                mx="auto"
+              >
                 <CardHeader>
                   <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
                     <UserImage
@@ -194,7 +209,7 @@ const PostLists: React.FC<CountryProps> = ({
           <DrawerFooter>
             <Link href="/world/create">
               <Button
-                mr="176px"
+                mr={{ base: "auto", md: "176px" }}
                 onClick={onClose}
                 _hover={{ background: "#FAF089", color: "#319795" }}
               >
