@@ -24,9 +24,9 @@ const UserInformation: React.FC<UserInformationProps> = ({
           <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
             登録情報
           </Text>
-          <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
-            名前
-          </Text>
+          <Box pt="20px" textAlign="center" fontFamily="revert">
+            <Text>名前</Text>
+          </Box>
           <Box display="flex" justifyContent="center" mt={4}>
             <UserImage imagePath={imagePath} userName={userName} />
           </Box>
