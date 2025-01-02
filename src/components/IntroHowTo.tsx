@@ -14,7 +14,12 @@ import React from "react";
 const IntroHowTo = () => {
   return (
     <>
-      <Box position="relative" w={["90%", "80%", "70%"]} ml={["5%", "10%", "15%"]} mt="60px">
+      <Box
+        position="relative"
+        w={["90%", "80%", "70%"]}
+        ml={["5%", "10%", "15%"]}
+        mt="60px"
+      >
         <Box bgColor="yellow.50" p={[4, 6, 8]} position="relative">
           <Heading
             position="absolute"
@@ -108,25 +113,31 @@ const IntroHowTo = () => {
         <Box position="relative" ml="20%" mt="40px">
           <Link href="/login">
             <Button
-              w={["90%", "70%", "650px"]}
+              w={["90%", "70%", "300px"]}
+              h="50px"
               bg="cyan.400"
-              // color="black"
               boxShadow="xl"
+              position="relative"
               overflow="hidden"
+              color="black"
+              zIndex={1}
               _before={{
                 content: `""`,
-                display: "inline-block",
                 position: "absolute",
-                top: "0",
+                top: 0,
+                left: 0,
                 width: "100%",
                 height: "100%",
                 backgroundColor: "cyan.100",
                 transition: "0.7s",
-                right: "100%",
+                transform: "translateX(-100%)",
+                zIndex: 0,
               }}
-              _hover={{ _before: { right: "0" } }}
+              _hover={{ _before: { transform: "translateX(0)" } }}
             >
-              ログインして投稿してみる
+              <span style={{ position: "relative", zIndex: 2 }}>
+                ログインして投稿してみる
+              </span>
             </Button>
           </Link>
         </Box>
