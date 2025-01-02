@@ -33,7 +33,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
             <UserImage imagePath={imagePath} userName={userName} />
           </Box>
           <Text>コメント欄</Text>
-          <Box display="flex" justifyContent="center" mt={4}>
+          <Box display="flex" justifyContent="right" mt={4}>
             <Input/>
           </Box>
           <Box>
