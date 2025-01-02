@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Button, Card, CardBody, Text } from "@chakra-ui/react";
+import { Box, Button, Card, CardBody, Input, Text } from "@chakra-ui/react";
 import UserImage from "./UserImage";
 import { TiArrowBackOutline } from "react-icons/ti";
 import Link from "next/link";
@@ -24,13 +24,17 @@ const UserInformation: React.FC<UserInformationProps> = ({
       >
         <CardBody>
           <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
-            登録情報
+            マイプロフィール
           </Text>
           <Box pt="20px" textAlign="center" fontFamily="revert">
             <Text>{userName}</Text>
           </Box>
           <Box display="flex" justifyContent="center" mt={4}>
             <UserImage imagePath={imagePath} userName={userName} />
+          </Box>
+          <Text>コメント欄</Text>
+          <Box display="flex" justifyContent="center" mt={4}>
+            <Input/>
           </Box>
           <Box>
             <TiArrowBackOutline />
