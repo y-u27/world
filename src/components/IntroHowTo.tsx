@@ -115,7 +115,7 @@ const IntroHowTo = () => {
             <Button
               w={["90%", "70%", "300px"]}
               h="50px"
-              bg="cyan.400"
+              bg="#b0c4de"
               boxShadow="xl"
               position="relative"
               overflow="hidden"
@@ -129,7 +129,7 @@ const IntroHowTo = () => {
                 left: 0,
                 width: "100%",
                 height: "100%",
-                backgroundColor: "gray.300",
+                backgroundColor: "#9bb8de",
                 transition: "0.7s",
                 transform: "translateX(-100%)",
                 zIndex: 0,
