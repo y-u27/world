@@ -26,10 +26,10 @@ const UserInformation: React.FC<UserInformationProps> = ({
           <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
             マイプロフィール
           </Text>
-          <Box pt="20px" textAlign="center" fontFamily="revert">
+          <Box pt="20px" textAlign="right" fontFamily="revert">
             <Text>{userName}</Text>
           </Box>
-          <Box display="flex" justifyContent="center" mt={4}>
+          <Box display="flex" justifyContent="left" mt={4} boxSize="md">
             <UserImage imagePath={imagePath} userName={userName} />
           </Box>
           <Text>コメント欄</Text>
