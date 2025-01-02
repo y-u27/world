@@ -34,8 +34,8 @@ const UserInformation: React.FC<UserInformationProps> = ({
           </Box>
           <Box>
             <TiArrowBackOutline />
-            <Link href="/">
-              <Button>地図へに戻る</Button>
+            <Link href="/world">
+              <Text>地図へに戻る</Text>
             </Link>
           </Box>
         </CardBody>
