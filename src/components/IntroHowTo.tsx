@@ -119,7 +119,8 @@ const IntroHowTo = () => {
               boxShadow="xl"
               position="relative"
               overflow="hidden"
-              color="black"
+              color="#000080"
+              textShadow="1px 1px #ffffff"
               zIndex={1}
               _before={{
                 content: `""`,
@@ -128,7 +129,7 @@ const IntroHowTo = () => {
                 left: 0,
                 width: "100%",
                 height: "100%",
-                backgroundColor: "cyan.100",
+                backgroundColor: "gray.300",
                 transition: "0.7s",
                 transform: "translateX(-100%)",
                 zIndex: 0,
