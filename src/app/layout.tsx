@@ -5,6 +5,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import Header from "@/components/Header";
 import Link from "next/link";
 import { SessionProvider } from "next-auth/react";
+import { RecoilRoot } from "recoil";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,7 @@ export default function RootLayout({
             <Link href="/world">
               <Header />
             </Link>
-            {children}
+            <RecoilRoot>{children}</RecoilRoot>
           </ChakraProvider>
         </SessionProvider>
       </body>
