@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Button, Card, CardBody, Input, Text } from "@chakra-ui/react";
+import { Box, Card, CardBody, Input, Text } from "@chakra-ui/react";
 import UserImage from "./UserImage";
 import { TiArrowBackOutline } from "react-icons/ti";
 import Link from "next/link";
