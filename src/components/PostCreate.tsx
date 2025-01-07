@@ -1,6 +1,7 @@
 // 投稿フォーム
 "use client";
 
+import { worldState } from "@/atom/worldState";
 import {
   Box,
   Button,
@@ -17,6 +18,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import { TiArrowBackOutline } from "react-icons/ti";
+import { useRecoilValue } from "recoil";
 
 const createPost = async (
   countryName: string | undefined,
@@ -44,6 +46,7 @@ const PostCreate = () => {
   const toast = useToast();
   const router = useRouter();
   const { data: session } = useSession();
+  const countryNameState: string | undefined = useRecoilValue(worldState);
 
   const handleMapPost = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,7 +82,12 @@ const PostCreate = () => {
 
   return (
     <>
-      <Card width={["90%", "70%", "50%", "380px"]} mx="auto" mt="50px" boxShadow="2xl">
+      <Card
+        width={["90%", "70%", "50%", "380px"]}
+        mx="auto"
+        mt="50px"
+        boxShadow="2xl"
+      >
         <CardBody>
           <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
             投稿フォーム
@@ -89,10 +97,11 @@ const PostCreate = () => {
               <VStack spacing={4}>
                 <Input
                   type="text"
-                  placeholder="国名"
+                  // placeholder="国名"
                   width="130%"
                   maxWidth="500px"
                   ref={countryNameRef}
+                  value={countryNameState}
                 />
                 <Input
                   type="text"
