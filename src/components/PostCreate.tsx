@@ -101,7 +101,7 @@ const PostCreate = () => {
                   width="130%"
                   maxWidth="500px"
                   ref={countryNameRef}
-                  value={countryNameState}
+                  defaultValue={countryNameState}
                 />
                 <Input
                   type="text"
