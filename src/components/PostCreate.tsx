@@ -42,7 +42,7 @@ const createPost = async (
 const PostCreate = () => {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLInputElement | null>(null);
-  const countryNameRef = useRef<HTMLInputElement | null>(null);
+  // const countryNameRef = useRef<HTMLInputElement | null>(null);
   const toast = useToast();
   const router = useRouter();
   const { data: session } = useSession();
@@ -63,11 +63,12 @@ const PostCreate = () => {
     }
 
     await createPost(
-      countryNameRef.current?.value,
+      countryNameState,
       titleRef.current?.value,
       contentRef.current?.value,
       session?.user.id
     );
+    
     toast({
       title: "投稿完了！",
       description: "投稿が完了しました",
@@ -97,10 +98,8 @@ const PostCreate = () => {
               <VStack spacing={4}>
                 <Input
                   type="text"
-                  // placeholder="国名"
                   width="130%"
                   maxWidth="500px"
-                  // ref={countryNameRef}
                   defaultValue={countryNameState}
                 />
                 <Input
