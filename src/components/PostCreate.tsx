@@ -100,7 +100,7 @@ const PostCreate = () => {
                   type="text"
                   width="130%"
                   maxWidth="500px"
-                  defaultValue={countryNameState}
+                  value={countryNameState}
                 />
                 <Input
                   type="text"
