@@ -27,7 +27,7 @@ const createPost = async (
   userId: string
 ) => {
   const res = await fetch(
-    `https://world-map-sns.vercel.app/api/world-posts`,
+    `https://world-map-sns.vercel.app/api/world-posts?country-name=${countryName}`,
     {
       method: "POST",
       headers: {
@@ -42,7 +42,7 @@ const createPost = async (
 const PostCreate = () => {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLInputElement | null>(null);
-  // const countryNameRef = useRef<HTMLInputElement | null>(null);
+  const countryNameRef = useRef<HTMLInputElement | null>(null);
   const toast = useToast();
   const router = useRouter();
   const { data: session } = useSession();
@@ -63,7 +63,7 @@ const PostCreate = () => {
     }
 
     await createPost(
-      countryNameState,
+      countryNameRef.current?.value,
       titleRef.current?.value,
       contentRef.current?.value,
       session?.user.id
@@ -100,7 +100,8 @@ const PostCreate = () => {
                   type="text"
                   width="130%"
                   maxWidth="500px"
-                  value={countryNameState}
+                  // value={countryNameState}
+                  ref={countryNameRef}
                 />
                 <Input
                   type="text"
