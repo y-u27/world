@@ -100,7 +100,7 @@ const PostCreate = () => {
                   // placeholder="国名"
                   width="130%"
                   maxWidth="500px"
-                  ref={countryNameRef}
+                  // ref={countryNameRef}
                   defaultValue={countryNameState}
                 />
                 <Input
