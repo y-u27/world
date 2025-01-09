@@ -27,7 +27,7 @@ const createPost = async (
   userId: string
 ) => {
   const res = await fetch(
-    `https://world-map-sns.vercel.app/api/world-posts?country-name=${countryName}`,
+    `https://world-map-sns.vercel.app/api/world-posts`,
     {
       method: "POST",
       headers: {
