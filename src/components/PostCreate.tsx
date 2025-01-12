@@ -14,8 +14,8 @@ import {
 } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useRef } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useRef } from "react";
 import { TiArrowBackOutline } from "react-icons/ti";
 import { useCountryContext } from "./CountryContext";
 
@@ -45,7 +45,16 @@ const PostCreate = () => {
   const toast = useToast();
   const router = useRouter();
   const { data: session } = useSession();
-  const { selectedCountry } = useCountryContext();
+  const { selectedCountry, setSelectedCountry } = useCountryContext();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const country = searchParams.get("country");
+
+    if (country) {
+      setSelectedCountry(country);
+    }
+  }, [searchParams, setSelectedCountry]);
 
   const handleMapPost = async (e: React.FormEvent) => {
     e.preventDefault();
