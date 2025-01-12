@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Link from "next/link";
 import { SessionProvider } from "next-auth/react";
 import { CountryProvider } from "@/components/CountryContext";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,9 @@ export default function RootLayout({
             <Link href="/world">
               <Header />
             </Link>
-            <CountryProvider>{children}</CountryProvider>
+            <Suspense>
+              <CountryProvider>{children}</CountryProvider>
+            </Suspense>
           </ChakraProvider>
         </SessionProvider>
       </body>
