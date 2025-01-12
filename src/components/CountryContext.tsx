@@ -9,7 +9,7 @@ type CountryContextType = {
 
 const CountryContext = createContext<CountryContextType | undefined>(undefined);
 
-export const CountryProvider = ({ children }: { children: ReactNode }) => {
+export const CountryProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
 
   return (
