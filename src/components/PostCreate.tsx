@@ -1,7 +1,6 @@
 // 投稿フォーム
 "use client";
 
-import { worldState } from "@/atom/worldState";
 import {
   Box,
   Button,
@@ -18,7 +17,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import { TiArrowBackOutline } from "react-icons/ti";
-import { useRecoilValue } from "recoil";
+import { useCountryContext } from "./CountryContext";
 
 const createPost = async (
   countryName: string | undefined,
@@ -46,7 +45,7 @@ const PostCreate = () => {
   const toast = useToast();
   const router = useRouter();
   const { data: session } = useSession();
-  const countryNameState: string | undefined = useRecoilValue(worldState);
+  const { selectedCountry } = useCountryContext();
 
   const handleMapPost = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,7 +67,7 @@ const PostCreate = () => {
       contentRef.current?.value,
       session?.user.id
     );
-    
+
     toast({
       title: "投稿完了！",
       description: "投稿が完了しました",
@@ -100,8 +99,8 @@ const PostCreate = () => {
                   type="text"
                   width="130%"
                   maxWidth="500px"
-                  // value={countryNameState}
-                  ref={countryNameRef}
+                  value={selectedCountry || ""}
+                  readOnly
                 />
                 <Input
                   type="text"
