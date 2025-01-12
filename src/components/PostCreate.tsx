@@ -17,7 +17,6 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { TiArrowBackOutline } from "react-icons/ti";
-import { useCountryContext } from "./CountryContext";
 
 const createPost = async (
   countryName: string | undefined,
@@ -45,16 +44,7 @@ const PostCreate = () => {
   const toast = useToast();
   const router = useRouter();
   const { data: session } = useSession();
-  const { selectedCountry, setSelectedCountry } = useCountryContext();
   const searchParams = useSearchParams();
-
-  useEffect(() => {
-    const country = searchParams.get("country");
-
-    if (country) {
-      setSelectedCountry(country);
-    }
-  }, [searchParams, setSelectedCountry]);
 
   const handleMapPost = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -108,7 +98,6 @@ const PostCreate = () => {
                   type="text"
                   width="130%"
                   maxWidth="500px"
-                  value={selectedCountry || ""}
                   readOnly
                 />
                 <Input
