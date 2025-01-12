@@ -17,7 +17,6 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { TiArrowBackOutline } from "react-icons/ti";
-// import { useCountryContext } from "./CountryContext";
 
 const createPost = async (
   countryName: string | undefined,
