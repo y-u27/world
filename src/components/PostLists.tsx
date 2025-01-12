@@ -38,7 +38,6 @@ import {
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import UserImage from "./UserImage";
-import { useCountryContext } from "./CountryContext";
 
 interface ApiResponse {
   data: PostResponse[];
