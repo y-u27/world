@@ -207,8 +207,7 @@ const PostLists: React.FC<CountryProps> = ({
             ))}
           </DrawerBody>
           <DrawerFooter>
-            {/* <Link href={`/world/create?country=${countryName}`}> */}
-            <Link href={`/world/create`}>
+            <Link href={`/world/create?country=${countryName}`}>
               <Button
                 mr={{ base: "auto", md: "176px" }}
                 onClick={onClose}
