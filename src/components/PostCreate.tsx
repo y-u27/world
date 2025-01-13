@@ -40,7 +40,7 @@ const createPost = async (
 const PostCreate = () => {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLInputElement | null>(null);
-  const countryNameRef = useRef<HTMLInputElement | null>(null);
+  // const countryNameRef = useRef<HTMLInputElement | null>(null);
   const toast = useToast();
   const router = useRouter();
   const { data: session } = useSession();
@@ -69,8 +69,18 @@ const PostCreate = () => {
       return;
     }
 
+    if (!selectedCountry) {
+      toast({
+        title: "エラー",
+        description: "国名が選択されていません",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+
     await createPost(
-      countryNameRef.current?.value,
+      selectedCountry,
       titleRef.current?.value,
       contentRef.current?.value,
       session?.user.id
