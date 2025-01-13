@@ -45,7 +45,7 @@ const PostCreate = () => {
   const router = useRouter();
   const { data: session } = useSession();
   const searchParams = useSearchParams();
-  const [selectedCountry, setSelectedCountry] = useState<string | null>();
+  const [selectedCountry, setSelectedCountry] = useState<string>();
 
   useEffect(() => {
     const country = searchParams.get("country");
@@ -107,7 +107,7 @@ const PostCreate = () => {
                   type="text"
                   width="130%"
                   maxWidth="500px"
-                  value={selectedCountry || ""}
+                  value={selectedCountry}
                   readOnly
                 />
                 <Input
