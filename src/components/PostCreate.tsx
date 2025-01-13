@@ -45,15 +45,15 @@ const PostCreate = () => {
   const router = useRouter();
   const { data: session } = useSession();
   const searchParams = useSearchParams();
-  const [selectedCountry, setSelectedCountry] = useState<string | null>();
+  // const [selectedCountry, setSelectedCountry] = useState<string | null>();
 
-  useEffect(() => {
-    const country = searchParams.get("country");
+  // useEffect(() => {
+  //   const country = searchParams.get("country");
 
-    if (country) {
-      setSelectedCountry(country);
-    }
-  }, [searchParams, setSelectedCountry]);
+  //   if (country) {
+  //     setSelectedCountry(country);
+  //   }
+  // }, [searchParams, setSelectedCountry]);
 
   const handleMapPost = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -107,8 +107,8 @@ const PostCreate = () => {
                   type="text"
                   width="130%"
                   maxWidth="500px"
-                  value={selectedCountry || ""}
-                  readOnly
+                  // value={selectedCountry || ""}
+                  // readOnly
                 />
                 <Input
                   type="text"

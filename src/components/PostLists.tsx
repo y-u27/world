@@ -155,9 +155,7 @@ const PostLists: React.FC<CountryProps> = ({
               <Card
                 mb="4%"
                 key={mapPost.id}
-                // カード幅をレスポンシブに変更
                 width={{ base: "100%", md: "90%" }}
-                // カードを中央に配置
                 mx="auto"
               >
                 <CardHeader>
@@ -209,7 +207,8 @@ const PostLists: React.FC<CountryProps> = ({
             ))}
           </DrawerBody>
           <DrawerFooter>
-            <Link href={`/world/create?country=${countryName}`}>
+            {/* <Link href={`/world/create?country=${countryName}`}> */}
+            <Link href={`/world/create`}>
               <Button
                 mr={{ base: "auto", md: "176px" }}
                 onClick={onClose}
