@@ -24,7 +24,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
       >
         <CardBody>
           <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
-            マイプロフィール
+            Profile
           </Text>
           <Box position="relative" top="5px" right="10px" pt="20px" textAlign="right" fontFamily="revert">
             <Text>{userName}</Text>
