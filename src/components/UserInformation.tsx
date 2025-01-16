@@ -26,9 +26,8 @@ const UserInformation: React.FC<UserInformationProps> = ({
           <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
             Profile
           </Text>
-          <Box position="relative" top="5px" left="10%" pt="20px" textAlign="center" fontFamily="revert">
-            {/* <Text>{userName}</Text> */}
-            {userName}
+          <Box position="relative" top="5px" left="20%" pt="20px" textAlign="center" fontFamily="revert">
+            <Text>{userName}</Text>
           </Box>
           <Box position="relative" top="5px" left="10px" mt={4}>
             <UserImage imagePath={imagePath} userName={userName} />
