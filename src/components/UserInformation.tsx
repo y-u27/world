@@ -26,15 +26,30 @@ const UserInformation: React.FC<UserInformationProps> = ({
           <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
             Profile
           </Text>
-          <Box position="relative" top="5px" left="30%" pt="20px" textAlign="center" fontFamily="revert">
+          <Box
+            position="relative"
+            top="5px"
+            left="30%"
+            pt="20px"
+            textAlign="center"
+            fontFamily="revert"
+          >
             <Text>{userName}</Text>
           </Box>
-          <Box position="relative" top="5px" left="20%" pt="20px" fontFamily="revert">
-            <UserImage imagePath={imagePath} userName={userName}  />
+          <Box
+            position="relative"
+            top="5px"
+            left="20%"
+            pt="20px"
+            fontFamily="revert"
+          >
+            <UserImage imagePath={imagePath} userName={userName} />
           </Box>
-          <Text mt={2}>コメント欄</Text>
+          <Box mt={2}>
+            <Text>コメント欄</Text>
+          </Box>
           <Box display="flex" justifyContent="right" mt={5}>
-            <Input/>
+            <Input />
           </Box>
           <Box mt={3}>
             <TiArrowBackOutline />
