@@ -29,7 +29,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
           <Box position="relative" top="5px" left="30%" pt="20px" textAlign="center" fontFamily="revert">
             <Text>{userName}</Text>
           </Box>
-          <Box position="relative" top="5px" left="10px" mt={4}>
+          <Box position="relative" top="5px" left="10px" pt="20px" mt={4}>
             <UserImage imagePath={imagePath} userName={userName} />
           </Box>
           <Text>コメント欄</Text>
