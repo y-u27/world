@@ -29,14 +29,14 @@ const UserInformation: React.FC<UserInformationProps> = ({
           <Box position="relative" top="5px" left="30%" pt="20px" textAlign="center" fontFamily="revert">
             <Text>{userName}</Text>
           </Box>
-          <Box position="relative" top="5px" left="30%" pt="20px" fontFamily="revert">
-            <UserImage imagePath={imagePath} userName={userName} />
+          <Box position="relative" top="5px" left="20%" pt="20px" fontFamily="revert">
+            <UserImage imagePath={imagePath} userName={userName}  />
           </Box>
-          <Text>コメント欄</Text>
-          <Box display="flex" justifyContent="right" mt={4}>
+          <Text mt={2}>コメント欄</Text>
+          <Box display="flex" justifyContent="right" mt={5}>
             <Input/>
           </Box>
-          <Box>
+          <Box mt={3}>
             <TiArrowBackOutline />
             <Link href="/world">
               <Text>地図へに戻る</Text>
