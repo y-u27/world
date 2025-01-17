@@ -41,11 +41,11 @@ const UserInformation: React.FC<UserInformationProps> = ({
             top="5px"
             left="20%"
             pt="20px"
-            fontFamily="revert"
+            boxSize={5}
           >
             <UserImage imagePath={imagePath} userName={userName} />
           </Box>
-          <Box mt="10%">
+          <Box mt="5%">
             <Text>コメント欄</Text>
           </Box>
           <Box display="flex" justifyContent="right" mt={5}>
