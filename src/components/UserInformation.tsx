@@ -45,7 +45,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
           >
             <UserImage imagePath={imagePath} userName={userName} />
           </Box>
-          <Box mb={10}>
+          <Box mt="10%">
             <Text>コメント欄</Text>
           </Box>
           <Box display="flex" justifyContent="right" mt={5}>
