@@ -41,7 +41,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
             top="5px"
             left="20%"
             pt="20px"
-            boxSize={5}
+            boxSize="sm"
           >
             <UserImage imagePath={imagePath} userName={userName} />
           </Box>
