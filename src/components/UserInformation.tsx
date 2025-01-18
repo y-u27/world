@@ -28,7 +28,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
           </Text>
           <Box
             position="relative"
-            top="5px"
+            // top="5px"
             left="30%"
             pt="20px"
             textAlign="center"
