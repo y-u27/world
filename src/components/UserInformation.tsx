@@ -19,41 +19,46 @@ const UserInformation: React.FC<UserInformationProps> = ({
       <Card
         width={["90%", "70%", "50%", "380px"]}
         mx="auto"
-        mt="50px"
+        mt={["30px", "40px", "50px"]}
         boxShadow="2xl"
+        borderRadius="lg"
+        padding={["10px", "15px", "20px"]}
       >
         <CardBody>
           <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
             Profile
           </Text>
           <Box
-            position="relative"
-            // top="5px"
-            left="30%"
-            pt="20px"
-            textAlign="center"
-            fontFamily="revert"
-          >
-            <Text>{userName}</Text>
-          </Box>
-          <Box
-            position="relative"
-            top="5%"
-            left="15%"
-            pt="20px"
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            mt={["15px", "20px", "20px"]}
           >
             <UserImage imagePath={imagePath} userName={userName} />
+            <Text
+              mt={["5px", "10px", "10px"]}
+              fontSize={["lg", "xl", "xl"]}
+              fontWeight="bold"
+            >
+              {userName}
+            </Text>
           </Box>
-          <Box mt="5%">
-            <Text>コメント欄</Text>
+          <Box mt={["20px", "30px", "30px"]}>
+            <Text fontSize={["sm", "md", "md"]} mb="5px">
+              コメント欄
+            </Text>
+            <Input placeholder="コメント入力" />
           </Box>
-          <Box display="flex" justifyContent="right" mt={5}>
-            <Input />
-          </Box>
-          <Box mt={3}>
+          <Box
+            display="flex"
+            alignItems="center"
+            mt={["20px", "30px", "30px"]}
+            color="blue.500"
+            fontWeight="bold"
+          >
             <TiArrowBackOutline />
             <Link href="/world">
-              <Text>地図へに戻る</Text>
+              <Text ml="5px">地図へに戻る</Text>
             </Link>
           </Box>
         </CardBody>
