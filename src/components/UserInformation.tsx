@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Card, CardBody, Input, Text } from "@chakra-ui/react";
+import { Box, Button, Card, CardBody, Input, Text } from "@chakra-ui/react";
 import UserImage from "./UserImage";
 import { TiArrowBackOutline } from "react-icons/ti";
 import Link from "next/link";
@@ -44,22 +44,19 @@ const UserInformation: React.FC<UserInformationProps> = ({
             </Text>
           </Box>
           <Box mt={["20px", "30px", "30px"]}>
-            <Text fontSize={["sm", "md", "md"]} mb="5px">
-              コメント欄
-            </Text>
             <Input placeholder="コメント入力" />
           </Box>
           <Box
             display="flex"
             alignItems="center"
             mt={["20px", "30px", "30px"]}
-            color="blue.500"
             fontWeight="bold"
           >
             <TiArrowBackOutline />
             <Link href="/world">
               <Text ml="5px">地図へに戻る</Text>
             </Link>
+            <Button ml="10px">編集</Button>
           </Box>
         </CardBody>
       </Card>
