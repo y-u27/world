@@ -56,7 +56,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
             <Link href="/world">
               <Text ml="5px">地図へに戻る</Text>
             </Link>
-            <Button ml="10px">編集</Button>
+            <Button ml="30px">編集</Button>
           </Box>
         </CardBody>
       </Card>
