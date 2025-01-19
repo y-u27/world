@@ -75,12 +75,12 @@ const UserInformation: React.FC<UserInformationProps> = ({
                   onChange={handleInputChange}
                   placeholder="コメント入力"
                 />
-                <Button mr="10px" onClick={handleSavaClick}>保存</Button>
+                <Button ml="10px" onClick={handleSavaClick}>保存</Button>
               </>
             ) : (
               <>
                 <Text fontSize="lg" mt="10px">{comment}</Text>
-                <Button mr="10px" onClick={handleEditClick}>
+                <Button ml="10px" onClick={handleEditClick}>
                   編集
                 </Button>
               </>
