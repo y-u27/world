@@ -78,7 +78,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
                     width="80%"
                   />
                 </Box>
-                <Box display="flex" justifyContent="right" mt="10px">
+                <Box display="flex" justifyContent="center" mt="10px">
                   <Button onClick={handleSavaClick}>保存</Button>
                 </Box>
               </>
@@ -87,7 +87,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
                 <Box display="flex" justifyContent="center">
                   <Text fontSize="lg">{comment}</Text>
                 </Box>
-                <Box display="flex" justifyContent="right" mt="10px">
+                <Box display="flex" justifyContent="center" mt="10px">
                   <Button onClick={handleEditClick}>編集</Button>
                 </Box>
               </>
