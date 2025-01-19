@@ -39,7 +39,12 @@ const UserInformation: React.FC<UserInformationProps> = ({
   };
 
   return (
-    <>
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="100vh"
+    >
       <Card
         width={["90%", "70%", "50%", "380px"]}
         mx="auto"
@@ -70,27 +75,26 @@ const UserInformation: React.FC<UserInformationProps> = ({
           <Box mt={["20px", "30px", "30px"]}>
             {isEditing ? (
               <>
-                <Box ml="30%">
+                <Box display="flex" justifyContent="center">
                   <Input
                     value={tempComment}
                     onChange={handleInputChange}
                     placeholder="コメント入力"
+                    width="80%"
                   />
                 </Box>
-                <Button ml="40%" onClick={handleSavaClick}>
-                  保存
-                </Button>
+                <Box display="flex" justifyContent="center" mt="10px">
+                  <Button onClick={handleSavaClick}>保存</Button>
+                </Box>
               </>
             ) : (
               <>
-                <Box ml="30%">
-                  <Text fontSize="lg" mt="10px">
-                    {comment}
-                  </Text>
+                <Box display="flex" justifyContent="center">
+                  <Text fontSize="lg">{comment}</Text>
                 </Box>
-                <Button ml="40%" onClick={handleEditClick}>
-                  編集
-                </Button>
+                <Box display="flex" justifyContent="center" mt="10px">
+                  <Button onClick={handleEditClick}>編集</Button>
+                </Box>
               </>
             )}
           </Box>
@@ -107,7 +111,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
           </Box>
         </CardBody>
       </Card>
-    </>
+    </Box>
   );
 };
 
