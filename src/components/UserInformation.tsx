@@ -4,6 +4,7 @@ import { Box, Button, Card, CardBody, Input, Text } from "@chakra-ui/react";
 import UserImage from "./UserImage";
 import { TiArrowBackOutline } from "react-icons/ti";
 import Link from "next/link";
+import { useState } from "react";
 
 type UserInformationProps = {
   imagePath: string;
@@ -14,6 +15,29 @@ const UserInformation: React.FC<UserInformationProps> = ({
   imagePath,
   userName,
 }) => {
+  const [comment, setComment] = useState("ここにコメントを入力");
+  const [isEditing, setIsEditing] = useState(false);
+  const [tempComment, setTempComment] = useState(comment);
+
+  const handleEditClick = () => {
+    //現在のコメントを一時保存
+    setTempComment(comment);
+    //通常モードに戻す
+    setIsEditing(true);
+  };
+
+  const handleSavaClick = () => {
+    //編集内容を保存
+    setComment(tempComment);
+    //通常モードに戻す
+    setIsEditing(false);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //入力中の値を更新
+    setTempComment(e.target.value);
+  };
+
   return (
     <>
       <Card
@@ -44,7 +68,23 @@ const UserInformation: React.FC<UserInformationProps> = ({
             </Text>
           </Box>
           <Box mt={["20px", "30px", "30px"]}>
-            <Input placeholder="コメント入力" />
+            {isEditing ? (
+              <>
+                <Input
+                  value={tempComment}
+                  onChange={handleInputChange}
+                  placeholder="コメント入力"
+                />
+                <Button onClick={handleSavaClick}>保存</Button>
+              </>
+            ) : (
+              <>
+                <Text>{comment}</Text>
+                <Button ml="15%" mb="5%" onClick={handleEditClick}>
+                  編集
+                </Button>
+              </>
+            )}
           </Box>
           <Box
             display="flex"
@@ -56,7 +96,6 @@ const UserInformation: React.FC<UserInformationProps> = ({
             <Link href="/world">
               <Text ml="5px">地図へに戻る</Text>
             </Link>
-            <Button ml="15%" mb="5%">編集</Button>
           </Box>
         </CardBody>
       </Card>
