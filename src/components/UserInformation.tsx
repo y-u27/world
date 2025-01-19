@@ -69,22 +69,26 @@ const UserInformation: React.FC<UserInformationProps> = ({
           </Box>
           <Box mt={["20px", "30px", "30px"]}>
             {isEditing ? (
-              <>
+              <Box ml="40%">
                 <Input
                   value={tempComment}
                   onChange={handleInputChange}
                   placeholder="コメント入力"
-                  ml="40%"
+                  
                 />
-                <Button ml="40%" onClick={handleSavaClick}>保存</Button>
-              </>
+                <Button ml="40%" onClick={handleSavaClick}>
+                  保存
+                </Button>
+              </Box>
             ) : (
-              <>
-                <Text fontSize="lg" mt="10px">{comment}</Text>
+              <Box ml="40%">
+                <Text fontSize="lg" mt="10px">
+                  {comment}
+                </Text>
                 <Button ml="40%" onClick={handleEditClick}>
                   編集
                 </Button>
-              </>
+              </Box>
             )}
           </Box>
           <Box
