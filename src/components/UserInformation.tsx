@@ -39,12 +39,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
   };
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="100vh"
-    >
+    <>
       <Card
         width={["90%", "70%", "50%", "380px"]}
         mx="auto"
@@ -111,7 +106,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
           </Box>
         </CardBody>
       </Card>
-    </Box>
+    </>
   );
 };
 
