@@ -76,7 +76,6 @@ const UserInformation: React.FC<UserInformationProps> = ({
                   <Input
                     value={tempComment}
                     onChange={handleInputChange}
-                    placeholder="コメント入力"
                     width="80%"
                   />
                 </Box>
@@ -87,7 +86,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
             ) : (
               <>
                 <Box display="flex" justifyContent="center">
-                  <Input value={comment} width="80%"/>
+                  <Input value={comment} width="80%" placeholder="コメント入力"/>
                 </Box>
                 <Box display="flex" justifyContent="center" mt="10px">
                   <Button onClick={handleEditClick}>編集</Button>
