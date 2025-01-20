@@ -28,7 +28,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
     setIsEditing(true);
   };
 
-  const handleSavaClick = () => {
+  const handleSaveClick = () => {
     //編集内容を保存
     setComment(tempComment);
     //通常モードに戻す
@@ -80,16 +80,20 @@ const UserInformation: React.FC<UserInformationProps> = ({
                   />
                 </Box>
                 <Box display="flex" justifyContent="center" mt="10px">
-                  <Button onClick={handleSavaClick}>保存</Button>
+                  <Button onClick={handleEditClick}>編集</Button>
                 </Box>
               </>
             ) : (
               <>
                 <Box display="flex" justifyContent="center">
-                  <Input value={comment} width="80%" placeholder="コメント入力"/>
+                  <Input
+                    value={comment}
+                    width="80%"
+                    placeholder="コメント入力"
+                  />
                 </Box>
                 <Box display="flex" justifyContent="center" mt="10px">
-                  <Button onClick={handleEditClick}>編集</Button>
+                  <Button onClick={handleSaveClick}>保存</Button>
                 </Box>
               </>
             )}
