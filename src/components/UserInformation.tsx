@@ -1,3 +1,5 @@
+//ここのコメントを投稿一覧上の各ユーザーが投稿した記事のアイコンをクリックすると、コメントも同時に表示されるようにしたい
+
 "use client";
 
 import { Box, Button, Card, CardBody, Input, Text } from "@chakra-ui/react";
@@ -15,7 +17,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
   imagePath,
   userName,
 }) => {
-  const [comment, setComment] = useState("ここにコメントを入力");
+  const [comment, setComment] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [tempComment, setTempComment] = useState(comment);
 
