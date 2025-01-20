@@ -87,7 +87,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
                 <Box display="flex" justifyContent="center">
                   <Input
                     value={comment}
-                    onChange={handleInputChange}
+                    // onChange={handleInputChange}
                     width="80%"
                     placeholder="コメント入力"
                   />
