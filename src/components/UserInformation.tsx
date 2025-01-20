@@ -20,19 +20,19 @@ const UserInformation: React.FC<UserInformationProps> = ({
   const [comment, setComment] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [tempComment, setTempComment] = useState(comment);
+  
+  const handleSaveClick = () => {
+    //編集内容を保存
+    setComment(tempComment);
+    //通常モードに戻す
+    setIsEditing(false);
+  };
 
   const handleEditClick = () => {
     //現在のコメントを一時保存
     setTempComment(comment);
     //通常モードに戻す
     setIsEditing(true);
-  };
-
-  const handleSaveClick = () => {
-    //編集内容を保存
-    setComment(tempComment);
-    //通常モードに戻す
-    setIsEditing(false);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
