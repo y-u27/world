@@ -21,18 +21,18 @@ const UserInformation: React.FC<UserInformationProps> = ({
   const [isEditing, setIsEditing] = useState(false);
   const [tempComment, setTempComment] = useState(comment);
 
-  const handleSaveClick = () => {
+  const handleEditClick = () => {
     //現在のコメントを一時保存
     setTempComment(comment);
     //通常モードに戻す
-    setIsEditing(true);
+    setIsEditing(false);
   };
-  
-  const handleEditClick = () => {
+
+  const handleSaveClick = () => {
     //編集内容を保存
     setComment(tempComment);
     //通常モードに戻す
-    setIsEditing(false);
+    setIsEditing(true);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,11 +75,12 @@ const UserInformation: React.FC<UserInformationProps> = ({
                 <Box display="flex" justifyContent="center">
                   <Input
                     value={tempComment}
+                    onChange={handleInputChange}
                     width="80%"
-                    />
+                  />
                 </Box>
                 <Box display="flex" justifyContent="center" mt="10px">
-                  <Button onClick={handleEditClick}>編集</Button>
+                  <Button onClick={handleSaveClick}>保存</Button>
                 </Box>
               </>
             ) : (
@@ -87,13 +88,12 @@ const UserInformation: React.FC<UserInformationProps> = ({
                 <Box display="flex" justifyContent="center">
                   <Input
                     value={comment}
-                    // onChange={handleInputChange}
                     width="80%"
                     placeholder="コメント入力"
                   />
                 </Box>
                 <Box display="flex" justifyContent="center" mt="10px">
-                  <Button onClick={handleSaveClick}>保存</Button>
+                  <Button onClick={handleEditClick}>編集</Button>
                 </Box>
               </>
             )}
