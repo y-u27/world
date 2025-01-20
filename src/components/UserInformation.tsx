@@ -22,15 +22,15 @@ const UserInformation: React.FC<UserInformationProps> = ({
   const [tempComment, setTempComment] = useState(comment);
 
   const handleSaveClick = () => {
-    //編集内容を保存
-    setComment(tempComment);
+    //現在のコメントを一時保存
+    setTempComment(comment);
     //通常モードに戻す
     setIsEditing(true);
   };
-
+  
   const handleEditClick = () => {
-    //現在のコメントを一時保存
-    setTempComment(comment);
+    //編集内容を保存
+    setComment(tempComment);
     //通常モードに戻す
     setIsEditing(false);
   };
