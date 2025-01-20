@@ -140,7 +140,6 @@ const PostLists: React.FC<CountryProps> = ({
         placement="right"
         onClose={onClose}
         finalFocusRef={btnRef}
-        // サイズを動的に変更
         size={drawerSize}
       >
         <DrawerOverlay />
