@@ -110,7 +110,7 @@ const IntroHowTo = () => {
             </OrderedList>
           </VStack>
         </Box>
-        <Box position="relative" ml="25%" mt="40px">
+        <Box position="relative" ml="24%" mt="40px">
           <Link href="/login">
             <Button
               w={["90%", "70%", "300px"]}
