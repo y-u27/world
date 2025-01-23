@@ -136,9 +136,7 @@ const IntroHowTo = () => {
               }}
               _hover={{ _before: { transform: "translateX(0)" } }}
             >
-              <span style={{ position: "relative", zIndex: 2 }}>
-                ログインして投稿してみる
-              </span>
+              ログインして投稿してみる
             </Button>
           </Link>
         </Box>
