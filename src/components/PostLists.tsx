@@ -200,6 +200,7 @@ const PostLists: React.FC<CountryProps> = ({
                       <br />
                       <Text>{mapPost.content}</Text>
                       <br />
+                      <Divider />
                     </Box>
                     <Box>
                       <GrLike />
