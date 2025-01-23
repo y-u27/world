@@ -1,5 +1,6 @@
 "use client";
 
+import { GrLike } from "react-icons/gr";
 import { PostResponse } from "@/app/types/postType";
 import {
   CloseIcon,
@@ -199,6 +200,9 @@ const PostLists: React.FC<CountryProps> = ({
                       <br />
                       <Text>{mapPost.content}</Text>
                       <br />
+                    </Box>
+                    <Box>
+                      <GrLike />
                     </Box>
                   </Stack>
                 </CardBody>
