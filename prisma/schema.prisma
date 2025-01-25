@@ -14,7 +14,8 @@ model Post {
   createdAt   DateTime @default(now())
   countryName String?
   userId      Int
-  user        User     @relation(fields: [userId], references: [id])
+  User        User     @relation(fields: [userId], references: [id])
+  likes    Likes[]
 }
 
 model User {
@@ -23,5 +24,16 @@ model User {
   image    String
   email    String  @unique
   password String
-  posts    Post[]
+  Post     Post[]
+  likes    Likes[]
+  comment  String?
+}
+
+model Likes {
+  id       Int      @id @default(autoincrement())
+  userId   Int
+  postId   Int
+  user     User     @relation(fields: [userId], references: [id])
+  post     Post     @relation(fields: [postId], references: [id])
+  @@unique([userId, postId])
 }
