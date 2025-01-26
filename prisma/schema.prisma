@@ -15,7 +15,6 @@ model Post {
   countryName String?
   userId      Int
   User        User     @relation(fields: [userId], references: [id])
-  likes    Likes[]
 }
 
 model User {
@@ -25,15 +24,4 @@ model User {
   email    String  @unique
   password String
   Post     Post[]
-  likes    Likes[]
-  comment  String?
-}
-
-model Likes {
-  id       Int      @id @default(autoincrement())
-  userId   Int
-  postId   Int
-  user     User     @relation(fields: [userId], references: [id])
-  post     Post     @relation(fields: [postId], references: [id])
-  @@unique([userId, postId])
 }
