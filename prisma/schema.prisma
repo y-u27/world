@@ -14,7 +14,7 @@ model Post {
   createdAt   DateTime @default(now())
   countryName String?
   userId      Int
-  User        User     @relation(fields: [userId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
 }
 
 model User {
