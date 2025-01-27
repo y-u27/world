@@ -1,6 +1,5 @@
 "use client";
 
-import { GrLike } from "react-icons/gr";
 import { PostResponse } from "@/app/types/postType";
 import {
   CloseIcon,
@@ -39,6 +38,7 @@ import {
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import UserImage from "./UserImage";
+import Likes from "./Likes";
 
 interface ApiResponse {
   data: PostResponse[];
@@ -203,7 +203,7 @@ const PostLists: React.FC<CountryProps> = ({
                       <Divider />
                     </Box>
                     <Box>
-                      <GrLike />
+                      <Likes />
                     </Box>
                   </Stack>
                 </CardBody>
