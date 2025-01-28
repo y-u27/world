@@ -16,6 +16,8 @@ import { useRouter } from "next/navigation";
 
 type CountryProps = {
   id: number;
+  userId: string;
+  postId: string;
 };
 
 // google map api
@@ -30,7 +32,7 @@ const DEFAULT_OPTIONS = {
   disableDoubleClickZoom: true, // ダブルクリックによるズームを無効化
 };
 
-const WorldMapPage = ({ id }: CountryProps) => {
+const WorldMapPage = ({ id, userId, postId }: CountryProps) => {
   const { isLoaded } = useLoadScript({
     id: "google-map-script",
     googleMapsApiKey,
@@ -139,7 +141,12 @@ const WorldMapPage = ({ id }: CountryProps) => {
     <>
       <Box>
         {zoomPostList && selectedCountry && (
-          <PostLists id={id} countryName={selectedCountry} />
+          <PostLists
+            id={id}
+            countryName={selectedCountry}
+            userId={userId}
+            postId={postId}
+          />
         )}
         {/* <LoadScript googleMapsApiKey={googleMapsApiKey}> */}
         {isLoaded && (
