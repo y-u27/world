@@ -6,10 +6,7 @@ interface Params {
 }
 
 // いいねを追加するPOST API
-export async function POST(
-  request: NextRequest,
-  { params }: { params: Params }
-) {
+export async function POST(request: NextRequest) {
   const { userId, postId } = await request.json();
 
   if (!userId || !postId) {
@@ -38,10 +35,7 @@ export async function POST(
 }
 
 // いいねを削除するDELETE API
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: Params }
-) {
+export async function DELETE(request: NextRequest) {
   const { userId, postId } = await request.json();
 
   if (!userId || !postId) {
