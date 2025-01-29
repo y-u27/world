@@ -3,7 +3,7 @@ import { useState } from "react";
 import { GrLike } from "react-icons/gr";
 
 const createLikes = async (userId: string, postId: string) => {
-  const res = await fetch(`https://world-map-sns.vercel.app/api/Likes`, {
+  const res = await fetch(`https://world-map-sns.vercel.app/api/likes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
