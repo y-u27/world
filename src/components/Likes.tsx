@@ -12,7 +12,8 @@ const createLikes = async (userId: string, postId: string) => {
   });
 
   if (!res.ok) {
-    throw new Error("いいねの送信に失敗");
+    const errorData = await res.json();
+    throw new Error(`Error ${res.status}: ${errorData.error}`);
   }
 
   const postDataLikes = await res.json();
