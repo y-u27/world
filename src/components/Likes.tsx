@@ -46,7 +46,7 @@ const Likes = ({
         aria-label="いいね"
         icon={<GrLike />}
         onClick={handleLike}
-        colorScheme={liked ? "blue" : "gray"}
+        colorScheme={liked ? "pink" : "gray"}
       />
     </Box>
   );
