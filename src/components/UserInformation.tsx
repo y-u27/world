@@ -11,11 +11,13 @@ import { useState } from "react";
 type UserInformationProps = {
   imagePath: string;
   userName: string;
+  // userComment: string;
 };
 
 const UserInformation: React.FC<UserInformationProps> = ({
   imagePath,
   userName,
+  // userComment,
 }) => {
   const [comment, setComment] = useState("");
   const [isEditing, setIsEditing] = useState(false);

@@ -33,7 +33,7 @@ export default function UserPage({ params }: { params: { id: string } }) {
           id: session.user.id,
           name: session.user.name || "ゲスト",
           image: session.user.image || "/default-avatar.jpeg",
-          email: session.user.email,
+          email: session.user.email
         });
       } catch (error) {
         console.error("セッション取得エラー:", error);
@@ -50,7 +50,7 @@ export default function UserPage({ params }: { params: { id: string } }) {
 
   return (
     <Box>
-      <UserInformation imagePath={user.image} userName={user.name} />
+      <UserInformation imagePath={user.image} userName={user.name}/>
     </Box>
   );
 }
