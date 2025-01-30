@@ -1,10 +1,6 @@
 import prisma from "@/app/lib/prismaClient";
 import { NextRequest, NextResponse } from "next/server";
 
-interface Params {
-  id: string;
-}
-
 // いいねを追加するPOST API
 export async function POST(request: NextRequest) {
   const { userId, postId } = await request.json();
