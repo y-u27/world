@@ -2,7 +2,7 @@ import { Box, IconButton } from "@chakra-ui/react";
 import { useState } from "react";
 import { GrLike } from "react-icons/gr";
 
-const createLikes = async (userId: string, postId: string) => {
+const createLikes = async (id: number, userId: string, postId: string) => {
   const res = await fetch(`https://world-map-sns.vercel.app/api/likes`, {
     method: "POST",
     headers: {
@@ -20,12 +20,20 @@ const createLikes = async (userId: string, postId: string) => {
   return postDataLikes.data;
 };
 
-const Likes = ({ userId, postId }: { userId: string; postId: string }) => {
+const Likes = ({
+  id,
+  userId,
+  postId,
+}: {
+  id: number;
+  userId: string;
+  postId: string;
+}) => {
   const [liked, setLiked] = useState(false);
 
   const handleLike = async () => {
     try {
-      await createLikes(userId, postId);
+      await createLikes(id, userId, postId);
       setLiked(true);
     } catch (error) {
       console.error(error);
