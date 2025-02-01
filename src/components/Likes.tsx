@@ -2,13 +2,13 @@ import { Box, IconButton } from "@chakra-ui/react";
 import { useState } from "react";
 import { GrLike } from "react-icons/gr";
 
-const createLikes = async (id: number, userId: string, postId: string) => {
-  const res = await fetch(`https://world-map-sns.vercel.app/api/likes/${id}`, {
+const createLikes = async (userId: string, postId: string) => {
+  const res = await fetch(`https://world-map-sns.vercel.app/api/likes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ id, userId, postId }),
+    body: JSON.stringify({ userId, postId }),
   });
 
   if (!res.ok) {
@@ -16,24 +16,15 @@ const createLikes = async (id: number, userId: string, postId: string) => {
     throw new Error(`Error ${res.status}: ${errorData.error}`);
   }
 
-  const postDataLikes = await res.json();
-  return postDataLikes.data;
+  return res.json();
 };
 
-const Likes = ({
-  id,
-  userId,
-  postId,
-}: {
-  id: number;
-  userId: string;
-  postId: string;
-}) => {
+const Likes = ({ userId, postId }: { userId: string; postId: string }) => {
   const [liked, setLiked] = useState(false);
 
   const handleLike = async () => {
     try {
-      await createLikes(id, userId, postId);
+      await createLikes(userId, postId);
       setLiked(true);
     } catch (error) {
       console.error(error);

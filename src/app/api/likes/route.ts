@@ -55,9 +55,16 @@ export async function DELETE(request: NextRequest) {
     if (deletedLike.count === 0) {
       return NextResponse.json(
         { success: false, message: "いいねが見つかりません" },
-        { status: 200 }
+        { status: 404 }
       );
     }
+    return NextResponse.json(
+      {
+        success: true,
+        message: "いいねを削除",
+      },
+      { status: 200 }
+    );
   } catch (error) {
     console.error("いいねの削除エラー:", error);
     return NextResponse.json(
