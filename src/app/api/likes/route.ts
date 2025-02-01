@@ -5,6 +5,8 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request: NextRequest) {
   const { userId, postId } = await request.json();
 
+  console.log("Received userId:", userId, "postId:", postId);
+
   if (!userId || !postId) {
     return NextResponse.json(
       { error: "userIdかpostIdが見つかりません" },
