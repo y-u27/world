@@ -11,6 +11,7 @@ export default function UserPage({ params }: { params: { id: string } }) {
     name: string;
     image: string;
     email: string;
+    comment: string;
   } | null>(null);
   const router = useRouter();
 
@@ -29,11 +30,20 @@ export default function UserPage({ params }: { params: { id: string } }) {
           return;
         }
 
+        const userRes = await fetch(`/api/user?id=${params.id}`);
+        const userData = await userRes.json();
+
+        if (!userRes.ok) {
+          console.error("ユーザーデータ取得エラー", userData.message);
+          return;
+        }
+
         setUser({
           id: session.user.id,
           name: session.user.name || "ゲスト",
           image: session.user.image || "/default-avatar.jpeg",
-          email: session.user.email
+          email: session.user.email,
+          comment: userData.data.comment || "",
         });
       } catch (error) {
         console.error("セッション取得エラー:", error);
@@ -50,7 +60,11 @@ export default function UserPage({ params }: { params: { id: string } }) {
 
   return (
     <Box>
-      <UserInformation imagePath={user.image} userName={user.name}/>
+      <UserInformation
+        imagePath={user.image}
+        userName={user.name}
+        comment={user.comment}
+      />
     </Box>
   );
 }
