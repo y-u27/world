@@ -39,6 +39,7 @@ export async function GET() {
       where: {
         email: session.user.email,
       },
+      select: { id: true, email: true, name: true, image: true, comment: true },
     });
     return Response.json(
       {
@@ -57,5 +58,35 @@ export async function GET() {
         status: 500,
       }
     );
+  }
+}
+
+//コメントを更新するAPI
+export async function PATCH(req: Request) {
+  let session: Session | null;
+  try {
+    session = await getServerSession(authOptions);
+    if (!session) {
+      return Response.json(
+        { message: "ログインしていません" },
+        { status: 401 }
+      );
+    }
+  } catch (error) {
+    return Response.json(
+      { message: "セッション情報の取得失敗" },
+      { status: 500 }
+    );
+  }
+
+  try {
+    const { comment } = await req.json();
+    const updateUser = await prisma.user.update({
+      where: { email: session.user.email },
+      data: { comment },
+    });
+    return Response.json({ data: updateUser }, { status: 200 });
+  } catch (error) {
+    return Response.json({ message: "コメント更新失敗" }, { status: 500 });
   }
 }

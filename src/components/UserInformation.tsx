@@ -6,22 +6,38 @@ import { Box, Button, Card, CardBody, Input, Text } from "@chakra-ui/react";
 import UserImage from "./UserImage";
 import { TiArrowBackOutline } from "react-icons/ti";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type UserInformationProps = {
   imagePath: string;
   userName: string;
-  // userComment: string;
 };
 
 const UserInformation: React.FC<UserInformationProps> = ({
   imagePath,
   userName,
-  // userComment,
 }) => {
   const [comment, setComment] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [tempComment, setTempComment] = useState(comment);
+
+  //ユーザー情報取得
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const res = await fetch("/api/user");
+        const data = await res.json();
+        if (res.ok) {
+          setComment(data.data.comment || "");
+        } else {
+          console.error(data.message);
+        }
+      } catch (error) {
+        console.error("ユーザーデータ取得に失敗", error);
+      }
+    };
+    fetchUserData();
+  }, []);
 
   const handleEditClick = () => {
     //現在のコメントを一時保存
@@ -30,11 +46,22 @@ const UserInformation: React.FC<UserInformationProps> = ({
     setIsEditing(true);
   };
 
-  const handleSaveClick = () => {
-    //編集内容を保存
-    setComment(tempComment);
-    //通常モードに戻す
-    setIsEditing(false);
+  const handleSaveClick = async () => {
+    try {
+      const res = await fetch("/api/user", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ comment: tempComment }),
+      });
+      if (res.ok) {
+        setComment(tempComment);
+        setIsEditing(false);
+      } else {
+        const data = await res.json();
+      }
+    } catch (error) {
+      console.error("コメント保存失敗", error);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
