@@ -18,6 +18,7 @@ type CountryProps = {
   id: number;
   userId: string;
   postId: string;
+  comment: string;
 };
 
 // google map api
@@ -32,7 +33,7 @@ const DEFAULT_OPTIONS = {
   disableDoubleClickZoom: true, // ダブルクリックによるズームを無効化
 };
 
-const WorldMapPage = ({ id, userId, postId }: CountryProps) => {
+const WorldMapPage = ({ id, userId, postId, comment }: CountryProps) => {
   const { isLoaded } = useLoadScript({
     id: "google-map-script",
     googleMapsApiKey,
@@ -146,6 +147,7 @@ const WorldMapPage = ({ id, userId, postId }: CountryProps) => {
             countryName={selectedCountry}
             userId={userId}
             postId={postId}
+            comment={comment}
           />
         )}
         {/* <LoadScript googleMapsApiKey={googleMapsApiKey}> */}
