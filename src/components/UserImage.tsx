@@ -58,8 +58,7 @@ const UserImage: React.FC<UserImageProps> = ({
               <Text fontSize="lg" fontWeight="bold">
                 {userName}
               </Text>
-            </Box>
-            <Box my={4}>
+              <br />
               <Text>{comment}</Text>
             </Box>
           </ModalBody>
