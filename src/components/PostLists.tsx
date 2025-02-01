@@ -49,6 +49,7 @@ type CountryProps = {
   countryName: string;
   userId: string;
   postId: string;
+  comment: string;
 };
 
 // ↓全投稿データ取得
@@ -69,6 +70,7 @@ const PostLists: React.FC<CountryProps> = ({
   countryName,
   userId,
   postId,
+  comment
 }: CountryProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
@@ -167,6 +169,7 @@ const PostLists: React.FC<CountryProps> = ({
                     <UserImage
                       imagePath={mapPost.user.image}
                       userName={mapPost.user.name}
+                      comment={mapPost.user.comment}
                     />
                     <Box>
                       <Heading size="sm">{mapPost.user.name}</Heading>

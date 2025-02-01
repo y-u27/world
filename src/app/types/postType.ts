@@ -4,6 +4,7 @@ export interface PostResponse {
   user: {
     name: string;
     image: string;
+    comment: string;
   };
   title: string;
   content: string;

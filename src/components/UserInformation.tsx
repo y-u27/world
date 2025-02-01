@@ -1,5 +1,3 @@
-//context apiを使って、ユーザーページ上のコメントを投稿一覧記事のユーザーアイコンをクリックした時にユーザー名・アイコンと一緒に表示する
-
 "use client";
 
 import { Box, Button, Card, CardBody, Input, Text } from "@chakra-ui/react";
@@ -46,6 +44,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
     setIsEditing(true);
   };
 
+  //コメントを編集後、保存→画面遷移後も編集したコメント保持
   const handleSaveClick = async () => {
     try {
       const res = await fetch("/api/user", {
@@ -89,7 +88,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
             alignItems="center"
             mt={["15px", "20px", "20px"]}
           >
-            <UserImage imagePath={imagePath} userName={userName} />
+            <UserImage imagePath={imagePath} userName={userName} comment={comment} />
             <Text
               mt={["5px", "10px", "10px"]}
               fontSize={["lg", "xl", "xl"]}

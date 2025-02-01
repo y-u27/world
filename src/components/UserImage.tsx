@@ -14,14 +14,17 @@ import {
 type UserImageProps = {
   imagePath: string;
   userName: string;
+  comment: string;
 };
 
 const UserImage: React.FC<UserImageProps> = ({
   imagePath,
   userName,
+  comment,
 }: {
   imagePath: string;
   userName: string;
+  comment: string;
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -53,6 +56,7 @@ const UserImage: React.FC<UserImageProps> = ({
               <Text fontSize="lg" fontWeight="bold">
                 {userName}
               </Text>
+              <Text>{comment}</Text>
             </Box>
           </ModalBody>
         </ModalContent>
