@@ -9,15 +9,17 @@ import { useEffect, useState } from "react";
 type UserInformationProps = {
   imagePath: string;
   userName: string;
+  comment: string;
 };
 
 const UserInformation: React.FC<UserInformationProps> = ({
   imagePath,
   userName,
+  comment
 }) => {
-  const [comment, setComment] = useState("");
+  const [comments, setComment] = useState("");
   const [isEditing, setIsEditing] = useState(false);
-  const [tempComment, setTempComment] = useState(comment);
+  const [tempComment, setTempComment] = useState(comments);
 
   //ユーザー情報取得
   useEffect(() => {
@@ -39,7 +41,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
 
   const handleEditClick = () => {
     //現在のコメントを一時保存
-    setTempComment(comment);
+    setTempComment(comments);
     //通常モードに戻す
     setIsEditing(true);
   };
@@ -88,7 +90,11 @@ const UserInformation: React.FC<UserInformationProps> = ({
             alignItems="center"
             mt={["15px", "20px", "20px"]}
           >
-            <UserImage imagePath={imagePath} userName={userName} comment={comment} />
+            <UserImage
+              imagePath={imagePath}
+              userName={userName}
+              comment={comment}
+            />
             <Text
               mt={["5px", "10px", "10px"]}
               fontSize={["lg", "xl", "xl"]}
@@ -115,7 +121,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
               <>
                 <Box display="flex" justifyContent="center">
                   <Input
-                    value={comment}
+                    value={comments}
                     width="80%"
                     placeholder="コメント入力"
                   />
