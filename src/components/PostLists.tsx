@@ -49,7 +49,6 @@ type CountryProps = {
   countryName: string;
   userId: string;
   postId: string;
-  comment: string;
 };
 
 // ↓全投稿データ取得
@@ -69,8 +68,7 @@ const PostLists: React.FC<CountryProps> = ({
   id,
   countryName,
   userId,
-  postId,
-  comment,
+  postId
 }: CountryProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
