@@ -70,7 +70,7 @@ const PostLists: React.FC<CountryProps> = ({
   countryName,
   userId,
   postId,
-  comment
+  comment,
 }: CountryProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
@@ -169,7 +169,7 @@ const PostLists: React.FC<CountryProps> = ({
                     <UserImage
                       imagePath={mapPost.user.image}
                       userName={mapPost.user.name}
-                      comment={mapPost.user.comment}
+                      comment={mapPost.user.comment || "コメントがありません"}
                     />
                     <Box>
                       <Heading size="sm">{mapPost.user.name}</Heading>
