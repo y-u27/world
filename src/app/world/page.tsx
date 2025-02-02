@@ -8,12 +8,12 @@ const WorldTopPage = ({
   searchParams: { [key: string]: string | string[] | undefined };
 }) => {
   const id = Number(searchParams.id);
-  const userId = searchParams.userId ? String(searchParams.userId) : "";
-  const postId = searchParams.postId ? String(searchParams.postId) : "";
+  const userId = Number(searchParams.userId);
+  const postId = Number(searchParams.postId);
 
   return (
     <>
-      <WorldMapPage id={id} userId={userId} postId={postId}/>
+      <WorldMapPage id={id} userId={userId} postId={postId} />
     </>
   );
 };

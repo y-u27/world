@@ -15,8 +15,8 @@ import { useRouter } from "next/navigation";
 
 type CountryProps = {
   id: number;
-  userId: string;
-  postId: string;
+  userId: number;
+  postId: number;
   // comment: string;
 };
 
