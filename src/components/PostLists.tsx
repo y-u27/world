@@ -208,7 +208,7 @@ const PostLists: React.FC<CountryProps> = ({
                       <Divider />
                     </Box>
                     <Box>
-                      <Likes userId={userId} postId={mapPost.id} />
+                      <Likes postId={mapPost.id} />
                     </Box>
                   </Stack>
                 </CardBody>
