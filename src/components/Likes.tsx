@@ -23,6 +23,7 @@ const createLikes = async (userId: number, postId: number) => {
 const Likes = ({ postId }: { postId: number }) => {
   const [liked, setLiked] = useState(false);
   const { data: session } = useSession();
+  console.log("セッション情報：", session);
 
   const handleLike = async () => {
     if (session?.user.id) {
