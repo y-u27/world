@@ -1,4 +1,3 @@
-import prisma from "@/app/lib/prismaClient";
 import { Avatar, Box, Heading } from "@chakra-ui/react";
 import { User } from "@prisma/client";
 import { useSession } from "next-auth/react";

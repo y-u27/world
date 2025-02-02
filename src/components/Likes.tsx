@@ -1,8 +1,9 @@
 import { Box, IconButton } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { GrLike } from "react-icons/gr";
 
-const createLikes = async (userId: string, postId: string) => {
+const createLikes = async (userId: number, postId: number) => {
   const res = await fetch(`https://world-map-sns.vercel.app/api/likes`, {
     method: "POST",
     headers: {
@@ -19,15 +20,18 @@ const createLikes = async (userId: string, postId: string) => {
   return res.json();
 };
 
-const Likes = ({ userId, postId }: { userId: string; postId: string }) => {
+const Likes = ({ userId, postId }: { userId: number; postId: number }) => {
   const [liked, setLiked] = useState(false);
+  const { data: session } = useSession();
 
   const handleLike = async () => {
-    try {
-      await createLikes(userId, postId);
-      setLiked(true);
-    } catch (error) {
-      console.error(error);
+    if (!session?.user.id) {
+      try {
+        await createLikes(userId, postId);
+        setLiked(true);
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 

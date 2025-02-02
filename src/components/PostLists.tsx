@@ -47,8 +47,8 @@ interface ApiResponse {
 type CountryProps = {
   id: number;
   countryName: string;
-  userId: string;
-  postId: string;
+  userId: number;
+  postId: number;
 };
 
 // ↓全投稿データ取得
@@ -68,7 +68,7 @@ const PostLists: React.FC<CountryProps> = ({
   id,
   countryName,
   userId,
-  postId
+  postId,
 }: CountryProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
@@ -208,7 +208,7 @@ const PostLists: React.FC<CountryProps> = ({
                       <Divider />
                     </Box>
                     <Box>
-                      <Likes userId={userId} postId={postId} />
+                      <Likes userId={userId} postId={mapPost.id} />
                     </Box>
                   </Stack>
                 </CardBody>
