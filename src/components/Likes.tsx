@@ -26,12 +26,12 @@ const Likes = ({ postId }: { postId: number }) => {
   console.log("セッション情報：", session);
 
   const handleLike = async () => {
-    if (session?.user?.id) {
+    if (session?.user.id) {
       console.error("ログインしていません");
       return;
     }
     try {
-      await createLikes(session?.user?.id, postId);
+      await createLikes(session?.user.id, postId);
       setLiked(true);
     } catch (error) {
       console.error(error);
