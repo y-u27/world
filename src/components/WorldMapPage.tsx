@@ -17,7 +17,6 @@ type CountryProps = {
   id: number;
   userId: number;
   postId: number;
-  // comment: string;
 };
 
 // google map api
@@ -146,7 +145,6 @@ const WorldMapPage = ({ id, userId, postId }: CountryProps) => {
             countryName={selectedCountry}
             userId={userId}
             postId={postId}
-            // comment={comment}
           />
         )}
         {/* <LoadScript googleMapsApiKey={googleMapsApiKey}> */}

@@ -24,7 +24,6 @@ interface editProps {
 const editPost = async (
   title: string | undefined,
   content: string | undefined,
-  createdAt: string | undefined,
   id: number
 ) => {
   const res = await fetch(`https://world-map-sns.vercel.app/api/world-posts/${id}`, {
@@ -32,7 +31,7 @@ const editPost = async (
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ title, content, createdAt }),
+    body: JSON.stringify({ title, content }),
   });
   return res.json();
 };
@@ -40,7 +39,6 @@ const editPost = async (
 const PostEdit = ({ id }: editProps) => {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLInputElement | null>(null);
-  const createdAtRef = useRef<HTMLInputElement | null>(null);
   const toast = useToast();
   const router = useRouter();
 
@@ -55,11 +53,9 @@ const PostEdit = ({ id }: editProps) => {
       isClosable: true,
     });
 
-    const currentDate = createdAtRef.current?.value || new Date().toISOString();
     await editPost(
       titleRef.current?.value,
       contentRef.current?.value,
-      currentDate,
       id
     );
 

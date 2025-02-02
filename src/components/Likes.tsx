@@ -9,7 +9,7 @@ const createLikes = async (userId: number, postId: number) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ userId: Number(userId), postId }),
+    body: JSON.stringify({ userId, postId }),
   });
 
   if (!res.ok) {
@@ -26,12 +26,13 @@ const Likes = ({ postId }: { postId: number }) => {
   console.log("セッション情報：", session);
 
   const handleLike = async () => {
-    if (session?.user.id) {
+    if (!session?.user?.id) {
       console.error("ログインしていません");
       return;
     }
     try {
-      await createLikes(session?.user.id, postId);
+      const userId = Number(session.user.id);
+      await createLikes(userId, postId);
       setLiked(true);
     } catch (error) {
       console.error(error);

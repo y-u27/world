@@ -22,7 +22,7 @@ const createPost = async (
   countryName: string | undefined,
   title: string | undefined,
   content: string | undefined,
-  userId: string
+  userId: number
 ) => {
   const res = await fetch(
     `https://world-map-sns.vercel.app/api/world-posts?country-name=${countryName}`,
