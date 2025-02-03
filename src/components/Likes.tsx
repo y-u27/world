@@ -39,6 +39,26 @@ const Likes = ({ postId }: { postId: number }) => {
     }
   };
 
+  const handleLikeDelete = async (userId: number, postId: number) => {
+    try {
+      const response = await fetch(
+        `https://world-map-sns.vercel.app/api/likes`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId, postId }),
+        }
+      );
+      if (response.ok) {
+        console.log("いいねを削除しました");
+      }
+    } catch (error) {
+      console.error("いいねが削除できませんでした", error);
+    }
+  };
+
   return (
     <Box>
       <IconButton
