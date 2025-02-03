@@ -105,7 +105,7 @@ const PostLists: React.FC<CountryProps> = ({
         toast({
           title: "投稿削除失敗",
           description: "投稿を削除できませんでした",
-          status: "success",
+          status: "warning",
           duration: 3000,
           isClosable: true,
         });
