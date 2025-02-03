@@ -17,8 +17,8 @@ export async function POST(request: NextRequest) {
   try {
     const like = await prisma.likes.create({
       data: {
-        userId: Number(userId),
-        postId: Number(postId),
+        userId: userId,
+        postId: postId,
       },
     });
 
@@ -49,8 +49,8 @@ export async function DELETE(request: NextRequest) {
   try {
     const deletedLike = await prisma.likes.deleteMany({
       where: {
-        userId: Number(userId),
-        postId: Number(postId),
+        userId: userId,
+        postId: postId,
       },
     });
 
