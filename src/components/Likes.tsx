@@ -24,10 +24,6 @@ const deleteLikes = async (userId: number, postId: number) => {
   try {
     const response = await fetch(`https://world-map-sns.vercel.app/api/likes`, {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ userId, postId }),
     });
     if (response.ok) {
       console.log("いいねを削除しました");
