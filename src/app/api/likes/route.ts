@@ -34,6 +34,16 @@ export async function POST(request: NextRequest) {
 
 // いいねを削除するDELETE API
 export async function DELETE(request: NextRequest) {
+  if (request.headers.get("content-type") !== "application/json") {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "無効なリクエスト形式",
+      },
+      { status: 400 }
+    );
+  }
+
   const { userId, postId } = await request.json();
 
   if (!userId || !postId) {

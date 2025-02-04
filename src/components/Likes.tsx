@@ -24,6 +24,10 @@ const deleteLikes = async (userId: number, postId: number) => {
   try {
     const response = await fetch(`https://world-map-sns.vercel.app/api/likes`, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId, postId }),
     });
     if (response.ok) {
       console.log("いいねを削除しました");
@@ -46,11 +50,13 @@ const Likes = ({ postId }: { postId: number }) => {
     const userId = Number(session.user.id);
     try {
       if (liked) {
-        await createLikes(userId, postId);
-        setLiked(true);
-      } else {
         await deleteLikes(userId, postId);
+        //いいねを削除した後に更新
         setLiked(false);
+      } else {
+        await createLikes(userId, postId);
+        //いいねを追加した後に更新
+        setLiked(true);
       }
     } catch (error) {
       console.error(error);
