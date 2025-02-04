@@ -66,11 +66,10 @@ const Likes = ({ postId }: { postId: number }) => {
   return (
     <Box>
       <IconButton
-        backgroundColor="white"
         aria-label="いいね"
         icon={<GrLike />}
         onClick={handleLike}
-        colorScheme={liked ? "teal.100" : "gray"}
+        colorScheme={liked ? "#81E6D9" : "gray"}
       />
     </Box>
   );
