@@ -69,7 +69,7 @@ const Likes = ({ postId }: { postId: number }) => {
         aria-label="いいね"
         icon={<GrLike />}
         onClick={handleLike}
-        colorScheme={liked ? "#81E6D9" : "gray"}
+        colorScheme={liked ? "blue" : "gray"}
       />
     </Box>
   );
