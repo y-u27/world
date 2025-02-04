@@ -42,7 +42,7 @@ const UserImage: React.FC<UserImageProps> = ({
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>ユーザー</ModalHeader>
+          <ModalHeader>投稿したユーザー</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Box textAlign="center">
