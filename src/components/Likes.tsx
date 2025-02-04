@@ -20,6 +20,23 @@ const createLikes = async (userId: number, postId: number) => {
   return res.json();
 };
 
+const deleteLikes = async (userId: number, postId: number) => {
+  try {
+    const response = await fetch(`https://world-map-sns.vercel.app/api/likes`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId, postId }),
+    });
+    if (response.ok) {
+      console.log("いいねを削除しました");
+    }
+  } catch (error) {
+    console.error("いいねが削除できませんでした", error);
+  }
+};
+
 const Likes = ({ postId }: { postId: number }) => {
   const [liked, setLiked] = useState(false);
   const { data: session } = useSession();
@@ -30,32 +47,17 @@ const Likes = ({ postId }: { postId: number }) => {
       console.error("ログインしていません");
       return;
     }
+    const userId = Number(session.user.id);
     try {
-      const userId = Number(session.user.id);
-      await createLikes(userId, postId);
-      setLiked(true);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleLikeDelete = async (userId: number, postId: number) => {
-    try {
-      const response = await fetch(
-        `https://world-map-sns.vercel.app/api/likes`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ userId, postId }),
-        }
-      );
-      if (response.ok) {
-        console.log("いいねを削除しました");
+      if (liked) {
+        await createLikes(userId, postId);
+        setLiked(true);
+      } else {
+        await deleteLikes(userId, postId);
+        setLiked(false);
       }
     } catch (error) {
-      console.error("いいねが削除できませんでした", error);
+      console.error(error);
     }
   };
 
