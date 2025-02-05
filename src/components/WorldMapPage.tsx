@@ -1,7 +1,7 @@
 // 世界地図表示
 "use client";
 
-import { Box, Button, useMediaQuery } from "@chakra-ui/react";
+import { Box, Button, Spinner, useMediaQuery } from "@chakra-ui/react";
 import {
   GoogleMap,
   InfoWindow,
@@ -128,7 +128,17 @@ const WorldMapPage = ({ id, userId, postId }: CountryProps) => {
   };
 
   if (!isLoaded) {
-    return <Box>Google Maps API キーが見つかりません。</Box>;
+    return (
+      <Box>
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl"
+        />
+      </Box>
+    );
   }
 
   const handleLogout = async () => {
