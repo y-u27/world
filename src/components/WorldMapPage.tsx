@@ -131,7 +131,8 @@ const WorldMapPage = ({ id, userId, postId }: CountryProps) => {
     return (
       <Box>
         <Spinner
-          m="30%"
+        mt="10px"
+          mx="20%"
           thickness="4px"
           speed="0.65s"
           emptyColor="gray.200"
