@@ -134,7 +134,7 @@ const WorldMapPage = ({ id, userId, postId }: CountryProps) => {
           my="20%"
           mx="50%"
           thickness="4px"
-          speed="1s"
+          speed="0.8s"
           emptyColor="gray.200"
           color="teal.200"
           size="lg"
