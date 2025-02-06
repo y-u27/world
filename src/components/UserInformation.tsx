@@ -19,7 +19,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
 }) => {
   const [comments, setComment] = useState("");
   const [isEditing, setIsEditing] = useState(false);
-  const [tempComment, setTempComment] = useState(comments);
+  const [tempComment, setTempComment] = useState("");
 
   //ユーザー情報取得
   useEffect(() => {
@@ -29,6 +29,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
         const data = await res.json();
         if (res.ok) {
           setComment(data.data.comment || "");
+          setTempComment(data.data.comment || "");
         } else {
           console.error(data.message);
         }
@@ -45,8 +46,6 @@ const UserInformation: React.FC<UserInformationProps> = ({
   };
 
   const handleEditClick = () => {
-    //現在のコメントを一時保存
-    setTempComment(comments);
     //通常モードに戻す
     setIsEditing(true);
   };
@@ -63,7 +62,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
         setComment(tempComment);
         setIsEditing(false);
       } else {
-        const data = await res.json();
+        console.error("コメントの保存失敗");
       }
     } catch (error) {
       console.error("コメント保存失敗", error);
@@ -93,7 +92,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
             <UserImage
               imagePath={imagePath}
               userName={userName}
-              comment={comment}
+              comment={comments}
             />
             <Text
               mt={["5px", "10px", "10px"]}
