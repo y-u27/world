@@ -43,7 +43,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
     //現在のコメントを一時保存
     setTempComment(comments);
     //通常モードに戻す
-    setIsEditing(false);
+    setIsEditing(true);
   };
 
   //コメントを編集後、保存→画面遷移後も編集したコメント保持
