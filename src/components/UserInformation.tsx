@@ -113,7 +113,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
                 <Box display="flex" justifyContent="center">
                   <Input
                     value={tempComment}
-                    onChange={handleComment}
+                    onChange={handleInputChange}
                     width="80%"
                   />
                 </Box>
