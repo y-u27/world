@@ -45,6 +45,8 @@ const UserInformation: React.FC<UserInformationProps> = ({
   };
 
   const handleEditClick = () => {
+    //現在のコメントを一時保存
+    setTempComment(comments);
     //通常モードに戻す
     setIsEditing(true);
   };
