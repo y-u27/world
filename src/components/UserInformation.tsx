@@ -39,13 +39,12 @@ const UserInformation: React.FC<UserInformationProps> = ({
     fetchUserData();
   }, []);
 
-  const handleComment = (e:React.ChangeEvent<HTMLInputElement>) => {
-    setComment(e.target.value);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //入力中の値を更新
+    setTempComment(e.target.value);
   };
 
   const handleEditClick = () => {
-    //現在のコメントを一時保存
-    setTempComment(comments);
     //通常モードに戻す
     setIsEditing(true);
   };
@@ -67,11 +66,6 @@ const UserInformation: React.FC<UserInformationProps> = ({
     } catch (error) {
       console.error("コメント保存失敗", error);
     }
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //入力中の値を更新
-    setTempComment(e.target.value);
   };
 
   return (
@@ -108,33 +102,21 @@ const UserInformation: React.FC<UserInformationProps> = ({
             </Text>
           </Box>
           <Box mt={["20px", "30px", "30px"]}>
-            {isEditing ? (
-              <>
-                <Box display="flex" justifyContent="center">
-                  <Input
-                    value={tempComment}
-                    onChange={handleInputChange}
-                    width="80%"
-                  />
-                </Box>
-                <Box display="flex" justifyContent="center" mt="10px">
-                  <Button onClick={handleSaveClick}>保存</Button>
-                </Box>
-              </>
-            ) : (
-              <>
-                <Box display="flex" justifyContent="center">
-                  <Input
-                    value={comments}
-                    width="80%"
-                    placeholder="コメント入力"
-                  />
-                </Box>
-                <Box display="flex" justifyContent="center" mt="10px">
-                  <Button onClick={handleEditClick}>編集</Button>
-                </Box>
-              </>
-            )}
+            <Box display="flex" justifyContent="center">
+              <Input
+                value={tempComment}
+                onChange={handleInputChange}
+                width="80%"
+                placeholder="コメントを入力"
+              />
+            </Box>
+            <Box display="flex" justifyContent="center" mt="10px">
+              {isEditing ? (
+                <Button onClick={handleSaveClick}>保存</Button>
+              ) : (
+                <Button onClick={handleEditClick}>編集</Button>
+              )}
+            </Box>
           </Box>
           <Box
             display="flex"
