@@ -8,6 +8,8 @@ import { Prisma } from "@prisma/client";
 export const authOptions: NextAuthOptions = {
   providers: [
     // ↓Googleログイン
+    //GoogleログインだとuserIdが64ビット以上のため、エラーになる
+    //解消するためにはGoogleログインはsession.user.userIdで
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID ?? "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
