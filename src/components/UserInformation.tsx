@@ -39,6 +39,10 @@ const UserInformation: React.FC<UserInformationProps> = ({
     fetchUserData();
   }, []);
 
+  const handleComment = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setComment(e.target.value);
+  };
+
   const handleEditClick = () => {
     //現在のコメントを一時保存
     setTempComment(comments);
@@ -109,7 +113,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
                 <Box display="flex" justifyContent="center">
                   <Input
                     value={tempComment}
-                    onChange={handleInputChange}
+                    onChange={handleComment}
                     width="80%"
                   />
                 </Box>
