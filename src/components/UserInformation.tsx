@@ -15,7 +15,7 @@ type UserInformationProps = {
 const UserInformation: React.FC<UserInformationProps> = ({
   imagePath,
   userName,
-  comment
+  comment,
 }) => {
   const [comments, setComment] = useState("");
   const [isEditing, setIsEditing] = useState(false);
@@ -39,6 +39,11 @@ const UserInformation: React.FC<UserInformationProps> = ({
     fetchUserData();
   }, []);
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //入力中の値を更新
+    setTempComment(e.target.value);
+  };
+  
   const handleEditClick = () => {
     //現在のコメントを一時保存
     setTempComment(comments);
@@ -63,11 +68,6 @@ const UserInformation: React.FC<UserInformationProps> = ({
     } catch (error) {
       console.error("コメント保存失敗", error);
     }
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //入力中の値を更新
-    setTempComment(e.target.value);
   };
 
   return (
