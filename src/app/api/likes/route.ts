@@ -14,6 +14,22 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  const likeSearch = await prisma.likes.findFirst({
+    where: {
+      userId,
+      postId,
+    },
+  });
+
+  if (likeSearch) {
+    return NextResponse.json(
+      {
+        message: "既に「いいね」されています",
+      },
+      { status: 200 }
+    );
+  }
+
   try {
     const like = await prisma.likes.create({
       data: {
@@ -21,7 +37,7 @@ export async function POST(request: NextRequest) {
         postId: postId,
       },
     });
-
+    console.log("「いいね」の作成に成功", like);
     return NextResponse.json(like, { status: 201 });
   } catch (error) {
     console.error("「いいね」の作成に失敗:", error);
