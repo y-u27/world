@@ -62,6 +62,23 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
     async jwt({ token, user }) {
+      if (token.email) {
+        const prismaUser = await prisma.user.findUnique({
+          where: { email: token.email },
+        });
+        if (!prismaUser) {
+          await fetch(`https://world-map-sns.vercel.app/api/auth/register`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: token.name,
+              email: token.email,
+              password: "password",
+              image: token.picture,
+            }),
+          });
+        }
+      }
       if (user) {
         token.id = user.id;
         token.name = user.name;

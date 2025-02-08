@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  Box,
-  Button,
-  Card,
-  CardBody,
-  Input,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, Card, CardBody, Input, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { TiArrowBackOutline } from "react-icons/ti";
 import { signIn, useSession } from "next-auth/react";
@@ -41,13 +34,7 @@ const Login = () => {
         alert("ログイン失敗");
       }
     } else {
-      const result = await signIn(provider, { redirect: false });
-
-      if (result?.ok) {
-        router.push("/world");
-      } else {
-        alert("Googleログイン失敗");
-      }
+      await signIn(provider, { redirect: false });
     }
   };
 
