@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import UserInformation from "@/components/UserInformation";
-import { Box } from "@chakra-ui/react";
+import { Box, Spinner } from "@chakra-ui/react";
 
 export default function UserPage({ params }: { params: { id: string } }) {
   const [user, setUser] = useState<{
@@ -55,7 +55,17 @@ export default function UserPage({ params }: { params: { id: string } }) {
   }, [params.id, router]);
 
   if (!user) {
-    return <Box>Loading...</Box>;
+    return (
+      <Spinner
+        my="20%"
+        mx="46%"
+        thickness="4px"
+        speed="0.8s"
+        emptyColor="gray.200"
+        color="teal.200"
+        size="lg"
+      />
+    );
   }
 
   return (
