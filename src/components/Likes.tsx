@@ -1,6 +1,6 @@
 import { Box, IconButton } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GrLike } from "react-icons/gr";
 
 const createLikes = async (userId: number, postId: number) => {
@@ -36,6 +36,12 @@ const deleteLikes = async (userId: number, postId: number) => {
     console.error("いいねが削除できませんでした", error);
   }
 };
+
+useEffect(() => {
+  const savedLike = () => {
+    
+  }
+},[])
 
 const Likes = ({ postId }: { postId: number }) => {
   const [liked, setLiked] = useState(false);
