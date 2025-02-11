@@ -58,7 +58,7 @@ export default function UserPage({ params }: { params: { id: string } }) {
     return (
       <Spinner
         my="20%"
-        mx="38%"
+        mx="48%"
         thickness="4px"
         speed="0.8s"
         emptyColor="gray.200"
