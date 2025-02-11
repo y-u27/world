@@ -3,10 +3,6 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { GrLike } from "react-icons/gr";
 
-type LikeProps = {
-  postId: number;
-};
-
 const createLikes = async (userId: number, postId: number) => {
   const res = await fetch(`https://world-map-sns.vercel.app/api/likes`, {
     method: "POST",
@@ -68,13 +64,13 @@ const Likes = ({ postId }: { postId: number }) => {
   };
 
   useEffect(() => {
-    const getLikeData = async (postId: number) => {
+    const getLikeData = async () => {
       if (!session?.user?.id) return;
       const userId = Number(session.user.id);
 
       try {
         const res = await fetch(
-          `https://world-map-sns.vercel.app/api/likes?userId=${userId}&${postId}`,
+          `https://world-map-sns.vercel.app/api/likes?userId=${userId}&postId=${postId}`,
           { cache: "no-store" }
         );
         console.log("ログイン中のユーザー", userId);
@@ -87,7 +83,7 @@ const Likes = ({ postId }: { postId: number }) => {
         console.error("いいねの取得失敗", error);
       }
     };
-    getLikeData(postId);
+    getLikeData();
   }, [session?.user?.id, postId]);
 
   return (
