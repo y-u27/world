@@ -3,6 +3,10 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { GrLike } from "react-icons/gr";
 
+type LikeProps = {
+  postId: number;
+};
+
 const createLikes = async (userId: number, postId: number) => {
   const res = await fetch(`https://world-map-sns.vercel.app/api/likes`, {
     method: "POST",
@@ -37,12 +41,6 @@ const deleteLikes = async (userId: number, postId: number) => {
   }
 };
 
-useEffect(() => {
-  const savedLike = () => {
-    
-  }
-},[])
-
 const Likes = ({ postId }: { postId: number }) => {
   const [liked, setLiked] = useState(false);
   const { data: session } = useSession();
@@ -68,6 +66,27 @@ const Likes = ({ postId }: { postId: number }) => {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    const getLikeData = async (postId: number) => {
+      if (!session?.user?.id) return;
+      const userId = Number(session.user.id);
+
+      try {
+        const res = await fetch(
+          `https://world-map-sns.vercel.app/api/likes?userId=${userId}&${postId}`,
+          { cache: "no-store" }
+        );
+        if (!res.ok) throw new Error("いいね状態の取得失敗");
+
+        const data = await res.json();
+        setLiked(data.liked);
+      } catch (error) {
+        console.error("いいねの取得失敗", error);
+      }
+    };
+    getLikeData(postId);
+  }, [session?.user?.id, postId]);
 
   return (
     <Box>
