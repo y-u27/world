@@ -77,6 +77,8 @@ const Likes = ({ postId }: { postId: number }) => {
           `https://world-map-sns.vercel.app/api/likes?userId=${userId}&${postId}`,
           { cache: "no-store" }
         );
+        console.log("ログイン中のユーザー", userId);
+        console.log("この投稿にいいねしました", postId);
         if (!res.ok) throw new Error("いいね状態の取得失敗");
 
         const data = await res.json();
