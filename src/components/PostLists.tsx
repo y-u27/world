@@ -64,12 +64,7 @@ async function fetchAllWorldPost(country: string): Promise<PostResponse[]> {
   return postData.data;
 }
 
-const PostLists: React.FC<CountryProps> = ({
-  id,
-  countryName,
-  userId,
-  postId,
-}: CountryProps) => {
+const PostLists: React.FC<CountryProps> = ({ countryName }: CountryProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<PostResponse[]>([]);
