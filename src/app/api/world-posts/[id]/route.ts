@@ -78,7 +78,6 @@ export async function DELETE(request: Request, { params }: { params: Params }) {
   await prisma.post.delete({
     where: {
       id,
-      // countryName,
     },
   });
   return NextResponse.json(
