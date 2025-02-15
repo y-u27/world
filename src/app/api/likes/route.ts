@@ -1,6 +1,20 @@
 import prisma from "@/app/lib/prismaClient";
 import { NextRequest, NextResponse } from "next/server";
 
+//いいねを取得するGET API
+export async function GET(request: NextRequest) {
+  //「いいね」取得
+  const getLike = await prisma.likes.findMany();
+
+  return NextResponse.json(
+    {
+      message: "いいね取得成功",
+      data: getLike,
+    },
+    { status: 200 }
+  );
+}
+
 // いいねを追加するPOST API
 export async function POST(request: NextRequest) {
   const { userId, postId } = await request.json();
