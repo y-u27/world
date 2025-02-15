@@ -25,8 +25,8 @@ export default function UserPage({ params }: { params: { id: string } }) {
         }
         const session = await res.json();
 
-        if (!session || session.user.id !== params.id) {
-          router.push(session ? "/error" : "/login");
+        if (!session) {
+          router.push("/login");
           return;
         }
 
