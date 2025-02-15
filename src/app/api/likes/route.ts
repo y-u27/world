@@ -3,8 +3,11 @@ import { NextRequest, NextResponse } from "next/server";
 
 //いいねを取得するGET API
 export async function GET(request: NextRequest) {
+  const { userId, postId } = await request.json();
   //「いいね」取得
-  const getLike = await prisma.likes.findMany();
+  const getLike = await prisma.likes.findMany({
+    where: { userId, postId },
+  });
 
   return NextResponse.json(
     {
