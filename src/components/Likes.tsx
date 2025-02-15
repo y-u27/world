@@ -3,6 +3,10 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { GrLike } from "react-icons/gr";
 
+const getLikes = async(userId:number,postId:number) => {
+  const res = await fetch(`https://world-map-sns.vercel.app/api/likes`)
+}
+
 const createLikes = async (userId: number, postId: number) => {
   const res = await fetch(`https://world-map-sns.vercel.app/api/likes`, {
     method: "POST",
