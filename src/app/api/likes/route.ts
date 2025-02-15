@@ -3,14 +3,30 @@ import { NextRequest, NextResponse } from "next/server";
 
 //いいねを取得するGET API
 export async function GET(request: NextRequest) {
-  const { userId, postId } = await request.json();
+  const url = new URL(request.url);
+  console.log(request.url);
+
+  const userId = url.searchParams.get("userId");
+  const postId = url.searchParams.get("postId");
+
+  if (!userId || !postId) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "userIdまたはpostIdが不足しています",
+      },
+      { status: 400 }
+    );
+  }
+
   //「いいね」取得
   const getLike = await prisma.likes.findMany({
-    where: { userId, postId },
+    where: { userId: Number(userId), postId: Number(postId) },
   });
 
   return NextResponse.json(
     {
+      success: true,
       message: "いいね取得成功",
       data: getLike,
     },
