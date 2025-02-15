@@ -1,11 +1,18 @@
+import { getLikes } from "@/app/types/postType";
 import { Box, IconButton } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { GrLike } from "react-icons/gr";
 
-const getLikes = async(userId:number,postId:number) => {
-  const res = await fetch(`https://world-map-sns.vercel.app/api/likes`)
-}
+// async function fetchAllLikes(
+//   userId: number,
+//   postId: number
+// ): Promise<getLikes[]> {
+//   const res = await fetch(
+//     `https://world-map-sns.vercel.app/api/likes?${userId}&${postId}`,
+//     { cache: "no-cache" }
+//   );
+// }
 
 const createLikes = async (userId: number, postId: number) => {
   const res = await fetch(`https://world-map-sns.vercel.app/api/likes`, {
