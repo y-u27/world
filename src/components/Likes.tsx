@@ -4,15 +4,19 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { GrLike } from "react-icons/gr";
 
-// async function fetchAllLikes(
-//   userId: number,
-//   postId: number
-// ): Promise<getLikes[]> {
-//   const res = await fetch(
-//     `https://world-map-sns.vercel.app/api/likes?${userId}&${postId}`,
-//     { cache: "no-cache" }
-//   );
-// }
+async function fetchAllLikes(
+  userId: number,
+  postId: number
+): Promise<getLikes[]> {
+  const res = await fetch(
+    `https://world-map-sns.vercel.app/api/likes?userId=${userId}&postId=${postId}`,
+    { cache: "no-cache" }
+  );
+  if (!res.ok) {
+    throw Error(`Error ${res.status}:いいねの取得失敗`);
+  }
+  return res.json();
+}
 
 const createLikes = async (userId: number, postId: number) => {
   const res = await fetch(`https://world-map-sns.vercel.app/api/likes`, {
@@ -40,9 +44,11 @@ const deleteLikes = async (userId: number, postId: number) => {
       },
       body: JSON.stringify({ userId, postId }),
     });
-    if (response.ok) {
-      console.log("いいねを削除しました");
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Error ${response.status}: ${errorData.error}`);
     }
+    console.log("いいねを削除しました");
   } catch (error) {
     console.error("いいねが削除できませんでした", error);
   }
@@ -51,7 +57,6 @@ const deleteLikes = async (userId: number, postId: number) => {
 const Likes = ({ postId }: { postId: number }) => {
   const [liked, setLiked] = useState(false);
   const { data: session } = useSession();
-  // console.log("セッション情報：", session);
 
   const handleLike = async () => {
     if (!session?.user?.id) {
@@ -86,6 +91,7 @@ const Likes = ({ postId }: { postId: number }) => {
         );
         console.log("ログイン中のユーザー", userId);
         console.log("この投稿にいいねしました", postId);
+        
         if (!res.ok) throw new Error("いいね状態の取得失敗");
 
         const data = await res.json();
