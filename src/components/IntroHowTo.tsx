@@ -135,9 +135,9 @@ const IntroHowTo = () => {
                 zIndex: 0,
               }}
               _after={{
-                content: `"👉"`,
+                content: `">>>"`,
                 position: "absolute",
-                right: "10px",
+                left: "10px",
                 top: "50%",
                 transform: "translateY(-50%) translateX(10px)",
                 fontSize: "20px",
