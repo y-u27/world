@@ -91,11 +91,11 @@ const Likes = ({ postId }: { postId: number }) => {
         );
         console.log("ログイン中のユーザー", userId);
         console.log("この投稿にいいねしました", postId);
-        
+
         if (!res.ok) throw new Error("いいね状態の取得失敗");
 
         const data = await res.json();
-        setLiked(data.liked);
+        setLiked(data.data[0]);
       } catch (error) {
         console.error("いいねの取得失敗", error);
       }
