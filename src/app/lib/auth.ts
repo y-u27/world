@@ -62,24 +62,46 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
     async jwt({ token, user }) {
+      let newUser: Prisma.UserCreateManyInput | null = null;
+      //すでにユーザーが存在する場合はユーザー情報を保持
       if (token.email) {
         const prismaUser = await prisma.user.findUnique({
           where: { email: token.email },
         });
+        if (prismaUser) newUser = prismaUser;
+
+        //ユーザーが存在しない場合は新規作成したユーザー情報を保持する
         if (!prismaUser) {
-          await fetch(`https://world-map-sns.vercel.app/api/auth/register`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              name: token.name,
-              email: token.email,
-              password: "password",
-              image: token.picture,
-            }),
-          });
+          const res = await fetch(
+            `https://world-map-sns.vercel.app/api/auth/register`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                name: token.name,
+                email: token.email,
+                password: "password",
+                image: token.picture,
+              }),
+            }
+          );
+
+          if (!res.ok) {
+            throw new Error(`Error ${res.status}:ユーザーの作成失敗`);
+          }
+
+          const { user } = await res.json();
+          newUser = user;
         }
       }
-      if (user) {
+
+      //ユーザーがサインインまたはサインアップした場合、JWTトークンにユーザー情報を追加または更新
+      if (user && newUser) {
+        token.id = newUser.id;
+        token.name = newUser.name;
+        token.email = newUser.email;
+        token.image = newUser.image;
+      } else if (user) {
         token.id = user.id;
         token.name = user.name;
         token.email = user.email;
