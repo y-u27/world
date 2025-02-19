@@ -156,8 +156,8 @@ const SignUp = () => {
               />
               <Button
                 type="submit"
-                ml={["auto", "5%"]}
-                w={["30px", 0]}
+                ml={["auto", "80%"]}
+                w={["30px", "50px"]}
                 _hover={{ background: "#f08080", color: "white" }}
                 onClick={handleSubmit("credentials")}
               >
