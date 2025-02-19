@@ -137,7 +137,7 @@ const IntroHowTo = () => {
               _after={{
                 content: `">>>"`,
                 position: "absolute",
-                left: "50px",
+                left: "30%",
                 top: "50%",
                 transform: "translateY(-50%) translateX(10px)",
                 fontSize: "20px",
