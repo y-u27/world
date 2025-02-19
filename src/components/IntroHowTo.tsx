@@ -134,7 +134,25 @@ const IntroHowTo = () => {
                 transform: "translateX(-100%)",
                 zIndex: 0,
               }}
-              _hover={{ _before: { transform: "translateX(0)" } }}
+              _after={{
+                content: `"👉"`,
+                position: "absolute",
+                right: "10px",
+                top: "50%",
+                transform: "translateY(-50%) translateX(10px)",
+                fontSize: "20px",
+                color: "#000080",
+                opacity: 0,
+                transition: "0.7s",
+                zIndex: 2,
+              }}
+              _hover={{
+                _before: { transform: "translateX(0)" },
+                _after: {
+                  opacity: 1,
+                  transform: "translateY(-50%)translateX(0)",
+                },
+              }}
             >
               ログインして投稿してみる
             </Button>
