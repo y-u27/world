@@ -81,7 +81,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
       >
         <CardBody>
           <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
-            Profile
+            プロフィール
           </Text>
           <Box
             display="flex"

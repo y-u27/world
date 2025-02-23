@@ -47,7 +47,7 @@ const Login = () => {
     >
       <CardBody>
         <Text pt="5%" textAlign="center" fontFamily="revert" fontSize="3xl">
-          Login
+          ログイン
         </Text>
         <Box
           p="5%"
