@@ -105,7 +105,7 @@ const SignUp = () => {
     >
       <CardBody>
         <Text pt="5%" textAlign="center" fontFamily="revert" fontSize="3xl">
-          新規登録
+          Sign Up
         </Text>
         <Box
           p="5%"

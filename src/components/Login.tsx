@@ -80,7 +80,7 @@ const Login = () => {
               mx="auto"
               onClick={handleLogin("credentials")}
             >
-              ログイン
+              Login
             </Button>
           </Box>
           <Box pb="5%">
