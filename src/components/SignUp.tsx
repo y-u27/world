@@ -120,7 +120,7 @@ const SignUp = () => {
             maxWidth="500px"
             onChange={(e) => setName(e.target.value)}
           />
-          <Text>メールアドレス</Text>
+          <Text mt="5%">メールアドレス</Text>
           <Input
             type="text"
             width="100%"
