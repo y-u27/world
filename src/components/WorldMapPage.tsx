@@ -217,7 +217,7 @@ const WorldMapPage = ({ id, userId, postId }: CountryProps) => {
         bottom={isLargerThan768 ? "5" : "2"}
         fontSize={isLargerThan768 ? "md" : "sm"}
         onClick={handleLogout}
-        width="50%"
+        width="30%"
         // maxWidth="500px"
       >
         Logout
