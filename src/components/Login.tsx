@@ -47,7 +47,7 @@ const Login = () => {
     >
       <CardBody>
         <Text pt="5%" textAlign="center" fontFamily="revert" fontSize="3xl">
-          ログイン
+          Login
         </Text>
         <Box
           p="5%"
@@ -80,7 +80,7 @@ const Login = () => {
               mx="auto"
               onClick={handleLogin("credentials")}
             >
-              Login
+              ログイン
             </Button>
           </Box>
           <Box pb="5%">
