@@ -9,7 +9,7 @@ const router = Router();
 // 全投稿データを取得
 router.get("/post", async (req: Request, res: Response) => {
   // クエリパラメータから国名を取得
-  const countryParams = req.query.countryName;
+  const countryParams = await req.query.countryName;
 });
 
 // 投稿データの作成
