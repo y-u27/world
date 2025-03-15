@@ -1,0 +1,9 @@
+# Node.js 関連の不要ファイル
+node_modules/
+.next/
+out/
+.env
+.vercel/
+dist/
+.vscode/
+.DS_Store
