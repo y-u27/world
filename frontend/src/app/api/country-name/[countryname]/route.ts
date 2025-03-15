@@ -1,5 +1,4 @@
 // 国名取得API
-
 import prisma from "../../../lib/prismaClient";
 import { NextResponse } from "next/server";
 
