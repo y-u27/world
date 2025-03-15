@@ -1,4 +1,4 @@
-import prisma from "@/app/lib/prismaClient";
+import prisma from "../../lib/prismaClient";
 import { NextRequest, NextResponse } from "next/server";
 
 //いいねを取得するGET API

@@ -2,7 +2,7 @@
 // PATCH→〜/api/worldPosts/[id]：特定の投稿を更新する
 // DELETE→〜/api/worldPosts/[id]：特定の投稿を削除する
 
-import prisma from "@/app/lib/prismaClient";
+import prisma from "../../../lib/prismaClient";
 import { NextRequest, NextResponse } from "next/server";
 
 interface Params {

@@ -1,6 +1,6 @@
 "use client";
 
-import { PostResponse } from "@/app/types/postType";
+import { PostResponse } from "../app/types/postType";
 import {
   CloseIcon,
   DeleteIcon,

@@ -1,4 +1,4 @@
-import PostCreate from "@/components/PostCreate";
+import PostCreate from "../../../components/PostCreate";
 import { Box } from "@chakra-ui/react";
 
 const PostForm = () => {

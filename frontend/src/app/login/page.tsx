@@ -1,12 +1,12 @@
-import Login from '@/components/Login'
-import { Box } from '@chakra-ui/react'
+import Login from "../../components/Login";
+import { Box } from "@chakra-ui/react";
 
 const loginPage = () => {
   return (
     <Box>
-      <Login/>
+      <Login />
     </Box>
-  )
-}
+  );
+};
 
-export default loginPage
+export default loginPage;

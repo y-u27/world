@@ -1,6 +1,6 @@
-import prisma from "@/app/lib/prismaClient";
+import prisma from "../../lib/prismaClient";
 import { getServerSession, Session } from "next-auth";
-import { authOptions } from "@/app/lib/auth";
+import { authOptions } from "../../lib/auth";
 
 // ユーザー情報を取得するAPI
 export async function GET() {

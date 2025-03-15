@@ -2,7 +2,7 @@
 
 import { Inter } from "next/font/google";
 import { ChakraProvider } from "@chakra-ui/react";
-import Header from "@/components/Header";
+import Header from "../components/Header";
 import Link from "next/link";
 import { SessionProvider } from "next-auth/react";
 import { Suspense } from "react";

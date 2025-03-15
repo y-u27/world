@@ -1,4 +1,4 @@
-import { getLikes } from "@/app/types/postType";
+import { getLikes } from "../app/types/postType";
 import { Box, IconButton } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";

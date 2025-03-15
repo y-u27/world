@@ -1,6 +1,6 @@
 "use client";
 
-import WorldMapPage from "@/components/WorldMapPage";
+import WorldMapPage from "../../components/WorldMapPage";
 
 const WorldTopPage = ({
   searchParams,

@@ -1,4 +1,4 @@
-import PostEdit from "@/components/PostEdit";
+import PostEdit from "../../../../components/PostEdit";
 import { Box } from "@chakra-ui/react";
 
 const worldEditPage = ({ params }: { params: { id: string } }) => {

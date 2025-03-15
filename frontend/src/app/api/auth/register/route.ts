@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import prisma from "@/app/lib/prismaClient";
+import prisma from "../../../lib/prismaClient";
 // ↓bcrypt:パスワード暗号化
 import bcrypt from "bcrypt";
 
