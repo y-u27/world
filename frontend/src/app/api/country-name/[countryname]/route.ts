@@ -4,9 +4,9 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   request: Request,
-  { params }: { params: { countryname: string } }
+  context: { params: { countryname: string } }
 ) {
-  const { countryname } = params;
+  const { countryname } = context.params;
 
   const countryNameData = await prisma.post.findMany({
     where: { countryName: countryname },
