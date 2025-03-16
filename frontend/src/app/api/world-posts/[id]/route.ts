@@ -10,7 +10,8 @@ interface Params {
 }
 
 // 特定の投稿データの取得
-export async function GET(request: Request, { params }: { params: Params }) {
+export async function GET(request: Request, props: { params: Promise<Params> }) {
+  const params = await props.params;
   const id = parseInt(params.id);
 
   const worldPostData = await prisma.post.findUnique({
@@ -42,10 +43,8 @@ export async function GET(request: Request, { params }: { params: Params }) {
 }
 
 // 特定の投稿データの更新
-export async function PATCH(
-  request: NextRequest,
-  { params }: { params: Params }
-) {
+export async function PATCH(request: NextRequest, props: { params: Promise<Params> }) {
+  const params = await props.params;
   const id = parseInt(params.id);
 
   const { title, content } = await request.json();
@@ -72,7 +71,8 @@ export async function PATCH(
 }
 
 // 特定の投稿削除
-export async function DELETE(request: Request, { params }: { params: Params }) {
+export async function DELETE(request: Request, props: { params: Promise<Params> }) {
+  const params = await props.params;
   const id = parseInt(params.id);
 
   await prisma.post.delete({

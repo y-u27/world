@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 import { useRouter } from "next/navigation";
 import UserInformation from "../../../components/UserInformation";
 import { Box, Spinner } from "@chakra-ui/react";
 
-export default function UserPage({ params }: { params: { id: string } }) {
+export default function UserPage(props: { params: Promise<{ id: string }> }) {
+  const params = use(props.params);
   const [user, setUser] = useState<{
     id: string;
     name: string;

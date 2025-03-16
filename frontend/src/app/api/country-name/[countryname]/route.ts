@@ -2,10 +2,8 @@
 import prisma from "../../../lib/prismaClient";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Record<string, string> }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<Record<string, string>> }) {
+  const params = await props.params;
   const countryname = params.countryname;
 
   if (!countryname) {
