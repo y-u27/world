@@ -2,12 +2,11 @@
 import prisma from "../../../lib/prismaClient";
 import { NextRequest, NextResponse } from "next/server";
 
-interface Context {
-  params: { countryname: string };
-}
-
-export async function GET(request: NextRequest, context: Context) {
-  const { countryname } = context.params;
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Record<string, string> }
+) {
+  const countryname = params.countryname;
 
   if (!countryname) {
     return NextResponse.json(
