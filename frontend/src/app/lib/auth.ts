@@ -33,7 +33,7 @@ export const authOptions: NextAuthOptions = {
         }
 
         const user = await prisma.user.findUnique({
-          where: { email: credentials.email } as Prisma.UserWhereUniqueInput,
+          where: { email: credentials.email },
         });
         console.log("データベースで見つかったユーザー", user);
 
@@ -62,7 +62,7 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
     async jwt({ token, user }) {
-      let newUser: Prisma.UserCreateManyInput | null = null;
+      let newUser: Awaited<ReturnType<typeof prisma.user.create>> | null = null;
       //すでにユーザーが存在する場合はユーザー情報を保持
       if (token.email) {
         const prismaUser = await prisma.user.findUnique({
