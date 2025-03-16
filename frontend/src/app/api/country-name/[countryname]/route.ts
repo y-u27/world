@@ -1,12 +1,12 @@
 // 国名取得API
 import prisma from "../../../lib/prismaClient";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
-  request: Request,
-  context: { params: { countryname: string } }
+  request: NextRequest,
+  { params }: { params: { countryname: string } }
 ) {
-  const { countryname } = context.params;
+  const { countryname } = params;
 
   const countryNameData = await prisma.post.findMany({
     where: { countryName: countryname },
