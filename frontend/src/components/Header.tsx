@@ -1,5 +1,4 @@
 import { Avatar, Box, Heading } from "@chakra-ui/react";
-import { User } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -17,7 +16,7 @@ const Header = () => {
         const response = await fetch(
           `https://world-map-sns.vercel.app/api/user`
         );
-        const { data }: { data: User } = await response.json();
+        const data = await response.json();
 
         if (!data.image) {
           console.error("画像URL取得に失敗");
