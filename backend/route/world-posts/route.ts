@@ -7,13 +7,27 @@ import { Request, Response, Router } from "express";
 const router = Router();
 
 // 全投稿データを取得
-router.get("/post", async (req: Request, res: Response) => {
+router.get("/post", async (req: Request, res: Response): Promise<void> => {
   // クエリパラメータから国名を取得
-  const countryParams = await req.query.countryName;
+  const countryParams = (await req.query.countryName) as string | undefined;
+
+  if (!countryParams) {
+    res.status(400).json({ error: "countryNameが指定されていません" });
+    return;
+  }
+
+  const encodedCountryName = countryParams;
+
+  if (!encodedCountryName) {
+    res.status(404).json({ error: "国名が指定されていません" });
+    return;
+  }
+
+  // const decodedCountryName = 
 });
 
 // 投稿データの作成
-router.post("/post", async (req: Request, res: Response): Promise<void> => {
+router.post("/post/:id", async (req: Request, res: Response): Promise<void> => {
   const { title, content, countryName, userId } = req.body;
 
   if (!userId) {

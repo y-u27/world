@@ -10,7 +10,6 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   // TIPS: クエリパラメータはURIエンコードされているため、デコードして取得する必要がある
   // TIPS：URIエンコードとはセキュリティなどの理由でURIに使用できない文字を変換すること
-  // TIPS：デコードとはURIエンコードされた文字列を元に戻すこと
   const encodedCountryName = searchParams.get("country-name");
   // 国名が指定されていない場合はエラーを返す
   if (!encodedCountryName)
@@ -24,6 +23,7 @@ export async function GET(request: NextRequest) {
       }
     );
   // デコードした国名を取得
+  // TIPS：デコードとはURIエンコードされた文字列を元に戻すこと
   const decodedCountryName = decodeURIComponent(encodedCountryName);
   const worldPostData = await prisma.post.findMany({
     where: {
