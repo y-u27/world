@@ -9,7 +9,7 @@ const router = Router();
 // 全投稿データを取得
 router.get("/post", async (req: Request, res: Response): Promise<void> => {
   // クエリパラメータから国名を取得
-  const countryParams = (await req.query.countryName) as string | undefined;
+  const countryParams = req.query.countryName as string | undefined;
 
   if (!countryParams) {
     res.status(400).json({ error: "countryNameが指定されていません" });
@@ -18,12 +18,29 @@ router.get("/post", async (req: Request, res: Response): Promise<void> => {
 
   const encodedCountryName = countryParams;
 
+  // 国名が指定されていない場合はエラーを返す
   if (!encodedCountryName) {
     res.status(404).json({ error: "国名が指定されていません" });
     return;
   }
 
-  // const decodedCountryName = 
+  // デコードした国名を取得
+  const decodedCountryName = decodeURIComponent(encodedCountryName);
+
+  // 作成した投稿データの取得
+  const worldPostData = await prisma.post.findMany({
+    where: {
+      countryName: decodedCountryName,
+    },
+    include: {
+      user: { select: { image: true, name: true, comment: true } },
+    },
+  });
+  // 取得した投稿データを返す
+  res
+    .status(200)
+    .json({ success: true, message: "投稿データ取得", data: worldPostData });
+  return;
 });
 
 // 投稿データの作成
@@ -50,3 +67,5 @@ router.post("/post/:id", async (req: Request, res: Response): Promise<void> => {
     .json({ success: true, message: "投稿完了！", data: newWorldPostsData });
   return;
 });
+
+export default router;
