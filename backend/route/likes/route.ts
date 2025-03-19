@@ -5,15 +5,13 @@ import { Request, Response, Router } from "express";
 const router = Router();
 
 //いいねを取得するGET API
-router.get("/likes", async (req: Request, res: Response) => {});
+router.get("/likes", async (req: Request, res: Response):Promise<void> => {});
 
 // いいねを追加するPOST API
 router.post("/likes", async (req: Request, res: Response): Promise<void> => {
   // リクエストボディからデータを取得
   const userId = Number(req.body.userId);
   const postId = Number(req.body.postId);
-
-  console.log("Received userId:", userId, "postId:", postId);
 
   if (!userId || !postId) {
     res.status(400).json({ error: "userIdかpostIdが見つかりません" });
@@ -29,6 +27,7 @@ router.post("/likes", async (req: Request, res: Response): Promise<void> => {
 
   if (!likesSearch) {
     res.status(200).json({ message: "既に「いいね」されています" });
+    return;
   }
 
   try {
