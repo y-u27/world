@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "prisma generate /prisma/schema.prisma && next build",
     "start": "next start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "next lint"
   },
   "author": "",
   "license": "ISC",
