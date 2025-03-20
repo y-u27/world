@@ -1,4 +1,4 @@
-import worldPostApiRoute from "./world-posts/route";
+import worldPostApiRoute from "./world-posts/index";
 
 const express = require("express");
 
@@ -10,6 +10,4 @@ app.use(express.json());
 app.use("/api", worldPostApiRoute);
 
 // サーバ起動
-app.listen(() => {
-  console.log(`Server is running on https://world-map-sns.vercel.app`);
-});
+app.listen(5000);
