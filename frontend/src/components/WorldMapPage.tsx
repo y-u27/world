@@ -61,12 +61,11 @@ const WorldMapPage = ({ id, userId, postId }: CountryProps) => {
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
   // クリックした地点の中心座標と国名を取得
-  // TIPS: LoadScript読み込むことで、windowオブジェクトからGoogle Map APIが利用できる
   const handleMapClick = (e: google.maps.MapMouseEvent) => {
     const lat = e.latLng?.lat() || 35.6762;
     const lng = e.latLng?.lng() || 155.6503;
 
-    // TIPS: Geocoder は、緯度経度から住所を取得するためのクラス
+    // Geocoder は、緯度経度から住所を取得するためのクラス
     const geocoder = new window.google.maps.Geocoder();
     // 第一引数のlocationにlat(緯度)とlng(経度)、第二引数にresultsとstatusを渡す
     geocoder.geocode({ location: { lat, lng } }, (results, status) => {
@@ -159,7 +158,6 @@ const WorldMapPage = ({ id, userId, postId }: CountryProps) => {
             postId={postId}
           />
         )}
-        {/* <LoadScript googleMapsApiKey={googleMapsApiKey}> */}
         {isLoaded && (
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
@@ -210,7 +208,6 @@ const WorldMapPage = ({ id, userId, postId }: CountryProps) => {
             )}
           </GoogleMap>
         )}
-        {/* </LoadScript> */}
       </Box>
       <Button
         position="fixed"
@@ -218,7 +215,6 @@ const WorldMapPage = ({ id, userId, postId }: CountryProps) => {
         fontSize={isLargerThan768 ? "md" : "sm"}
         onClick={handleLogout}
         width="10%"
-        // maxWidth="500px"
       >
         Logout
       </Button>
