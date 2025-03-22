@@ -78,7 +78,7 @@ const PostLists: React.FC<CountryProps> = ({ countryName }: CountryProps) => {
   const handleDeletePost = async (id: number) => {
     try {
       const response = await fetch(
-        `https://world-map-sns.vercel.app/api/world-posts/${id}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts/${id}`,
         {
           method: "DELETE",
         }
