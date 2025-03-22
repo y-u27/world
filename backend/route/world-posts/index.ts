@@ -1,6 +1,6 @@
 // GET→〜/api/world-posts：投稿の一覧を取得する
 // POST→〜/api/world-posts：投稿を新規作成する
-import prisma from "../../../frontend/src/app/lib/prismaClient";
+import prisma from "../../lib/prismaClient"
 import { Request, Response, Router } from "express";
 
 const router = Router();
