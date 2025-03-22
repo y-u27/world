@@ -26,7 +26,7 @@ const editPost = async (
   content: string | undefined,
   id: number
 ) => {
-  const res = await fetch(`https://world-map-sns.vercel.app/api/world-posts/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

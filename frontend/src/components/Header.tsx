@@ -14,7 +14,7 @@ const Header = () => {
     const fetchAvatarUrl = async () => {
       if (session?.user?.email) {
         const response = await fetch(
-          `https://world-map-sns.vercel.app/api/user`
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/user`
         );
         const data = await response.json();
 

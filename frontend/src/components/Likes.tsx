@@ -9,7 +9,7 @@ async function fetchAllLikes(
   postId: number
 ): Promise<getLikes[]> {
   const res = await fetch(
-    `https://world-map-sns.vercel.app/api/likes?userId=${userId}&postId=${postId}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/likes?userId=${userId}&postId=${postId}`,
     { cache: "no-cache" }
   );
   if (!res.ok) {
@@ -19,7 +19,7 @@ async function fetchAllLikes(
 }
 
 const createLikes = async (userId: number, postId: number) => {
-  const res = await fetch(`https://world-map-sns.vercel.app/api/likes`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/likes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const createLikes = async (userId: number, postId: number) => {
 
 const deleteLikes = async (userId: number, postId: number) => {
   try {
-    const response = await fetch(`https://world-map-sns.vercel.app/api/likes`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/likes`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -86,7 +86,7 @@ const Likes = ({ postId }: { postId: number }) => {
 
       try {
         const res = await fetch(
-          `https://world-map-sns.vercel.app/api/likes?userId=${userId}&postId=${postId}`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/likes?userId=${userId}&postId=${postId}`,
           { cache: "no-store" }
         );
         console.log("ログイン中のユーザー", userId);
