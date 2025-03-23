@@ -1,4 +1,4 @@
-import prisma from "../../../frontend/src/app/lib/prismaClient";
+import prisma from "../../../lib/prismaClient";
 import { Request, Response, Router } from "express";
 
 const router = Router();
