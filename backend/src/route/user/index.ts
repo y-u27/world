@@ -25,6 +25,7 @@ router.post("/user", async (req: Request, res: Response): Promise<void> => {
 //   }
 
 //   const updateComment = await prisma.user.update({
+//     where: { email } as string[],
 //     data: { comment },
 //   });
 //   res.status(200).json({
@@ -34,3 +35,5 @@ router.post("/user", async (req: Request, res: Response): Promise<void> => {
 //   });
 //   return;
 // });
+
+export default router;
