@@ -12,4 +12,4 @@ app.use("/api", worldPostApi);
 app.use("/api", worldPostListApi);
 
 // サーバ起動
-app.listen(5001);
+app.listen(5000);
