@@ -10,14 +10,14 @@ router.get(
   "/world-posts",
   async (req: Request, res: Response): Promise<void> => {
     // クエリパラメータから国名を取得
-    const countryParams = req.query.countryName as string | undefined;
+    const countryName = req.query.countryName as string | undefined;
 
-    if (!countryParams) {
+    if (!countryName) {
       res.status(400).json({ error: "countryNameが指定されていません" });
       return;
     }
 
-    const encodedCountryName = countryParams;
+    const encodedCountryName = countryName;
 
     // 国名が指定されていない場合はエラーを返す
     if (!encodedCountryName) {
