@@ -6,10 +6,9 @@ const router = Router();
 
 // 国名取得API
 router.get(
-  "/country-name/:id",
+  "/country-name/:countryname",
   async (req: Request, res: Response): Promise<void> => {
-    const params = req.params;
-    const countryname = params.countryname;
+    const { countryname } = req.params;
 
     // countrynameが空欄の場合
     if (!countryname) {
@@ -24,7 +23,7 @@ router.get(
       where: { countryName: countryname },
     });
 
-    // countryNameDataではなく、またcountryNameDataの長さが0の場合
+    // countryNameDataではない、または、countryNameDataの長さが0の場合
     if (!countryNameData || countryNameData.length === 0) {
       res.status(404).json({
         success: false,
@@ -40,7 +39,6 @@ router.get(
       message: "指定された国のデータが見つかりました",
       data: countryNameData,
     });
-    return;
   }
 );
 
