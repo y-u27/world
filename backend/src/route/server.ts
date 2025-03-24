@@ -13,9 +13,9 @@ app.use(express.json());
 // ルート設定
 app.use("/api", worldPostApi);
 app.use("/api", worldPostListApi);
-app.use("/api",userApi);
-app.use("/api",likeApi);
-app.use("/api",countryNameApi);
+app.use("/api", userApi);
+app.use("/api", likeApi);
+app.use("/api", countryNameApi);
 
 // サーバ起動
 app.listen(5000);
