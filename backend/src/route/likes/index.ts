@@ -67,17 +67,11 @@ router.post("/likes", async (req: Request, res: Response): Promise<void> => {
 });
 
 // いいねを削除するDELETE API
-router.delete("/likes", async (req: Request, res: Response) => {
-  // 無効なリクエスト形式
-  if (req.body.get("content-type") !== "application/json") {
-    res.status(400).json({ message: "無効なリクエスト形式" });
-    return;
-  }
+router.delete("/likes", async (req: Request, res: Response): Promise<void> => {
+  const userId = req.query.userId ? Number(req.query.userId) : null;
+  const postId = req.query.postId ? Number(req.query.postId) : null;
 
-  const userId = Number(req.body.userId);
-  const postId = Number(req.body.postId);
-
-  if (!userId || !postId) {
+  if (userId === null || postId === null || isNaN(userId) || isNaN(postId)) {
     res.status(400).json({ error: "userIdまたはpostIdが不足しています" });
     return;
   }
