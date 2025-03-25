@@ -11,6 +11,7 @@ const express = require("express");
 console.log("サーバー起動中...");
 
 const app = express();
+const port = 5001;
 
 app.use(express.json());
 
@@ -22,6 +23,6 @@ app.use("/api", likeApi);
 app.use("/api", countryNameApi);
 
 // サーバ起動
-app.listen(5000, () => {
-  console.log("サーバーがhttp://localhost:5000で起動しました");
+app.listen(port, () => {
+  console.log(`サーバーがhttp://localhost:${port}で起動しました`);
 });
