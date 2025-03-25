@@ -17,9 +17,8 @@ const prismaClient_1 = __importDefault(require("../../../lib/prismaClient"));
 const express_1 = require("express");
 const router = (0, express_1.Router)();
 // 国名取得API
-router.get("/country-name/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const params = req.params;
-    const countryname = params.countryname;
+router.get("/country-name/:countryname", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { countryname } = req.params;
     // countrynameが空欄の場合
     if (!countryname) {
         res
@@ -31,7 +30,7 @@ router.get("/country-name/:id", (req, res) => __awaiter(void 0, void 0, void 0, 
     const countryNameData = yield prismaClient_1.default.post.findMany({
         where: { countryName: countryname },
     });
-    // countryNameDataではなく、またcountryNameDataの長さが0の場合
+    // countryNameDataではない、または、countryNameDataの長さが0の場合
     if (!countryNameData || countryNameData.length === 0) {
         res.status(404).json({
             success: false,
@@ -46,6 +45,5 @@ router.get("/country-name/:id", (req, res) => __awaiter(void 0, void 0, void 0, 
         message: "指定された国のデータが見つかりました",
         data: countryNameData,
     });
-    return;
 }));
 exports.default = router;

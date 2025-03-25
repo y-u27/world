@@ -73,14 +73,9 @@ router.post("/likes", (req, res) => __awaiter(void 0, void 0, void 0, function* 
 }));
 // いいねを削除するDELETE API
 router.delete("/likes", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // 無効なリクエスト形式
-    if (req.body.get("content-type") !== "application/json") {
-        res.status(400).json({ message: "無効なリクエスト形式" });
-        return;
-    }
-    const userId = Number(req.body.userId);
-    const postId = Number(req.body.postId);
-    if (!userId || !postId) {
+    const userId = req.query.userId ? Number(req.query.userId) : null;
+    const postId = req.query.postId ? Number(req.query.postId) : null;
+    if (userId === null || postId === null || isNaN(userId) || isNaN(postId)) {
         res.status(400).json({ error: "userIdまたはpostIdが不足しています" });
         return;
     }

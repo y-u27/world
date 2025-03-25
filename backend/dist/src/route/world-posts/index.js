@@ -20,12 +20,12 @@ const router = (0, express_1.Router)();
 // 全投稿データを取得
 router.get("/world-posts", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // クエリパラメータから国名を取得
-    const countryParams = req.query.countryName;
-    if (!countryParams) {
+    const countryName = req.query.countryName;
+    if (!countryName) {
         res.status(400).json({ error: "countryNameが指定されていません" });
         return;
     }
-    const encodedCountryName = countryParams;
+    const encodedCountryName = countryName;
     // 国名が指定されていない場合はエラーを返す
     if (!encodedCountryName) {
         res.status(404).json({ error: "国名が指定されていません" });
