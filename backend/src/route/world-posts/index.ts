@@ -51,10 +51,13 @@ router.post(
   async (req: Request, res: Response): Promise<void> => {
     const { title, content, countryName, userId } = req.body;
 
-    if (!userId) {
+    if (!userId || !title || !content || !countryName) {
       res
         .status(400)
-        .json({ success: false, message: "ユーザーIDが指定されていません" });
+        .json({
+          success: false,
+          message: "userId/タイトル/投稿内容/国名のどれかが不足しています",
+        });
       return;
     }
 
