@@ -18,7 +18,11 @@ router.get(
     if (!worldPostDataId) {
       res
         .status(404)
-        .json({ success: false, message: "特定の投稿取得に失敗", data: null });
+        .json({
+          success: false,
+          message: "特定の投稿データがありませんでした",
+          data: null,
+        });
       return;
     }
 
