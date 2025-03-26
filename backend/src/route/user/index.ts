@@ -5,20 +5,29 @@ const router = Router();
 
 // ユーザー情報
 router.post("/user", async (req: Request, res: Response): Promise<void> => {
-  const email = req.query.email;
+  const email = typeof req.body.email === "string" ? req.body.email : undefined;
 
   if (!email) {
     res.status(400).json({ error: "メールアドレスがありません" });
     return;
   }
 
-  res.status(200).json({ data: res });
+  try {
+    const getUser = await prisma.user.findUnique({
+      where: { email },
+      select: { id: true, email: true, name: true, image: true, comment: true },
+    });
+    res.status(200).json({ data: getUser });
+    return;
+  } catch (error) {
+    res.status(500).json({ error: "ユーザー情報取得失敗" });
+    return;
+  }
 });
 
 // コメントを更新するAPI
 router.patch("/user", async (req: Request, res: Response): Promise<void> => {
-  const email =
-    typeof req.query.email === "string" ? req.query.email : undefined;
+  const email = typeof req.body.email === "string" ? req.body.email : undefined;
   const comment =
     typeof req.query.comment === "string" ? req.query.comment : undefined;
 
