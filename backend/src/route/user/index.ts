@@ -12,6 +12,11 @@ router.post("/user", async (req: Request, res: Response): Promise<void> => {
     return;
   }
 
+  // ↓getUserがnullであった場合はHTTPステータスコードを400としてユーザーが見つからなかった旨を含める
+  // if (getUser === null) {
+  //   res.status(400).json({ error: "ユーザーが見つかりません" });
+  // }
+
   try {
     const getUser = await prisma.user.findUnique({
       where: { email },
@@ -31,8 +36,8 @@ router.patch("/user", async (req: Request, res: Response): Promise<void> => {
   const comment =
     typeof req.query.comment === "string" ? req.query.comment : undefined;
 
-  if (!comment) {
-    res.status(400).json({ error: "コメントが更新できませんでした" });
+  if (!comment && !email) {
+    res.status(400).json({ error: "メールアドレス・コメントありません" });
     return;
   }
 
