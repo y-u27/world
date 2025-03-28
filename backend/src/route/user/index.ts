@@ -12,16 +12,15 @@ router.post("/user", async (req: Request, res: Response): Promise<void> => {
     return;
   }
 
-  // ↓getUserがnullであった場合はHTTPステータスコードを400としてユーザーが見つからなかった旨を含める
-  // if (getUser === null) {
-  //   res.status(400).json({ error: "ユーザーが見つかりません" });
-  // }
-
   try {
     const getUser = await prisma.user.findUnique({
       where: { email },
       select: { id: true, email: true, name: true, image: true, comment: true },
     });
+    // ↓getUserがnullであった場合はHTTPステータスコードを400としてユーザーが見つからなかった旨を含める
+    if (getUser === null) {
+      res.status(400).json({ error: "ユーザーが見つかりません" });
+    }
     res.status(200).json({ data: getUser });
     return;
   } catch (error) {
