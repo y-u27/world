@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only backend/route/server.ts",
     "build": "tsc",
-    "start": "node dist/route/server.js"
+    "start": "node dist/route/server.js",
+    "test": "jest"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
