@@ -26,3 +26,5 @@ app.use("/api", countryNameApi);
 app.listen(port, () => {
   console.log(`サーバーがhttp://localhost:${port}で起動しました`);
 });
+
+export default app;
