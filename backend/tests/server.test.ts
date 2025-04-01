@@ -1,6 +1,2 @@
-import test from "node:test";
+import test, { describe, it } from "node:test";
 import app from "../src/route/server";
-
-test("app", () => {
-  console.log("OK");
-});
