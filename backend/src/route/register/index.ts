@@ -1,10 +1,11 @@
 import prisma from "../../../lib/prismaClient";
 import { Request, Response, Router } from "express";
-import bycrypt from "bcrypt";
+import bcrypt from "bcrypt";
 
 const router = Router();
 
 router.post("/register", async (req: Request, res: Response): Promise<void> => {
+  console.log("受信データ", req.body);
   const { name, email, password, image } = req.body;
 
   if (!email || !password) {
@@ -15,7 +16,7 @@ router.post("/register", async (req: Request, res: Response): Promise<void> => {
   }
 
   try {
-    const hashePassword = await bycrypt.hash(password, 0);
+    const hashePassword = await bcrypt.hash(password, 10);
 
     const newUser = await prisma.user.create({
       data: {
