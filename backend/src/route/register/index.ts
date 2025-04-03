@@ -32,3 +32,5 @@ router.post("/register", async (req: Request, res: Response): Promise<void> => {
     return;
   }
 });
+
+export default router;
