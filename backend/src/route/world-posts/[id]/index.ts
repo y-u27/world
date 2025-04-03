@@ -2,10 +2,12 @@ import { Request, Response, Router } from "express";
 import prisma from "../../../../lib/prismaClient";
 
 const router = Router();
+const cors = require("cors");
 
 // 〜/api/worldPosts/[id]：特定の投稿を取得する
 router.get(
   "/world-posts/:id",
+  cors(),
   async (req: Request, res: Response): Promise<void> => {
     const params = req.params;
     const id = parseInt(params.id);
@@ -16,13 +18,11 @@ router.get(
 
     // 特定の投稿データ取得に失敗した場合
     if (!worldPostDataId) {
-      res
-        .status(404)
-        .json({
-          success: false,
-          message: "特定の投稿データがありませんでした",
-          data: null,
-        });
+      res.status(404).json({
+        success: false,
+        message: "特定の投稿データがありませんでした",
+        data: null,
+      });
       return;
     }
 
@@ -38,7 +38,7 @@ router.get(
 
 // 〜/api/worldPosts/[id]：特定の投稿を更新する
 router.patch(
-  "/world-posts/:id",
+  "/world-posts/:id",cors(),
   async (req: Request, res: Response): Promise<void> => {
     const params = req.params;
     const id = parseInt(params.id);
@@ -60,7 +60,7 @@ router.patch(
 
 // 〜/api/worldPosts/[id]：特定の投稿を削除する
 router.delete(
-  "/world-posts/:id",
+  "/world-posts/:id",cors(),
   async (req: Request, res: Response): Promise<void> => {
     const params = req.params;
     const id = parseInt(params.id);

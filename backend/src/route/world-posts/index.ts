@@ -1,13 +1,16 @@
 // GET→〜/api/world-posts：投稿の一覧を取得する
 // POST→〜/api/world-posts：投稿を新規作成する
+// cors設定を追加する
 import prisma from "../../../lib/prismaClient";
 import { Request, Response, Router } from "express";
 
 const router = Router();
+const cors = require("cors");
 
 // 全投稿データを取得
 router.get(
   "/world-posts",
+  cors(),
   async (req: Request, res: Response): Promise<void> => {
     // クエリパラメータから国名を取得
     const countryName = req.query.countryName as string | undefined;
@@ -48,16 +51,15 @@ router.get(
 // 投稿データの作成
 router.post(
   "/world-posts",
+  cors(),
   async (req: Request, res: Response): Promise<void> => {
     const { title, content, countryName, userId } = req.body;
 
     if (!userId || !title || !content || !countryName) {
-      res
-        .status(400)
-        .json({
-          success: false,
-          message: "userId/タイトル/投稿内容/国名のどれかが不足しています",
-        });
+      res.status(400).json({
+        success: false,
+        message: "userId/タイトル/投稿内容/国名のどれかが不足しています",
+      });
       return;
     }
 
