@@ -69,12 +69,12 @@ const WorldMapPage = ({ id, userId, postId }: CountryProps) => {
     const geocoder = new window.google.maps.Geocoder();
     // 第一引数のlocationにlat(緯度)とlng(経度)、第二引数にresultsとstatusを渡す
     geocoder.geocode({ location: { lat, lng } }, (results, status) => {
-      // if文 ①statusがOKかつresultsの場合、resultsからcountryを含むresultを見つける
+      // if文 ①statusがOKかつresultsの場合、resultsからcountryを含むresultを抽出
       if (status === "OK" && results) {
         const country = results.find((result) =>
           result.types.includes("country")
         );
-        // ②さらにcountryの場合、国の住所・緯度経度・条件に一つでも合う国にマーカーと上部に国名を表示させる
+        // ②さらにcountryの場合、国の住所・緯度経度が条件に一つでも合う国にマーカーと上部に国名を表示させる
         if (country) {
           setSelectedCountry(country.formatted_address);
           setCountryNames(country.formatted_address);
