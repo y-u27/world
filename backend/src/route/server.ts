@@ -5,6 +5,7 @@ import likeApi from "./likes/index";
 import countryNameApi from "./country-name/index";
 import registerApi from "./register/index";
 import dotenv from "dotenv";
+import cors from "cors";
 dotenv.config();
 
 const express = require("express");
@@ -15,6 +16,7 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(cors());
 
 // ルート設定
 app.use("/api", worldPostApi);
