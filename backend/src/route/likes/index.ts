@@ -4,6 +4,31 @@ import { Request, Response, Router } from "express";
 const router = Router();
 const cors = require("cors");
 
+// いいねを取得するGET API
+router.get("/likes", async (req: Request, res: Response): Promise<void> => {
+  const userId = Number(req.query.userId);
+  const postId = Number(req.body.postId);
+
+  if (!userId || !postId) {
+    res.status(400).json({ error: "userIdまたはpostIdが不足しています" });
+    return;
+  }
+
+  const getLike = await prisma.likes.findMany({
+    where: {
+      userId: Number(userId),
+      postId: Number(postId),
+    },
+  });
+
+  if (getLike.length === 0) {
+    res.status(404).json({ error: "いいねが見つかりません" });
+  }
+
+  res.status(200).json({ message: "いいねの取得に成功", data: getLike });
+  return;
+});
+
 // いいねを追加するPOST API
 router.post(
   "/likes",
