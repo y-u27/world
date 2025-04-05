@@ -3,7 +3,7 @@ import { getServerSession, Session } from "next-auth";
 import { authOptions } from "../../lib/auth";
 
 // ユーザー情報を取得するAPI
-export async function GET() {
+export async function POST() {
   // セッション情報取得
   let session: Session | null;
   try {
@@ -36,10 +36,14 @@ export async function GET() {
   try {
     // セッション情報からユーザー情報を取得して返す
     const res = await prisma.user.findUnique({
-      where: {
-        email: session.user.email,
+      where: { email: session.user.email },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        image: true,
+        comment: true,
       },
-      select: { id: true, email: true, name: true, image: true, comment: true },
     });
     return Response.json(
       {
@@ -52,7 +56,7 @@ export async function GET() {
   } catch (error) {
     return Response.json(
       {
-        message: "ユーザー情報取得に失敗",
+        message: "ユーザーが見つかりません",
       },
       {
         status: 500,
