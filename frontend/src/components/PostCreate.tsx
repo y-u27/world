@@ -40,12 +40,11 @@ const createPost = async (
 const PostCreate = () => {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLInputElement | null>(null);
-  // const countryNameRef = useRef<HTMLInputElement | null>(null);
   const toast = useToast();
   const router = useRouter();
   const { data: session } = useSession();
   const searchParams = useSearchParams();
-  const [selectedCountry, setSelectedCountry] = useState<string>();
+  const [selectedCountry, setSelectedCountry] = useState<string>("");
 
   useEffect(() => {
     const country = searchParams.get("country");
