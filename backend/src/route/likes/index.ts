@@ -23,6 +23,7 @@ router.get("/likes", async (req: Request, res: Response): Promise<void> => {
 
   if (getLike.length === 0) {
     res.status(404).json({ error: "いいねが見つかりません" });
+    return;
   }
 
   res.status(200).json({ message: "いいねの取得に成功", data: getLike });
@@ -78,8 +79,8 @@ router.delete(
   "/likes",
   cors(),
   async (req: Request, res: Response): Promise<void> => {
-    const userId = req.query.userId ? Number(req.query.userId) : null;
-    const postId = req.query.postId ? Number(req.query.postId) : null;
+    const userId = req.body.userId ? Number(req.body.userId) : null;
+    const postId = req.body.postId ? Number(req.body.postId) : null;
 
     if (userId === null || postId === null || isNaN(userId) || isNaN(postId)) {
       res.status(400).json({ error: "userIdまたはpostIdが不足しています" });
