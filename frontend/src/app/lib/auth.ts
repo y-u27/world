@@ -73,7 +73,7 @@ export const authOptions: NextAuthOptions = {
         //ユーザーが存在しない場合は新規作成したユーザー情報を保持する
         if (!prismaUser) {
           const res = await fetch(
-            `https://world-map-sns.vercel.app/api/auth/register`,
+            `${process.env.NEXT_PUBLIC_BASE_URL}/api/register`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
