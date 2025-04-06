@@ -37,13 +37,16 @@ const createLikes = async (userId: number, postId: number) => {
 
 const deleteLikes = async (userId: number, postId: number) => {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/likes`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ userId, postId }),
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/likes`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId, postId }),
+      }
+    );
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(`Error ${response.status}: ${errorData.error}`);
@@ -86,8 +89,15 @@ const Likes = ({ postId }: { postId: number }) => {
 
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/likes?userId=${userId}&postId=${postId}`,
-          { cache: "no-store" }
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/likes`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ userId, postId }),
+            cache: "no-store",
+          }
         );
         console.log("ログイン中のユーザー", userId);
         console.log("この投稿にいいねしました", postId);
