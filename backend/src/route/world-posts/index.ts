@@ -13,10 +13,10 @@ router.get(
   cors(),
   async (req: Request, res: Response): Promise<void> => {
     // クエリパラメータから国名を取得
-    const countryName = req.query["country-Name"] as string | undefined;
+    const countryName = req.query["country-name"] as string | undefined;
 
     if (!countryName) {
-      res.status(400).json({ error: "country-Nameが指定されていません" });
+      res.status(400).json({ error: "country-nameが指定されていません" });
       return;
     }
 
