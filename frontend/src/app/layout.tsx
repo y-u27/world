@@ -19,9 +19,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <SessionProvider>
           <ChakraProvider>
-            <Link href="/world">
-              <Header />
-            </Link>
+            <Header />
             <Suspense>{children}</Suspense>
           </ChakraProvider>
         </SessionProvider>

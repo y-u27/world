@@ -1,3 +1,5 @@
+"use client";
+
 import { Avatar, Box, Heading } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -48,7 +50,7 @@ const Header = () => {
           textShadow="1px 1px #ffffff"
           p={3}
         >
-          World Map SNS
+          <Link href="/world">World Map SNS</Link>
           {session && (
             <Box
               display="flex"

@@ -6,7 +6,7 @@ const cors = require("cors");
 
 // いいねを取得するGET API
 router.get("/likes", async (req: Request, res: Response): Promise<void> => {
-  const userId = Number(req.query.userId);
+  const userId = Number(req.body.userId);
   const postId = Number(req.body.postId);
 
   if (!userId || !postId) {

@@ -25,7 +25,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const res = await fetch("/api/user");
+        const res = await fetch(`/api/user`);
         const data = await res.json();
         if (res.ok) {
           setComment(data.data.comment || "");

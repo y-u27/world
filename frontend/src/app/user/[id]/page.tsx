@@ -21,7 +21,7 @@ export default function UserPage(props: { params: Promise<{ id: string }> }) {
       try {
         const res = await fetch(`/api/get-session`);
         if (!res.ok) {
-          router.push("/login");
+          router.push("/world");
           return;
         }
         const session = await res.json();
@@ -31,7 +31,7 @@ export default function UserPage(props: { params: Promise<{ id: string }> }) {
           return;
         }
 
-        const userRes = await fetch(`/api/user?id=${params.id}`);
+        const userRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user?id=${params.id}`);
         const userData = await userRes.json();
 
         if (!userRes.ok) {

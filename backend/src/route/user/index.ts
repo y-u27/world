@@ -32,7 +32,7 @@ router.post(
       if (getUser === null) {
         res.status(400).json({ error: "ユーザーが見つかりません" });
       }
-      res.status(200).json({ data: getUser });
+      res.status(200).json(getUser);
       return;
     } catch (error) {
       res.status(500).json({ error: "ユーザー情報取得失敗" });
