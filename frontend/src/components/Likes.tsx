@@ -89,18 +89,13 @@ const Likes = ({ postId }: { postId: number }) => {
 
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/likes`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/likes?userId=${userId}&postId=${postId}`,
           {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ userId, postId }),
             cache: "no-store",
           }
         );
-        console.log("ログイン中のユーザー", userId);
-        console.log("この投稿にいいねしました", postId);
+        // console.log("ログイン中のユーザー", userId);
+        // console.log("この投稿にいいねしました", postId);
 
         if (!res.ok) throw new Error("いいね状態の取得失敗");
 
