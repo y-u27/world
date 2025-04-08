@@ -6,8 +6,8 @@ const cors = require("cors");
 
 // いいねを取得するGET API
 router.get("/likes", async (req: Request, res: Response): Promise<void> => {
-  const userId = Number(req.body.userId);
-  const postId = Number(req.body.postId);
+  const userId = Number(req.query.userId);
+  const postId = Number(req.query.postId);
 
   if (!userId || !postId) {
     res.status(400).json({ error: "userIdまたはpostIdが不足しています" });
