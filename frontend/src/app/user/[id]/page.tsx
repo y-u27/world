@@ -31,7 +31,16 @@ export default function UserPage(props: { params: Promise<{ id: string }> }) {
           return;
         }
 
-        const userRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user?id=${params.id}`);
+        const userRes = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/user`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email: session.user.email }),
+          }
+        );
         const userData = await userRes.json();
 
         if (!userRes.ok) {
@@ -44,7 +53,7 @@ export default function UserPage(props: { params: Promise<{ id: string }> }) {
           name: session.user.name || "ゲスト",
           image: session.user.image || "/default-avatar.jpeg",
           email: session.user.email,
-          comment: userData.data.comment || "",
+          comment: userData.comment || "",
         });
       } catch (error) {
         console.error("セッション取得エラー:", error);
