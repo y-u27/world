@@ -7,12 +7,14 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type UserInformationProps = {
+  id: number;
   imagePath: string;
   userName: string;
   comment: string;
 };
 
 const UserInformation: React.FC<UserInformationProps> = ({
+  id,
   imagePath,
   userName,
   comment,
@@ -25,7 +27,9 @@ const UserInformation: React.FC<UserInformationProps> = ({
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const res = await fetch(`/api/user`);
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/${id}`
+        );
         const data = await res.json();
         if (res.ok) {
           setComment(data.data.comment || "");
@@ -53,7 +57,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
   //コメントを編集後、保存→画面遷移後も編集したコメント保持
   const handleSaveClick = async () => {
     try {
-      const res = await fetch("/api/user", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ comment: tempComment }),
