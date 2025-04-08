@@ -8,7 +8,7 @@ import { Box, Spinner } from "@chakra-ui/react";
 export default function UserPage(props: { params: Promise<{ id: string }> }) {
   const params = use(props.params);
   const [user, setUser] = useState<{
-    id: string;
+    id: number;
     name: string;
     image: string;
     email: string;
@@ -81,6 +81,7 @@ export default function UserPage(props: { params: Promise<{ id: string }> }) {
   return (
     <Box>
       <UserInformation
+        id={user.id}
         imagePath={user.image}
         userName={user.name}
         comment={user.comment}
