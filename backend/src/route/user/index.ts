@@ -49,7 +49,7 @@ router.patch(
     const email =
       typeof req.body.email === "string" ? req.body.email : undefined;
     const comment =
-      typeof req.query.comment === "string" ? req.query.comment : undefined;
+      typeof req.body.comment === "string" ? req.body.comment : undefined;
 
     if (!comment && !email) {
       res.status(400).json({ error: "メールアドレス・コメントありません" });
