@@ -81,7 +81,6 @@ export default function UserPage(props: { params: Promise<{ id: string }> }) {
   return (
     <Box>
       <UserInformation
-        id={user.id}
         imagePath={user.image}
         userName={user.name}
         comment={user.comment}
