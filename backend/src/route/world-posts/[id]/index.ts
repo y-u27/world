@@ -38,7 +38,8 @@ router.get(
 
 // 〜/api/worldPosts/[id]：特定の投稿を更新する
 router.patch(
-  "/world-posts/:id",cors(),
+  "/world-posts/:id",
+  cors(),
   async (req: Request, res: Response): Promise<void> => {
     const params = req.params;
     const id = parseInt(params.id);
@@ -49,6 +50,12 @@ router.patch(
       where: { id },
       data: { title, content },
     });
+
+    if (!newWorldPostDataId) {
+      res.status(404).json({ error: "特定の投稿更新失敗" });
+      return;
+    }
+
     res.status(200).json({
       success: true,
       message: "特定の投稿更新成功",
@@ -60,14 +67,21 @@ router.patch(
 
 // 〜/api/worldPosts/[id]：特定の投稿を削除する
 router.delete(
-  "/world-posts/:id",cors(),
+  "/world-posts/:id",
+  cors(),
   async (req: Request, res: Response): Promise<void> => {
     const params = req.params;
     const id = parseInt(params.id);
 
-    await prisma.post.delete({
+    const worldPostDataDelete = await prisma.post.delete({
       where: { id },
     });
+
+    if (!worldPostDataDelete) {
+      res.status(404).json({ error: "特定の投稿削除失敗" });
+      return;
+    }
+
     res
       .status(200)
       .json({ success: true, message: "特定の投稿削除成功", data: null });
