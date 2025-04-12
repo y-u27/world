@@ -70,22 +70,28 @@ router.delete(
   "/world-posts/:id",
   cors(),
   async (req: Request, res: Response): Promise<void> => {
-    const params = req.params;
-    const id = parseInt(params.id);
+    try {
+      const params = req.params;
+      const id = parseInt(params.id);
 
-    const worldPostDataDelete = await prisma.post.delete({
-      where: { id },
-    });
+      const worldPostDataDelete = await prisma.post.delete({
+        where: { id },
+      });
 
-    if (!worldPostDataDelete) {
-      res.status(404).json({ error: "特定の投稿削除失敗" });
+      if (!worldPostDataDelete) {
+        res.status(404).json({ error: "特定の投稿削除失敗" });
+        return;
+      }
+
+      res
+        .status(200)
+        .json({ success: true, message: "特定の投稿削除成功", data: null });
+      return;
+    } catch (error) {
+      console.error("特定の投稿削除失敗（サーバーエラー）", error);
+      res.status(500).json({ error: "特定の投稿削除失敗" });
       return;
     }
-
-    res
-      .status(200)
-      .json({ success: true, message: "特定の投稿削除成功", data: null });
-    return;
   }
 );
 
