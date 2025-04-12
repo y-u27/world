@@ -21,11 +21,6 @@ router.get("/likes", async (req: Request, res: Response): Promise<void> => {
     },
   });
 
-  if (getLike.length === 0) {
-    res.status(404).json({ error: "いいねが見つかりません" });
-    return;
-  }
-
   res.status(200).json({ message: "いいねの取得に成功", data: getLike });
   return;
 });
