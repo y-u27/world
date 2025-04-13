@@ -92,7 +92,7 @@ const PostLists: React.FC<CountryProps> = ({ countryName }: CountryProps) => {
           duration: 3000,
           isClosable: true,
         });
-        // 削除された投稿を除いた新しいリストに
+        // 削除された投稿を除いた新しいリストに更新
         setMapPostCards((prevPostCards) =>
           prevPostCards.filter((post) => post.id !== id)
         );
