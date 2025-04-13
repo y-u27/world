@@ -18,7 +18,7 @@ const cors = require("cors");
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://world-frontend.vercel.app/",
     credentials: true,
     optionSuccessStatus: 200,
   })
@@ -34,7 +34,7 @@ app.use("/api", registerApi);
 
 // サーバ起動
 app.listen(port, () => {
-  console.log(`サーバーがhttp://localhost:${port}で起動しました`);
+  console.log(`サーバーがhttps://world-frontend.vercel.app/で起動しました`);
 });
 
 export default app;
