@@ -11,7 +11,7 @@ router.post(
   async (req: Request, res: Response): Promise<void> => {
     const email =
       typeof req.body.email === "string" ? req.body.email : undefined;
-    const id = Number(req.query.id);
+    const id = Number(req.params.id);
 
     if (!email) {
       res.status(400).json({ error: "メールアドレスがありません" });
