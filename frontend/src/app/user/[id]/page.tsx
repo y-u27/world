@@ -90,7 +90,6 @@ export default function UserPage({
         userName={user.name}
         comment={user.comment}
         email={user.email}
-        id={user.id}
       />
     </Box>
   );

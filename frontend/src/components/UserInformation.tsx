@@ -7,7 +7,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type UserInformationProps = {
-  id: number;
   imagePath: string;
   userName: string;
   comment: string;
@@ -18,8 +17,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
   imagePath,
   userName,
   comment,
-  email,
-  id,
+  email
 }) => {
   const [comments, setComment] = useState("");
   const [isEditing, setIsEditing] = useState(false);
@@ -55,10 +53,10 @@ const UserInformation: React.FC<UserInformationProps> = ({
   };
 
   //コメントを編集後、保存→画面遷移後も編集したコメント保持
-  const handleSaveClick = async (id: number) => {
+  const handleSaveClick = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/${id}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/user`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -120,7 +118,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
             </Box>
             <Box display="flex" justifyContent="center" mt="10px">
               {isEditing ? (
-                <Button onClick={() => handleSaveClick(id)}>保存</Button>
+                <Button onClick={handleSaveClick}>保存</Button>
               ) : (
                 <Button onClick={handleEditClick}>編集</Button>
               )}
