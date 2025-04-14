@@ -1,11 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import UserInformation from "../../../components/UserInformation";
 import { Box, Spinner } from "@chakra-ui/react";
 
-export default function UserPage({ params }: { params: { id: string } }) {
+export default function UserPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const paramsId = use(params);
   const [user, setUser] = useState<{
     id: number;
     name: string;
@@ -62,7 +67,7 @@ export default function UserPage({ params }: { params: { id: string } }) {
     };
 
     fetchUserData();
-  }, [params.id, router]);
+  }, [paramsId.id, router]);
 
   if (!user) {
     return (
