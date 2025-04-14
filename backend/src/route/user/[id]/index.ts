@@ -6,7 +6,7 @@ const cors = require("cors");
 
 // ユーザー情報
 router.post(
-  "/user:id",
+  "/user/:id",
   cors(),
   async (req: Request, res: Response): Promise<void> => {
     const email =
