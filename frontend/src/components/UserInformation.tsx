@@ -32,8 +32,8 @@ const UserInformation: React.FC<UserInformationProps> = ({
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`);
         const data = await res.json();
         if (res.ok) {
-          setComment(data.data.comment || "");
-          setTempComment(data.data.comment || "");
+          setComment(comment);
+          setTempComment(comment);
         } else {
           console.error(data.message);
         }
@@ -42,7 +42,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
       }
     };
     fetchUserData();
-  }, []);
+  }, [comment]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     //入力中の値を更新
