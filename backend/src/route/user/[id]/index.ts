@@ -44,9 +44,10 @@ router.post(
 
 // コメントを更新するAPI
 router.patch(
-  "/user:id",
+  "/user/:id",
   cors(),
   async (req: Request, res: Response): Promise<void> => {
+    const id = Number(req.params.id);
     const email =
       typeof req.body.email === "string" ? req.body.email : undefined;
     const comment =
@@ -59,7 +60,7 @@ router.patch(
 
     try {
       const updateComment = await prisma.user.update({
-        where: { email },
+        where: { id, email },
         data: { comment },
       });
       res.status(200).json({
