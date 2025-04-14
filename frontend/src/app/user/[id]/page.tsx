@@ -5,17 +5,7 @@ import { useRouter } from "next/navigation";
 import UserInformation from "../../../components/UserInformation";
 import { Box, Spinner } from "@chakra-ui/react";
 
-interface UserPageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default function UserPage({
-  params,
-}: {
-  params: UserPageProps["params"];
-}) {
+export default function UserPage({ params }: { params: { id: string } }) {
   const [user, setUser] = useState<{
     id: number;
     name: string;
