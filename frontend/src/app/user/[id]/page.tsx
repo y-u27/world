@@ -11,7 +11,7 @@ interface UserPageProps {
   };
 }
 
-export default function UserPage({ params }: UserPageProps) {
+export default async function UserPage({ params }: UserPageProps) {
   const [user, setUser] = useState<{
     id: number;
     name: string;
@@ -19,7 +19,7 @@ export default function UserPage({ params }: UserPageProps) {
     email: string;
     comment: string;
   } | null>(null);
-  
+
   const router = useRouter();
 
   useEffect(() => {
