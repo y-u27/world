@@ -12,39 +12,36 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// expressに書き換え
 const prismaClient_1 = __importDefault(require("../../../lib/prismaClient"));
 const express_1 = require("express");
+const bcrypt_1 = __importDefault(require("bcrypt"));
 const router = (0, express_1.Router)();
 const cors = require("cors");
-// 国名取得API
-router.get("/country-name/:countryname", cors(), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { countryname } = req.params;
-    // countrynameが空欄の場合
-    if (!countryname) {
+router.post("/register", cors(), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("受信データ", req.body);
+    const { name, email, password, image } = req.body;
+    if (!email || !password) {
         res
             .status(400)
-            .json({ success: false, message: "国名が指定されていません" });
+            .json({ message: "メールアドレスとパスワード登録が必要です" });
         return;
     }
-    // 各国名の投稿データ取得
-    const countryNameData = yield prismaClient_1.default.post.findMany({
-        where: { countryName: countryname },
-    });
-    // countryNameDataではない、または、countryNameDataの長さが0の場合
-    if (!countryNameData || countryNameData.length === 0) {
-        res.status(404).json({
-            success: false,
-            message: "指定された国が見つかりません",
-            data: [],
+    try {
+        const hashePassword = yield bcrypt_1.default.hash(password, 10);
+        const newUser = yield prismaClient_1.default.user.create({
+            data: {
+                name,
+                email,
+                password: hashePassword,
+                image: image || "",
+            },
         });
+        res.status(200).json({ user: newUser });
         return;
     }
-    // 指定された国名のデータが見つかった場合
-    res.status(200).json({
-        success: true,
-        message: "指定された国のデータが見つかりました",
-        data: countryNameData,
-    });
+    catch (error) {
+        res.status(500).json({ message: "登録できませんでした,error" });
+        return;
+    }
 }));
 exports.default = router;

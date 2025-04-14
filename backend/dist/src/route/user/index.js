@@ -15,21 +15,43 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const prismaClient_1 = __importDefault(require("../../../lib/prismaClient"));
 const express_1 = require("express");
 const router = (0, express_1.Router)();
+const cors = require("cors");
 // ユーザー情報
-router.post("/user", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const email = req.query.email;
+router.post("/user", cors(), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const email = typeof req.body.email === "string" ? req.body.email : undefined;
     if (!email) {
         res.status(400).json({ error: "メールアドレスがありません" });
         return;
     }
-    res.status(200).json({ data: res });
+    try {
+        const getUser = yield prismaClient_1.default.user.findUnique({
+            where: { email },
+            select: {
+                id: true,
+                email: true,
+                name: true,
+                image: true,
+                comment: true,
+            },
+        });
+        // ↓getUserがnullであった場合はHTTPステータスコードを400としてユーザーが見つからなかった旨を含める
+        if (getUser === null) {
+            res.status(400).json({ error: "ユーザーが見つかりません" });
+        }
+        res.status(200).json(getUser);
+        return;
+    }
+    catch (error) {
+        res.status(500).json({ error: "ユーザー情報取得失敗" });
+        return;
+    }
 }));
 // コメントを更新するAPI
-router.patch("/user", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const email = typeof req.query.email === "string" ? req.query.email : undefined;
-    const comment = typeof req.query.comment === "string" ? req.query.comment : undefined;
-    if (!comment) {
-        res.status(400).json({ error: "コメントが更新できませんでした" });
+router.patch("/user", cors(), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const email = typeof req.body.email === "string" ? req.body.email : undefined;
+    const comment = typeof req.body.comment === "string" ? req.body.comment : undefined;
+    if (!comment && !email) {
+        res.status(400).json({ error: "メールアドレス・コメントありません" });
         return;
     }
     try {

@@ -15,8 +15,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const prismaClient_1 = __importDefault(require("../../../../lib/prismaClient"));
 const router = (0, express_1.Router)();
+const cors = require("cors");
 // 〜/api/worldPosts/[id]：特定の投稿を取得する
-router.get("/world-posts/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get("/world-posts/:id", cors(), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const params = req.params;
     const id = parseInt(params.id);
     const worldPostDataId = yield prismaClient_1.default.post.findUnique({
@@ -24,9 +25,11 @@ router.get("/world-posts/:id", (req, res) => __awaiter(void 0, void 0, void 0, f
     });
     // 特定の投稿データ取得に失敗した場合
     if (!worldPostDataId) {
-        res
-            .status(404)
-            .json({ success: false, message: "特定の投稿取得に失敗", data: null });
+        res.status(404).json({
+            success: false,
+            message: "特定の投稿データがありませんでした",
+            data: null,
+        });
         return;
     }
     // 特定の投稿データ取得に成功した場合
@@ -38,7 +41,7 @@ router.get("/world-posts/:id", (req, res) => __awaiter(void 0, void 0, void 0, f
     return;
 }));
 // 〜/api/worldPosts/[id]：特定の投稿を更新する
-router.patch("/world-posts/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.patch("/world-posts/:id", cors(), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const params = req.params;
     const id = parseInt(params.id);
     const { title, content } = req.body;
@@ -46,6 +49,10 @@ router.patch("/world-posts/:id", (req, res) => __awaiter(void 0, void 0, void 0,
         where: { id },
         data: { title, content },
     });
+    if (!newWorldPostDataId) {
+        res.status(404).json({ error: "特定の投稿更新失敗" });
+        return;
+    }
     res.status(200).json({
         success: true,
         message: "特定の投稿更新成功",
@@ -54,15 +61,26 @@ router.patch("/world-posts/:id", (req, res) => __awaiter(void 0, void 0, void 0,
     return;
 }));
 // 〜/api/worldPosts/[id]：特定の投稿を削除する
-router.delete("/world-posts/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const params = req.params;
-    const id = parseInt(params.id);
-    yield prismaClient_1.default.post.delete({
-        where: { id },
-    });
-    res
-        .status(200)
-        .json({ success: true, message: "特定の投稿削除成功", data: null });
-    return;
+router.delete("/world-posts/:id", cors(), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const params = req.params;
+        const id = parseInt(params.id);
+        const worldPostDataDelete = yield prismaClient_1.default.post.delete({
+            where: { id },
+        });
+        if (!worldPostDataDelete) {
+            res.status(404).json({ error: "特定の投稿削除失敗" });
+            return;
+        }
+        res
+            .status(200)
+            .json({ success: true, message: "特定の投稿削除成功", data: null });
+        return;
+    }
+    catch (error) {
+        console.error("特定の投稿削除失敗（サーバーエラー）", error);
+        res.status(500).json({ error: "特定の投稿削除失敗" });
+        return;
+    }
 }));
 exports.default = router;

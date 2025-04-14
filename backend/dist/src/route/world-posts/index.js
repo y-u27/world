@@ -14,15 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 // GET→〜/api/world-posts：投稿の一覧を取得する
 // POST→〜/api/world-posts：投稿を新規作成する
+// cors設定を追加する
 const prismaClient_1 = __importDefault(require("../../../lib/prismaClient"));
 const express_1 = require("express");
 const router = (0, express_1.Router)();
+const cors = require("cors");
 // 全投稿データを取得
-router.get("/world-posts", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get("/world-posts", cors(), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // クエリパラメータから国名を取得
-    const countryName = req.query.countryName;
+    const countryName = req.query["country-name"];
     if (!countryName) {
-        res.status(400).json({ error: "countryNameが指定されていません" });
+        res.status(400).json({ error: "country-nameが指定されていません" });
         return;
     }
     const encodedCountryName = countryName;
@@ -49,12 +51,13 @@ router.get("/world-posts", (req, res) => __awaiter(void 0, void 0, void 0, funct
     return;
 }));
 // 投稿データの作成
-router.post("/world-posts", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/world-posts", cors(), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { title, content, countryName, userId } = req.body;
-    if (!userId) {
-        res
-            .status(400)
-            .json({ success: false, message: "ユーザーIDが指定されていません" });
+    if (!userId || !title || !content || !countryName) {
+        res.status(400).json({
+            success: false,
+            message: "userId/タイトル/投稿内容/国名のどれかが不足しています",
+        });
         return;
     }
     const newWorldPostsData = yield prismaClient_1.default.post.create({

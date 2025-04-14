@@ -12,31 +12,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// expressに書き換え
 const prismaClient_1 = __importDefault(require("../../../lib/prismaClient"));
 const express_1 = require("express");
 const router = (0, express_1.Router)();
-//いいねを取得するGET API
+const cors = require("cors");
+// いいねを取得するGET API
 router.get("/likes", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const userId = Number(req.query.userId);
     const postId = Number(req.query.postId);
     if (!userId || !postId) {
-        res
-            .status(400)
-            .json({ success: false, message: "userIdまたはpostIdが不足しています" });
+        res.status(400).json({ error: "userIdまたはpostIdが不足しています" });
         return;
     }
-    // いいね取得
     const getLike = yield prismaClient_1.default.likes.findMany({
-        where: { userId: Number(userId), postId: Number(postId) },
+        where: {
+            userId: Number(userId),
+            postId: Number(postId),
+        },
     });
-    res
-        .status(200)
-        .json({ success: true, message: "いいね取得成功", data: getLike });
+    res.status(200).json({ message: "いいねの取得に成功", data: getLike });
     return;
 }));
 // いいねを追加するPOST API
-router.post("/likes", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/likes", cors(), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // リクエストボディからデータを取得
     const userId = Number(req.body.userId);
     const postId = Number(req.body.postId);
@@ -50,8 +48,8 @@ router.post("/likes", (req, res) => __awaiter(void 0, void 0, void 0, function* 
             postId,
         },
     });
-    if (!likesSearch) {
-        res.status(200).json({ message: "既に「いいね」されています" });
+    if (likesSearch) {
+        res.status(409).json({ message: "既に「いいね」されています" });
         return;
     }
     try {
@@ -72,9 +70,9 @@ router.post("/likes", (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 }));
 // いいねを削除するDELETE API
-router.delete("/likes", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const userId = req.query.userId ? Number(req.query.userId) : null;
-    const postId = req.query.postId ? Number(req.query.postId) : null;
+router.delete("/likes", cors(), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const userId = req.body.userId ? Number(req.body.userId) : null;
+    const postId = req.body.postId ? Number(req.body.postId) : null;
     if (userId === null || postId === null || isNaN(userId) || isNaN(postId)) {
         res.status(400).json({ error: "userIdまたはpostIdが不足しています" });
         return;
