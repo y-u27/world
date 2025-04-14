@@ -11,7 +11,11 @@ interface UserPageProps {
   };
 }
 
-export default async function UserPage({ params }: UserPageProps) {
+export default function UserPage({
+  params,
+}: {
+  params: UserPageProps["params"];
+}) {
   const [user, setUser] = useState<{
     id: number;
     name: string;
