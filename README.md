@@ -36,7 +36,7 @@ https://world-frontend.vercel.app/
 
 3.国を表示させることで、右側に「投稿一覧」ボタンが表示されます。
 
-4.「投稿一覧」の「投稿」ボタンから実際に投稿をしてみましょう。
+4.「投稿一覧」の「投稿」ボタンから実際に投稿することができます。
 
 ## アプリ操作デモ
 
@@ -47,7 +47,8 @@ https://world-frontend.vercel.app/
 ### 【使用技術】  
 | カテゴリ       | 使用技術            |
 |---------------|----------------------|
-| **フロントエンド** | React, Next.js, TypeScript, Chakra UI, Google Map API |
+| **フロントエンド** | React, Next.js, TypeScript, Chakra UI |
+| **外部API** | Google Map API |
 | **バックエンド**   | Node.js, Prisma      |
 | **認証**         | Next-auth             |
 | **データベース**   | Supabase             |
