@@ -40,7 +40,7 @@ https://world-frontend.vercel.app/
 
 ## アプリ操作デモ
 
-![アプリの操作デモ](./output.gif)
+![アプリの操作デモ](/Users/yukie/Desktop/output.gif)
 
 ---
 
