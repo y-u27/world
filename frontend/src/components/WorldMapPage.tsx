@@ -216,7 +216,7 @@ const WorldMapPage = ({ id, userId, postId }: CountryProps) => {
         onClick={handleLogout}
         width="10%"
       >
-        Logout
+        ログアウト
       </Button>
     </>
   );
