@@ -58,7 +58,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
       }
     };
     fetchUserData();
-  }, []);
+  }, [comments, email]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     //入力中の値を更新
