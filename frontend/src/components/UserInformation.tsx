@@ -65,7 +65,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
       );
       if (res.ok) {
         setComment(tempComment);
-        setIsEditing(true);
+        setIsEditing(false);
       } else {
         console.error("コメントの保存失敗");
       }
