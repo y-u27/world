@@ -1,6 +1,14 @@
 "use client";
 
-import { Box, Button, Card, CardBody, Input, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Card,
+  CardBody,
+  Input,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
 import UserImage from "./UserImage";
 import { TiArrowBackOutline } from "react-icons/ti";
 import Link from "next/link";
@@ -17,11 +25,12 @@ const UserInformation: React.FC<UserInformationProps> = ({
   imagePath,
   userName,
   comment,
-  email
+  email,
 }) => {
   const [comments, setComment] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [tempComment, setTempComment] = useState("");
+  const toast = useToast();
 
   //ユーザー情報取得
   useEffect(() => {
@@ -55,22 +64,23 @@ const UserInformation: React.FC<UserInformationProps> = ({
   //コメントを編集後、保存→画面遷移後も編集したコメント保持
   const handleSaveClick = async () => {
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/user`,
-        {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ comment: tempComment, email: email }),
-        }
-      );
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ comment: tempComment, email: email }),
+      });
       if (res.ok) {
         setComment(tempComment);
         setIsEditing(false);
-      } else {
-        console.error("コメントの保存失敗");
       }
     } catch (error) {
-      console.error("コメント保存失敗", error);
+      toast({
+        title: "コメントが保存できませんでした",
+        description: "もう一度お試しください",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
 
