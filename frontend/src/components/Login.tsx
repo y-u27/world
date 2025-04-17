@@ -1,6 +1,14 @@
 "use client";
 
-import { Box, Button, Card, CardBody, Input, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Card,
+  CardBody,
+  Input,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
 import Link from "next/link";
 import { TiArrowBackOutline } from "react-icons/ti";
 import { signIn, useSession } from "next-auth/react";
@@ -12,6 +20,7 @@ const Login = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const toast = useToast();
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -31,7 +40,13 @@ const Login = () => {
       if (result?.ok) {
         router.push("/world");
       } else {
-        alert("ログイン失敗");
+        toast({
+          title: "ログイン失敗",
+          description: "メールアドレスまたはパスワードが間違っています",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
       }
     } else {
       await signIn(provider, { redirect: false });
