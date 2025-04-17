@@ -24,7 +24,7 @@ type UserInformationProps = {
 const UserInformation: React.FC<UserInformationProps> = ({
   imagePath,
   userName,
-  comment,
+  // comment,
   email,
 }) => {
   const [comments, setComment] = useState("");
@@ -35,7 +35,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
   //ユーザー情報取得
   useEffect(() => {
     const fetchUserData = async () => {
-      if (email) return;
+      if (!email) return;
 
       try {
         const res = await fetch(
@@ -50,8 +50,8 @@ const UserInformation: React.FC<UserInformationProps> = ({
         );
         const data = await res.json();
         if (res.ok) {
-          setComment(data.data.comment || "");
-          setTempComment(data.data.comment || "");
+          setComment(data.comment || "");
+          setTempComment(data.comment || "");
         } else {
           console.error(data.message);
         }
