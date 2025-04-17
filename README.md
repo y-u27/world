@@ -12,8 +12,9 @@ https://world-frontend.vercel.app/
 
 ### 🎨 アプリデザイン（Figma）
 
-[Figmaでのデザインを表示する](https://www.figma.com/embed?embed_host=share&url="https://embed.figma.com/board/U4P2YdE4rr4zGMrL133CJu/%E4%B8%96%E7%95%8C%E5%9C%B0%E5%9B%B3%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%9FSNS%E9%A2%A8Web%E3%82%A2%E3%83%97%E3%83%AA?node-id=0-1&embed-host=share")
+### 🎨 アプリデザイン
 
+![デザイン画像](./frontend/public/sample/スクリーンショット%202025-04-18%200.28.58.png)
 
 ---
 
