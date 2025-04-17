@@ -24,7 +24,6 @@ type UserInformationProps = {
 const UserInformation: React.FC<UserInformationProps> = ({
   imagePath,
   userName,
-  // comment,
   email,
 }) => {
   const [comments, setComment] = useState("");
