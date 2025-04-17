@@ -9,6 +9,7 @@ import {
   HStack,
   Input,
   Text,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
 import Link from "next/link";
@@ -25,6 +26,7 @@ const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const toast = useToast();
   const router = useRouter();
 
   const handleSubmit =
@@ -32,7 +34,13 @@ const SignUp = () => {
       e.preventDefault();
 
       if (!email || !password) {
-        alert("メールアドレスとパスワードは必須です");
+        toast({
+          title: "未入力の項目があります",
+          description: "メールアドレス・パスワードを入力してください",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
         return;
       }
 
@@ -51,7 +59,13 @@ const SignUp = () => {
       );
 
       if (!response.ok) {
-        alert("登録失敗");
+        toast({
+          title: "登録失敗",
+          description: "新規登録できませんでした",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
         return;
       }
 
@@ -61,7 +75,13 @@ const SignUp = () => {
         password,
       });
       if (result?.error) {
-        alert("登録失敗");
+        toast({
+          title: "登録失敗",
+          description: "新規登録できませんでした",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
       } else {
         router.push("/world");
       }
