@@ -35,6 +35,8 @@ const UserInformation: React.FC<UserInformationProps> = ({
   //ユーザー情報取得
   useEffect(() => {
     const fetchUserData = async () => {
+      if (email) return;
+
       try {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_BASE_URL}/api/user`,
@@ -58,7 +60,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
       }
     };
     fetchUserData();
-  }, [comments, email]);
+  }, [email]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     //入力中の値を更新
