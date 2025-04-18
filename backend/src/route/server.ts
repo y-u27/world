@@ -18,7 +18,7 @@ const cors = require("cors");
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://world-map-sns.vercel.app",
+    origin: "https://world-frontend.vercel.app",
     credentials: true,
     optionSuccessStatus: 200,
   })
@@ -34,7 +34,7 @@ app.use("/api", registerApi);
 
 // サーバ起動
 app.listen(port, () => {
-  console.log(`サーバーがhttps://world-map-sns.vercel.appで起動しました`);
+  console.log(`サーバーがhttps://world-frontend.vercel.appで起動しました`);
 });
 
 export default app;
