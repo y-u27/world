@@ -157,6 +157,13 @@ const UserInformation: React.FC<UserInformationProps> = ({
           </Box>
         </CardBody>
       </Card>
+      <Card>
+        <CardBody>
+          <Box>
+            <Text>過去投稿一覧</Text>
+          </Box>
+        </CardBody>
+      </Card>
     </>
   );
 };
