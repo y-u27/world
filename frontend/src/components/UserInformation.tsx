@@ -157,11 +157,18 @@ const UserInformation: React.FC<UserInformationProps> = ({
           </Box>
         </CardBody>
       </Card>
-      <Card>
+      <Card
+        width={["90%", "70%", "50%", "380px"]}
+        mx="auto"
+        mt={["30px", "40px", "50px"]}
+        boxShadow="2xl"
+        borderRadius="lg"
+        padding={["10px", "15px", "20px"]}
+      >
         <CardBody>
-          <Box>
-            <Text>過去投稿一覧</Text>
-          </Box>
+          <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
+            過去投稿一覧
+          </Text>
         </CardBody>
       </Card>
     </>
