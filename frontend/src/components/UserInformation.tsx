@@ -177,7 +177,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
               pt="20px"
               textAlign="center"
               fontFamily="revert"
-              fontSize="3xl"
+              fontSize="2xl"
             >
               過去投稿一覧
             </Text>
