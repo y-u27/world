@@ -28,15 +28,9 @@ type UserInformationProps = {
   countryName: string;
 };
 
-const UserInformation: React.FC<UserInformationProps> = ({
-  id,
-  userId,
-  postId,
-  countryName,
-  imagePath,
-  userName,
-  email,
-}) => {
+const UserInformation: React.FC<UserInformationProps> = (
+  { imagePath, userName, email,id,userId,postId,countryName }
+) => {
   const [comments, setComment] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [tempComment, setTempComment] = useState("");
