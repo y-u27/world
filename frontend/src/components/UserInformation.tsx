@@ -28,9 +28,15 @@ type UserInformationProps = {
   countryName: string;
 };
 
-const UserInformation: React.FC<UserInformationProps> = (
-  { imagePath, userName, email,id,userId,postId,countryName }
-) => {
+const UserInformation: React.FC<UserInformationProps> = ({
+  imagePath,
+  userName,
+  email,
+  id,
+  userId,
+  postId,
+  countryName,
+}) => {
   const [comments, setComment] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [tempComment, setTempComment] = useState("");
@@ -186,12 +192,14 @@ const UserInformation: React.FC<UserInformationProps> = (
             >
               過去投稿一覧
             </Text>
-            <PostLists
-              id={id}
-              userId={userId}
-              postId={postId}
-              countryName={countryName}
-            />
+            <Box>
+              <PostLists
+                id={id}
+                userId={userId}
+                postId={postId}
+                countryName={countryName}
+              />
+            </Box>
           </CardBody>
         </Card>
       </Flex>
