@@ -169,7 +169,6 @@ const UserInformation: React.FC<UserInformationProps> = ({
             </Box>
           </CardBody>
         </Card>
-        <Spacer />
         <Card
           width={["90%", "70%", "50%", "380px"]}
           mx="auto"
