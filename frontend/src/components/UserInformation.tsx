@@ -15,15 +15,24 @@ import UserImage from "./UserImage";
 import { TiArrowBackOutline } from "react-icons/ti";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import PostLists from "./PostLists";
 
 type UserInformationProps = {
   imagePath: string;
   userName: string;
   comment: string;
   email: string;
+  id: number;
+  userId: number;
+  postId: number;
+  countryName: string;
 };
 
 const UserInformation: React.FC<UserInformationProps> = ({
+  id,
+  userId,
+  postId,
+  countryName,
   imagePath,
   userName,
   email,
@@ -183,6 +192,12 @@ const UserInformation: React.FC<UserInformationProps> = ({
             >
               過去投稿一覧
             </Text>
+            <PostLists
+              id={id}
+              userId={userId}
+              postId={postId}
+              countryName={countryName}
+            />
           </CardBody>
         </Card>
       </Flex>
