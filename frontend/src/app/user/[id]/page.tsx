@@ -17,6 +17,9 @@ export default function UserPage({
     image: string;
     email: string;
     comment: string;
+    userId: number;
+    postId: number;
+    countryName: string;
   } | null>(null);
 
   const router = useRouter();
@@ -59,6 +62,9 @@ export default function UserPage({
           image: session.user.image || "/default-avatar.jpeg",
           email: session.user.email,
           comment: userData.comment || "",
+          userId: userData.userId,
+          postId: userData.postId,
+          countryName: userData.countryName,
         });
       } catch (error) {
         console.error("セッション取得エラー:", error);
@@ -90,6 +96,10 @@ export default function UserPage({
         userName={user.name}
         comment={user.comment}
         email={user.email}
+        id={user.id}
+        userId={user.userId}
+        postId={user.postId}
+        countryName={user.countryName}
       />
     </Box>
   );
