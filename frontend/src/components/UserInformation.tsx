@@ -22,20 +22,12 @@ type UserInformationProps = {
   userName: string;
   comment: string;
   email: string;
-  id: number;
-  userId: number;
-  postId: number;
-  countryName: string;
 };
 
 const UserInformation: React.FC<UserInformationProps> = ({
   imagePath,
   userName,
-  email,
-  id,
-  userId,
-  postId,
-  countryName,
+  email
 }) => {
   const [comments, setComment] = useState("");
   const [isEditing, setIsEditing] = useState(false);
@@ -193,12 +185,6 @@ const UserInformation: React.FC<UserInformationProps> = ({
               過去投稿一覧
             </Text>
             <Box>
-              <PostLists
-                id={id}
-                userId={userId}
-                postId={postId}
-                countryName={countryName}
-              />
             </Box>
           </CardBody>
         </Card>
