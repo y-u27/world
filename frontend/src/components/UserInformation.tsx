@@ -22,20 +22,12 @@ type UserInformationProps = {
   userName: string;
   comment: string;
   email: string;
-  id: number;
-  userId: number;
-  postId: number;
-  countryName:string;
 };
 
 const UserInformation: React.FC<UserInformationProps> = ({
   imagePath,
   userName,
-  email,
-  id,
-  userId,
-  postId,
-  countryName
+  email
 }) => {
   const [comments, setComment] = useState("");
   const [isEditing, setIsEditing] = useState(false);
@@ -107,96 +99,67 @@ const UserInformation: React.FC<UserInformationProps> = ({
 
   return (
     <>
-      <Flex>
-        <Card
-          width={["90%", "70%", "50%", "380px"]}
-          mx="auto"
-          mt={["30px", "40px", "50px"]}
-          boxShadow="2xl"
-          borderRadius="lg"
-          padding={["10px", "15px", "20px"]}
-        >
-          <CardBody>
+      <Card
+        width={["90%", "70%", "50%", "380px"]}
+        mx="auto"
+        mt={["30px", "40px", "50px"]}
+        boxShadow="2xl"
+        borderRadius="lg"
+        padding={["10px", "15px", "20px"]}
+      >
+        <CardBody>
+          <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
+            プロフィール
+          </Text>
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            mt={["15px", "20px", "20px"]}
+          >
+            <UserImage
+              imagePath={imagePath}
+              userName={userName}
+              comment={comments}
+            />
             <Text
-              pt="20px"
-              textAlign="center"
-              fontFamily="revert"
-              fontSize="3xl"
-            >
-              プロフィール
-            </Text>
-            <Box
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
-              mt={["15px", "20px", "20px"]}
-            >
-              <UserImage
-                imagePath={imagePath}
-                userName={userName}
-                comment={comments}
-              />
-              <Text
-                mt={["5px", "10px", "10px"]}
-                fontSize={["lg", "xl", "xl"]}
-                fontWeight="bold"
-              >
-                {userName}
-              </Text>
-            </Box>
-            <Box mt={["20px", "30px", "30px"]}>
-              <Box display="flex" justifyContent="center">
-                <Input
-                  value={tempComment}
-                  onChange={handleInputChange}
-                  width="80%"
-                  placeholder="コメントを入力"
-                />
-              </Box>
-              <Box display="flex" justifyContent="center" mt="10px">
-                {isEditing ? (
-                  <Button onClick={handleSaveClick}>保存</Button>
-                ) : (
-                  <Button onClick={handleEditClick}>編集</Button>
-                )}
-              </Box>
-            </Box>
-            <Box
-              display="flex"
-              alignItems="center"
-              mt={["20px", "30px", "30px"]}
+              mt={["5px", "10px", "10px"]}
+              fontSize={["lg", "xl", "xl"]}
               fontWeight="bold"
             >
-              <TiArrowBackOutline />
-              <Link href="/world">
-                <Text ml="5px">地図へに戻る</Text>
-              </Link>
-            </Box>
-          </CardBody>
-        </Card>
-        <Card
-          width={["90%", "70%", "50%", "380px"]}
-          mx="auto"
-          mt={["30px", "40px", "50px"]}
-          boxShadow="2xl"
-          borderRadius="lg"
-          padding={["10px", "15px", "20px"]}
-        >
-          <CardBody>
-            <Text
-              pt="20px"
-              textAlign="center"
-              fontFamily="revert"
-              fontSize="2xl"
-            >
-              過去投稿一覧
+              {userName}
             </Text>
-            <Box>
-              <PostLists id={id} userId={userId} postId={postId} countryName={countryName}/>
+          </Box>
+          <Box mt={["20px", "30px", "30px"]}>
+            <Box display="flex" justifyContent="center">
+              <Input
+                value={tempComment}
+                onChange={handleInputChange}
+                width="80%"
+                placeholder="コメントを入力"
+              />
             </Box>
-          </CardBody>
-        </Card>
-      </Flex>
+            <Box display="flex" justifyContent="center" mt="10px">
+              {isEditing ? (
+                <Button onClick={handleSaveClick}>保存</Button>
+              ) : (
+                <Button onClick={handleEditClick}>編集</Button>
+              )}
+            </Box>
+          </Box>
+          <Box
+            display="flex"
+            alignItems="center"
+            mt={["20px", "30px", "30px"]}
+            fontWeight="bold"
+          >
+            <TiArrowBackOutline />
+            <Link href="/world">
+              <Text ml="5px">地図へに戻る</Text>
+            </Link>
+          </Box>
+        </CardBody>
+      </Card>
     </>
   );
 };
