@@ -94,8 +94,6 @@ const Likes = ({ postId }: { postId: number }) => {
             cache: "no-store",
           }
         );
-        // console.log("ログイン中のユーザー", userId);
-        // console.log("この投稿にいいねしました", postId);
 
         if (!res.ok) throw new Error("いいね状態の取得失敗");
 
