@@ -168,9 +168,9 @@ const WorldMapPage = ({ id, userId, postId }: CountryProps) => {
               console.log(e);
               handleMapClick(e);
               setZoom(5);
-              setOptions((prevoptions) => {
+              setOptions((prevOptions) => {
                 return {
-                  ...prevoptions,
+                  ...prevOptions,
                   draggable: false,
                   scrollwheel: false,
                   disableDefaultUI: false,

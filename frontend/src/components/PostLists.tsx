@@ -118,8 +118,8 @@ const PostLists: React.FC<CountryProps> = ({ countryName }: CountryProps) => {
   useEffect(() => {
     const getPostData = async () => {
       try {
-        const postDatas: PostResponse[] = await fetchAllWorldPost(countryName);
-        setMapPostCards(postDatas || []);
+        const postsData: PostResponse[] = await fetchAllWorldPost(countryName);
+        setMapPostCards(postsData || []);
       } catch (error) {
         console.error("データ取得エラー", error);
         setMapPostCards([]);
