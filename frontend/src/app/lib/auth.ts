@@ -3,7 +3,6 @@ import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "./prismaClient";
 import bcrypt from "bcrypt";
-import { Prisma } from "@prisma/client";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -23,10 +22,6 @@ export const authOptions: NextAuthOptions = {
         image: { label: "Image", type: "image" },
       },
       async authorize(credentials, req) {
-        console.log("入力されてメールアドレス", credentials?.email);
-        console.log("入力されたパスワード", credentials?.password);
-        console.log("設定された画像", credentials?.image);
-
         if (!credentials?.email || !credentials.password) {
           console.log("メールアドレスまたはパスワードが未入力です");
           return null;
@@ -35,7 +30,6 @@ export const authOptions: NextAuthOptions = {
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
         });
-        console.log("データベースで見つかったユーザー", user);
 
         if (
           user &&
