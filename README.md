@@ -10,9 +10,9 @@ https://world-frontend.vercel.app/
 
 ---
 
-### 🎨 アプリデザイン（Figma）<br>
+### 【🎨 アプリデザイン（Figma）】<br>
 
-![デザイン画像](./frontend/public/sample/スクリーンショット%202025-04-18%200.28.58.png)
+### ![デザイン画像](./frontend/public/sample/スクリーンショット%202025-04-18%200.28.58.png)
 
 ---
 
@@ -46,7 +46,7 @@ https://world-frontend.vercel.app/
 4.  「投稿一覧」の「投稿」ボタンから実際に投稿することができます。
 ```
 
-## アプリ操作デモ<br>
+### 【アプリ操作デモ】<br>
 
 ![アプリの操作デモ](/frontend/public/demo/output.gif)
 
