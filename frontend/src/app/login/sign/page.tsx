@@ -1,12 +1,7 @@
 import SignUp from "../../../components/SignUp";
-import { Box } from "@chakra-ui/react";
 
 const signInPage = () => {
-  return (
-    <Box>
-      <SignUp />
-    </Box>
-  );
+  return <SignUp />;
 };
 
 export default signInPage;
