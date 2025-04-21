@@ -45,6 +45,13 @@ const PostCreate = () => {
   const { data: session } = useSession();
   const searchParams = useSearchParams();
   const [selectedCountry, setSelectedCountry] = useState<string>("");
+  const [createPosts, setCreatePosts] = useState<{
+    title: string;
+    content: string;
+  }>({
+    title: "",
+    content: "",
+  });
 
   useEffect(() => {
     const country = searchParams.get("country");
@@ -78,14 +85,7 @@ const PostCreate = () => {
       });
     }
 
-    const createPosts = await createPost(
-      selectedCountry,
-      titleRef.current?.value,
-      contentRef.current?.value,
-      session?.user.id
-    );
-
-    if (createPosts === "") {
+    if (!createPosts.title || !createPosts.content) {
       toast({
         title: "投稿失敗",
         description: "投稿に失敗しました",
@@ -94,6 +94,13 @@ const PostCreate = () => {
         isClosable: true,
       });
     }
+
+    await createPost(
+      selectedCountry,
+      titleRef.current?.value,
+      contentRef.current?.value,
+      session?.user.id
+    );
 
     toast({
       title: "投稿完了！",
