@@ -11,8 +11,6 @@ const Header = () => {
   const [userId, setUserId] = useState<number | null>(null);
 
   useEffect(() => {
-    console.log("セッション情報", session);
-
     const fetchAvatarUrl = async () => {
       if (session?.user?.email) {
         const response = await fetch(
@@ -26,10 +24,8 @@ const Header = () => {
         const data = await response.json();
 
         if (!data.image) {
-          console.error("画像URL取得に失敗");
           setAvatarUrl("/default-avatar.jpeg");
         } else {
-          console.log("画像URL", data.image);
           setAvatarUrl(data.image);
           setUserId(data.id);
         }
