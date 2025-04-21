@@ -85,7 +85,7 @@ const PostCreate = () => {
       session?.user.id
     );
 
-    if (!createPosts) {
+    if (createPosts === null) {
       toast({
         title: "投稿失敗",
         description: "投稿に失敗しました",
