@@ -103,9 +103,10 @@ const WorldMapPage = ({ id, userId, postId }: CountryProps) => {
     maxWidth: 100,
   };
 
-  const mapContainerStyle = isLargerThan768
-    ? { width: "100vw", height: "95vh" }
-    : { width: "100vw", height: "70vh" };
+  const mapContainerStyle = {
+    width: "100vw",
+    height: "93vh",
+  };
 
   const mapStyle = {
     background: "white",
