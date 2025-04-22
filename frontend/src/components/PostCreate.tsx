@@ -45,13 +45,13 @@ const PostCreate = () => {
   const { data: session } = useSession();
   const searchParams = useSearchParams();
   const [selectedCountry, setSelectedCountry] = useState<string>("");
-  const [createPosts, setCreatePosts] = useState<{
-    title: string;
-    content: string;
-  }>({
-    title: "",
-    content: "",
-  });
+  // const [createPosts, setCreatePosts] = useState<{
+  //   title: string;
+  //   content: string;
+  // }>({
+  //   title: "",
+  //   content: "",
+  // });
 
   useEffect(() => {
     const country = searchParams.get("country");
@@ -104,7 +104,7 @@ const PostCreate = () => {
       router.push("/world");
       router.refresh();
     } catch (error) {
-      if (!createPosts.title || !createPosts.content) {
+      if (!titleRef || !contentRef) {
         toast({
           title: "投稿失敗",
           description: "投稿に失敗しました",
