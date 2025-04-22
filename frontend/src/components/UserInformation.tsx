@@ -24,7 +24,7 @@ type UserInformationProps = {
 const UserInformation: React.FC<UserInformationProps> = ({
   imagePath,
   userName,
-  email
+  email,
 }) => {
   const [comments, setComment] = useState("");
   const [isEditing, setIsEditing] = useState(false);
@@ -49,8 +49,6 @@ const UserInformation: React.FC<UserInformationProps> = ({
   //       );
   //       const data = await res.json();
   //       if (res.ok) {
-  //         setComment(data.comment || "");
-  //         setTempComment(data.comment || "");
   //       } else {
   //         console.error(data.message);
   //       }
@@ -79,7 +77,10 @@ const UserInformation: React.FC<UserInformationProps> = ({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ comment: tempComment, email: email }),
       });
+      const data = await res.json();
       if (res.ok) {
+        setComment(data.comment || "");
+        setTempComment(data.comment || "");
         setComment(tempComment);
         setIsEditing(false);
       }
