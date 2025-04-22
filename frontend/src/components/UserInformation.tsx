@@ -5,9 +5,7 @@ import {
   Button,
   Card,
   CardBody,
-  Flex,
   Input,
-  Spacer,
   Text,
   useToast,
 } from "@chakra-ui/react";
@@ -15,7 +13,6 @@ import UserImage from "./UserImage";
 import { TiArrowBackOutline } from "react-icons/ti";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import PostLists from "./PostLists";
 
 type UserInformationProps = {
   imagePath: string;
@@ -35,34 +32,34 @@ const UserInformation: React.FC<UserInformationProps> = ({
   const toast = useToast();
 
   //ユーザー情報取得
-  useEffect(() => {
-    const fetchUserData = async () => {
-      if (!email) return;
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     if (!email) return;
 
-      try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/user`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email }),
-          }
-        );
-        const data = await res.json();
-        if (res.ok) {
-          setComment(data.comment || "");
-          setTempComment(data.comment || "");
-        } else {
-          console.error(data.message);
-        }
-      } catch (error) {
-        console.error("ユーザーデータ取得に失敗", error);
-      }
-    };
-    fetchUserData();
-  }, [email]);
+  //     try {
+  //       const res = await fetch(
+  //         `${process.env.NEXT_PUBLIC_BASE_URL}/api/user`,
+  //         {
+  //           method: "POST",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //           body: JSON.stringify({ email }),
+  //         }
+  //       );
+  //       const data = await res.json();
+  //       if (res.ok) {
+  //         setComment(data.comment || "");
+  //         setTempComment(data.comment || "");
+  //       } else {
+  //         console.error(data.message);
+  //       }
+  //     } catch (error) {
+  //       console.error("ユーザーデータ取得に失敗", error);
+  //     }
+  //   };
+  //   fetchUserData();
+  // }, [email]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     //入力中の値を更新
