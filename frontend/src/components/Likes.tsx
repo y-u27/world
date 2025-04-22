@@ -1,22 +1,7 @@
-import { getLikes } from "../app/types/postType";
 import { Box, IconButton } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { GrLike } from "react-icons/gr";
-
-async function fetchAllLikes(
-  userId: number,
-  postId: number
-): Promise<getLikes[]> {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/likes?userId=${userId}&postId=${postId}`,
-    { cache: "no-cache" }
-  );
-  if (!res.ok) {
-    throw Error(`Error ${res.status}:いいねの取得失敗`);
-  }
-  return res.json();
-}
 
 const createLikes = async (userId: number, postId: number) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/likes`, {
