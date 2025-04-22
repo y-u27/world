@@ -12,7 +12,7 @@ import {
 import UserImage from "./UserImage";
 import { TiArrowBackOutline } from "react-icons/ti";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type UserInformationProps = {
   imagePath: string;
@@ -31,35 +31,6 @@ const UserInformation: React.FC<UserInformationProps> = ({
   const [isEditing, setIsEditing] = useState(false);
   const [tempComment, setTempComment] = useState(comment);
   const toast = useToast();
-
-  //ユーザー情報取得
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     if (!email) return;
-
-  //     try {
-  //       const res = await fetch(
-  //         `${process.env.NEXT_PUBLIC_BASE_URL}/api/user`,
-  //         {
-  //           method: "POST",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //           body: JSON.stringify({ email }),
-  //         }
-  //       );
-  //       const data = await res.json();
-  //       if (res.ok) {
-  //       } else {
-  //         console.error(data.message);
-  //       }
-  //     } catch (error) {
-  //       console.error("ユーザーデータ取得に失敗", error);
-  //     }
-  //   };
-  //   fetchUserData();
-  // }, [email]);
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     //入力中の値を更新
     setTempComment(e.target.value);
@@ -78,10 +49,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ comment: tempComment, email: email }),
       });
-      const data = await res.json();
       if (res.ok) {
-        // setComment(data.comment || "");
-        // setTempComment(data.comment || "");
         setComment(tempComment);
         setIsEditing(false);
       }
