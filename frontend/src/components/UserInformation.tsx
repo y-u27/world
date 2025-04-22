@@ -24,11 +24,12 @@ type UserInformationProps = {
 const UserInformation: React.FC<UserInformationProps> = ({
   imagePath,
   userName,
+  comment,
   email,
 }) => {
-  const [comments, setComment] = useState("");
+  const [comments, setComment] = useState(comment);
   const [isEditing, setIsEditing] = useState(false);
-  const [tempComment, setTempComment] = useState("");
+  const [tempComment, setTempComment] = useState(comment);
   const toast = useToast();
 
   //ユーザー情報取得
@@ -79,8 +80,8 @@ const UserInformation: React.FC<UserInformationProps> = ({
       });
       const data = await res.json();
       if (res.ok) {
-        setComment(data.comment || "");
-        setTempComment(data.comment || "");
+        // setComment(data.comment || "");
+        // setTempComment(data.comment || "");
         setComment(tempComment);
         setIsEditing(false);
       }
