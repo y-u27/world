@@ -84,36 +84,23 @@ const PostCreate = () => {
         isClosable: true,
       });
     }
+    await createPost(
+      selectedCountry,
+      titleRef.current?.value,
+      contentRef.current?.value,
+      session?.user.id
+    );
 
-    try {
-      await createPost(
-        selectedCountry,
-        titleRef.current?.value,
-        contentRef.current?.value,
-        session?.user.id
-      );
+    toast({
+      title: "投稿完了！",
+      description: "投稿が完了しました",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
 
-      toast({
-        title: "投稿完了！",
-        description: "投稿が完了しました",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-      });
-
-      router.push("/world");
-      router.refresh();
-    } catch (error) {
-      if (!titleRef || !contentRef) {
-        toast({
-          title: "投稿失敗",
-          description: "投稿に失敗しました",
-          status: "error",
-          duration: 3000,
-          isClosable: true,
-        });
-      }
-    }
+    router.push("/world");
+    router.refresh();
   };
 
   return (
@@ -143,7 +130,7 @@ const PostCreate = () => {
                   placeholder="タイトル"
                   width="130%"
                   maxWidth="500px"
-                  ref={titleRef}
+                  ref={titleRef ? titleRef : null}
                 />
                 <Input
                   type="text"
@@ -151,7 +138,7 @@ const PostCreate = () => {
                   height="200px"
                   width="130%"
                   maxWidth="500px"
-                  ref={contentRef}
+                  ref={contentRef ? contentRef : null}
                 />
               </VStack>
               <Box display="flex" justifyContent="center" mr="18%" mt="5%">
