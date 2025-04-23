@@ -8,10 +8,10 @@ const router = Router();
 router.get(
   "/country-name/:countryname",
   async (req: Request, res: Response): Promise<void> => {
-    const { countryname } = req.params;
+    const { countryName } = req.params;
 
     // countrynameが空欄の場合
-    if (!countryname) {
+    if (!countryName) {
       res
         .status(400)
         .json({ success: false, message: "国名が指定されていません" });
@@ -20,7 +20,7 @@ router.get(
 
     // 各国名の投稿データ取得
     const countryNameData = await prisma.post.findMany({
-      where: { countryName: countryname },
+      where: { countryName: countryName },
     });
 
     // countryNameDataではない、または、countryNameDataの長さが0の場合
