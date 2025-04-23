@@ -48,7 +48,7 @@ router.patch(
       const { title, content } = req.body;
 
       const post = await prisma.post.findUnique({ where: { id } });
-      if (post?.userId !== req.body.userId) {
+      if (!post || post?.userId !== Number(req.body.userId)) {
         res.status(403).json({ message: "編集できません" });
         return;
       }
@@ -85,7 +85,7 @@ router.delete(
       const id = parseInt(req.params.id);
 
       const deletePost = await prisma.post.findUnique({ where: { id } });
-      if (deletePost?.userId !== req.body.userId) {
+      if (!deletePost || deletePost?.userId !== Number(req.body.userId)) {
         res.status(403).json({ message: "削除できません" });
         return;
       }
