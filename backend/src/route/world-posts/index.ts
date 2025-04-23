@@ -1,6 +1,5 @@
 // GET→〜/api/world-posts：投稿の一覧を取得する
 // POST→〜/api/world-posts：投稿を新規作成する
-// cors設定を追加する
 import prisma from "../../../lib/prismaClient";
 import { Request, Response, Router } from "express";
 
