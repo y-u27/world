@@ -1,3 +1,4 @@
+// import express
 import worldPostApi from "./world-posts/index";
 import worldPostListApi from "./world-posts/[id]/index";
 import userApi from "./user/index";
@@ -18,9 +19,9 @@ const cors = require("cors");
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://world-frontend.vercel.app",
+    origin: `${process.env.NEXT_PUBLIC_BASE_URL}`,
     credentials: true,
-    optionSuccessStatus: 200,
+    optionsSuccessStatus: 200,
   })
 );
 
@@ -34,7 +35,7 @@ app.use("/api", registerApi);
 
 // サーバ起動
 app.listen(port, () => {
-  console.log(`サーバーがhttps://world-frontend.vercel.appで起動しました`);
+  console.log(`サーバーが${process.env.NEXT_PUBLIC_BASE_URL}で起動しました`);
 });
 
 export default app;
