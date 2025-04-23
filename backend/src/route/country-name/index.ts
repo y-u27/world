@@ -3,12 +3,10 @@ import prisma from "../../../lib/prismaClient";
 import { Request, Response, Router } from "express";
 
 const router = Router();
-const cors = require("cors");
 
 // 国名取得API
 router.get(
   "/country-name/:countryname",
-  cors(),
   async (req: Request, res: Response): Promise<void> => {
     const { countryname } = req.params;
 

@@ -7,7 +7,6 @@ const cors = require("cors");
 // ユーザー情報
 router.post(
   "/user",
-  cors(),
   async (req: Request, res: Response): Promise<void> => {
     const email =
       typeof req.body.email === "string" ? req.body.email : undefined;
@@ -44,7 +43,6 @@ router.post(
 // コメントを更新するAPI
 router.patch(
   "/user",
-  cors(),
   async (req: Request, res: Response): Promise<void> => {
     const email =
       typeof req.body.email === "string" ? req.body.email : undefined;

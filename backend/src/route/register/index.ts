@@ -3,11 +3,9 @@ import { Request, Response, Router } from "express";
 import bcrypt from "bcrypt";
 
 const router = Router();
-const cors = require("cors");
 
 router.post(
   "/register",
-  cors(),
   async (req: Request, res: Response): Promise<void> => {
     console.log("受信データ", req.body);
     const { name, email, password, image } = req.body;

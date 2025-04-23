@@ -2,7 +2,6 @@ import prisma from "../../../lib/prismaClient";
 import { Request, Response, Router } from "express";
 
 const router = Router();
-const cors = require("cors");
 
 // いいねを取得するGET API
 router.get("/likes", async (req: Request, res: Response): Promise<void> => {
@@ -28,7 +27,6 @@ router.get("/likes", async (req: Request, res: Response): Promise<void> => {
 // いいねを追加するPOST API
 router.post(
   "/likes",
-  cors(),
   async (req: Request, res: Response): Promise<void> => {
     // リクエストボディからデータを取得
     const userId = Number(req.body.userId);
@@ -72,7 +70,6 @@ router.post(
 // いいねを削除するDELETE API
 router.delete(
   "/likes",
-  cors(),
   async (req: Request, res: Response): Promise<void> => {
     const userId = req.body.userId ? Number(req.body.userId) : null;
     const postId = req.body.postId ? Number(req.body.postId) : null;

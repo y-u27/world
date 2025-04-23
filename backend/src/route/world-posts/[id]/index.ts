@@ -2,12 +2,10 @@ import { Request, Response, Router } from "express";
 import prisma from "../../../../lib/prismaClient";
 
 const router = Router();
-const cors = require("cors");
 
 // 〜/api/worldPosts/[id]：特定の投稿を取得する
 router.get(
   "/world-posts/:id",
-  cors(),
   async (req: Request, res: Response): Promise<void> => {
     try {
       const id = parseInt(req.params.id);
@@ -44,7 +42,6 @@ router.get(
 // 〜/api/worldPosts/[id]：特定の投稿を更新する
 router.patch(
   "/world-posts/:id",
-  cors(),
   async (req: Request, res: Response): Promise<void> => {
     try {
       const id = parseInt(req.params.id);
@@ -84,7 +81,6 @@ router.patch(
 // 〜/api/worldPosts/[id]：特定の投稿を削除する
 router.delete(
   "/world-posts/:id",
-  cors(),
   async (req: Request, res: Response): Promise<void> => {
     try {
       const id = parseInt(req.params.id);

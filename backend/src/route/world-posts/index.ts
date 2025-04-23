@@ -5,12 +5,10 @@ import prisma from "../../../lib/prismaClient";
 import { Request, Response, Router } from "express";
 
 const router = Router();
-const cors = require("cors");
 
 // 全投稿データを取得
 router.get(
   "/world-posts",
-  cors(),
   async (req: Request, res: Response): Promise<void> => {
     // クエリパラメータから国名を取得
     const countryName = req.query["country-name"] as string | undefined;
@@ -51,7 +49,6 @@ router.get(
 // 投稿データの作成
 router.post(
   "/world-posts",
-  cors(),
   async (req: Request, res: Response): Promise<void> => {
     const { title, content, countryName, userId } = req.body;
 
