@@ -45,11 +45,10 @@ router.patch(
   async (req: Request, res: Response): Promise<void> => {
     try {
       const id = parseInt(req.params.id);
-      const userId = req.body.userId;
       const { title, content } = req.body;
 
       const post = await prisma.post.findUnique({ where: { id } });
-      if (post?.userId !== userId) {
+      if (post?.userId !== req.body.userId) {
         res.status(403).json({ message: "編集できません" });
         return;
       }
@@ -84,10 +83,9 @@ router.delete(
   async (req: Request, res: Response): Promise<void> => {
     try {
       const id = parseInt(req.params.id);
-      const userId = req.body.userId;
 
       const deletePost = await prisma.post.findUnique({ where: { id } });
-      if (deletePost?.userId !== userId) {
+      if (deletePost?.userId !== req.body.userId) {
         res.status(403).json({ message: "削除できません" });
         return;
       }
