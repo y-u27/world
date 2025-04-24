@@ -2,7 +2,6 @@ import prisma from "../../../lib/prismaClient";
 import { Request, Response, Router } from "express";
 
 const router = Router();
-const cors = require("cors");
 
 // ユーザー情報
 router.post(

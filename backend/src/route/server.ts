@@ -9,13 +9,10 @@ import registerApi from "./register/index";
 import dotenv from "dotenv";
 dotenv.config();
 
-// const express = require("express");
-
 console.log("サーバー起動中...");
 
 const app = express();
 const port = 5001;
-// const cors = require("cors");
 
 app.use(express.json());
 app.use(
