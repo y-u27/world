@@ -1,4 +1,4 @@
-// import express
+import express from "express";
 import worldPostApi from "./world-posts/index";
 import worldPostListApi from "./world-posts/[id]/index";
 import userApi from "./user/index";
@@ -8,7 +8,7 @@ import registerApi from "./register/index";
 import dotenv from "dotenv";
 dotenv.config();
 
-const express = require("express");
+// const express = require("express");
 
 console.log("サーバー起動中...");
 
