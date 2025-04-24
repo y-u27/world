@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import worldPostApi from "./world-posts/index";
 import worldPostListApi from "./world-posts/[id]/index";
 import userApi from "./user/index";
@@ -14,7 +15,7 @@ console.log("サーバー起動中...");
 
 const app = express();
 const port = 5001;
-const cors = require("cors");
+// const cors = require("cors");
 
 app.use(express.json());
 app.use(
