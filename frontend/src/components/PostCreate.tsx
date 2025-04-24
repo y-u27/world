@@ -45,13 +45,6 @@ const PostCreate = () => {
   const { data: session } = useSession();
   const searchParams = useSearchParams();
   const [selectedCountry, setSelectedCountry] = useState<string>("");
-  // const [createPosts, setCreatePosts] = useState<{
-  //   title: string;
-  //   content: string;
-  // }>({
-  //   title: "",
-  //   content: "",
-  // });
 
   useEffect(() => {
     const country = searchParams.get("country");
@@ -63,6 +56,9 @@ const PostCreate = () => {
 
   const handleMapPost = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const title = titleRef.current?.value?.trim();
+    const content = contentRef.current?.value?.trim();
 
     if (!session?.user?.id) {
       toast({
@@ -83,15 +79,10 @@ const PostCreate = () => {
         duration: 5000,
         isClosable: true,
       });
+      return;
     }
-    await createPost(
-      selectedCountry,
-      titleRef.current?.value,
-      contentRef.current?.value,
-      session?.user.id
-    );
 
-    if (!createPost) {
+    if (!title || !content) {
       toast({
         title: "投稿失敗",
         description: "タイトルと内容を入力してください",
@@ -99,7 +90,16 @@ const PostCreate = () => {
         duration: 5000,
         isClosable: true,
       });
-    } else {
+      return;
+    }
+
+    try {
+      const result = await createPost(
+        selectedCountry,
+        title,
+        content,
+        session?.user.id
+      );
       toast({
         title: "投稿完了！",
         description: "投稿が完了しました",
@@ -110,6 +110,14 @@ const PostCreate = () => {
 
       router.push("/world");
       router.refresh();
+    } catch (error) {
+      toast({
+        title: "投稿失敗",
+        description: "投稿処理に失敗",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
 
