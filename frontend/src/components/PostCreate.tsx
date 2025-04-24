@@ -84,15 +84,22 @@ const PostCreate = () => {
         isClosable: true,
       });
     }
+    await createPost(
+      selectedCountry,
+      titleRef.current?.value,
+      contentRef.current?.value,
+      session?.user.id
+    );
 
-    try {
-      await createPost(
-        selectedCountry,
-        titleRef.current?.value,
-        contentRef.current?.value,
-        session?.user.id
-      );
-
+    if (!createPost) {
+      toast({
+        title: "投稿失敗",
+        description: "タイトルと内容を入力してください",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    } else {
       toast({
         title: "投稿完了！",
         description: "投稿が完了しました",
@@ -102,17 +109,6 @@ const PostCreate = () => {
       });
 
       router.push("/world");
-      router.refresh();
-    } catch (error) {
-      toast({
-        title: "投稿失敗",
-        description: "タイトル・内容を入力してください",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
-
-      router.push("/create");
       router.refresh();
     }
   };
