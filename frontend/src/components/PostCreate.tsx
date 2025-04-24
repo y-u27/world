@@ -94,7 +94,7 @@ const PostCreate = () => {
     }
 
     try {
-      const result = await createPost(
+      await createPost(
         selectedCountry,
         title,
         content,
