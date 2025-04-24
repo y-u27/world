@@ -121,7 +121,7 @@ const WorldMapPage = ({ id, userId, postId }: CountryProps) => {
   // →stateを使ってボタンを表示する
   const [zoomPostList, setZoomPostList] = useState(false);
   // ↓国名のウィンドウを閉じた時の「投稿一覧ボタン」を非表示にするstate
-  const [zoomPostListHidden, setZoomPostListHidden] = useState(true);
+  // const [zoomPostListHidden, setZoomPostListHidden] = useState(true);
 
   const handleZoom = () => {
     setZoomPostList(!zoomPostList);
@@ -200,7 +200,7 @@ const WorldMapPage = ({ id, userId, postId }: CountryProps) => {
                     setSelectedCountry(null);
                     setOptions(DEFAULT_OPTIONS);
                     setZoom(2.3);
-                    setZoomPostListHidden(false);
+                    // setZoomPostListHidden(false);
                   }}
                 >
                   <Box style={mapStyle}>{country.name}</Box>
