@@ -9,7 +9,7 @@ router.get("/likes", async (req: Request, res: Response): Promise<void> => {
   const postId = Number(req.query.postId);
 
   if (!userId || !postId) {
-    res.status(400).json({ error: "userIdまたはpostIdが不足しています" });
+    res.status(400).json({ error: "userId・postIdが不足しています" });
     return;
   }
 
