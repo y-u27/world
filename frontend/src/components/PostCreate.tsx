@@ -148,7 +148,7 @@ const PostCreate = () => {
                   placeholder="タイトル"
                   width="130%"
                   maxWidth="500px"
-                  ref={titleRef ? titleRef : null}
+                  ref={titleRef}
                 />
                 <Input
                   type="text"
@@ -156,7 +156,7 @@ const PostCreate = () => {
                   height="200px"
                   width="130%"
                   maxWidth="500px"
-                  ref={contentRef ? contentRef : null}
+                  ref={contentRef}
                 />
               </VStack>
               <Box display="flex" justifyContent="center" mr="18%" mt="5%">
