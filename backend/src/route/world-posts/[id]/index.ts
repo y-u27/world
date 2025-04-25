@@ -39,22 +39,16 @@ router.get(
   }
 );
 
-// 〜/api/worldPosts/[id]：特定の投稿を更新する
+// 〜/api/worldPosts/[id]：投稿を更新する
 router.patch(
   "/world-posts/:id",
   async (req: Request, res: Response): Promise<void> => {
     try {
       const id = parseInt(req.params.id);
-      const { title, content } = req.body;
-
-      const post = await prisma.post.findUnique({ where: { id } });
-      if (!post || post?.userId !== Number(req.body.userId)) {
-        res.status(403).json({ message: "編集できません" });
-        return;
-      }
+      const { title, content, userId } = req.body;
 
       const newWorldPostDataId = await prisma.post.update({
-        where: { id },
+        where: { id, userId },
         data: { title, content },
       });
 
@@ -77,21 +71,16 @@ router.patch(
   }
 );
 
-// 〜/api/worldPosts/[id]：特定の投稿を削除する
+// 〜/api/worldPosts/[id]：投稿を削除する
 router.delete(
   "/world-posts/:id",
   async (req: Request, res: Response): Promise<void> => {
     try {
       const id = parseInt(req.params.id);
-
-      const deletePost = await prisma.post.findUnique({ where: { id } });
-      if (!deletePost || deletePost?.userId !== Number(req.body.userId)) {
-        res.status(403).json({ message: "削除できません" });
-        return;
-      }
+      const userId = req.body.userId;
 
       const worldPostDataDelete = await prisma.post.delete({
-        where: { id },
+        where: { id, userId },
       });
 
       if (!worldPostDataDelete) {
