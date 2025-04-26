@@ -19,24 +19,29 @@ import { TiArrowBackOutline } from "react-icons/ti";
 
 interface editProps {
   id: number;
+  userId: number;
 }
 
 const editPost = async (
   title: string | undefined,
   content: string | undefined,
-  id: number
+  id: number,
+  userId: number
 ) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts/${id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ title, content }),
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts/${id}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title, content, userId }),
+    }
+  );
   return res.json();
 };
 
-const PostEdit = ({ id }: editProps) => {
+const PostEdit = ({ id, userId }: editProps) => {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLInputElement | null>(null);
   const toast = useToast();
@@ -56,7 +61,8 @@ const PostEdit = ({ id }: editProps) => {
     await editPost(
       titleRef.current?.value,
       contentRef.current?.value,
-      id
+      id,
+      userId
     );
 
     router.push("/world");
@@ -64,7 +70,12 @@ const PostEdit = ({ id }: editProps) => {
 
   return (
     <>
-      <Card width={["90%", "70%", "50%", "380px"]} mx="auto" mt="50px" boxShadow="2xl">
+      <Card
+        width={["90%", "70%", "50%", "380px"]}
+        mx="auto"
+        mt="50px"
+        boxShadow="2xl"
+      >
         <CardBody>
           <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
             編集フォーム
