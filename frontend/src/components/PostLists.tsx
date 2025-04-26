@@ -75,12 +75,16 @@ const PostLists: React.FC<CountryProps> = ({ countryName }: CountryProps) => {
     md: { left: "90%", top: "8%" },
   });
 
-  const handleDeletePost = async (id: number) => {
+  const handleDeletePost = async (id: number, userId: number) => {
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts/${id}`,
         {
           method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id, userId }),
         }
       );
 
@@ -182,7 +186,9 @@ const PostLists: React.FC<CountryProps> = ({ countryName }: CountryProps) => {
                           </Link>
                           <MenuItem
                             icon={<DeleteIcon />}
-                            onClick={() => handleDeletePost(mapPost.id)}
+                            onClick={() =>
+                              handleDeletePost(mapPost.id, mapPost.userId)
+                            }
                           >
                             削除
                           </MenuItem>
