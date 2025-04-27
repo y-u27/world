@@ -1,19 +1,12 @@
+import { getServerSession } from "next-auth";
 import WorldMapPage from "../../components/WorldMapPage";
+import { authOptions } from "../lib/auth";
+import { redirect } from "next/navigation";
 
-const WorldTopPage = async ({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}) => {
-  const { id, userId, postId } = await searchParams;
-
-  return (
-    <WorldMapPage
-      id={Number(id)}
-      userId={Number(userId)}
-      postId={Number(postId)}
-    />
-  );
+const WorldTopPage = async () => {
+  const session = await getServerSession(authOptions);
+  if (!session) return redirect("/login");
+  return <WorldMapPage userId={session.user.id} />;
 };
 
 export default WorldTopPage;

@@ -45,10 +45,8 @@ interface ApiResponse {
 }
 
 type CountryProps = {
-  id: number;
   countryName: string;
   userId: number;
-  postId: number;
 };
 
 // ↓全投稿データ取得
@@ -64,7 +62,10 @@ async function fetchAllWorldPost(country: string): Promise<PostResponse[]> {
   return postData.data;
 }
 
-const PostLists: React.FC<CountryProps> = ({ countryName }: CountryProps) => {
+const PostLists: React.FC<CountryProps> = ({
+  userId,
+  countryName,
+}: CountryProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<PostResponse[]>([]);
@@ -75,7 +76,7 @@ const PostLists: React.FC<CountryProps> = ({ countryName }: CountryProps) => {
     md: { left: "90%", top: "8%" },
   });
 
-  const handleDeletePost = async (id: number, userId: number) => {
+  const handleDeletePost = async (id: number) => {
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts/${id}`,
@@ -84,7 +85,7 @@ const PostLists: React.FC<CountryProps> = ({ countryName }: CountryProps) => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ id, userId }),
+          body: JSON.stringify({ id }),
         }
       );
 
@@ -173,28 +174,30 @@ const PostLists: React.FC<CountryProps> = ({ countryName }: CountryProps) => {
                     </Box>
                     <Spacer />
                     <Box>
-                      <Menu>
-                        <MenuButton
-                          as={IconButton}
-                          aria-label="Options"
-                          icon={<HamburgerIcon />}
-                          variant="outline"
-                        />
-                        <MenuList>
-                          <Link href={`/world/edit/${mapPost.id}`}>
-                            <MenuItem icon={<EditIcon />}>編集</MenuItem>
-                          </Link>
-                          <MenuItem
-                            icon={<DeleteIcon />}
-                            onClick={() =>
-                              handleDeletePost(mapPost.id, mapPost.userId)
-                            }
-                          >
-                            削除
-                          </MenuItem>
-                          <MenuItem icon={<CloseIcon />}>閉じる</MenuItem>
-                        </MenuList>
-                      </Menu>
+                      {mapPost.userId === userId && (
+                        <Box>
+                          <Menu>
+                            <MenuButton
+                              as={IconButton}
+                              aria-label="Options"
+                              icon={<HamburgerIcon />}
+                              variant="outline"
+                            />
+                            <MenuList>
+                              <Link href={`/world/edit/${mapPost.id}`}>
+                                <MenuItem icon={<EditIcon />}>編集</MenuItem>
+                              </Link>
+                              <MenuItem
+                                icon={<DeleteIcon />}
+                                onClick={() => handleDeletePost(mapPost.id)}
+                              >
+                                削除
+                              </MenuItem>
+                              <MenuItem icon={<CloseIcon />}>閉じる</MenuItem>
+                            </MenuList>
+                          </Menu>
+                        </Box>
+                      )}
                     </Box>
                   </Flex>
                 </CardHeader>
