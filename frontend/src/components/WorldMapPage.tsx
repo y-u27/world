@@ -51,8 +51,6 @@ const WorldMapPage = ({ userId }: Props) => {
   >([]);
   // ↓マップのオプション
   const [options, setOptions] = useState(DEFAULT_OPTIONS);
-  // ↓国名のstate
-  const [countryNames, setCountryNames] = useState("");
   const router = useRouter();
 
   // メディアクエリ（レスポンシブ対応）
@@ -75,7 +73,6 @@ const WorldMapPage = ({ userId }: Props) => {
         // ②さらにcountryの場合、国の住所・緯度経度が条件に一つでも合う国にマーカーと上部に国名を表示させる
         if (country) {
           setSelectedCountry(country.formatted_address);
-          setCountryNames(country.formatted_address);
           setMapCenter({ lat, lng });
           // ↓以前にマーカーを表示した国が以前の国名と国の住所と一致しているかを判定している?
           setMarkedCountries((prevMarkedCountries) => {

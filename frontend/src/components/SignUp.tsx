@@ -21,7 +21,6 @@ import { v4 as uuidv4 } from "uuid";
 import { signIn } from "next-auth/react";
 
 const SignUp = () => {
-  const [file, setFile] = useState<File | null>(null);
   const [selectImageUrl, setSelectImageUrl] = useState<string | null>(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -167,7 +166,6 @@ const SignUp = () => {
                 type="file"
                 onChange={(e) => {
                   const selectedFiles = e.target.files?.[0] || null;
-                  setFile(selectedFiles);
                   if (selectedFiles) {
                     handleUploadImage(selectedFiles);
                   }
