@@ -13,8 +13,8 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useRef } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { TiArrowBackOutline } from "react-icons/ti";
 
 interface editProps {
@@ -23,20 +23,20 @@ interface editProps {
 }
 
 const editPost = async (
+  countryName: string | undefined,
   title: string | undefined,
   content: string | undefined,
   id: number,
-  userId: number,
-  countryName: string | undefined
+  userId: number
 ) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts/${id}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts/${id}/${countryName}`,
     {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ title, content, userId, countryName }),
+      body: JSON.stringify({ countryName, title, content, userId }),
     }
   );
   return res.json();
@@ -45,30 +45,73 @@ const editPost = async (
 const PostEdit = ({ id, userId }: editProps) => {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLInputElement | null>(null);
-  const countryNameRef = useRef<HTMLInputElement | null>(null);
+  const [selectedCountry, setSelectedCountry] = useState<string>("");
+  const searchParams = useSearchParams();
   const toast = useToast();
   const router = useRouter();
+
+  useEffect(() => {
+    const country = searchParams.get("country");
+
+    if (country) {
+      setSelectedCountry(country);
+    }
+  }, [searchParams, setSelectedCountry]);
 
   const handleMapPost = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    toast({
-      title: "編集完了！",
-      description: "編集が完了しました",
-      status: "success",
-      duration: 5000,
-      isClosable: true,
-    });
+    const title = titleRef.current?.value?.trim();
+    const content = contentRef.current?.value?.trim();
 
-    await editPost(
-      titleRef.current?.value,
-      contentRef.current?.value,
-      id,
-      userId,
-      countryNameRef.current?.value
-    );
+    if (!selectedCountry) {
+      toast({
+        title: "エラー",
+        description: "国名が選択されていません",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
 
-    router.push("/world");
+    if (!title || !content) {
+      toast({
+        title: "投稿失敗",
+        description: "タイトルと内容を入力してください",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
+
+    try {
+      await editPost(
+        selectedCountry,
+        titleRef.current?.value,
+        contentRef.current?.value,
+        id,
+        userId
+      );
+      toast({
+        title: "編集完了！",
+        description: "編集が完了しました",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+
+      router.push("/world");
+    } catch (error) {
+      toast({
+        title: "編集失敗",
+        description: "投稿の編集処理に失敗",
+        status: "error",
+        duration: 500,
+        isClosable: true,
+      });
+    }
   };
 
   return (
@@ -91,8 +134,7 @@ const PostEdit = ({ id, userId }: editProps) => {
                   placeholder="国名"
                   width="130%"
                   maxWidth="500px"
-                  ref={contentRef}
-                  mt="5%"
+                  value={selectedCountry}
                 />
                 <Input
                   type="text"
