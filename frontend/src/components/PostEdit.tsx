@@ -26,7 +26,8 @@ const editPost = async (
   title: string | undefined,
   content: string | undefined,
   id: number,
-  userId: number
+  userId: number,
+  countryName: string | undefined
 ) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts/${id}`,
@@ -35,7 +36,7 @@ const editPost = async (
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ title, content, userId }),
+      body: JSON.stringify({ title, content, userId, countryName }),
     }
   );
   return res.json();
@@ -44,6 +45,7 @@ const editPost = async (
 const PostEdit = ({ id, userId }: editProps) => {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLInputElement | null>(null);
+  const countryNameRef = useRef<HTMLInputElement | null>(null);
   const toast = useToast();
   const router = useRouter();
 
@@ -62,7 +64,8 @@ const PostEdit = ({ id, userId }: editProps) => {
       titleRef.current?.value,
       contentRef.current?.value,
       id,
-      userId
+      userId,
+      countryNameRef.current?.value
     );
 
     router.push("/world");
@@ -83,6 +86,14 @@ const PostEdit = ({ id, userId }: editProps) => {
           <Box display="flex" justifyContent="center">
             <Box flexDirection="column">
               <VStack spacing={4}>
+                <Input
+                  type="text"
+                  placeholder="国名"
+                  width="130%"
+                  maxWidth="500px"
+                  ref={contentRef}
+                  mt="5%"
+                />
                 <Input
                   type="text"
                   placeholder="タイトル"
