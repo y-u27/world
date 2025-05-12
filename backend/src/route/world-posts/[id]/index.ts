@@ -41,15 +41,16 @@ router.get(
 
 // 〜/api/worldPosts/[id]：投稿を更新する
 router.patch(
-  "/world-posts/:id",
+  "/world-posts/:id/:countryName",
   async (req: Request, res: Response): Promise<void> => {
     try {
       const id = parseInt(req.params.id);
+      const countryName = req.params.countryName;
       const { title, content, userId } = req.body;
 
       const newWorldPostDataId = await prisma.post.update({
         where: { id, userId },
-        data: { title, content },
+        data: { title, content, countryName },
       });
 
       if (!newWorldPostDataId) {
