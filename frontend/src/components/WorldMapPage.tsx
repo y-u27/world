@@ -74,7 +74,7 @@ const WorldMapPage = ({ userId }: Props) => {
         if (country) {
           setSelectedCountry(country.formatted_address);
           setMapCenter({ lat, lng });
-          // ↓以前にマーカーを表示した国が以前の国名と国の住所と一致しているかを判定している?
+          // ↓以前にマーカーを表示した国が以前の国名と国の住所と一致しているかを判定している
           setMarkedCountries((prevMarkedCountries) => {
             const isExist = prevMarkedCountries.some(
               (prevCountry) => prevCountry.name === country.formatted_address
