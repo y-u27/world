@@ -45,7 +45,7 @@ router.patch(
   async (req: Request, res: Response): Promise<void> => {
     try {
       const id = parseInt(req.params.id);
-      const countryName = req.params.countryName;
+      const countryName = req.query.countryName as string;
       const { title, content, userId } = req.body;
 
       const newWorldPostDataId = await prisma.post.update({
