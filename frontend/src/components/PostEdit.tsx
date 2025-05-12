@@ -30,7 +30,11 @@ const editPost = async (
   userId: number
 ) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts/${id}?countryName=${countryName}`,
+    `${
+      process.env.NEXT_PUBLIC_BASE_URL
+    }/api/world-posts/${id}?countryName=${encodeURIComponent(
+      countryName ?? ""
+    )}`,
     {
       method: "PATCH",
       headers: {
