@@ -60,6 +60,7 @@ const PostCreate = () => {
     const title = titleRef.current?.value?.trim();
     const content = contentRef.current?.value?.trim();
 
+    // ユーザーがログインしていない場合
     if (!session?.user?.id) {
       toast({
         title: "エラー",
@@ -71,6 +72,7 @@ const PostCreate = () => {
       return;
     }
 
+    // 国が選択されていない場合
     if (!selectedCountry) {
       toast({
         title: "エラー",
@@ -82,6 +84,7 @@ const PostCreate = () => {
       return;
     }
 
+    // タイトルと投稿内容が空欄の場合
     if (!title || !content) {
       toast({
         title: "投稿失敗",
