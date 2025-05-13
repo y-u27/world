@@ -41,7 +41,7 @@ router.get(
 
 // 〜/api/worldPosts/[id]：投稿を更新する
 router.patch(
-  "/world-posts/:id/:countryName",
+  "/world-posts/:id",
   async (req: Request, res: Response): Promise<void> => {
     try {
       const id = parseInt(req.params.id);

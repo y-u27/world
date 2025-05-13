@@ -32,7 +32,7 @@ const editPost = async (
   const res = await fetch(
     `${
       process.env.NEXT_PUBLIC_BASE_URL
-    }/api/world-posts/${id}/${encodeURIComponent(countryName ?? "")}`,
+    }/api/world-posts/${id}?countryName=${encodeURIComponent(countryName ?? "")}`,
     {
       method: "PATCH",
       headers: {
@@ -137,6 +137,7 @@ const PostEdit = ({ id, userId }: editProps) => {
                   width="130%"
                   maxWidth="500px"
                   value={selectedCountry}
+                  readOnly
                 />
                 <Input
                   type="text"
@@ -144,7 +145,6 @@ const PostEdit = ({ id, userId }: editProps) => {
                   width="130%"
                   maxWidth="500px"
                   ref={titleRef}
-                  mt="5%"
                 />
                 <Input
                   type="text"
