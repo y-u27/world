@@ -32,7 +32,9 @@ const editPost = async (
   const res = await fetch(
     `${
       process.env.NEXT_PUBLIC_BASE_URL
-    }/api/world-posts/${id}?countryName=${encodeURIComponent(countryName ?? "")}`,
+    }/api/world-posts/${id}?countryName=${encodeURIComponent(
+      countryName ?? ""
+    )}`,
     {
       method: "PATCH",
       headers: {
@@ -53,12 +55,39 @@ const PostEdit = ({ id, userId }: editProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    const country = searchParams.get("country");
+    const fetchPost = async () => {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts/${id}`
+        );
+        const data = await res.json();
 
-    if (country) {
-      setSelectedCountry(country);
-    }
-  }, [searchParams, setSelectedCountry]);
+        if (res.ok) {
+          setSelectedCountry(data.countryName);
+          if (titleRef.current) titleRef.current.value = data.title;
+          if (contentRef.current) contentRef.current.value = data.content;
+        } else {
+          toast({
+            title: "取得エラー",
+            description: data.message || "投稿データ取得に失敗",
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+          });
+        }
+      } catch (error) {
+        toast({
+          title: "エラー",
+          description: "投稿情報取得中にエラーが発生しました",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+    };
+
+    fetchPost();
+  }, [id]);
 
   const handleMapPost = async (e: React.FormEvent) => {
     e.preventDefault();
