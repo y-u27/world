@@ -63,9 +63,10 @@ const PostEdit = ({ id, userId }: editProps) => {
         const data = await res.json();
 
         if (res.ok) {
-          setSelectedCountry(data.countryName);
-          if (titleRef.current) titleRef.current.value = data.title;
-          if (contentRef.current) contentRef.current.value = data.content;
+          const post = data.data;
+          setSelectedCountry(post.countryName);
+          if (titleRef.current) titleRef.current.value = post.title;
+          if (contentRef.current) contentRef.current.value = post.content;
         } else {
           toast({
             title: "取得エラー",
