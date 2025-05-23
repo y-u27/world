@@ -50,7 +50,6 @@ const PostEdit = ({ id, userId }: editProps) => {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLInputElement | null>(null);
   const [selectedCountry, setSelectedCountry] = useState<string>("");
-  const searchParams = useSearchParams();
   const toast = useToast();
   const router = useRouter();
 
