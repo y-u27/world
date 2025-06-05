@@ -53,7 +53,7 @@ const Header = () => {
               position="absolute"
               top="50%"
               right="20px"
-              // transform="translateY(-50%)"
+              transform="translateY(-50%)"
               display="flex"
               alignItems="center"
               gap={3}
@@ -68,9 +68,11 @@ const Header = () => {
                   position="absolute"
                   top="50%"
                   right="5%"
-                  // transform="translateY(-50%)"
+                  transform="translateY(-50%)"
                 />
               </Box>
+              
+              {/* プロフィールアイコン */}
               <Link href={`/user/${userId}`}>
                 <Avatar
                   size="sm"
