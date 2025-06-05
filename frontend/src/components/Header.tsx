@@ -68,7 +68,7 @@ const Header = () => {
                   position="absolute"
                   top="50%"
                   right="5%"
-                  transform="translateY(-50%)"
+                  // transform="translateY(-50%)"
                 />
               </Box>
               <Link href={`/user/${userId}`}>
