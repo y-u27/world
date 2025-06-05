@@ -64,8 +64,7 @@ const Header = () => {
                 size="sm"
                 position="absolute"
                 top="50%"
-                right="3%"
-                transform="translateY(-50%)"
+                // right="3%"
               />
               <Link href={`/user/${userId}`}>
                 <Avatar
