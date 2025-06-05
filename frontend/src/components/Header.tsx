@@ -1,6 +1,7 @@
 "use client";
 
-import { Avatar, Box, Heading } from "@chakra-ui/react";
+import { ArrowForwardIcon } from "@chakra-ui/icons";
+import { Avatar, Box, Heading, IconButton, Input } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -56,6 +57,16 @@ const Header = () => {
               right="10px"
               padding="10px"
             >
+              <Input background="white" />
+              <IconButton
+                icon={<ArrowForwardIcon />}
+                aria-label="Open menu"
+                size="sm"
+                position="absolute"
+                top="50%"
+                right="3%"
+                transform="translateY(-50%)"
+              />
               <Link href={`/user/${userId}`}>
                 <Avatar
                   size="sm"
