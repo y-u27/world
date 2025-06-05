@@ -57,15 +57,17 @@ const Header = () => {
               right="10px"
               padding="10px"
             >
-              <Input background="white" />
-              <IconButton
-                icon={<ArrowForwardIcon />}
-                aria-label="Open menu"
-                size="sm"
-                position="absolute"
-                top="50%"
-                // right="3%"
-              />
+              <Box position="absolute" left="10px">
+                <Input background="white" />
+                <IconButton
+                  icon={<ArrowForwardIcon />}
+                  aria-label="Open menu"
+                  size="sm"
+                  position="absolute"
+                  top="50%"
+                  right="3%"
+                />
+              </Box>
               <Link href={`/user/${userId}`}>
                 <Avatar
                   size="sm"
