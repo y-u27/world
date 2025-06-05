@@ -50,22 +50,25 @@ const Header = () => {
           <Link href="/world">World Map SNS</Link>
           {session && (
             <Box
-              display="flex"
-              justifyContent="flex-end"
               position="absolute"
-              top="1px"
-              right="10px"
-              padding="10px"
+              top="50%"
+              right="20px"
+              transform="translateY(-50%)"
+              display="flex"
+              alignItems="center"
+              gap={3}
             >
-              <Box position="absolute" left="10px">
-                <Input background="white" />
+              {/* 検索窓 */}
+              <Box position="relative">
+                <Input background="white" size="sm" width="200px" pr="30px" />
                 <IconButton
                   icon={<ArrowForwardIcon />}
                   aria-label="Open menu"
                   size="sm"
                   position="absolute"
                   top="50%"
-                  right="3%"
+                  right="5%"
+                  transform="translateY(-50%)"
                 />
               </Box>
               <Link href={`/user/${userId}`}>
