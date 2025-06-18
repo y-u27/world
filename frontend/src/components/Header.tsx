@@ -59,7 +59,7 @@ const Header = () => {
             >
               {/* 検索窓 */}
               <Box position="relative">
-                <Input background="white" size="sm" width="180px" mr="50px" />
+                <Input background="white" size="sm" width="180px" mr="40px" />
                 <IconButton
                   icon={<ArrowForwardIcon />}
                   aria-label="Open menu"
