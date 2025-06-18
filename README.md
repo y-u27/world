@@ -1,7 +1,5 @@
 # World Map SNS
 
----
-
 ## このアプリについて<br/>
 
 「World Map SNS」は、世界中の国の魅力を気軽に共有し、発見できるSNSです。
