@@ -58,7 +58,7 @@ const Header = () => {
               padding="10px"
             >
               {/* 検索窓 */}
-              <Box position="relative">
+              {/* <Box position="relative">
                 <Input background="white" size="sm" width="180px" mr="40px" />
                 <IconButton
                   icon={<ArrowForwardIcon />}
@@ -69,7 +69,7 @@ const Header = () => {
                   right="7%"
                   transform="translateY(-50%)"
                 />
-              </Box>
+              </Box> */}
 
               {/* プロフィールアイコン */}
               <Link href={`/user/${userId}`}>
