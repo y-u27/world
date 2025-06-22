@@ -10,8 +10,6 @@ import {
 } from "@react-google-maps/api";
 import { useState } from "react";
 import PostLists from "./PostLists";
-// import { signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
 
 type Props = {
   userId: number;
@@ -136,11 +134,6 @@ const WorldMapPage = ({ userId }: Props) => {
     );
   }
 
-  // const handleLogout = async () => {
-  //   await signOut({ redirect: false });
-  //   router.push("/");
-  // };
-
   return (
     <>
       <Box>
@@ -197,15 +190,6 @@ const WorldMapPage = ({ userId }: Props) => {
           </GoogleMap>
         )}
       </Box>
-      {/* <Button
-        position="fixed"
-        bottom={isLargerThan768 ? "5" : "2"}
-        fontSize={isLargerThan768 ? "md" : "sm"}
-        onClick={handleLogout}
-        width="10%"
-      >
-        ログアウト
-      </Button> */}
     </>
   );
 };
