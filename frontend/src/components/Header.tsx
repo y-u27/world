@@ -86,7 +86,7 @@ const Header = () => {
                   name={session.user?.name ?? "ユーザー"}
                 />
               </Link>
-              <Box pl="10%">
+              <Box pr="80%">
                 <BiLogOut onClick={handleLogout} />
               </Box>
             </Box>
