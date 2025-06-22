@@ -5,6 +5,8 @@ import { Avatar, Box, Heading, IconButton, Input } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { TbMapSearch } from "react-icons/tb";
+import { BiLogOut } from "react-icons/bi";
 
 const Header = () => {
   const { data: session } = useSession();
@@ -60,15 +62,13 @@ const Header = () => {
               {/* 検索窓 */}
               {/* <Box position="relative">
                 <Input background="white" size="sm" width="180px" mr="40px" />
-                <IconButton
-                  icon={<ArrowForwardIcon />}
+                <TbMapSearch
                   aria-label="Open menu"
                   size="xs"
                   position="absolute"
                   top="50%"
                   right="7%"
-                  transform="translateY(-50%)"
-                />
+                  transform="translateY(-50%)"/>
               </Box> */}
 
               {/* プロフィールアイコン */}
@@ -79,6 +79,7 @@ const Header = () => {
                   name={session.user?.name ?? "ユーザー"}
                 />
               </Link>
+              <BiLogOut />
             </Box>
           )}
         </Heading>
