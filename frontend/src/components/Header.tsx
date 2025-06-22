@@ -2,16 +2,18 @@
 
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { Avatar, Box, Heading, IconButton, Input } from "@chakra-ui/react";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { TbMapSearch } from "react-icons/tb";
 import { BiLogOut } from "react-icons/bi";
+import { useRouter } from "next/router";
 
 const Header = () => {
   const { data: session } = useSession();
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const [userId, setUserId] = useState<number | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchAvatarUrl = async () => {
@@ -36,6 +38,11 @@ const Header = () => {
     };
     fetchAvatarUrl();
   }, [session]);
+
+  const handleLogout = async () => {
+      await signOut({ redirect: false });
+      router.push("/");
+    };
 
   return (
     <>
@@ -79,7 +86,7 @@ const Header = () => {
                   name={session.user?.name ?? "ユーザー"}
                 />
               </Link>
-              <BiLogOut />
+              <BiLogOut onClick={handleLogout} />
             </Box>
           )}
         </Heading>
