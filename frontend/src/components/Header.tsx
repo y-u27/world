@@ -86,7 +86,7 @@ const Header = () => {
                   name={session.user?.name ?? "ユーザー"}
                 />
               </Link>
-              <Box position="absolute" right="1500px">
+              <Box position="absolute" right="1100px">
                 <BiLogOut onClick={handleLogout} />
               </Box>
             </Box>
