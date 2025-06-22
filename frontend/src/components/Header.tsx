@@ -40,9 +40,9 @@ const Header = () => {
   }, [session]);
 
   const handleLogout = async () => {
-      await signOut({ redirect: false });
-      router.push("/");
-    };
+    await signOut({ redirect: false });
+    router.push("/");
+  };
 
   return (
     <>
@@ -86,7 +86,9 @@ const Header = () => {
                   name={session.user?.name ?? "ユーザー"}
                 />
               </Link>
-              <BiLogOut onClick={handleLogout} />
+              <Box pl="10%">
+                <BiLogOut onClick={handleLogout} />
+              </Box>
             </Box>
           )}
         </Heading>
