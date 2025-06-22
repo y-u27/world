@@ -10,7 +10,7 @@ import {
 } from "@react-google-maps/api";
 import { useState } from "react";
 import PostLists from "./PostLists";
-import { signOut } from "next-auth/react";
+// import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 type Props = {
@@ -51,7 +51,7 @@ const WorldMapPage = ({ userId }: Props) => {
   >([]);
   // ↓マップのオプション
   const [options, setOptions] = useState(DEFAULT_OPTIONS);
-  const router = useRouter();
+  // const router = useRouter();
 
   // メディアクエリ（レスポンシブ対応）
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
@@ -136,10 +136,10 @@ const WorldMapPage = ({ userId }: Props) => {
     );
   }
 
-  const handleLogout = async () => {
-    await signOut({ redirect: false });
-    router.push("/");
-  };
+  // const handleLogout = async () => {
+  //   await signOut({ redirect: false });
+  //   router.push("/");
+  // };
 
   return (
     <>
@@ -197,7 +197,7 @@ const WorldMapPage = ({ userId }: Props) => {
           </GoogleMap>
         )}
       </Box>
-      <Button
+      {/* <Button
         position="fixed"
         bottom={isLargerThan768 ? "5" : "2"}
         fontSize={isLargerThan768 ? "md" : "sm"}
@@ -205,7 +205,7 @@ const WorldMapPage = ({ userId }: Props) => {
         width="10%"
       >
         ログアウト
-      </Button>
+      </Button> */}
     </>
   );
 };
