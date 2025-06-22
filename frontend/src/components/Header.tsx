@@ -46,7 +46,7 @@ const Header = () => {
 
   return (
     <>
-      <Box>
+      <Box position="relative">
         <Heading
           color="#000080"
           bgColor="#b0c4de"
@@ -86,7 +86,7 @@ const Header = () => {
                   name={session.user?.name ?? "ユーザー"}
                 />
               </Link>
-              <Box pr="100%">
+              <Box position="absolute" left="100%">
                 <BiLogOut onClick={handleLogout} />
               </Box>
             </Box>
