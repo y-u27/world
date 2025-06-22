@@ -5,6 +5,11 @@ import prisma from "./prismaClient";
 import bcrypt from "bcrypt";
 
 export const authOptions: NextAuthOptions = {
+  session: {
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60,
+    updateAge: 24 * 60 * 60,
+  },
   providers: [
     // ↓Googleログイン
     //GoogleログインだとuserIdが64ビット以上のため、エラーになる
@@ -49,23 +54,38 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async session({ session, token }) {
-      session.user.id = token.id;
-      session.user.name = token.name;
-      session.user.email = token.email;
-      session.user.image = token.image;
+      if (token) {
+        session.user.id = token.id;
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.image = token.image;
+      }
       return session;
     },
+
     async jwt({ token, user }) {
-      let newUser: Awaited<ReturnType<typeof prisma.user.create>> | null = null;
-      //すでにユーザーが存在する場合はユーザー情報を保持
+      // 初回ログイン時（signIn後にuserが存在）
+      if (user) {
+        token.id = user.id;
+        token.name = user.name;
+        token.email = user.email;
+        token.image = user.image;
+        return token;
+      }
+
+      // 際訪問時やリロード時（userは存在せず、tokenのみ）
       if (token.email) {
-        const prismaUser = await prisma.user.findUnique({
+        const existingUser = await prisma.user.findUnique({
           where: { email: token.email },
         });
-        if (prismaUser) newUser = prismaUser;
 
-        //ユーザーが存在しない場合は新規作成したユーザー情報を保持する
-        if (!prismaUser) {
+        if (existingUser) {
+          token.id = existingUser.id;
+          token.name = existingUser.name;
+          token.email = existingUser.email;
+          token.image = existingUser.image;
+        } else {
+          // ユーザーが存在しない場合は新規作成（APIルート使用）
           const res = await fetch(
             `${process.env.NEXT_PUBLIC_BASE_URL}/api/register`,
             {
@@ -75,34 +95,24 @@ export const authOptions: NextAuthOptions = {
                 name: token.name,
                 email: token.email,
                 password: "password",
-                image: token.picture,
+                image: token.image ?? token.picture ?? null,
               }),
             }
           );
 
           if (!res.ok) {
-            throw new Error(`Error ${res.status}:ユーザーの作成失敗`);
+            throw new Error(`Error ${res.status}: ユーザーの作成失敗`);
           }
 
-          const { user } = await res.json();
-          newUser = user;
-        }
-      }
+          const { user: createUser } = await res.json();
 
-      //ユーザーがサインインまたはサインアップした場合、JWTトークンにユーザー情報を追加または更新
-      if (user && newUser) {
-        token.id = newUser.id;
-        token.name = newUser.name;
-        token.email = newUser.email;
-        token.image = newUser.image;
-      } else if (user) {
-        token.id = user.id;
-        token.name = user.name;
-        token.email = user.email;
-        token.image = user.image;
+          token.id = createUser.id;
+          token.name = createUser.name;
+          token.email = createUser.email;
+          token.image = createUser.image;
+        }
       }
       return token;
     },
   },
-  secret: process.env.SECRET,
 };
