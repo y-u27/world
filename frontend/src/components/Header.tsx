@@ -98,24 +98,25 @@ const Header = () => {
                 {/* <Box position="relative">
                 <Input background="white" size="sm" width="180px" mr="40px" />
                 <TbMapSearch
-                  aria-label="Open menu"
-                  size="xs"
+                aria-label="Open menu"
+                size="xs"
                   position="absolute"
                   top="50%"
                   right="7%"
                   transform="translateY(-50%)"/>
-              </Box> */}
+                  </Box> */}
 
-              {/* プロフィールアイコン */}
-              <Link href={`/user/${userId}`}>
-                <Avatar
-                  size="sm"
-                  src={avatarUrl ?? "/default-avatar.jpeg"}
-                  name={session.user?.name ?? "ユーザー"}
-                />
-              </Link>
-              <Box position="absolute" right="1500px">
-                <BiLogOut onClick={handleLogout} />
+                {/* プロフィールアイコン */}
+                <Link href={`/user/${userId}`}>
+                  <Avatar
+                    size="sm"
+                    src={avatarUrl ?? "/default-avatar.jpeg"}
+                    name={session.user?.name ?? "ユーザー"}
+                  />
+                </Link>
+                <Box position="absolute" right="1500px">
+                  <BiLogOut onClick={handleLogout} />
+                </Box>
               </Box>
             )}
           </Box>
