@@ -1,7 +1,14 @@
 "use client";
 
 import { ArrowForwardIcon } from "@chakra-ui/icons";
-import { Avatar, Box, Heading, IconButton, Input } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Heading,
+  Icon,
+  IconButton,
+  Input,
+} from "@chakra-ui/react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -56,18 +63,39 @@ const Header = () => {
           textShadow="1px 1px #ffffff"
           p={3}
         >
-          <Link href="/world">World Map SNS</Link>
-          {session && (
-            <Box
-              display="flex"
-              justifyContent="flex-end"
-              position="absolute"
-              top="1px"
-              right="10px"
-              padding="10px"
-            >
-              {/* 検索窓 */}
-              {/* <Box position="relative">
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            {/* ログアウト */}
+            {session && (
+              <IconButton
+                aria-label="ログアウト"
+                icon={<BiLogOut />}
+                size="sm"
+                onClick={handleLogout}
+                variant="ghost"
+                ml={2}
+              />
+            )}
+
+            <Box textAlign="center" flexGrow={1}>
+              <Link href="/world">World Map SNS</Link>
+            </Box>
+
+            {/* プロフィールアイコン */}
+            {session && (
+              <Box
+                display="flex"
+                justifyContent="flex-end"
+                position="absolute"
+                top="1px"
+                right="10px"
+                padding="10px"
+              >
+                {/* 検索窓 */}
+                {/* <Box position="relative">
                 <Input background="white" size="sm" width="180px" mr="40px" />
                 <TbMapSearch
                   aria-label="Open menu"
@@ -78,19 +106,17 @@ const Header = () => {
                   transform="translateY(-50%)"/>
               </Box> */}
 
-              {/* プロフィールアイコン */}
-              <Link href={`/user/${userId}`}>
-                <Avatar
-                  size="sm"
-                  src={avatarUrl ?? "/default-avatar.jpeg"}
-                  name={session.user?.name ?? "ユーザー"}
-                />
-              </Link>
-              <Box position="absolute" right="1500px">
-                <BiLogOut onClick={handleLogout} />
+                {/* プロフィールアイコン */}
+                <Link href={`/user/${userId}`}>
+                  <Avatar
+                    size="sm"
+                    src={avatarUrl ?? "/default-avatar.jpeg"}
+                    name={session.user?.name ?? "ユーザー"}
+                  />
+                </Link>
               </Box>
-            </Box>
-          )}
+            )}
+          </Box>
         </Heading>
       </Box>
     </>
