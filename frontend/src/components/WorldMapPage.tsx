@@ -23,7 +23,7 @@ const DEFAULT_OPTIONS = {
   disableDefaultUI: false, // デフォルトのUI（ズームコントロールなど）を無効化
   draggable: true, // ドラッグを無効化
   zoomControl: false, // ズーム操作を無効化
-  scrollwheel: true, // スクロールホイールによるズームを無効化
+  scrollwheel: false, // スクロールホイールによるズームを無効化
   disableDoubleClickZoom: true, // ダブルクリックによるズームを無効化
 };
 
