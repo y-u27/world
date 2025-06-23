@@ -106,14 +106,16 @@ const Header = () => {
                   transform="translateY(-50%)"/>
               </Box> */}
 
-                {/* プロフィールアイコン */}
-                <Link href={`/user/${userId}`}>
-                  <Avatar
-                    size="sm"
-                    src={avatarUrl ?? "/default-avatar.jpeg"}
-                    name={session.user?.name ?? "ユーザー"}
-                  />
-                </Link>
+              {/* プロフィールアイコン */}
+              <Link href={`/user/${userId}`}>
+                <Avatar
+                  size="sm"
+                  src={avatarUrl ?? "/default-avatar.jpeg"}
+                  name={session.user?.name ?? "ユーザー"}
+                />
+              </Link>
+              <Box position="absolute" right="1500px">
+                <BiLogOut onClick={handleLogout} />
               </Box>
             )}
           </Box>
