@@ -76,7 +76,7 @@ const Header = () => {
                 size="sm"
                 onClick={handleLogout}
                 variant="ghost"
-                ml={2}
+                // ml={2}
               />
             )}
 
