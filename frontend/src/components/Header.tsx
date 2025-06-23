@@ -73,7 +73,7 @@ const Header = () => {
               <IconButton
                 aria-label="ログアウト"
                 icon={<BiLogOut />}
-                size="lg"
+                size="sm"
                 onClick={handleLogout}
                 variant="ghost"
                 ml={2}
