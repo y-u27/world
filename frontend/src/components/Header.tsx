@@ -76,10 +76,10 @@ const Header = () => {
                 size="sm"
                 onClick={handleLogout}
                 variant="ghost"
-                // ml={2}
               />
             )}
 
+            {/* タイトル */}
             <Box textAlign="center" flexGrow={1}>
               <Link href="/world">World Map SNS</Link>
             </Box>
