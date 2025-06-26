@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { TbMapSearch } from "react-icons/tb";
 import { BiLogOut } from "react-icons/bi";
 import { useRouter } from "next/navigation";
+import SearchBar from "./SearchBar";
 
 const Header = () => {
   const { data: session } = useSession();
@@ -93,17 +94,8 @@ const Header = () => {
                 right="10px"
                 padding="10px"
               >
-                {/* 検索窓 */}
-                {/* <Box position="relative">
-                <Input background="white" size="sm" width="180px" mr="40px" />
-                <TbMapSearch
-                aria-label="Open menu"
-                size="xs"
-                  position="absolute"
-                  top="50%"
-                  right="7%"
-                  transform="translateY(-50%)"/>
-                  </Box> */}
+                
+                <SearchBar/>
 
                 {/* プロフィールアイコン */}
                 <Link href={`/user/${userId}`}>
