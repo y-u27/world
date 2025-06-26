@@ -95,6 +95,7 @@ const Header = () => {
                 padding="10px"
               >
                 
+                {/* 検索窓 */}
                 <SearchBar/>
 
                 {/* プロフィールアイコン */}
