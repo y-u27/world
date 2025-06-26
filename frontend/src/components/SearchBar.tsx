@@ -29,7 +29,6 @@ const SearchBar = () => {
           background="white"
           size="sm"
           width="180px"
-          mr="2"
         />
       </Collapse>
     </Box>
