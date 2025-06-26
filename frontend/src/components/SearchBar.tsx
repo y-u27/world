@@ -18,9 +18,8 @@ const SearchBar = () => {
         aria-label="検索"
         icon={<TbMapSearch />}
         onClick={toggleSearchIcon}
-        size="sm"
+        size="md"
         variant="ghost"
-        mr={2}
       />
 
       {/* 検索窓（開閉） */}
