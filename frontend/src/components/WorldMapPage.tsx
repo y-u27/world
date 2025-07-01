@@ -169,7 +169,6 @@ const WorldMapPage = ({ userId }: Props) => {
   return (
     <>
       <Box>
-        <SearchBar onSearch={handleSearchCountry} />
         {zoomPostList && selectedCountry && (
           <PostLists countryName={selectedCountry} userId={userId} />
         )}
@@ -194,6 +193,7 @@ const WorldMapPage = ({ userId }: Props) => {
             }}
             onZoomChanged={handleZoom}
           >
+            <SearchBar onSearch={handleSearchCountry} />
             {markedCountries.map((country) => (
               <Marker
                 key={country.name}
