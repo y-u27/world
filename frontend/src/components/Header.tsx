@@ -94,9 +94,6 @@ const Header = () => {
                 right="10px"
                 padding="10px"
               >
-                
-                {/* 検索窓 */}
-                <SearchBar/>
 
                 {/* プロフィールアイコン */}
                 <Link href={`/user/${userId}`}>
