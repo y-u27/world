@@ -4,11 +4,26 @@ import { Box, Collapse, IconButton, Input } from "@chakra-ui/react";
 import { useState } from "react";
 import { TbMapSearch } from "react-icons/tb";
 
-const SearchBar = () => {
+type Props = {
+  onSearch: (countryName: string) => void;
+};
+
+const SearchBar = ({ onSearch }: Props) => {
+  const [query, setQuery] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const toggleSearchIcon = () => {
     setIsSearchOpen((prev) => !prev);
+  };
+
+  const handleSearch = () => {
+    if (query.trim() !== "") {
+      onSearch(query.trim());
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") handleSearch();
   };
 
   return (
@@ -29,6 +44,9 @@ const SearchBar = () => {
           background="white"
           size="sm"
           width="180px"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
       </Collapse>
     </Box>
