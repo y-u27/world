@@ -10,6 +10,7 @@ import {
 } from "@react-google-maps/api";
 import { useState } from "react";
 import PostLists from "./PostLists";
+import SearchBar from "./SearchBar";
 
 type Props = {
   userId: number;
@@ -54,7 +55,7 @@ const WorldMapPage = ({ userId }: Props) => {
   // メディアクエリ（レスポンシブ対応）
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
-  // クリックした地点の中心座標と国名を取得
+  // 地図をクリックした時の中心座標と国名を取得
   const handleMapClick = (e: google.maps.MapMouseEvent) => {
     const lat = e.latLng?.lat() || 35.6762;
     const lng = e.latLng?.lng() || 155.6503;
@@ -88,6 +89,37 @@ const WorldMapPage = ({ userId }: Props) => {
         // 上記以外の場合、「国情報の取得に失敗」のメッセージをconsoleに出力する
       } else {
         console.error("国情報の取得に失敗");
+      }
+    });
+  };
+
+  // 国名を検索窓に入力することで緯度・経度を取得して地図に反映
+  const handleSearchCountry = (countryName: string) => {
+    const geocoder = new window.google.maps.Geocoder();
+    geocoder.geocode({ address: countryName }, (results, status) => {
+      if (status === "OK" && results && results[0]) {
+        const location = results[0].geometry.location;
+        const lat = location.lat();
+        const lng = location.lng();
+        const address = results[0].formatted_address;
+
+        setSelectedCountry(address);
+        setMapCenter({ lat, lng });
+        setZoom(5);
+        setOptions((prev) => ({
+          ...prev,
+          draggable: false,
+          scrollwheel: false,
+          disableDefaultUI: false,
+        }));
+
+        setMarkedCountries((prev) => {
+          const exists = prev.some((c) => c.name === address);
+          if (exists) return prev;
+          return [...prev, { name: address, lat, lng }];
+        });
+      } else {
+        console.error("国の検索に失敗しました");
       }
     });
   };
@@ -137,6 +169,7 @@ const WorldMapPage = ({ userId }: Props) => {
   return (
     <>
       <Box>
+        <SearchBar onSearch={handleSearchCountry} />
         {zoomPostList && selectedCountry && (
           <PostLists countryName={selectedCountry} userId={userId} />
         )}
