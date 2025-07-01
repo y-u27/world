@@ -26,6 +26,7 @@ const DEFAULT_OPTIONS = {
   zoomControl: false, // ズーム操作を無効化
   scrollwheel: false, // スクロールホイールによるズームを無効化
   disableDoubleClickZoom: true, // ダブルクリックによるズームを無効化
+  mapTypeControl: false, // 地図タイプコントロール
 };
 
 const WorldMapPage = ({ userId }: Props) => {
