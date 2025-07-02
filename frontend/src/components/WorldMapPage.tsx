@@ -194,7 +194,7 @@ const WorldMapPage = ({ userId }: Props) => {
             }}
             onZoomChanged={handleZoom}
           >
-            <Box px="100%">
+            <Box px="30%">
               <SearchBar onSearch={handleSearchCountry} />
             </Box>
             {markedCountries.map((country) => (
