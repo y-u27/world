@@ -62,7 +62,7 @@ const Header = () => {
           h="100%"
           size="md"
           textShadow="1px 1px #ffffff"
-          p={3}
+          // p={3}
         >
           <Box
             display="flex"
