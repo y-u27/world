@@ -149,7 +149,7 @@ const PostLists: React.FC<CountryProps> = ({
       >
         <DrawerOverlay />
         <DrawerContent
-          maxWidth={{ base: "100%", md: "35%" }}
+          maxWidth={{ base: "100%", md: "45%" }}
           marginLeft={{ base: "0", md: "auto" }}
         >
           <DrawerCloseButton />
