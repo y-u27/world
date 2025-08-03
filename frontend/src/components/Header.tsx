@@ -5,17 +5,13 @@ import {
   Avatar,
   Box,
   Heading,
-  Icon,
   IconButton,
-  Input,
 } from "@chakra-ui/react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { TbMapSearch } from "react-icons/tb";
 import { BiLogOut } from "react-icons/bi";
 import { useRouter } from "next/navigation";
-import SearchBar from "./SearchBar";
 
 const Header = () => {
   const { data: session } = useSession();
