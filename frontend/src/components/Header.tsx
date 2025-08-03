@@ -12,7 +12,7 @@ import {
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { TbMapSearch } from "react-icons/tb";
+// import { TbMapSearch } from "react-icons/tb";
 import { BiLogOut } from "react-icons/bi";
 import { useRouter } from "next/navigation";
 import SearchBar from "./SearchBar";
