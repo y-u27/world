@@ -1,6 +1,5 @@
 "use client";
 
-import { ArrowForwardIcon } from "@chakra-ui/icons";
 import {
   Avatar,
   Box,
