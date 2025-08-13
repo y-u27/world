@@ -1,20 +1,16 @@
 "use client";
 
-import { ArrowForwardIcon } from "@chakra-ui/icons";
 import {
   Avatar,
   Box,
   Heading,
-  Icon,
   IconButton,
-  Input,
 } from "@chakra-ui/react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BiLogOut } from "react-icons/bi";
 import { useRouter } from "next/navigation";
-import SearchBar from "./SearchBar";
 
 const Header = () => {
   const { data: session } = useSession();
@@ -56,7 +52,7 @@ const Header = () => {
       <Box position="relative">
         <Heading
           color="#000080"
-          bgColor="#b0c4de"
+          bgColor="#b0c4de" 
           textAlign="center"
           h="100%"
           size="md"
