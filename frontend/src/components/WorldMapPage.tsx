@@ -197,7 +197,7 @@ const WorldMapPage = ({ userId }: Props) => {
             <Box
               position="absolute"
               top="16px"
-              left="30%"
+              left="10%"
               transform="translateX(-50%)"
               zIndex="2"
             >
