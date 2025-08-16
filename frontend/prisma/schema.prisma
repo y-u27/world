@@ -13,6 +13,7 @@ model Post {
   content     String
   createdAt   DateTime @default(now())
   countryName String?
+  image       String
   userId      Int
   likes       Likes[]  @relation("PostLikes")
   user        User     @relation(fields: [userId], references: [id])
@@ -33,8 +34,8 @@ model Likes {
   id     Int  @id @default(autoincrement())
   userId Int
   postId Int
-  post   Post @relation("PostLikes", fields: [postId], references: [id],onDelete:Cascade)
-  user   User @relation("UserLikes", fields: [userId], references: [id],onDelete:Cascade)
+  post   Post @relation("PostLikes", fields: [postId], references: [id], onDelete: Cascade)
+  user   User @relation("UserLikes", fields: [userId], references: [id])
 
   @@unique([userId, postId])
 }
