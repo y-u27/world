@@ -34,7 +34,7 @@ const IntroHowTo = () => {
             fontWeight="none"
             size={["md", "lg", "xl"]}
           >
-            どんなサイトか？
+            サイト説明
           </Heading>
           <Text w="100%" ml="2%">
             <br />
