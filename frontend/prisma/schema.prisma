@@ -13,7 +13,7 @@ model Post {
   content     String
   createdAt   DateTime @default(now())
   countryName String?
-  image       String
+  image       String?
   userId      Int
   likes       Likes[]  @relation("PostLikes")
   user        User     @relation(fields: [userId], references: [id])
