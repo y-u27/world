@@ -93,7 +93,7 @@ const Header = () => {
                 {/* プロフィールアイコン */}
                 <Link href={`/user/${userId}`}>
                   <Avatar
-                    size="sm"
+                    size="xs"
                     src={avatarUrl ?? "/default-avatar.jpeg"}
                     name={session.user?.name ?? "ユーザー"}
                   />
