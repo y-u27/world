@@ -9,8 +9,7 @@ import {
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { TbLogout2 } from "react-icons/tb";
-// import { BiLogOut } from "react-icons/bi";
+import { BiLogOut } from "react-icons/bi";
 import { useRouter } from "next/navigation";
 
 const Header = () => {
@@ -69,9 +68,7 @@ const Header = () => {
             {session && (
               <IconButton
                 aria-label="ログアウト"
-                icon={<TbLogout2 size={13} />}
-                // icon={<BiLogOut size={17} />}
-                // size="sm"
+                icon={<BiLogOut size={17} />}
                 onClick={handleLogout}
                 variant="ghost"
               />
