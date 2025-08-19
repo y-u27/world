@@ -69,7 +69,7 @@ const Header = () => {
               <IconButton
                 aria-label="ログアウト"
                 icon={<BiLogOut size={17} />}
-                size="xs"
+                size="sm"
                 onClick={handleLogout}
                 variant="ghost"
               />
@@ -93,7 +93,7 @@ const Header = () => {
                 {/* プロフィールアイコン */}
                 <Link href={`/user/${userId}`}>
                   <Avatar
-                    size="xs"
+                    size="sm"
                     src={avatarUrl ?? "/default-avatar.jpeg"}
                     name={session.user?.name ?? "ユーザー"}
                   />
