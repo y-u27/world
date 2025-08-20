@@ -49,7 +49,7 @@ router.get(
 router.post(
   "/world-posts",
   async (req: Request, res: Response): Promise<void> => {
-    const { title, content, countryName, userId } = req.body;
+    const { title, content, countryName, userId, image } = req.body;
 
     if (!userId || !title || !content || !countryName) {
       res.status(400).json({
@@ -65,6 +65,7 @@ router.post(
         content,
         countryName,
         userId: Number(userId),
+        image: image || null,
       },
     });
     res
