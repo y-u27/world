@@ -47,7 +47,7 @@ const PostCreate = () => {
   const { data: session } = useSession();
   const searchParams = useSearchParams();
   const [selectedCountry, setSelectedCountry] = useState<string>("");
-    const [selectPostImageUrl, setSelectPostImageUrl] = useState<string | null>(
+  const [selectPostImageUrl, setSelectPostImageUrl] = useState<string | null>(
     null
   );
 
@@ -102,12 +102,7 @@ const PostCreate = () => {
     }
 
     try {
-      await createPost(
-        selectedCountry,
-        title,
-        content,
-        session?.user.id
-      );
+      await createPost(selectedCountry, title, content, session?.user.id);
       toast({
         title: "投稿完了！",
         description: "投稿が完了しました",
@@ -129,32 +124,32 @@ const PostCreate = () => {
     }
   };
 
-    //投稿時の画像保存処理
-    const handleUploadPostImage = async (file: File) => {
-      console.log("画像アップロードを開始", file);
-  
-      const filePostPath = `public/${uuidv4()}`;
-      const { data, error } = await supabase.storage
+  //投稿時の画像保存処理
+  const handleUploadPostImage = async (file: File) => {
+    console.log("画像アップロードを開始", file);
+
+    const filePostPath = `public/${uuidv4()}`;
+    const { data, error } = await supabase.storage
+      .from("post-image-bucket")
+      .upload(`${filePostPath}`, file);
+
+    if (error) {
+      console.log("画像アップロードに失敗", error);
+    } else {
+      console.log("画像アップロードに成功", data);
+
+      const { data: urlData } = supabase.storage
         .from("post-image-bucket")
-        .upload(`${filePostPath}`, file);
-  
-      if (error) {
-        console.log("画像アップロードに失敗", error);
+        .getPublicUrl(`${filePostPath}`);
+
+      if (urlData?.publicUrl) {
+        setSelectPostImageUrl(urlData.publicUrl);
+        console.log("アップロードされた画像URL:", urlData.publicUrl);
       } else {
-        console.log("画像アップロードに成功", data);
-  
-        const { data: urlData } = supabase.storage
-          .from("post-image-bucket")
-          .getPublicUrl(`${filePostPath}`);
-  
-        if (urlData?.publicUrl) {
-          setSelectPostImageUrl(urlData.publicUrl);
-          console.log("アップロードされた画像URL:", urlData.publicUrl);
-        } else {
-          console.error("画像URL取得に失敗");
-        }
+        console.error("画像URL取得に失敗");
       }
-    };
+    }
+  };
 
   return (
     <>
@@ -194,14 +189,14 @@ const PostCreate = () => {
                   ref={contentRef}
                 />
                 <Input
-                                        type="file"
-                                        onChange={(e) => {
-                                          const selectedPostFiles = e.target.files?.[0] || null;
-                                          if (selectedPostFiles) {
-                                            handleUploadPostImage(selectedPostFiles);
-                                          }
-                                        }}
-                                      />
+                  type="file"
+                  onChange={(e) => {
+                    const selectedPostFiles = e.target.files?.[0] || null;
+                    if (selectedPostFiles) {
+                      handleUploadPostImage(selectedPostFiles);
+                    }
+                  }}
+                />
               </VStack>
               <Box display="flex" justifyContent="center" mr="18%" mt="5%">
                 <HStack spacing="30px">
