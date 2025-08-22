@@ -212,6 +212,8 @@ const PostLists: React.FC<CountryProps> = ({
                       <Text>{mapPost.content}</Text>
                       <br />
                       <Divider />
+                      <br />
+                      {/* <Input src=""/> */}
                     </Box>
                     <Box>
                       <Likes postId={mapPost.id} />
