@@ -34,6 +34,7 @@ import {
   IconButton,
   useToast,
   useBreakpointValue,
+  Input,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -243,6 +244,16 @@ const PostLists: React.FC<CountryProps> = ({
                       <Text>{mapPost.content}</Text>
                       <br />
                       <Divider />
+                      <br />
+                      <Input
+                        type="file"
+                        onChange={(e) => {
+                          const selectedPostFiles = e.target.files?.[0] || null;
+                          if (selectedPostFiles) {
+                            handleUploadPostImage(selectedPostFiles);
+                          }
+                        }}
+                      />
                     </Box>
                     <Box>
                       <Likes postId={mapPost.id} />
