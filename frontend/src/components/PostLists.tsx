@@ -39,6 +39,8 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import UserImage from "./UserImage";
 import Likes from "./Likes";
+import { v4 as uuidv4 } from "uuid";
+import { supabase } from "../../utils/supabase/supabase";
 
 interface ApiResponse {
   data: PostResponse[];
@@ -70,6 +72,9 @@ const PostLists: React.FC<CountryProps> = ({
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<PostResponse[]>([]);
   const toast = useToast();
+  const [selectPostImageUrl, setSelectPostImageUrl] = useState<string | null>(
+    null
+  );
 
   const drawerSize = useBreakpointValue({
     base: { left: "80%", top: "5%" },
@@ -132,6 +137,33 @@ const PostLists: React.FC<CountryProps> = ({
     };
     getPostData();
   }, [countryName]);
+
+  //投稿時の画像保存処理
+  const handleUploadPostImage = async (file: File) => {
+    console.log("画像アップロードを開始", file);
+
+    const filePostPath = `public/${uuidv4()}`;
+    const { data, error } = await supabase.storage
+      .from("post-image-bucket")
+      .upload(`${filePostPath}`, file);
+
+    if (error) {
+      console.log("画像アップロードに失敗", error);
+    } else {
+      console.log("画像アップロードに成功", data);
+
+      const { data: urlData } = supabase.storage
+        .from("post-image-bucket")
+        .getPublicUrl(`${filePostPath}`);
+
+      if (urlData?.publicUrl) {
+        setSelectPostImageUrl(urlData.publicUrl);
+        console.log("アップロードされた画像URL:", urlData.publicUrl);
+      } else {
+        console.error("画像URL取得に失敗");
+      }
+    }
+  };
 
   return (
     <>
