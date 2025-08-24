@@ -3,7 +3,11 @@ import { supabase } from "../../utils/supabase/supabase";
 import { Box, Image, Input } from "@chakra-ui/react";
 import { useState } from "react";
 
-const PostImage = () => {
+const PostImage = ({
+  onImageUpload,
+}: {
+  onImageUpload: (url: string) => void;
+}) => {
   const [selectPostImageUrl, setSelectPostImageUrl] = useState<string | null>(
     null
   );
@@ -28,9 +32,7 @@ const PostImage = () => {
 
       if (urlData?.publicUrl) {
         setSelectPostImageUrl(urlData.publicUrl);
-        console.log("アップロードされた画像URL:", urlData.publicUrl);
-      } else {
-        console.error("画像URL取得に失敗");
+        onImageUpload(urlData.publicUrl);
       }
     }
   };
