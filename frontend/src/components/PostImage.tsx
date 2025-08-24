@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { supabase } from "../../utils/supabase/supabase";
-import { Box, Input } from "@chakra-ui/react";
+import { Box, Image, Input } from "@chakra-ui/react";
 import { useState } from "react";
 
 const PostImage = () => {
@@ -37,6 +37,7 @@ const PostImage = () => {
 
   return (
     <Box>
+      <Image src={selectPostImageUrl || undefined} />
       <Input
         type="file"
         onChange={(e) => {
