@@ -1,7 +1,7 @@
 // 世界地図表示
 "use client";
 
-import { Box, Button, Spinner, useMediaQuery } from "@chakra-ui/react";
+import { Box, Spinner, useMediaQuery } from "@chakra-ui/react";
 import {
   GoogleMap,
   InfoWindow,
