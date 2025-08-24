@@ -23,7 +23,8 @@ const createPost = async (
   countryName: string | undefined,
   title: string | undefined,
   content: string | undefined,
-  userId: number
+  userId: number,
+  image?: string | null
 ) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts?country-name=${countryName}`,
@@ -32,7 +33,7 @@ const createPost = async (
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ countryName, title, content, userId }),
+      body: JSON.stringify({ countryName, title, content, userId, image }),
     }
   );
   return res.json();
@@ -46,6 +47,7 @@ const PostCreate = () => {
   const { data: session } = useSession();
   const searchParams = useSearchParams();
   const [selectedCountry, setSelectedCountry] = useState<string>("");
+  const [postImageUrl, setPostImageUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const country = searchParams.get("country");
@@ -98,7 +100,13 @@ const PostCreate = () => {
     }
 
     try {
-      await createPost(selectedCountry, title, content, session?.user.id);
+      await createPost(
+        selectedCountry,
+        title,
+        content,
+        session?.user.id,
+        postImageUrl
+      );
       toast({
         title: "投稿完了！",
         description: "投稿が完了しました",
@@ -157,7 +165,7 @@ const PostCreate = () => {
                   maxWidth="500px"
                   ref={contentRef}
                 />
-                <PostImage />
+                <PostImage onImageUpload={(url) => setPostImageUrl(url)} />
               </VStack>
               <Box display="flex" justifyContent="center" mr="18%" mt="5%">
                 <HStack spacing="30px">
