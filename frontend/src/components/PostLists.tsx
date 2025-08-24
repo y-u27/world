@@ -34,7 +34,7 @@ import {
   IconButton,
   useToast,
   useBreakpointValue,
-  Input,
+  Image,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -215,7 +215,7 @@ const PostLists: React.FC<CountryProps> = ({
                       <br />
                       <Divider />
                       <br />
-                      <Input src={imagePostPath} />
+                      <Image src={imagePostPath} />
                     </Box>
                     <Box>
                       <Likes postId={mapPost.id} />
