@@ -6,12 +6,7 @@ import { redirect } from "next/navigation";
 const WorldTopPage = async () => {
   const session = await getServerSession(authOptions);
   if (!session) return redirect("/login");
-  return (
-    <WorldMapPage
-      userId={session.user.id}
-      imagePostPath={session.user.imagePostPath}
-    />
-  );
+  return <WorldMapPage userId={session.user.id} />;
 };
 
 export default WorldTopPage;
