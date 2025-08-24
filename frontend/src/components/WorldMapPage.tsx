@@ -14,7 +14,6 @@ import SearchBar from "./SearchBar";
 
 type Props = {
   userId: number;
-  imagePostPath: string;
 };
 
 // google map api
@@ -30,7 +29,7 @@ const DEFAULT_OPTIONS = {
   mapTypeControl: false, // 地図タイプコントロール
 };
 
-const WorldMapPage = ({ userId, imagePostPath }: Props) => {
+const WorldMapPage = ({ userId}: Props) => {
   const { isLoaded } = useLoadScript({
     id: "google-map-script",
     googleMapsApiKey,
@@ -175,7 +174,6 @@ const WorldMapPage = ({ userId, imagePostPath }: Props) => {
           <PostLists
             countryName={selectedCountry}
             userId={userId}
-            imagePostPath={imagePostPath}
           />
         )}
         {isLoaded && (
