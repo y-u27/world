@@ -10,6 +10,7 @@ export interface PostResponse {
   content: string;
   countryName: string;
   createdAt: string;
+  image: string;
 }
 
 export interface getLikes {
