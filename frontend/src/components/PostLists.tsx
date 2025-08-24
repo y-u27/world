@@ -48,7 +48,6 @@ interface ApiResponse {
 type CountryProps = {
   countryName: string;
   userId: number;
-  imagePostPath: string;
 };
 
 // ↓全投稿データ取得
@@ -66,8 +65,7 @@ async function fetchAllWorldPost(country: string): Promise<PostResponse[]> {
 
 const PostLists: React.FC<CountryProps> = ({
   userId,
-  countryName,
-  imagePostPath,
+  countryName
 }: CountryProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
