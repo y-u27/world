@@ -46,11 +46,11 @@ router.patch(
     try {
       const id = parseInt(req.params.id);
       const countryName = req.query.countryName as string;
-      const { title, content, userId } = req.body;
+      const { title, content, userId, image } = req.body;
 
       const newWorldPostDataId = await prisma.post.update({
         where: { id, userId },
-        data: { title, content, countryName },
+        data: { title, content, countryName, image },
       });
 
       if (!newWorldPostDataId) {
