@@ -51,6 +51,8 @@ router.post(
   async (req: Request, res: Response): Promise<void> => {
     const { title, content, countryName, userId, image } = req.body;
 
+    console.log("受け取ったデータ：", req.body);
+
     if (!userId || !title || !content || !countryName) {
       res.status(400).json({
         success: false,
