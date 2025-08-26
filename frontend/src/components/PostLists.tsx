@@ -213,7 +213,7 @@ const PostLists: React.FC<CountryProps> = ({
                       <br />
                       <Divider />
                       <br />
-                      <Image src={mapPost.image || undefined} />
+                      <Image boxSize='800px' src={mapPost.image || undefined} />
                     </Box>
                     <Box>
                       <Likes postId={mapPost.id} />
