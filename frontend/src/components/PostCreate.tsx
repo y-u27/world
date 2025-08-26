@@ -27,7 +27,7 @@ const createPost = async (
   image?: string | null
 ) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts?country-name=${countryName}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts`,
     {
       method: "POST",
       headers: {
