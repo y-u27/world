@@ -41,11 +41,7 @@ const createPost = async (
   return res.json();
 };
 
-const PostCreate = ({
-  onImageUpload,
-}: {
-  onImageUpload: (url: string) => void;
-}) => {
+const PostCreate = () => {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLInputElement | null>(null);
   const toast = useToast();
@@ -53,7 +49,6 @@ const PostCreate = ({
   const { data: session } = useSession();
   const searchParams = useSearchParams();
   const [selectedCountry, setSelectedCountry] = useState<string>("");
-  const [postImageUrl, setPostImageUrl] = useState<string | null>(null);
   const [selectPostImageUrl, setSelectPostImageUrl] = useState<string | null>(
     null
   );
@@ -114,7 +109,7 @@ const PostCreate = ({
         title,
         content,
         session?.user.id,
-        postImageUrl
+        selectPostImageUrl || null
       );
       toast({
         title: "投稿完了！",
@@ -157,7 +152,6 @@ const PostCreate = ({
 
       if (urlData?.publicUrl) {
         setSelectPostImageUrl(urlData.publicUrl);
-        onImageUpload(urlData.publicUrl);
       }
     }
   };
