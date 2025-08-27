@@ -7,6 +7,7 @@ import {
   Card,
   CardBody,
   HStack,
+  Image,
   Input,
   Text,
   useToast,
@@ -17,7 +18,8 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { TiArrowBackOutline } from "react-icons/ti";
-import PostImage from "./PostImage";
+import { v4 as uuidv4 } from "uuid";
+import { supabase } from "../../utils/supabase/supabase";
 
 const createPost = async (
   countryName: string | undefined,
@@ -39,7 +41,11 @@ const createPost = async (
   return res.json();
 };
 
-const PostCreate = () => {
+const PostCreate = ({
+  onImageUpload,
+}: {
+  onImageUpload: (url: string) => void;
+}) => {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLInputElement | null>(null);
   const toast = useToast();
@@ -48,6 +54,9 @@ const PostCreate = () => {
   const searchParams = useSearchParams();
   const [selectedCountry, setSelectedCountry] = useState<string>("");
   const [postImageUrl, setPostImageUrl] = useState<string | null>(null);
+  const [selectPostImageUrl, setSelectPostImageUrl] = useState<string | null>(
+    null
+  );
 
   useEffect(() => {
     const country = searchParams.get("country");
@@ -128,6 +137,31 @@ const PostCreate = () => {
     }
   };
 
+  //投稿時の画像保存処理
+  const handleUploadPostImage = async (file: File) => {
+    console.log("画像アップロードを開始", file);
+
+    const filePostPath = `public/${uuidv4()}`;
+    const { data, error } = await supabase.storage
+      .from("post-image-bucket")
+      .upload(`${filePostPath}`, file);
+
+    if (error) {
+      console.log("画像アップロードに失敗", error);
+    } else {
+      console.log("画像アップロードに成功", data);
+
+      const { data: urlData } = supabase.storage
+        .from("post-image-bucket")
+        .getPublicUrl(`${filePostPath}`);
+
+      if (urlData?.publicUrl) {
+        setSelectPostImageUrl(urlData.publicUrl);
+        onImageUpload(urlData.publicUrl);
+      }
+    }
+  };
+
   return (
     <>
       <Card
@@ -165,7 +199,18 @@ const PostCreate = () => {
                   maxWidth="500px"
                   ref={contentRef}
                 />
-                <PostImage onImageUpload={(url) => setPostImageUrl(url)} />
+                <Box>
+                  <Image src={selectPostImageUrl || undefined} />
+                  <Input
+                    type="file"
+                    onChange={(e) => {
+                      const selectedPostFiles = e.target.files?.[0] || null;
+                      if (selectedPostFiles) {
+                        handleUploadPostImage(selectedPostFiles);
+                      }
+                    }}
+                  />
+                </Box>
               </VStack>
               <Box display="flex" justifyContent="center" mr="18%" mt="5%">
                 <HStack spacing="30px">
