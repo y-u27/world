@@ -26,7 +26,7 @@ const createPost = async (
   title: string | undefined,
   content: string | undefined,
   userId: number,
-  selectPostImageUrl?: string | null
+  image?: string | null
 ) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts`,
@@ -40,7 +40,7 @@ const createPost = async (
         title,
         content,
         userId,
-        selectPostImageUrl,
+        image,
       }),
     }
   );
@@ -158,6 +158,9 @@ const PostCreate = () => {
 
       if (urlData?.publicUrl) {
         setSelectPostImageUrl(urlData.publicUrl);
+        console.log("アップロードされた画像URL:", urlData.publicUrl);
+      } else {
+        console.error("画像URL取得に失敗");
       }
     }
   };
