@@ -65,7 +65,7 @@ async function fetchAllWorldPost(country: string): Promise<PostResponse[]> {
 
 const PostLists: React.FC<CountryProps> = ({
   userId,
-  countryName
+  countryName,
 }: CountryProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
@@ -213,7 +213,7 @@ const PostLists: React.FC<CountryProps> = ({
                       <br />
                       <Divider />
                       <br />
-                      <Image boxSize='300px' src={mapPost.image || undefined} />
+                      <Image boxSize="300px" src={mapPost.image || undefined} />
                     </Box>
                     <Box>
                       <Likes postId={mapPost.id} />
