@@ -68,6 +68,7 @@ const PostCreate = () => {
   }, [searchParams, setSelectedCountry]);
 
   const handleMapPost = async (e: React.FormEvent) => {
+    console.log("投稿時の image URL:", selectPostImageUrl);
     e.preventDefault();
 
     const title = titleRef.current?.value?.trim();
