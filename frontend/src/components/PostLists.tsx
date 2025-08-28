@@ -216,7 +216,7 @@ const PostLists: React.FC<CountryProps> = ({
                       <Image
                         boxSize="300px"
                         src={mapPost.image || undefined}
-                        alt="Uploaded image"
+                        alt=""
                       />
                     </Box>
                     <Box>
