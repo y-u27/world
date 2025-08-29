@@ -17,6 +17,7 @@ const port = 5001;
 app.use(express.json());
 app.use(
   cors({
+    // ↓フロント側のURLを設定
     origin: `${process.env.NEXT_PUBLIC_BASE_URL}`,
     credentials: true,
     optionsSuccessStatus: 200,
@@ -33,7 +34,7 @@ app.use("/api", registerApi);
 
 // サーバ起動
 app.listen(port, () => {
-  console.log(`サーバーが${process.env.NEXT_PUBLIC_BASE_URL}で起動しました`);
+  console.log(`サーバーが${process.env.NEXT_PUBLIC_BASE_URL}で起動`);
 });
 
 export default app;
