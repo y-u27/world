@@ -16,9 +16,7 @@ const prismaClient_1 = __importDefault(require("../../../lib/prismaClient"));
 const express_1 = require("express");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const router = (0, express_1.Router)();
-const cors = require("cors");
-router.post("/register", cors(), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("受信データ", req.body);
+router.post("/register", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, email, password, image } = req.body;
     if (!email || !password) {
         res
@@ -27,12 +25,12 @@ router.post("/register", cors(), (req, res) => __awaiter(void 0, void 0, void 0,
         return;
     }
     try {
-        const hashePassword = yield bcrypt_1.default.hash(password, 10);
+        const hashPassword = yield bcrypt_1.default.hash(password, 10);
         const newUser = yield prismaClient_1.default.user.create({
             data: {
                 name,
                 email,
-                password: hashePassword,
+                password: hashPassword,
                 image: image || "",
             },
         });
@@ -40,6 +38,7 @@ router.post("/register", cors(), (req, res) => __awaiter(void 0, void 0, void 0,
         return;
     }
     catch (error) {
+        console.error("Register error: ", error);
         res.status(500).json({ message: "登録できませんでした,error" });
         return;
     }

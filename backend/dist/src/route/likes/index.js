@@ -15,13 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const prismaClient_1 = __importDefault(require("../../../lib/prismaClient"));
 const express_1 = require("express");
 const router = (0, express_1.Router)();
-const cors = require("cors");
 // いいねを取得するGET API
 router.get("/likes", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const userId = Number(req.query.userId);
     const postId = Number(req.query.postId);
     if (!userId || !postId) {
-        res.status(400).json({ error: "userIdまたはpostIdが不足しています" });
+        res.status(400).json({ error: "userId・postIdが不足しています" });
         return;
     }
     const getLike = yield prismaClient_1.default.likes.findMany({
@@ -34,7 +33,7 @@ router.get("/likes", (req, res) => __awaiter(void 0, void 0, void 0, function* (
     return;
 }));
 // いいねを追加するPOST API
-router.post("/likes", cors(), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/likes", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // リクエストボディからデータを取得
     const userId = Number(req.body.userId);
     const postId = Number(req.body.postId);
@@ -70,7 +69,7 @@ router.post("/likes", cors(), (req, res) => __awaiter(void 0, void 0, void 0, fu
     }
 }));
 // いいねを削除するDELETE API
-router.delete("/likes", cors(), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.delete("/likes", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const userId = req.body.userId ? Number(req.body.userId) : null;
     const postId = req.body.postId ? Number(req.body.postId) : null;
     if (userId === null || postId === null || isNaN(userId) || isNaN(postId)) {

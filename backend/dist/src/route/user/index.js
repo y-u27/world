@@ -15,9 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const prismaClient_1 = __importDefault(require("../../../lib/prismaClient"));
 const express_1 = require("express");
 const router = (0, express_1.Router)();
-const cors = require("cors");
 // ユーザー情報
-router.post("/user", cors(), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/user", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const email = typeof req.body.email === "string" ? req.body.email : undefined;
     if (!email) {
         res.status(400).json({ error: "メールアドレスがありません" });
@@ -47,7 +46,7 @@ router.post("/user", cors(), (req, res) => __awaiter(void 0, void 0, void 0, fun
     }
 }));
 // コメントを更新するAPI
-router.patch("/user", cors(), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.patch("/user", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const email = typeof req.body.email === "string" ? req.body.email : undefined;
     const comment = typeof req.body.comment === "string" ? req.body.comment : undefined;
     if (!comment && !email) {
