@@ -50,10 +50,10 @@ router.patch("/world-posts/:id", (req, res) => __awaiter(void 0, void 0, void 0,
     try {
         const id = parseInt(req.params.id);
         const countryName = req.query.countryName;
-        const { title, content, userId } = req.body;
+        const { title, content, userId, image } = req.body;
         const newWorldPostDataId = yield prismaClient_1.default.post.update({
             where: { id, userId },
-            data: { title, content, countryName },
+            data: { title, content, countryName, image },
         });
         if (!newWorldPostDataId) {
             res.status(404).json({ error: "投稿更新失敗" });
