@@ -7,6 +7,7 @@ import {
   Card,
   CardBody,
   HStack,
+  Image,
   Input,
   Text,
   useToast,
@@ -16,6 +17,8 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { TiArrowBackOutline } from "react-icons/ti";
+import { v4 as uuidv4 } from "uuid";
+import { supabase } from "../../utils/supabase/supabase";
 
 interface editProps {
   id: number;
@@ -27,7 +30,8 @@ const editPost = async (
   title: string | undefined,
   content: string | undefined,
   id: number,
-  userId: number
+  userId: number,
+  image?: string | null
 ) => {
   const res = await fetch(
     `${
@@ -40,7 +44,7 @@ const editPost = async (
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ countryName, title, content, userId }),
+      body: JSON.stringify({ countryName, title, content, userId, image }),
     }
   );
   return res.json();
@@ -50,6 +54,9 @@ const PostEdit = ({ id, userId }: editProps) => {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLInputElement | null>(null);
   const [selectedCountry, setSelectedCountry] = useState<string>("");
+  const [selectPostEditImageUrl, setSelectPostEditImageUrl] = useState<
+    string | null
+  >(null);
   const toast = useToast();
   const router = useRouter();
 
@@ -123,7 +130,8 @@ const PostEdit = ({ id, userId }: editProps) => {
         titleRef.current?.value,
         contentRef.current?.value,
         id,
-        userId
+        userId,
+        selectPostEditImageUrl || null
       );
       toast({
         title: "編集完了！",
@@ -142,6 +150,33 @@ const PostEdit = ({ id, userId }: editProps) => {
         duration: 500,
         isClosable: true,
       });
+    }
+  };
+
+  //投稿編集時の画像保存処理
+  const handleUploadPostEditImage = async (file: File) => {
+    console.log("画像アップロードを開始", file);
+
+    const filePostPath = `public/${uuidv4()}`;
+    const { data, error } = await supabase.storage
+      .from("post-image-bucket")
+      .upload(`${filePostPath}`, file);
+
+    if (error) {
+      console.log("画像アップロードに失敗", error);
+    } else {
+      console.log("画像アップロードに成功", data);
+
+      const { data: urlData } = supabase.storage
+        .from("post-image-bucket")
+        .getPublicUrl(`${filePostPath}`);
+
+      if (urlData?.publicUrl) {
+        setSelectPostEditImageUrl(urlData.publicUrl);
+        console.log("アップロードされた画像URL:", urlData.publicUrl);
+      } else {
+        console.error("画像URL取得に失敗");
+      }
     }
   };
 
@@ -184,6 +219,16 @@ const PostEdit = ({ id, userId }: editProps) => {
                   ref={contentRef}
                 />
               </VStack>
+              <Image src={selectPostEditImageUrl || undefined} />
+              <Input
+                type="file"
+                onChange={(e) => {
+                  const selectedPostFiles = e.target.files?.[0] || null;
+                  if (selectedPostFiles) {
+                    handleUploadPostEditImage(selectedPostFiles);
+                  }
+                }}
+              />
               <Box display="flex" justifyContent="center" mr="18%" mt="5%">
                 <HStack spacing="30px">
                   <Link href="/world">
