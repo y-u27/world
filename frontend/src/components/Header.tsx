@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  Avatar,
-  Box,
-  Heading,
-  IconButton,
-} from "@chakra-ui/react";
+import { Avatar, Box, Heading, IconButton } from "@chakra-ui/react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -52,7 +47,7 @@ const Header = () => {
       <Box position="relative">
         <Heading
           color="#000080"
-          bgColor="#b0c4de" 
+          bgColor="#b0c4de"
           textAlign="center"
           h="100%"
           size="md"
@@ -89,7 +84,6 @@ const Header = () => {
                 right="10px"
                 padding="10px"
               >
-
                 {/* プロフィールアイコン */}
                 <Link href={`/user/${userId}`}>
                   <Avatar
