@@ -119,9 +119,7 @@ const Login = () => {
           </Link>
           <Box mt="24px">
             <TiArrowBackOutline />
-            <Link href="/">
-              <Text>トップページへ戻る</Text>
-            </Link>
+            <Link href="/sign">アカウントがない方はこちら</Link>
           </Box>
         </Box>
       </CardBody>
