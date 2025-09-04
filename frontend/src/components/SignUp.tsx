@@ -184,9 +184,7 @@ const SignUp = () => {
             </VStack>
           </HStack>
           <TiArrowBackOutline />
-          <Link href="/login">
-            <Text>ログインへ戻る</Text>
-          </Link>
+          <Link href="/login">すでにアカウントがある方はこちら</Link>
         </Box>
       </CardBody>
     </Card>
