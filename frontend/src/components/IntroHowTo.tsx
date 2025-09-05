@@ -18,6 +18,7 @@ const IntroHowTo = () => {
         w={["90%", "80%", "70%"]}
         ml={["5%", "10%", "15%"]}
         mt="60px"
+        display="flex"
       >
         <Box bgColor="yellow.50" p={[4, 6, 8]} position="relative">
           <Heading
