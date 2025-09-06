@@ -15,22 +15,16 @@ const IntroHowTo = () => {
     <>
       <Box
         display="flex"
-        flexDirection={["column", "row"]} // モバイルは縦、PCは横
+        flexDirection={["column", "row"]}
         justifyContent="space-between"
-        alignItems="flex-start"
+        alignItems="stretch"
         w={["90%", "80%", "70%"]}
         ml={["5%", "10%", "15%"]}
         mt="60px"
-        gap="20px" // 2つのボックス間の余白
+        gap="20px"
       >
-        <Box
-          position="relative"
-          w={["90%", "80%", "70%"]}
-          // ml={["5%", "10%", "15%"]}
-          mt="40px"
-          mb="5%"
-        >
-          <Box bgColor="yellow.50" p={[4, 6, 8]} position="relative">
+        <Box flex="1" minH="400px">
+          <Box bgColor="yellow.50" p={[4, 6, 8]} h="100%" position="relative">
             <Heading
               position="absolute"
               top="-20px"
@@ -56,14 +50,8 @@ const IntroHowTo = () => {
             </Text>
           </Box>
         </Box>
-        <Box
-          position="relative"
-          w={["90%", "80%", "70%"]}
-          ml={["5%", "10%", "15%"]}
-          mt="40px"
-          mb="5%"
-        >
-          <Box p={[4, 6, 8]} position="relative" bgColor="yellow.50">
+        <Box flex="1" minH="400px">
+          <Box p={[4, 6, 8]} h="100%" position="relative" bgColor="yellow.50">
             <Heading
               position="absolute"
               top="-20px"
