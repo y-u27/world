@@ -26,7 +26,7 @@ const IntroHowTo = () => {
         <Box
           position="relative"
           w={["90%", "80%", "70%"]}
-          ml={["5%", "10%", "15%"]}
+          // ml={["5%", "10%", "15%"]}
           mt="40px"
           mb="5%"
         >
