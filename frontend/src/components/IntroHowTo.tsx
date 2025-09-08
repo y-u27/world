@@ -19,7 +19,8 @@ const IntroHowTo = () => {
         alignItems="center"
         justifyContent="center"
         w="100%"
-        mr="30px"
+        mt="10px"
+        mr="20px"
       >
         <Box
           display="flex"
