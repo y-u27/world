@@ -79,56 +79,70 @@ const IntroHowTo = () => {
                 使い方
               </Heading>
               <VStack>
-                <OrderedList w="100%" ml="2%">
-                  <ListItem w="100%" ml="2%"></ListItem>
-                  <Accordion>
-                    <AccordionItem>
-                      <AccordionButton>
-                        <Box as="span" flex="1" textAlign="left">
-                          好きな国や行ったことがある国をクリック
-                        </Box>
-                        <AccordionIcon />
-                      </AccordionButton>
-                      <AccordionPanel>
-                        <Box px={[0, "10%", "240px"]}>
-                          <Image
-                            src="/sample/スクリーンショット 2024-09-30 20.28.38.jpeg"
-                            alt="Top Image"
-                            width={900}
-                            height={800}
-                            style={{ width: "100%", height: "auto" }}
-                          />
-                        </Box>
-                      </AccordionPanel>
-                    </AccordionItem>
-                  </Accordion>
-                  <br />
-                  <ListItem w="100%" ml="2%">
-                    1で選択した国の地図が表示されたら、右上にある「投稿一覧」ボタンをクリック
-                  </ListItem>
-                  <Box px={[0, "10%", "240px"]}>
-                    <Image
-                      src="/sample/スクリーンショット 2024-09-30 20.28.54.jpeg"
-                      alt="Top Image"
-                      width={900}
-                      height={800}
-                      style={{ width: "100%", height: "auto" }}
-                    />
-                  </Box>
-                  <br />
-                  <ListItem w="100%" ml="2%">
-                    「投稿一覧」が表示されたら、実際に投稿してみましょう！
-                  </ListItem>
-                  <Box px={[0, "10%", "240px"]}>
-                    <Image
-                      src="/sample/スクリーンショット 2024-11-22 21.51.17.jpeg"
-                      alt="Top Image"
-                      width={900}
-                      height={800}
-                      style={{ width: "100%", height: "auto" }}
-                    />
-                  </Box>
-                </OrderedList>
+                <Accordion>
+                  <AccordionItem>
+                    <AccordionButton>
+                      <Box as="span" flex="1" textAlign="left">
+                        好きな国や行ったことがある国をクリック
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                    <AccordionPanel>
+                      <Box px={[0, "10%", "240px"]}>
+                        <Image
+                          src="/sample/スクリーンショット 2024-09-30 20.28.38.jpeg"
+                          alt="Top Image"
+                          width={300}
+                          height={500}
+                          style={{ width: "100%", height: "auto" }}
+                        />
+                      </Box>
+                    </AccordionPanel>
+                  </AccordionItem>
+                </Accordion>
+                <br />
+                <Accordion>
+                  <AccordionItem>
+                    <AccordionButton>
+                      <Box as="span" flex="1" textAlign="left">
+                        1で選択した国の地図が表示されたら、右上にある「投稿一覧」ボタンをクリック
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                    <AccordionPanel>
+                      <Box px={[0, "10%", "240px"]}>
+                        <Image
+                          src="/sample/スクリーンショット 2024-09-30 20.28.54.jpeg"
+                          alt="Top Image"
+                          width={300}
+                          height={500}
+                          style={{ width: "100%", height: "auto" }}
+                        />
+                      </Box>
+                    </AccordionPanel>
+                  </AccordionItem>
+                </Accordion>
+                <Accordion>
+                  <AccordionItem>
+                    <AccordionButton>
+                      <Box as="span" flex="1" textAlign="left">
+                        「投稿一覧」が表示されたら、実際に投稿してみましょう！
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                    <AccordionPanel>
+                      <Box px={[0, "10%", "240px"]}>
+                        <Image
+                          src="/sample/スクリーンショット 2024-11-22 21.51.17.jpeg"
+                          alt="Top Image"
+                          width={300}
+                          height={500}
+                          style={{ width: "100%", height: "auto" }}
+                        />
+                      </Box>
+                    </AccordionPanel>
+                  </AccordionItem>
+                </Accordion>
               </VStack>
             </Box>
           </Box>
