@@ -92,8 +92,8 @@ const IntroHowTo = () => {
                         <Image
                           src="/sample/スクリーンショット 2024-09-30 20.28.38.jpeg"
                           alt="Top Image"
-                          // width="300px"
-                          // height="600px"
+                          width={50}
+                          height={60}
                           style={{ width: "100%", height: "auto" }}
                         />
                       </Box>
