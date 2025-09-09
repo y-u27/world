@@ -7,8 +7,6 @@ import {
   Box,
   Button,
   Heading,
-  ListItem,
-  OrderedList,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -108,11 +106,11 @@ const IntroHowTo = () => {
                     </AccordionButton>
                     <AccordionPanel>
                       <Box px={[0, "10%", "240px"]}>
-                        <Image
+                        <img
                           src="/sample/screenshot-20240930-202854.jpeg"
                           alt="Top Image"
-                          width={900}
-                          height={600}
+                          // width={900}
+                          // height={600}
                           style={{ width: "100%", height: "auto" }}
                         />
                       </Box>
