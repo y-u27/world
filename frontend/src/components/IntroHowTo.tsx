@@ -25,10 +25,9 @@ const IntroHowTo = () => {
         <Box
           display="flex"
           flexDirection={["column", "row"]}
-          justifyContent="space-between"
+          justifyContent="center"
           alignItems="stretch"
           w={["90%", "80%", "70%"]}
-          ml={["5%", "10%", "15%"]}
           mt="60px"
           gap="20px"
         >
@@ -119,7 +118,7 @@ const IntroHowTo = () => {
             </Box>
           </Box>
         </Box>
-        <Box position="relative" ml="34%" mt="40px">
+        <Box mt="40px" textAlign="center">
           <Link href="/login">
             <Button
               w={["90%", "90%", "300px"]}
