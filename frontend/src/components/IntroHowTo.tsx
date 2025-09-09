@@ -100,7 +100,7 @@ const IntroHowTo = () => {
                   <AccordionItem>
                     <AccordionButton>
                       <Box as="span" flex="1" textAlign="left">
-                        1で選択した国の地図が表示されたら、右上にある「投稿一覧」ボタンをクリック
+                        選択した国の地図が表示されたら、右上にある「投稿一覧」ボタンをクリック
                       </Box>
                       <AccordionIcon />
                     </AccordionButton>
