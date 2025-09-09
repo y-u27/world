@@ -1,4 +1,7 @@
 import {
+  Accordion,
+  AccordionButton,
+  AccordionPanel,
   Box,
   Button,
   Heading,
@@ -75,18 +78,25 @@ const IntroHowTo = () => {
               </Heading>
               <VStack>
                 <OrderedList w="100%" ml="2%">
-                  <ListItem w="100%" ml="2%">
-                    好きな国や行ったことがある国をクリック
-                  </ListItem>
-                  <Box px={[0, "10%", "240px"]}>
-                    <Image
-                      src="/sample/スクリーンショット 2024-09-30 20.28.38.jpeg"
-                      alt="Top Image"
-                      width={900}
-                      height={800}
-                      style={{ width: "100%", height: "auto" }}
-                    />
-                  </Box>
+                  <ListItem w="100%" ml="2%"></ListItem>
+                  <Accordion>
+                    <AccordionButton>
+                      <Box as="span" flex="1" textAlign="left">
+                        好きな国や行ったことがある国をクリック
+                      </Box>
+                    </AccordionButton>
+                  </Accordion>
+                  <AccordionPanel>
+                    <Box px={[0, "10%", "240px"]}>
+                      <Image
+                        src="/sample/スクリーンショット 2024-09-30 20.28.38.jpeg"
+                        alt="Top Image"
+                        width={900}
+                        height={800}
+                        style={{ width: "100%", height: "auto" }}
+                      />
+                    </Box>
+                  </AccordionPanel>
                   <br />
                   <ListItem w="100%" ml="2%">
                     1で選択した国の地図が表示されたら、右上にある「投稿一覧」ボタンをクリック
