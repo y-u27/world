@@ -109,7 +109,7 @@ const IntroHowTo = () => {
                     <AccordionPanel>
                       <Box px={[0, "10%", "240px"]}>
                         <Image
-                          src="/sample/スクリーンショット 2024-09-30 20.28.54.jpeg"
+                          src="/sample/screenshot-20240930-202854.jpeg"
                           alt="Top Image"
                           width={900}
                           height={600}
@@ -128,7 +128,7 @@ const IntroHowTo = () => {
                     <AccordionPanel>
                       <Box px={[0, "10%", "240px"]}>
                         <Image
-                          src="/sample/スクリーンショット 2024-11-22 21.51.17.jpeg"
+                          src="/sample/screenshot-20241122-215117.jpeg"
                           alt="Top Image"
                           width={900}
                           height={600}
