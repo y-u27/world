@@ -90,10 +90,10 @@ const IntroHowTo = () => {
                     <AccordionPanel>
                       <Box px={[0, "10%", "240px"]}>
                         <Image
-                          src="/sample/スクリーンショット 2024-09-30 20.28.38.jpeg"
+                          src="/sample/screenshot-20240930-202838.jpeg"
                           alt="Top Image"
-                          width={50}
-                          height={60}
+                          width={900}
+                          height={600}
                           style={{ width: "100%", height: "auto" }}
                         />
                       </Box>
