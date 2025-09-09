@@ -79,7 +79,7 @@ const IntroHowTo = () => {
                 使い方
               </Heading>
               <VStack>
-                <Accordion>
+                <Accordion defaultIndex={[0]} allowMultiple>
                   <AccordionItem>
                     <AccordionButton>
                       <Box as="span" flex="1" textAlign="left">
@@ -92,7 +92,7 @@ const IntroHowTo = () => {
                         <Image
                           src="/sample/スクリーンショット 2024-09-30 20.28.38.jpeg"
                           alt="Top Image"
-                          width={900}
+                          width={300}
                           height={600}
                           style={{ width: "100%", height: "auto" }}
                         />
