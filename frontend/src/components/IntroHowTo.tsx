@@ -7,6 +7,9 @@ import {
   Box,
   Button,
   Heading,
+  Tab,
+  TabList,
+  Tabs,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -77,15 +80,12 @@ const IntroHowTo = () => {
                 使い方
               </Heading>
               <VStack>
-                <Accordion defaultIndex={[0]} allowMultiple>
-                  <AccordionItem>
-                    <AccordionButton>
+                <Tabs variant="enclosed">
+                  <TabList>
+                    <Tab>
                       <Box as="span" flex="1" textAlign="left">
                         好きな国や行ったことがある国をクリック
                       </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                    <AccordionPanel>
                       <Box
                         position="relative"
                         w="100%"
@@ -95,51 +95,39 @@ const IntroHowTo = () => {
                         <Image
                           src="/sample/screenshot-20240930-202838.jpeg"
                           alt="Top Image"
-                          fill
-                          style={{ objectFit: "contain" }}
-                        />
-                      </Box>
-                    </AccordionPanel>
-                  </AccordionItem>
-                  <AccordionItem>
-                    <AccordionButton>
-                      <Box as="span" flex="1" textAlign="left">
-                        選択した国の地図が表示されたら、右上にある「投稿一覧」ボタンをクリック
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                    <AccordionPanel>
-                      <Box px={[0, "10%", "240px"]}>
-                        <Image
-                          src="/sample/screenshot-20240930-202854.jpeg"
-                          alt="Top Image"
                           width={900}
                           height={600}
                           style={{ width: "100%", height: "auto" }}
                         />
                       </Box>
-                    </AccordionPanel>
-                  </AccordionItem>
-                  <AccordionItem>
-                    <AccordionButton>
-                      <Box as="span" flex="1" textAlign="left">
-                        「投稿一覧」が表示されたら、実際に投稿してみましょう！
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                    <AccordionPanel>
-                      <Box px={[0, "10%", "240px"]}>
-                        <Image
-                          src="/sample/screenshot-20241122-215117.jpeg"
-                          alt="Top Image"
-                          width={900}
-                          height={600}
-                          style={{ width: "100%", height: "auto" }}
-                        />
-                      </Box>
-                    </AccordionPanel>
-                  </AccordionItem>
-                </Accordion>
+                    </Tab>
+                  </TabList>
+                </Tabs>
+
+                {/* <Box as="span" flex="1" textAlign="left">
+                  選択した国の地図が表示されたら、右上にある「投稿一覧」ボタンをクリック
+                </Box>
+                <Box px={[0, "10%", "240px"]}>
+                  <Image
+                    src="/sample/screenshot-20240930-202854.jpeg"
+                    alt="Top Image"
+                    width={900}
+                    height={600}
+                    style={{ width: "100%", height: "auto" }}
+                  />
+                </Box>
+                <Box as="span" flex="1" textAlign="left">
+                  「投稿一覧」が表示されたら、実際に投稿してみましょう！
+                </Box>
+                <Box px={[0, "10%", "240px"]}>
+                  <Image
+                    src="/sample/screenshot-20241122-215117.jpeg"
+                    alt="Top Image"
+                    width={900}
+                    height={600}
+                    style={{ width: "100%", height: "auto" }}
+                  />
+                </Box> */}
               </VStack>
             </Box>
           </Box>
