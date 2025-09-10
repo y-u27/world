@@ -90,9 +90,8 @@ const IntroHowTo = () => {
                         <Image
                           src="/sample/screenshot-20240930-202838.jpeg"
                           alt="Top Image"
-                          width={900}
-                          height={600}
-                          style={{ width: "100%", height: "100%" }}
+                          fill
+                          style={{ objectFit: "contain" }}
                         />
                       </Box>
                     </AccordionPanel>
