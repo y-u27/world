@@ -192,7 +192,7 @@ const PostEdit = ({ id, userId }: editProps) => {
           <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
             編集フォーム
           </Text>
-          <Box display="flex" justifyContent="center">
+          <Box display="flex" justifyContent="center" mx={10} mt={5}>
             <Box flexDirection="column">
               <VStack spacing={4}>
                 <Input
@@ -218,17 +218,19 @@ const PostEdit = ({ id, userId }: editProps) => {
                   maxWidth="500px"
                   ref={contentRef}
                 />
+                <Box>
+                  <Image src={selectPostEditImageUrl || undefined} />
+                  <Input
+                    type="file"
+                    onChange={(e) => {
+                      const selectedPostFiles = e.target.files?.[0] || null;
+                      if (selectedPostFiles) {
+                        handleUploadPostEditImage(selectedPostFiles);
+                      }
+                    }}
+                  />
+                </Box>
               </VStack>
-              <Image src={selectPostEditImageUrl || undefined} />
-              <Input
-                type="file"
-                onChange={(e) => {
-                  const selectedPostFiles = e.target.files?.[0] || null;
-                  if (selectedPostFiles) {
-                    handleUploadPostEditImage(selectedPostFiles);
-                  }
-                }}
-              />
               <Box display="flex" justifyContent="center" mr="18%" mt="5%">
                 <HStack spacing="30px">
                   <Link href="/world">
