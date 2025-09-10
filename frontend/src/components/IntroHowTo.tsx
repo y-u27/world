@@ -86,7 +86,12 @@ const IntroHowTo = () => {
                       <AccordionIcon />
                     </AccordionButton>
                     <AccordionPanel>
-                      <Box px={[0, "10%", "240px"]}>
+                      <Box
+                        position="relative"
+                        w="100%"
+                        h="400px"
+                        px={[0, "10%", "240px"]}
+                      >
                         <Image
                           src="/sample/screenshot-20240930-202838.jpeg"
                           alt="Top Image"
