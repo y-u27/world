@@ -92,8 +92,8 @@ const IntroHowTo = () => {
                     <TabPanel>
                       <Box as="span" flex="1" textAlign="left">
                         好きな国や行ったことがある国をクリック
-                      </Box>
-                      <Box px={[0, "10%", "240px"]}>
+                      {/* </Box>
+                      <Box px={[0, "10%", "240px"]}> */}
                         <Image
                           src="/sample/screenshot-20240930-202838.jpeg"
                           alt="Top Image"
