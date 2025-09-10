@@ -85,18 +85,15 @@ const IntroHowTo = () => {
                 <Tabs variant="enclosed">
                   <TabList>
                     <Tab>1.</Tab>
+                    <Tab>2.</Tab>
+                    <Tab>3.</Tab>
                   </TabList>
                   <TabPanels>
                     <TabPanel>
                       <Box as="span" flex="1" textAlign="left">
                         好きな国や行ったことがある国をクリック
                       </Box>
-                      <Box
-                        position="relative"
-                        w="100%"
-                        h="400px"
-                        px={[0, "10%", "240px"]}
-                      >
+                      <Box px={[0, "10%", "240px"]}>
                         <Image
                           src="/sample/screenshot-20240930-202838.jpeg"
                           alt="Top Image"
@@ -106,33 +103,36 @@ const IntroHowTo = () => {
                         />
                       </Box>
                     </TabPanel>
+                    <TabPanel>
+                      <Box as="span" flex="1" textAlign="left">
+                        選択した国の地図が表示されたら、右上にある「投稿一覧」ボタンをクリック
+                      </Box>
+                      <Box px={[0, "10%", "240px"]}>
+                        <Image
+                          src="/sample/screenshot-20240930-202854.jpeg"
+                          alt="Top Image"
+                          width={900}
+                          height={600}
+                          style={{ width: "100%", height: "auto" }}
+                        />
+                      </Box>
+                    </TabPanel>
+                    <TabPanel>
+                      <Box as="span" flex="1" textAlign="left">
+                        「投稿一覧」が表示されたら、実際に投稿してみましょう！
+                      </Box>
+                      <Box px={[0, "10%", "240px"]}>
+                        <Image
+                          src="/sample/screenshot-20241122-215117.jpeg"
+                          alt="Top Image"
+                          width={900}
+                          height={600}
+                          style={{ width: "100%", height: "auto" }}
+                        />
+                      </Box>
+                    </TabPanel>
                   </TabPanels>
                 </Tabs>
-
-                {/* <Box as="span" flex="1" textAlign="left">
-                  選択した国の地図が表示されたら、右上にある「投稿一覧」ボタンをクリック
-                </Box>
-                <Box px={[0, "10%", "240px"]}>
-                  <Image
-                    src="/sample/screenshot-20240930-202854.jpeg"
-                    alt="Top Image"
-                    width={900}
-                    height={600}
-                    style={{ width: "100%", height: "auto" }}
-                  />
-                </Box>
-                <Box as="span" flex="1" textAlign="left">
-                  「投稿一覧」が表示されたら、実際に投稿してみましょう！
-                </Box>
-                <Box px={[0, "10%", "240px"]}>
-                  <Image
-                    src="/sample/screenshot-20241122-215117.jpeg"
-                    alt="Top Image"
-                    width={900}
-                    height={600}
-                    style={{ width: "100%", height: "auto" }}
-                  />
-                </Box> */}
               </VStack>
             </Box>
           </Box>
