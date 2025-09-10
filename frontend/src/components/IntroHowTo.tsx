@@ -9,6 +9,8 @@ import {
   Heading,
   Tab,
   TabList,
+  TabPanel,
+  TabPanels,
   Tabs,
   Text,
   VStack,
@@ -82,7 +84,10 @@ const IntroHowTo = () => {
               <VStack>
                 <Tabs variant="enclosed">
                   <TabList>
-                    <Tab>
+                    <Tab>1.</Tab>
+                  </TabList>
+                  <TabPanels>
+                    <TabPanel>
                       <Box as="span" flex="1" textAlign="left">
                         好きな国や行ったことがある国をクリック
                       </Box>
@@ -100,8 +105,8 @@ const IntroHowTo = () => {
                           style={{ width: "100%", height: "auto" }}
                         />
                       </Box>
-                    </Tab>
-                  </TabList>
+                    </TabPanel>
+                  </TabPanels>
                 </Tabs>
 
                 {/* <Box as="span" flex="1" textAlign="left">
