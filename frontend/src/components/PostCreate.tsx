@@ -204,7 +204,7 @@ const PostCreate = () => {
                   ref={contentRef}
                 />
                 <Box>
-                  <Image src={selectPostImageUrl || undefined} />
+                  <Image src={selectPostImageUrl || undefined} /> ?
                   <Input
                     type="file"
                     onChange={(e) => {
@@ -214,6 +214,8 @@ const PostCreate = () => {
                       }
                     }}
                   />
+                  :
+                  <Input type="hidden" />
                 </Box>
               </VStack>
               <Box display="flex" justifyContent="center" mr="18%" mt="5%">
