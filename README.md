@@ -67,7 +67,7 @@ https://world-frontend.vercel.app/<br/>
 
 ![アプリの操作デモ](/frontend/public/demo/output.gif)<br/>
 
-> [!IMPORTANT]
+> [!CAUTION]
 > 現在、追加機能実装やUI修正などを行なっているため、操作デモは古い動画となっています<br/>
 近々修正予定のため、ご了承ください。
 
