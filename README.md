@@ -78,10 +78,10 @@ https://world-frontend.vercel.app/<br/>
 |---------------|----------------------|
 | **フロントエンド** | React, Next.js, TypeScript, Chakra UI |
 | **外部API** | Google Map API |
-| **バックエンド**   | Node.js, Prisma      |
-| **認証**         | Next-auth             |
-| **データベース**   | Supabase             |
-| **デプロイ**     | Vercel               |
+| **バックエンド**   | Node.js, Prisma |
+| **認証**         | Next-auth |
+| **データベース**   | Supabase |
+| **デプロイ**     | Vercel |
 
 ---
 
