@@ -204,8 +204,10 @@ const PostCreate = () => {
                   ref={contentRef}
                 />
                 <Box>
-                  <Image src={selectPostImageUrl || undefined} />
-
+                  {/* Inputタグは画像があるときだけ表示 */}
+                  {selectPostImageUrl && (
+                    <Image src={selectPostImageUrl || undefined} />
+                  )}
                   <Input
                     type="file"
                     onChange={(e) => {
