@@ -206,10 +206,11 @@ const PostCreate = () => {
                 <Box>
                   {/* Inputタグは画像があるときだけ表示 */}
                   {selectPostImageUrl && (
-                    <Image src={selectPostImageUrl || undefined} />
+                    <Image src={selectPostImageUrl} alt="選択した画像" />
                   )}
                   <Input
                     type="file"
+                    accept="image/*"
                     onChange={(e) => {
                       const selectedPostFiles = e.target.files?.[0] || null;
                       if (selectedPostFiles) {
