@@ -58,7 +58,6 @@ const PostCreate = () => {
   const [selectPostImageUrl, setSelectPostImageUrl] = useState<string | null>(
     null
   );
-  const [postImage, setPostImage] = useState("");
 
   useEffect(() => {
     const country = searchParams.get("country");
@@ -206,19 +205,16 @@ const PostCreate = () => {
                 />
                 <Box>
                   <Image src={selectPostImageUrl || undefined} />
-                  {postImage ? (
-                    <Input
-                      type="file"
-                      onChange={(e) => {
-                        const selectedPostFiles = e.target.files?.[0] || null;
-                        if (selectedPostFiles) {
-                          handleUploadPostImage(selectedPostFiles);
-                        }
-                      }}
-                    />
-                  ) : (
-                    <Input type="hidden" />
-                  )}
+
+                  <Input
+                    type="file"
+                    onChange={(e) => {
+                      const selectedPostFiles = e.target.files?.[0] || null;
+                      if (selectedPostFiles) {
+                        handleUploadPostImage(selectedPostFiles);
+                      }
+                    }}
+                  />
                 </Box>
               </VStack>
               <Box display="flex" justifyContent="center" mr="18%" mt="5%">
