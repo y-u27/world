@@ -213,11 +213,13 @@ const PostLists: React.FC<CountryProps> = ({
                       <br />
                       <Divider />
                       <br />
-                      <Image
-                        boxSize="300px"
-                        src={mapPost.image || undefined}
-                        alt=""
-                      />
+                      {mapPost.image ? (
+                        <Image
+                          boxSize="300px"
+                          src={mapPost.image || undefined}
+                          alt=""
+                        />
+                      ) : null}
                     </Box>
                     <Box>
                       <Likes postId={mapPost.id} />
