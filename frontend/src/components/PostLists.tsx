@@ -221,7 +221,7 @@ const PostLists: React.FC<CountryProps> = ({
                         />
                       ) : null}
                     </Box>
-                    <Box>{mapPost.createdAt}</Box>
+                    {/* <Box>{mapPost.createdAt}</Box> */}
                     <Box>
                       <Likes postId={mapPost.id} />
                     </Box>
