@@ -221,7 +221,16 @@ const PostLists: React.FC<CountryProps> = ({
                         />
                       ) : null}
                     </Box>
-                    {/* <Box>{mapPost.createdAt}</Box> */}
+                    <Box>
+                      {new Date(mapPost.createdAt).toLocaleDateString("ja-JP", {
+                        timeZone: "Asia/Tokyo",
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </Box>
                     <Box>
                       <Likes postId={mapPost.id} />
                     </Box>
