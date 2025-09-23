@@ -215,7 +215,8 @@ const PostLists: React.FC<CountryProps> = ({
                       <br />
                       {mapPost.image ? (
                         <Image
-                          boxSize="300px"
+                          width="500px"
+                          height="300px"
                           src={mapPost.image || undefined}
                           alt=""
                         />
