@@ -23,21 +23,21 @@ type UserInformationProps = {
   email: string;
 };
 
-interface ApiResponse {
-  data: PostResponse[];
-}
+// interface ApiResponse {
+//   data: PostResponse[];
+// }
 
-async function fetchUserPost(userId: string): Promise<PostResponse[]> {
-  const userPostResponce = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts?userId=${userId}`,
-    {
-      cache: "no-store",
-    }
-  );
+// async function fetchUserPost(userId: string): Promise<PostResponse[]> {
+//   const userPostResponce = await fetch(
+//     `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts?userId=${userId}`,
+//     {
+//       cache: "no-store",
+//     }
+//   );
 
-  const userPostData: ApiResponse = await userPostResponce.json();
-  return userPostData.data;
-}
+//   const userPostData: ApiResponse = await userPostResponce.json();
+//   return userPostData.data;
+// }
 
 const UserInformation: React.FC<UserInformationProps> = ({
   imagePath,
@@ -52,11 +52,11 @@ const UserInformation: React.FC<UserInformationProps> = ({
   const [userPosts, setUserPosts] = useState<PostResponse[]>([]);
   const toast = useToast();
 
-  useEffect(() => {
-    if (session?.user?.id) {
-      fetchUserPost(session.user.id).then((data) => setUserPosts(data));
-    }
-  }, [session]);
+  // useEffect(() => {
+  //   if (session?.user?.id) {
+  //     fetchUserPost(session.user.id).then((data) => setUserPosts(data));
+  //   }
+  // }, [session]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     //入力中の値を更新
@@ -91,8 +91,8 @@ const UserInformation: React.FC<UserInformationProps> = ({
     }
   };
 
-  if (status === "loading") return <Text>Loading...</Text>;
-  if (!session) return <Text>ログインしてください</Text>;
+  // if (status === "loading") return <Text>Loading...</Text>;
+  // if (!session) return <Text>ログインしてください</Text>;
 
   return (
     <>
@@ -146,7 +146,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
             </Box>
           </Box>
           {/* 投稿一覧取得・表示 */}
-          <Box mt="30px">
+          {/* <Box mt="30px">
             <Text fontSize="2xl" mb="10px">
               あなたの投稿
             </Text>
@@ -165,7 +165,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
                 </Box>
               ))
             )}
-          </Box>
+          </Box> */}
           <Box
             display="flex"
             alignItems="center"
