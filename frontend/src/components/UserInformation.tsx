@@ -12,7 +12,9 @@ import {
 import UserImage from "./UserImage";
 import { TiArrowBackOutline } from "react-icons/ti";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { PostResponse } from "../app/types/postType";
+import { useSession } from "next-auth/react";
 
 type UserInformationProps = {
   imagePath: string;
@@ -21,16 +23,41 @@ type UserInformationProps = {
   email: string;
 };
 
+interface ApiResponse {
+  data: PostResponse[];
+}
+
+async function fetchUserPost(userId: string): Promise<PostResponse[]> {
+  const userPostResponce = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts?userId=${userId}`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  const userPostData: ApiResponse = await userPostResponce.json();
+  return userPostData.data;
+}
+
 const UserInformation: React.FC<UserInformationProps> = ({
   imagePath,
   userName,
   comment,
   email,
 }) => {
+  const { data: session, status } = useSession();
   const [comments, setComment] = useState(comment);
   const [isEditing, setIsEditing] = useState(false);
   const [tempComment, setTempComment] = useState(comment);
+  const [userPosts, setUserPosts] = useState<PostResponse[]>([]);
   const toast = useToast();
+
+  useEffect(() => {
+    if (session?.user?.id) {
+      fetchUserPost(session.user.id).then((data) => setUserPosts(data));
+    }
+  }, [session]);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     //入力中の値を更新
     setTempComment(e.target.value);
@@ -63,6 +90,9 @@ const UserInformation: React.FC<UserInformationProps> = ({
       });
     }
   };
+
+  if (status === "loading") return <Text>Loading...</Text>;
+  if (!session) return <Text>ログインしてください</Text>;
 
   return (
     <>
@@ -97,6 +127,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
               {userName}
             </Text>
           </Box>
+          {/* コメント編集 */}
           <Box mt={["20px", "30px", "30px"]}>
             <Box display="flex" justifyContent="center">
               <Input
@@ -113,6 +144,27 @@ const UserInformation: React.FC<UserInformationProps> = ({
                 <Button onClick={handleEditClick}>編集</Button>
               )}
             </Box>
+          </Box>
+          {/* 投稿一覧取得・表示 */}
+          <Box mt="30px">
+            <Text fontSize="2xl" mb="10px">
+              あなたの投稿
+            </Text>
+            {userPosts.length === 0 ? (
+              <Text>投稿はまだありません</Text>
+            ) : (
+              userPosts.map((userPost) => (
+                <Box
+                  key={userPost.id}
+                  border="1px solid #ccc"
+                  borderRadius="md"
+                  p="10px"
+                  mb="10px"
+                >
+                  <Text>{userPost.content}</Text>
+                </Box>
+              ))
+            )}
           </Box>
           <Box
             display="flex"
