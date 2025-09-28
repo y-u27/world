@@ -11,6 +11,7 @@ export interface PostResponse {
   countryName: string;
   createdAt: string;
   image: string;
+  userPosts: string;
 }
 
 export interface getLikes {
