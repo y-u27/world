@@ -12,26 +12,19 @@ router.get(
 
       const userPostDataId = await prisma.post.findMany({
         where: { userId },
+        include: {
+          user: { select: { image: true, name: true, comment: true } },
+        },
       });
-
-      if (!userPostDataId) {
-        res.status(404).json({
-          success: false,
-          message: "未投稿です",
-          data: null,
-        });
-      }
 
       res.status(200).json({
         success: true,
         message: "投稿が見つかりました",
         data: userPostDataId,
       });
-      return;
     } catch (error) {
       console.error("投稿取得失敗（サーバーエラー）", error);
       res.status(500).json({ error: "投稿取得失敗" });
-      return;
     }
   }
 );
