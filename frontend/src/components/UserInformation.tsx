@@ -36,6 +36,7 @@ async function fetchUserPost(userId: string): Promise<PostResponse[]> {
   );
 
   const userPostData: ApiResponse = await userPostResponse.json();
+  console.log("APIレスポンス:", userPostData);
   return userPostData.data;
 }
 
