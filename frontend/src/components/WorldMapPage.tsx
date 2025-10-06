@@ -194,12 +194,6 @@ const WorldMapPage = ({ userId }: Props) => {
             }}
             onZoomChanged={handleZoom}
           >
-          <Box>
-            <Card>
-              <CardHeader>{}</CardHeader>
-                <CardBody></CardBody>
-            </Card>
-          </Box>
             <Box
               position="absolute"
               top="13px"
