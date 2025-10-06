@@ -1,7 +1,14 @@
 // 世界地図表示
 "use client";
 
-import { Box, Card, CardBody, CardHeader, Spinner, useMediaQuery } from "@chakra-ui/react";
+import {
+  Box,
+  Card,
+  CardBody,
+  CardHeader,
+  Spinner,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import {
   GoogleMap,
   InfoWindow,
@@ -226,6 +233,12 @@ const WorldMapPage = ({ userId }: Props) => {
                   }}
                 >
                   <Box style={mapStyle}>{country.name}</Box>
+                  <Box>
+                    <Card>
+                      <CardHeader>{}</CardHeader>
+                      <CardBody></CardBody>
+                    </Card>
+                  </Box>
                 </InfoWindow>
               ) : null
             )}
