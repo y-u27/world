@@ -233,12 +233,6 @@ const WorldMapPage = ({ userId }: Props) => {
                   }}
                 >
                   <Box style={mapStyle}>{country.name}</Box>
-                  <Box>
-                    <Card>
-                      <CardHeader>{}</CardHeader>
-                      <CardBody></CardBody>
-                    </Card>
-                  </Box>
                 </InfoWindow>
               ) : null
             )}
