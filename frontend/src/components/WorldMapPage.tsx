@@ -18,6 +18,7 @@ import {
 import { useEffect, useState } from "react";
 import PostLists from "./PostLists";
 import SearchBar from "./SearchBar";
+import Image from "next/image";
 
 type Props = {
   userId: number;
@@ -193,7 +194,7 @@ const WorldMapPage = ({ userId }: Props) => {
       if (data && data[0]) {
         setCountryInfo({
           capital: data[0].capital?.[0] || "情報なし",
-          population: data[0].population?.toLcalString() || 0,
+          population: data[0].population?.toLocaleString() || 0,
           region: data[0].region || "情報なし",
           flag: data[0].flags?.png || "",
         });
@@ -231,7 +232,7 @@ const WorldMapPage = ({ userId }: Props) => {
                   {countryInfo ? (
                     <>
                       <Box mb={2}>
-                        <img src={countryInfo.flag} alt="国旗" width="40" />
+                        <Image src={countryInfo.flag} alt={`${selectedCountry}の国旗`} width="40" height={30} />
                       </Box>
                       <Box>首都： {countryInfo.capital}</Box>
                       <Box>人口： {countryInfo.population}</Box>
