@@ -132,7 +132,7 @@ const PostLists: React.FC<CountryProps> = ({
       }
     };
     getPostData();
-  }, [countryName]);
+  }, [countryName, toast]);
 
   return (
     <>
