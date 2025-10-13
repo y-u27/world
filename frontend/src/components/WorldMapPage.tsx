@@ -15,12 +15,19 @@ import {
   Marker,
   useLoadScript,
 } from "@react-google-maps/api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PostLists from "./PostLists";
 import SearchBar from "./SearchBar";
 
 type Props = {
   userId: number;
+};
+
+type CountryInfo = {
+  capital: string;
+  population: number;
+  region: string;
+  flag: string;
 };
 
 // google map api
@@ -62,6 +69,7 @@ const WorldMapPage = ({ userId }: Props) => {
 
   // メディアクエリ（レスポンシブ対応）
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
+  const [countryInfo, setCountryInfo] = useState<CountryInfo | null>(null);
 
   // 地図をクリックした時の中心座標と国名を取得
   const handleMapClick = (e: google.maps.MapMouseEvent) => {
@@ -174,11 +182,68 @@ const WorldMapPage = ({ userId }: Props) => {
     );
   }
 
+  //国情報取得関数
+  const fetchCountryInfo = async (countryName: string) => {
+    try {
+      const response = await fetch(
+        `https://restcountries.com/v3.1/name/${countryName}?fullText=true`
+      );
+      const data = await response.json();
+
+      if (data && data[0]) {
+        setCountryInfo({
+          capital: data[0].capital?.[0] || "情報なし",
+          population: data[0].population?.toLcalString() || 0,
+          region: data[0].region || "情報なし",
+          flag: data[0].flags?.png || "",
+        });
+      }
+    } catch (error) {
+      console.error("国情報の取得に失敗", error);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedCountry) {
+      fetchCountryInfo(selectedCountry);
+    } else {
+      setCountryInfo(null);
+    }
+  }, [selectedCountry]);
+
   return (
     <>
       <Box>
         {zoomPostList && selectedCountry && (
-          <PostLists countryName={selectedCountry} userId={userId} />
+          <>
+            <PostLists countryName={selectedCountry} userId={userId} />
+            <Box position="absolute" top="100px" right="20px" zIndex="10">
+              <Card
+                w="250px"
+                bg="whiteAlpha.900"
+                boxShadow="lg"
+                borderRadius="md"
+              >
+                <CardHeader fontWeight="bold" fontSize="lg">
+                  {selectedCountry}
+                </CardHeader>
+                <CardBody>
+                  {countryInfo ? (
+                    <>
+                      <Box mb={2}>
+                        <img src={countryInfo.flag} alt="国旗" width="40" />
+                      </Box>
+                      <Box>首都： {countryInfo.capital}</Box>
+                      <Box>人口： {countryInfo.population}</Box>
+                      <Box>地域： {countryInfo.region}</Box>
+                    </>
+                  ) : (
+                    <Box>国情報を取得中...</Box>
+                  )}
+                </CardBody>
+              </Card>
+            </Box>
+          </>
         )}
         {isLoaded && (
           <GoogleMap
