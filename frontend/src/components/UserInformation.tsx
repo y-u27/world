@@ -29,7 +29,7 @@ interface ApiResponse {
 
 async function fetchUserPost(userId: string): Promise<PostResponse[]> {
   const userPostResponse = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts?userId=${userId}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts?userId/${userId}`,
     {
       cache: "no-store",
     }
