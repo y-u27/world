@@ -16,7 +16,7 @@ const express_1 = require("express");
 const prismaClient_1 = __importDefault(require("../../../../lib/prismaClient"));
 const router = (0, express_1.Router)();
 //〜/api/worldPosts/userId：ログインしているユーザーが投稿した内容だけを取得する
-router.get("/world-posts/userId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get("/world-posts/:userId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const userId = parseInt(req.params.userId);
         const userPostDataId = yield prismaClient_1.default.post.findMany({
