@@ -5,7 +5,7 @@ const router = Router();
 
 //〜/api/worldPosts/userId：ログインしているユーザーが投稿した内容だけを取得する
 router.get(
-  "/world-posts/:userId",
+  "/world-posts/userId/:userId",
   async (req: Request, res: Response): Promise<void> => {
     try {
       const userId = parseInt(req.params.userId);
