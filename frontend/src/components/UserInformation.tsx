@@ -151,7 +151,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
             <Text fontSize="2xl" mb="10px">
               あなたの投稿
             </Text>
-            {userPosts.length === 0 ? (
+            {!userPosts || userPosts.length === 0 ? (
               <Text>投稿はまだありません</Text>
             ) : (
               userPosts.map((userPost) => (
