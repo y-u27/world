@@ -3,6 +3,7 @@ import cors from "cors";
 import worldPostApi from "./world-posts/index";
 import worldPostListApi from "./world-posts/[id]/index";
 import userApi from "./user/index";
+import userIdApi from "./world-posts/userId/index";
 import likeApi from "./likes/index";
 import countryNameApi from "./country-name/index";
 import registerApi from "./register/index";
@@ -31,6 +32,7 @@ app.use("/api", userApi);
 app.use("/api", likeApi);
 app.use("/api", countryNameApi);
 app.use("/api", registerApi);
+app.use("/api", userIdApi);
 
 // サーバ起動
 app.listen(port, () => {
