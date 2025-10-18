@@ -105,7 +105,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
         borderRadius="lg"
         padding={["10px", "15px", "20px"]}
       >
-        <CardBody>
+        <CardBody display="flex">
           <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
             プロフィール
           </Text>
