@@ -5,6 +5,7 @@ import {
   Button,
   Card,
   CardBody,
+  Flex,
   Input,
   Text,
   useToast,
@@ -105,68 +106,70 @@ const UserInformation: React.FC<UserInformationProps> = ({
         borderRadius="lg"
         padding={["10px", "15px", "20px"]}
       >
-        <CardBody display="flex">
+        <CardBody>
           <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
             プロフィール
           </Text>
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            mt={["15px", "20px", "20px"]}
-          >
-            <UserImage
-              imagePath={imagePath}
-              userName={userName}
-              comment={comments}
-            />
-            <Text
-              mt={["5px", "10px", "10px"]}
-              fontSize={["lg", "xl", "xl"]}
-              fontWeight="bold"
+          <Flex>
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              mt={["15px", "20px", "20px"]}
             >
-              {userName}
-            </Text>
-          </Box>
-          {/* コメント編集 */}
-          <Box mt={["20px", "30px", "30px"]}>
-            <Box display="flex" justifyContent="center">
-              <Input
-                value={tempComment}
-                onChange={handleInputChange}
-                width="80%"
-                placeholder="コメントを入力"
+              <UserImage
+                imagePath={imagePath}
+                userName={userName}
+                comment={comments}
               />
+              <Text
+                mt={["5px", "10px", "10px"]}
+                fontSize={["lg", "xl", "xl"]}
+                fontWeight="bold"
+              >
+                {userName}
+              </Text>
             </Box>
-            <Box display="flex" justifyContent="center" mt="10px">
-              {isEditing ? (
-                <Button onClick={handleSaveClick}>保存</Button>
+            {/* コメント編集 */}
+            <Box mt={["20px", "30px", "30px"]}>
+              <Box display="flex" justifyContent="center">
+                <Input
+                  value={tempComment}
+                  onChange={handleInputChange}
+                  width="80%"
+                  placeholder="コメントを入力"
+                />
+              </Box>
+              <Box display="flex" justifyContent="center" mt="10px">
+                {isEditing ? (
+                  <Button onClick={handleSaveClick}>保存</Button>
+                ) : (
+                  <Button onClick={handleEditClick}>編集</Button>
+                )}
+              </Box>
+            </Box>
+            {/* 投稿一覧取得・表示 */}
+            <Box mt="30px">
+              <Text fontSize="2xl" mb="10px">
+                あなたの投稿
+              </Text>
+              {!userPosts || userPosts.length === 0 ? (
+                <Text>投稿はまだありません</Text>
               ) : (
-                <Button onClick={handleEditClick}>編集</Button>
+                userPosts.map((userPost) => (
+                  <Box
+                    key={userPost.id}
+                    border="1px solid #ccc"
+                    borderRadius="md"
+                    p="10px"
+                    mb="10px"
+                  >
+                    <Text>{userPost.content}</Text>
+                  </Box>
+                ))
               )}
             </Box>
-          </Box>
-          {/* 投稿一覧取得・表示 */}
-          <Box mt="30px">
-            <Text fontSize="2xl" mb="10px">
-              あなたの投稿
-            </Text>
-            {!userPosts || userPosts.length === 0 ? (
-              <Text>投稿はまだありません</Text>
-            ) : (
-              userPosts.map((userPost) => (
-                <Box
-                  key={userPost.id}
-                  border="1px solid #ccc"
-                  borderRadius="md"
-                  p="10px"
-                  mb="10px"
-                >
-                  <Text>{userPost.content}</Text>
-                </Box>
-              ))
-            )}
-          </Box>
+          </Flex>
           <Box
             display="flex"
             alignItems="center"
