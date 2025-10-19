@@ -98,19 +98,24 @@ const UserInformation: React.FC<UserInformationProps> = ({
 
   return (
     <>
-      <Card
-        width={["90%", "70%", "50%", "380px"]}
-        mx="auto"
-        mt={["30px", "40px", "50px"]}
-        boxShadow="2xl"
-        borderRadius="lg"
-        padding={["10px", "15px", "20px"]}
-      >
-        <CardBody>
-          <Text pt="20px" textAlign="center" fontFamily="revert" fontSize="3xl">
-            プロフィール
-          </Text>
-          <Flex>
+      <Flex>
+        <Card
+          width={["90%", "70%", "50%", "380px"]}
+          mx="auto"
+          mt={["30px", "40px", "50px"]}
+          boxShadow="2xl"
+          borderRadius="lg"
+          padding={["10px", "15px", "20px"]}
+        >
+          <CardBody>
+            <Text
+              pt="20px"
+              textAlign="center"
+              fontFamily="revert"
+              fontSize="3xl"
+            >
+              プロフィール
+            </Text>
             <Box
               display="flex"
               flexDirection="column"
@@ -148,41 +153,45 @@ const UserInformation: React.FC<UserInformationProps> = ({
                 )}
               </Box>
             </Box>
-          </Flex>
-          <Box
-            display="flex"
-            alignItems="center"
-            mt={["20px", "30px", "30px"]}
-            fontWeight="bold"
-          >
-            <TiArrowBackOutline />
-            <Link href="/world">
-              <Text ml="5px">地図へに戻る</Text>
-            </Link>
-          </Box>
-        </CardBody>
-      </Card>
-      {/* 投稿一覧取得・表示 */}
-      <Box mt="30px">
-        <Text fontSize="2xl" mb="10px">
-          あなたの投稿
-        </Text>
-        {!userPosts || userPosts.length === 0 ? (
-          <Text>投稿はまだありません</Text>
-        ) : (
-          userPosts.map((userPost) => (
             <Box
-              key={userPost.id}
-              border="1px solid #ccc"
-              borderRadius="md"
-              p="10px"
-              mb="10px"
+              display="flex"
+              alignItems="center"
+              mt={["20px", "30px", "30px"]}
+              fontWeight="bold"
             >
-              <Text>{userPost.content}</Text>
+              <TiArrowBackOutline />
+              <Link href="/world">
+                <Text ml="5px">地図へに戻る</Text>
+              </Link>
             </Box>
-          ))
-        )}
-      </Box>
+          </CardBody>
+        </Card>
+        {/* 投稿一覧取得・表示 */}
+        <Card>
+          <CardBody>
+            <Box mt="30px">
+              <Text fontSize="2xl" mb="10px">
+                あなたの投稿
+              </Text>
+              {!userPosts || userPosts.length === 0 ? (
+                <Text>投稿はまだありません</Text>
+              ) : (
+                userPosts.map((userPost) => (
+                  <Box
+                    key={userPost.id}
+                    border="1px solid #ccc"
+                    borderRadius="md"
+                    p="10px"
+                    mb="10px"
+                  >
+                    <Text>{userPost.content}</Text>
+                  </Box>
+                ))
+              )}
+            </Box>
+          </CardBody>
+        </Card>
+      </Flex>
     </>
   );
 };
