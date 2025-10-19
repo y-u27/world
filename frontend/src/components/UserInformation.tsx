@@ -148,27 +148,6 @@ const UserInformation: React.FC<UserInformationProps> = ({
                 )}
               </Box>
             </Box>
-            {/* 投稿一覧取得・表示 */}
-            <Box mt="30px">
-              <Text fontSize="2xl" mb="10px">
-                あなたの投稿
-              </Text>
-              {!userPosts || userPosts.length === 0 ? (
-                <Text>投稿はまだありません</Text>
-              ) : (
-                userPosts.map((userPost) => (
-                  <Box
-                    key={userPost.id}
-                    border="1px solid #ccc"
-                    borderRadius="md"
-                    p="10px"
-                    mb="10px"
-                  >
-                    <Text>{userPost.content}</Text>
-                  </Box>
-                ))
-              )}
-            </Box>
           </Flex>
           <Box
             display="flex"
@@ -183,6 +162,27 @@ const UserInformation: React.FC<UserInformationProps> = ({
           </Box>
         </CardBody>
       </Card>
+      {/* 投稿一覧取得・表示 */}
+      <Box mt="30px">
+        <Text fontSize="2xl" mb="10px">
+          あなたの投稿
+        </Text>
+        {!userPosts || userPosts.length === 0 ? (
+          <Text>投稿はまだありません</Text>
+        ) : (
+          userPosts.map((userPost) => (
+            <Box
+              key={userPost.id}
+              border="1px solid #ccc"
+              borderRadius="md"
+              p="10px"
+              mb="10px"
+            >
+              <Text>{userPost.content}</Text>
+            </Box>
+          ))
+        )}
+      </Box>
     </>
   );
 };
