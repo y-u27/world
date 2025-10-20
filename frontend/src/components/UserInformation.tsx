@@ -178,7 +178,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
           <CardBody>
             <Box mt="30px">
               <Text fontSize="2xl" mb="10px">
-                あなたの投稿
+                投稿一覧
               </Text>
               {!userPosts || userPosts.length === 0 ? (
                 <Text>投稿はまだありません</Text>
