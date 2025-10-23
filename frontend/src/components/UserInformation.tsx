@@ -169,7 +169,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
         {/* 投稿一覧取得・表示 */}
         <Card
           width={["90%", "70%", "50%", "380px"]}
-          mx="50px"
+          mx="100px"
           mt={["30px", "40px", "50px"]}
           boxShadow="2xl"
           borderRadius="lg"
