@@ -98,7 +98,14 @@ const UserInformation: React.FC<UserInformationProps> = ({
 
   return (
     <>
-      <Flex justify="center" align="start" gap="80px" mt="50px" flexWrap="wrap">
+      <Flex
+        justify="center"
+        align="start"
+        gap={["30px", "50px", "80px"]}
+        mt={["30px", "40px", "50px"]}
+        flexDirection={["column", "column", "row"]}
+        flexWrap="wrap"
+      >
         {/* プロフィール */}
         <Card
           width={["90%", "70%", "380px"]}
@@ -111,7 +118,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
               pt="20px"
               textAlign="center"
               fontFamily="revert"
-              fontSize="3xl"
+              fontSize={["2xl", "2xl", "3xl"]}
             >
               プロフィール
             </Text>
@@ -126,11 +133,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
                 userName={userName}
                 comment={comments}
               />
-              <Text
-                mt={["5px", "10px", "10px"]}
-                fontSize={["lg", "xl", "xl"]}
-                fontWeight="bold"
-              >
+              <Text mt="10px" fontSize={["lg", "xl", "xl"]} fontWeight="bold">
                 {userName}
               </Text>
             </Box>
@@ -140,7 +143,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
                 <Input
                   value={tempComment}
                   onChange={handleInputChange}
-                  width="80%"
+                  width={["90%", "85%", "80%"]}
                   placeholder="コメントを入力"
                 />
               </Box>
@@ -152,12 +155,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
                 )}
               </Box>
             </Box>
-            <Box
-              display="flex"
-              alignItems="center"
-              mt="30px"
-              fontWeight="bold"
-            >
+            <Box display="flex" alignItems="center" mt="30px" fontWeight="bold">
               <TiArrowBackOutline />
               <Link href="/world">
                 <Text ml="5px">地図へに戻る</Text>
@@ -167,14 +165,18 @@ const UserInformation: React.FC<UserInformationProps> = ({
         </Card>
         {/* 投稿記事 */}
         <Card
-          width={["90%", "70%","380px"]}
+          width={["90%", "70%", "380px"]}
           boxShadow="2xl"
           borderRadius="lg"
           padding={["10px", "15px", "20px"]}
         >
           <CardBody>
             <Box>
-              <Text fontSize="2xl" mb="10px" textAlign="center">
+              <Text
+                fontSize={["xl", "2xl", "2xl"]}
+                mb="10px"
+                textAlign="center"
+              >
                 投稿記事
               </Text>
               {!userPosts || userPosts.length === 0 ? (
