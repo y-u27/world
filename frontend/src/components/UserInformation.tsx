@@ -169,7 +169,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
         {/* 投稿一覧取得・表示 */}
         <Card
           width={["90%", "70%", "50%", "380px"]}
-          mx="80px"
+          mx="50px"
           mt={["30px", "40px", "50px"]}
           boxShadow="2xl"
           borderRadius="lg"
@@ -178,7 +178,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
           <CardBody>
             <Box mt="30px">
               <Text fontSize="2xl" mb="10px">
-                投稿一覧
+                投稿記事
               </Text>
               {!userPosts || userPosts.length === 0 ? (
                 <Text>投稿はまだありません</Text>
