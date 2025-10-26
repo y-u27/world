@@ -68,7 +68,14 @@ const IntroHowTo = () => {
             </Box>
           </Box>
           <Box flex="1" minH="400px">
-            <Box p={[4, 6, 8]} h="100%" position="relative" bgColor="yellow.50">
+            <Box
+              p={[4, 6, 8]}
+              h="100%"
+              position="relative"
+              bgColor="yellow.50"
+              borderRadius={10}
+              bgGradient="linear(to-r, teal.300, blue.200,gray.100)"
+            >
               <Heading
                 position="absolute"
                 top="-20px"
