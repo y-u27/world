@@ -35,7 +35,7 @@ const IntroHowTo = () => {
           gap="20px"
         >
           <Box flex="1" minH="400px">
-            <Box bgColor="yellow.50" p={[4, 6, 8]} h="100%" position="relative" border="1px" borderColor="gray.200">
+            <Box bgColor="yellow.50" p={[4, 6, 8]} h="100%" position="relative" border="1px" borderColor="gray.200" borderRadius="10px">
               <Heading
                 position="absolute"
                 top="-20px"
