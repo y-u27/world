@@ -43,7 +43,7 @@ const IntroHowTo = () => {
               border="1px"
               borderColor="gray.200"
               borderRadius="10px"
-            >
+              >
               <Heading
                 position="absolute"
                 top="-20px"
@@ -56,7 +56,7 @@ const IntroHowTo = () => {
                 bgGradient="linear(to-r, teal.300, blue.200,gray.100)"
                 fontWeight="none"
                 size={["md", "lg", "xl"]}
-              >
+                >
                 サイト説明
               </Heading>
               <Text w="100%" ml="2%">
@@ -73,8 +73,9 @@ const IntroHowTo = () => {
               h="100%"
               position="relative"
               bgColor="yellow.50"
+              border="1px"
+              borderColor="gray.200"
               borderRadius="10px"
-              // bgGradient="linear(to-r, teal.300, blue.200,gray.100)"
             >
               <Heading
                 position="absolute"
