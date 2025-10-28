@@ -73,7 +73,7 @@ const IntroHowTo = () => {
               h="100%"
               position="relative"
               bgColor="yellow.50"
-              borderRadius={10}
+              borderRadius="10px"
               bgGradient="linear(to-r, teal.300, blue.200,gray.100)"
             >
               <Heading
