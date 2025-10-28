@@ -74,7 +74,7 @@ const IntroHowTo = () => {
               position="relative"
               bgColor="yellow.50"
               borderRadius="10px"
-              bgGradient="linear(to-r, teal.300, blue.200,gray.100)"
+              // bgGradient="linear(to-r, teal.300, blue.200,gray.100)"
             >
               <Heading
                 position="absolute"
