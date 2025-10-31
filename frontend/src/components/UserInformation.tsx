@@ -220,6 +220,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
                     p="10px"
                     mb="10px"
                   >
+                    <Text>{userPost.countryName}</Text>
                     <Text>{userPost.content}</Text>
                   </Box>
                 ))
