@@ -202,30 +202,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
         >
           <CardBody>
             <Box>
-              {userPosts.map((userPost) => {
-                const matchedCountry = countryName.find(
-                  (c) => c.postId === userPost.id
-                )?.name;
-
-                return (
-                  <Box
-                    key={userPost.id}
-                    border="1px solid #ccc"
-                    borderRadius="md"
-                    p="10px"
-                    mb="10px"
-                    display="flex"
-                    alignItems="center"
-                    gap="10px"
-                  >
-                    <Text fontWeight="bold" color="gray.600" minWidth="80px">
-                      {matchedCountry || "国名不明"}
-                    </Text>
-                    <Text>{userPost.content}</Text>
-                  </Box>
-                );
-              })}
-              {/* <Text
+              <Text
                 fontSize={["xl", "2xl", "2xl"]}
                 mb="10px"
                 textAlign="center"
@@ -246,7 +223,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
                     <Text>{userPost.content}</Text>
                   </Box>
                 ))
-              )} */}
+              )}
             </Box>
           </CardBody>
         </Card>
