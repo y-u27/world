@@ -24,10 +24,15 @@ type UserInformationProps = {
   email: string;
 };
 
-interface ApiResponse {
-  data: PostResponse[];
-}
+type CountryNameProps = {
+  countryName: string;
+};
 
+type ApiResponse = {
+  data: PostResponse[];
+};
+
+// ユーザー情報取得
 async function fetchUserPost(userId: string): Promise<PostResponse[]> {
   const userPostResponse = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts/userId/${userId}`,
@@ -41,6 +46,18 @@ async function fetchUserPost(userId: string): Promise<PostResponse[]> {
   return userPostData.data;
 }
 
+// 国名取得
+async function fetchCountryName(country: string) {
+  const countryNameResponse = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts?country-name=${country}`,
+    {
+      cache: "no-store",
+    }
+  );
+  const countryData = await countryNameResponse.json();
+  return countryData.data;
+}
+
 const UserInformation: React.FC<UserInformationProps> = ({
   imagePath,
   userName,
@@ -52,11 +69,24 @@ const UserInformation: React.FC<UserInformationProps> = ({
   const [isEditing, setIsEditing] = useState(false);
   const [tempComment, setTempComment] = useState(comment);
   const [userPosts, setUserPosts] = useState<PostResponse[]>([]);
+  const [countryName, setCountryName] = useState<
+    { postId: number; name: string }[]
+  >([]);
   const toast = useToast();
 
   useEffect(() => {
     if (session?.user?.id) {
-      fetchUserPost(session.user.id).then((data) => setUserPosts(data));
+      fetchUserPost(session.user.id).then(async (datas) => {
+        setUserPosts(datas);
+        //各投稿に対応する国名取得
+        const countryNames = await Promise.all(
+          datas.map(async (data) => {
+            const name = await fetchCountryName(data.countryName);
+            return { postId: data.id, name };
+          })
+        );
+        setCountryName(countryNames);
+      });
     }
   }, [session]);
 
@@ -172,7 +202,30 @@ const UserInformation: React.FC<UserInformationProps> = ({
         >
           <CardBody>
             <Box>
-              <Text
+              {userPosts.map((userPost) => {
+                const matchedCountry = countryName.find(
+                  (c) => c.postId === userPost.id
+                )?.name;
+
+                return (
+                  <Box
+                    key={userPost.id}
+                    border="1px solid #ccc"
+                    borderRadius="md"
+                    p="10px"
+                    mb="10px"
+                    display="flex"
+                    alignItems="center"
+                    gap="10px"
+                  >
+                    <Text fontWeight="bold" color="gray.600" minWidth="80px">
+                      {matchedCountry || "国名不明"}
+                    </Text>
+                    <Text>{userPost.content}</Text>
+                  </Box>
+                );
+              })}
+              {/* <Text
                 fontSize={["xl", "2xl", "2xl"]}
                 mb="10px"
                 textAlign="center"
@@ -193,7 +246,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
                     <Text>{userPost.content}</Text>
                   </Box>
                 ))
-              )}
+              )} */}
             </Box>
           </CardBody>
         </Card>
