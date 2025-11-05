@@ -162,7 +162,7 @@ const PostLists: React.FC<CountryProps> = ({
                 key={mapPost.id}
                 width={{ base: "100%", md: "90%" }}
                 mx="auto"
-                borderColor="5px solid blue.400"
+                border="5px solid blue.400"
               >
                 <CardHeader>
                   <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
