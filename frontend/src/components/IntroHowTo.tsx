@@ -41,6 +41,7 @@ const IntroHowTo = () => {
               h="100%"
               position="relative"
               boxShadow="2xl"
+              borderRadius="10px"
               >
               <Heading
                 position="absolute"
@@ -72,6 +73,7 @@ const IntroHowTo = () => {
               position="relative"
               bgColor="yellow.50"
               boxShadow="2xl"
+              borderRadius="10px"
             >
               <Heading
                 position="absolute"

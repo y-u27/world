@@ -163,6 +163,7 @@ const PostLists: React.FC<CountryProps> = ({
                 width={{ base: "100%", md: "90%" }}
                 mx="auto"
                 boxShadow="2xl"
+                borderRadius="10px"
               >
                 <CardHeader>
                   <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
