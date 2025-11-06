@@ -40,7 +40,7 @@ const IntroHowTo = () => {
               p={[4, 6, 8]}
               h="100%"
               position="relative"
-              border="5px"
+              border="10px"
               borderColor="gray.200"
               borderRadius="10px"
               >
