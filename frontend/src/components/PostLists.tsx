@@ -162,7 +162,7 @@ const PostLists: React.FC<CountryProps> = ({
                 key={mapPost.id}
                 width={{ base: "100%", md: "90%" }}
                 mx="auto"
-                boxShadow="2xl"
+                boxShadow="xl"
                 borderRadius="10px"
               >
                 <CardHeader>

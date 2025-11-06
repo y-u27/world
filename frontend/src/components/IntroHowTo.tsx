@@ -40,7 +40,7 @@ const IntroHowTo = () => {
               p={[4, 6, 8]}
               h="100%"
               position="relative"
-              boxShadow="2xl"
+              boxShadow="xl"
               borderRadius="10px"
               >
               <Heading
@@ -72,7 +72,7 @@ const IntroHowTo = () => {
               h="100%"
               position="relative"
               bgColor="yellow.50"
-              boxShadow="2xl"
+              boxShadow="xl"
               borderRadius="10px"
             >
               <Heading
