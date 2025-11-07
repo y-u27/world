@@ -145,10 +145,21 @@ const UserInformation: React.FC<UserInformationProps> = ({
         >
           <CardBody>
             <Text
-              pt="20px"
-              textAlign="center"
-              fontFamily="revert"
-              fontSize={["2xl", "2xl", "3xl"]}
+              // pt="20px"
+              // textAlign="center"
+              // fontFamily="revert"
+              // fontSize={["2xl", "2xl", "3xl"]}
+              position="absolute"
+              top="-20px"
+              left="20px"
+              bg="white"
+              px={[2, 4, 6]}
+              transform="rotate(-3deg)"
+              bgColor="teal.100"
+              borderRadius={10}
+              size={["md", "lg", "xl"]}
+              bgGradient="linear(to-r, teal.300, blue.200,gray.100)"
+              fontWeight="none"
             >
               プロフィール
             </Text>
