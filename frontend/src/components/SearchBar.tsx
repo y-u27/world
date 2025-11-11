@@ -24,7 +24,7 @@ const SearchBar = ({ onSearch }: Props) => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") handleSearch();
+    if (e.key === "TbMapSearch") handleSearch();
   };
 
   return (
@@ -49,13 +49,13 @@ const SearchBar = ({ onSearch }: Props) => {
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={handleKeyDown}
         />
-        <IconButton
+        {/* <IconButton
           aria-label="検索"
           icon={<Search2Icon />}
           onClick={toggleSearchIcon}
           size="md"
           variant="ghost"
-        />
+        /> */}
       </Collapse>
     </Box>
   );
