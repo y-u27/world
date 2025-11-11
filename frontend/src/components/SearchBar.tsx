@@ -1,6 +1,5 @@
 "use client";
 
-import { Search2Icon } from "@chakra-ui/icons";
 import { Box, Collapse, IconButton, Input } from "@chakra-ui/react";
 import { useState } from "react";
 import { TbMapSearch } from "react-icons/tb";
@@ -14,7 +13,13 @@ const SearchBar = ({ onSearch }: Props) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const toggleSearchIcon = () => {
-    setIsSearchOpen((prev) => !prev);
+    // ①検索バー開く
+    if (!isSearchOpen) {
+      setIsSearchOpen(true);
+      // ②すでに検索バーが開いているなら、検索実行
+    } else {
+      handleSearch();
+    }
   };
 
   const handleSearch = () => {
@@ -23,9 +28,11 @@ const SearchBar = ({ onSearch }: Props) => {
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "TbMapSearch") handleSearch();
-  };
+  // const handleKeyDown = (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   if (e === "Enter") {
+  //     handleSearch();
+  //   }
+  // };
 
   return (
     <Box position="relative" display="flex" alignItems="center">
@@ -47,15 +54,8 @@ const SearchBar = ({ onSearch }: Props) => {
           width="180px"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={handleKeyDown}
+          // onKeyDown={handleKeyDown}
         />
-        {/* <IconButton
-          aria-label="検索"
-          icon={<Search2Icon />}
-          onClick={toggleSearchIcon}
-          size="md"
-          variant="ghost"
-        /> */}
       </Collapse>
     </Box>
   );
