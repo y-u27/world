@@ -1,5 +1,6 @@
 "use client";
 
+import { Search2Icon } from "@chakra-ui/icons";
 import { Box, Collapse, IconButton, Input } from "@chakra-ui/react";
 import { useState } from "react";
 import { TbMapSearch } from "react-icons/tb";
@@ -47,6 +48,13 @@ const SearchBar = ({ onSearch }: Props) => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={handleKeyDown}
+        />
+        <IconButton
+          aria-label="検索"
+          icon={<Search2Icon />}
+          onClick={toggleSearchIcon}
+          size="md"
+          variant="ghost"
         />
       </Collapse>
     </Box>
