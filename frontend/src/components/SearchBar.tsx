@@ -25,7 +25,12 @@ const SearchBar = ({ onSearch }: Props) => {
 
   const handleSearch = () => {
     if (query.trim() !== "") {
+      //国ズーム
       onSearch(query.trim());
+      //入力クリア
+      setQuery("");
+      //検索バーを閉じる
+      setIsSearchOpen(false);
     }
   };
 
@@ -50,7 +55,12 @@ const SearchBar = ({ onSearch }: Props) => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <IconButton aria-label="閉じる" icon={<CloseIcon />} />
+        <IconButton
+          aria-label="閉じる"
+          icon={<CloseIcon />}
+          size="sm"
+          onClick={() => setIsSearchOpen(false)}
+        />
       </Collapse>
     </Box>
   );
