@@ -1,5 +1,6 @@
 "use client";
 
+import { CloseIcon } from "@chakra-ui/icons";
 import { Box, Collapse, IconButton, Input } from "@chakra-ui/react";
 import { useState } from "react";
 import { TbMapSearch } from "react-icons/tb";
@@ -28,12 +29,6 @@ const SearchBar = ({ onSearch }: Props) => {
     }
   };
 
-  // const handleKeyDown = (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   if (e === "Enter") {
-  //     handleSearch();
-  //   }
-  // };
-
   return (
     <Box position="relative" display="flex" alignItems="center">
       {/* 検索アイコン */}
@@ -54,8 +49,8 @@ const SearchBar = ({ onSearch }: Props) => {
           width="180px"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          // onKeyDown={handleKeyDown}
         />
+        <IconButton aria-label="閉じる" icon={<CloseIcon />} />
       </Collapse>
     </Box>
   );
