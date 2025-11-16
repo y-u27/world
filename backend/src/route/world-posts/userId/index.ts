@@ -1,3 +1,6 @@
+//ユーザーページの「投稿記事」の編集・削除機能追加
+//patch、deleteメソッドにて処理を追加する
+
 import { Request, Response, Router } from "express";
 import prisma from "../../../../lib/prismaClient";
 
