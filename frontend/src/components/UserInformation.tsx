@@ -210,13 +210,21 @@ const UserInformation: React.FC<UserInformationProps> = ({
         >
           <CardBody>
             <Box>
-              <Text
-                fontSize={["xl", "2xl", "2xl"]}
-                mb="10px"
-                textAlign="center"
+              <Heading
+                position="absolute"
+                top="-20px"
+                left="20px"
+                bg="white"
+                px={[2, 4, 6]}
+                transform="rotate(-3deg)"
+                bgColor="teal.100"
+                borderRadius={10}
+                size={["md", "lg", "xl"]}
+                bgGradient="linear(to-r, teal.300, blue.200,gray.100)"
+                fontWeight="none"
               >
                 投稿記事
-              </Text>
+              </Heading>
               {!userPosts || userPosts.length === 0 ? (
                 <Text>投稿はまだありません</Text>
               ) : (
