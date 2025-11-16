@@ -6,6 +6,7 @@ import {
   Card,
   CardBody,
   Flex,
+  Heading,
   Input,
   Text,
   useToast,
@@ -144,11 +145,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
           padding={["10px", "15px", "20px"]}
         >
           <CardBody>
-            <Text
-              // pt="20px"
-              // textAlign="center"
-              // fontFamily="revert"
-              // fontSize={["2xl", "2xl", "3xl"]}
+            <Heading
               position="absolute"
               top="-20px"
               left="20px"
@@ -162,7 +159,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
               fontWeight="none"
             >
               プロフィール
-            </Text>
+            </Heading>
             <Box
               display="flex"
               flexDirection="column"
