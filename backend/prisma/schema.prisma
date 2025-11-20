@@ -39,3 +39,5 @@ model Likes {
 
   @@unique([userId, postId])
 }
+
+
