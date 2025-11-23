@@ -18,15 +18,14 @@ const router = (0, express_1.Router)();
 //全お知らせデータ取得
 router.get("/notice", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const id = parseInt(req.params.id);
-        const noticeDataId = yield prismaClient_1.default.news.findUnique({
-            where: { id },
+        const noticeDataAll = yield prismaClient_1.default.news.findMany({
+            orderBy: { createdAt: "desc" },
         });
         //お知らせデータ取得成功
         res.status(200).json({
             success: true,
             message: "お知らせデータ取得成功",
-            data: noticeDataId,
+            data: noticeDataAll,
         });
     }
     catch (err) {
