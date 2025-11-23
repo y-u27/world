@@ -26,3 +26,30 @@ router.get("/notice", async (req: Request, res: Response): Promise<void> => {
     return;
   }
 });
+
+//お知らせデータ作成
+router.post("/notice", async (req: Request, res: Response): Promise<void> => {
+  const { content, createdAt } = req.body;
+
+  if (!content || !createdAt) {
+    res.status(400).json({
+      success: false,
+      message: "お知らせ内容/日時のどれかが不足しています",
+    });
+    return;
+  }
+
+  const newNewsData = await prisma.news.create({
+    data: {
+      content,
+      createdAt,
+    },
+  });
+  res.status(200).json({
+    success: true,
+    message: "作成成功",
+    data: newNewsData,
+  });
+});
+
+export default router;
