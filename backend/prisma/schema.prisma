@@ -40,4 +40,8 @@ model Likes {
   @@unique([userId, postId])
 }
 
-
+model News {
+  id Int @id @default(autoincrement())
+  content String
+  createdAt DateTime @default(now())
+}
