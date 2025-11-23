@@ -7,6 +7,7 @@ import userIdApi from "./world-posts/userId/index";
 import likeApi from "./likes/index";
 import countryNameApi from "./country-name/index";
 import registerApi from "./register/index";
+import noticeApi from "./notice/index";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -33,6 +34,7 @@ app.use("/api", likeApi);
 app.use("/api", countryNameApi);
 app.use("/api", registerApi);
 app.use("/api", userIdApi);
+app.use("/api", noticeApi);
 
 // サーバ起動
 app.listen(port, () => {
