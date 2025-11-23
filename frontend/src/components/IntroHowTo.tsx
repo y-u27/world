@@ -43,7 +43,7 @@ const IntroHowTo = () => {
               position="relative"
               boxShadow="xl"
               borderRadius="10px"
-              >
+            >
               <Heading
                 position="absolute"
                 top="-20px"
@@ -56,7 +56,7 @@ const IntroHowTo = () => {
                 bgGradient="linear(to-r, teal.300, blue.200,gray.100)"
                 fontWeight="none"
                 size={["md", "lg", "xl"]}
-                >
+              >
                 サイト説明
               </Heading>
               <Text w="100%" ml="2%">
@@ -141,7 +141,9 @@ const IntroHowTo = () => {
             </Box>
           </Box>
         </Box>
-        <Notice/>
+        <Box>
+          <Notice />
+        </Box>
         <Box mt="40px" textAlign="center">
           <Link href="/login">
             <Button

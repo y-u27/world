@@ -1,4 +1,5 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
+import React from "react";
 
 const Notice = () => {
   return (
@@ -6,8 +7,9 @@ const Notice = () => {
       <Box>
         <Box
           bgColor="yellow.50"
-          h="50%"
-          w="100%"
+          p={[4, 6, 8]}
+          h="100%"
+          position="relative"
           boxShadow="xl"
           borderRadius="10px"
         >
