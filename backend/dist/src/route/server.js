@@ -12,6 +12,7 @@ const index_4 = __importDefault(require("./world-posts/userId/index"));
 const index_5 = __importDefault(require("./likes/index"));
 const index_6 = __importDefault(require("./country-name/index"));
 const index_7 = __importDefault(require("./register/index"));
+const index_8 = __importDefault(require("./notice/index"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 console.log("サーバー起動中...");
@@ -32,6 +33,7 @@ app.use("/api", index_5.default);
 app.use("/api", index_6.default);
 app.use("/api", index_7.default);
 app.use("/api", index_4.default);
+app.use("/api", index_8.default);
 // サーバ起動
 app.listen(port, () => {
     console.log(`サーバーが${process.env.NEXT_PUBLIC_BASE_URL}で起動`);
