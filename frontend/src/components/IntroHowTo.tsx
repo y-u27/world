@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
+import Notice from "./Notice";
 
 const IntroHowTo = () => {
   return (
@@ -140,6 +141,7 @@ const IntroHowTo = () => {
             </Box>
           </Box>
         </Box>
+        <Notice/>
         <Box mt="40px" textAlign="center">
           <Link href="/login">
             <Button
