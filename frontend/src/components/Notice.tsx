@@ -1,8 +1,39 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 
+// type NoticeProps = {
+//   id: number;
+//   content: string;
+//   // createdAt: ;
+// };
 
+async function fetchAllNotice() {
+  const noticeRes = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/notice}`,
+    {
+      cache: "no-cache",
+    }
+  );
+
+  const noticeData = await noticeRes.json();
+  return noticeData.data;
+}
 
 const Notice = () => {
+  const [notices, setNotices] = useState("");
+
+  useEffect(() => {
+    const getNoticeData = async () => {
+      try {
+        const noticesData = await fetchAllNotice();
+        setNotices(noticesData);
+      } catch (error) {
+        console.error("データ取得エラー");
+      }
+    };
+    getNoticeData();
+  }, []);
+
   return (
     <>
       <Box w="100%">
@@ -29,9 +60,12 @@ const Notice = () => {
           >
             お知らせ
           </Heading>
-          <Text w="100%" ml="2%">
-            {/* お知らせAPIを介してNewsテーブルからデータ取得 */}
-          </Text>
+          {/* お知らせAPIを介してNewsテーブルからデータ取得 */}
+          {/* {notices.map((notice) => (
+            <Text w="100%" ml="2%" key={notice.id}>
+              {notice}
+            </Text>
+          ))} */}
         </Box>
       </Box>
     </>
