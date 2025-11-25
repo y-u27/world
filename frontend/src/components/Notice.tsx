@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
 import { Box, Heading, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-// type NoticeProps = {
-//   id: number;
-//   content: string;
-//   // createdAt: ;
-// };
+type Notice = {
+  id: number;
+  content: string;
+  createdAt: string;
+}
 
 async function fetchAllNotice() {
   const noticeRes = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/notice}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/notice`,
     {
       cache: "no-cache",
     }
@@ -22,7 +22,7 @@ async function fetchAllNotice() {
 }
 
 const Notice = () => {
-  const [notices, setNotices] = useState("");
+  const [notices, setNotices] = useState<Notice[]>([]);
 
   useEffect(() => {
     const getNoticeData = async () => {
@@ -63,11 +63,17 @@ const Notice = () => {
             お知らせ
           </Heading>
           {/* お知らせAPIを介してNewsテーブルからデータ取得 */}
-          {/* {notices.map((notice) => (
-            <Text w="100%" ml="2%" key={notice.id}>
-              {notice}
+          {notices.length === 0 ? (
+            <Text mt="30px" ml="2%" color="gray.500">
+              ※お知らせはありません
             </Text>
-          ))} */}
+          ) : (
+            notices.map((notice) => (
+              <Text w="100%" ml="2%" mt="30px" key={notice.id}>
+                {notice.content}
+              </Text>
+            ))
+          )}
         </Box>
       </Box>
     </>
