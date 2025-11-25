@@ -70,6 +70,7 @@ const Notice = () => {
           ) : (
             notices.map((notice) => (
               <Text w="100%" ml="2%" mt="30px" key={notice.id}>
+                {notice.createdAt}
                 {notice.content}
               </Text>
             ))
