@@ -78,7 +78,9 @@ const Notice = () => {
                   hour: "2-digit",
                   minute: "2-digit",
                 })}
-                {notice.content}
+                <Text w="100%" ml="4%" mt="30px">
+                  {notice.content}
+                </Text>
               </Text>
             ))
           )}
