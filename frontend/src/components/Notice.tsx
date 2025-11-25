@@ -7,7 +7,7 @@ type Notice = {
   id: number;
   content: string;
   createdAt: string;
-}
+};
 
 async function fetchAllNotice() {
   const noticeRes = await fetch(
@@ -70,7 +70,14 @@ const Notice = () => {
           ) : (
             notices.map((notice) => (
               <Text w="100%" ml="2%" mt="30px" key={notice.id}>
-                {notice.createdAt}
+                {new Date(notice.createdAt).toLocaleDateString("ja-JP", {
+                  timeZone: "Asia/Tokyo",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
                 {notice.content}
               </Text>
             ))
