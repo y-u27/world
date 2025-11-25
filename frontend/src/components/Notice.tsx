@@ -69,7 +69,7 @@ const Notice = () => {
             </Text>
           ) : (
             notices.map((notice) => (
-              <Text w="100%" ml="2%" mt="30px" key={notice.id}>
+              <Text display="flex" w="100%" ml="2%" mt="30px" key={notice.id}>
                 {new Date(notice.createdAt).toLocaleDateString("ja-JP", {
                   timeZone: "Asia/Tokyo",
                   year: "numeric",
@@ -78,9 +78,7 @@ const Notice = () => {
                   hour: "2-digit",
                   minute: "2-digit",
                 })}
-                <Text w="100%" ml="4%" mt="30px">
-                  {notice.content}
-                </Text>
+                {notice.content}
               </Text>
             ))
           )}
