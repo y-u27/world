@@ -69,17 +69,19 @@ const Notice = () => {
             </Text>
           ) : (
             notices.map((notice) => (
-              <Text display="flex" w="100%" ml="2%" mt="30px" key={notice.id}>
-                {new Date(notice.createdAt).toLocaleDateString("ja-JP", {
-                  timeZone: "Asia/Tokyo",
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
-                {notice.content}
-              </Text>
+              <Box>
+                <Text display="flex" w="100%" ml="2%" mt="30px" key={notice.id}>
+                  {new Date(notice.createdAt).toLocaleDateString("ja-JP", {
+                    timeZone: "Asia/Tokyo",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </Text>
+                <Text>{notice.content}</Text>
+              </Box>
             ))
           )}
         </Box>
