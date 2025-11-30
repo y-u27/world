@@ -79,7 +79,7 @@ const Notice = () => {
                     hour: "2-digit",
                     minute: "2-digit",
                   })}
-                  {notice.content}
+                  <Text>{notice.content}</Text>
                 </Text>
               </Box>
             ))
