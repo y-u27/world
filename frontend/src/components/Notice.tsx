@@ -80,7 +80,7 @@ const Notice = () => {
                     minute: "2-digit",
                   })}
                 </Text>
-                <Text>{notice.content}</Text>
+                <Text key={notice.id}>{notice.content}</Text>
               </Box>
             ))
           )}
