@@ -143,7 +143,7 @@ const IntroHowTo = () => {
         </Box>
         <Box
           w={["90%", "80%", "70%"]}
-          mt="40px"
+          mt="30px"
           display="flex"
           justifyContent="center"
         >
