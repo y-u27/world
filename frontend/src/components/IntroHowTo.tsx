@@ -39,7 +39,7 @@ const IntroHowTo = () => {
             <Box
               bgColor="yellow.50"
               p={[4, 6, 8]}
-              h="70%"
+              h="85%"
               position="relative"
               boxShadow="xl"
               borderRadius="10px"
@@ -70,7 +70,7 @@ const IntroHowTo = () => {
           <Box flex="1" minH="400px">
             <Box
               p={[4, 6, 8]}
-              h="70%"
+              h="85%"
               position="relative"
               bgColor="yellow.50"
               boxShadow="xl"
