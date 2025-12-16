@@ -63,25 +63,27 @@ const Notice = () => {
             お知らせ
           </Heading>
           {/* お知らせAPIを介してNewsテーブルからデータ取得 */}
-          {notices.length === 0 ? (
-            <Text mt="30px" ml="2%" color="gray.500">
-              ※お知らせはありません
-            </Text>
-          ) : (
-            notices.map((notice) => (
-              <Text display="flex" w="100%" ml="2%" mt="30px" key={notice.id}>
-                {new Date(notice.createdAt).toLocaleDateString("ja-JP", {
-                  timeZone: "Asia/Tokyo",
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
-                {notice.content}
+          <Box mt="40px" maxH="300px" overflow="auto" pr={2}>
+            {notices.length === 0 ? (
+              <Text mt="30px" ml="2%" color="gray.500">
+                ※お知らせはありません
               </Text>
-            ))
-          )}
+            ) : (
+              notices.map((notice) => (
+                <Text display="flex" w="100%" ml="2%" mt="30px" key={notice.id}>
+                  {new Date(notice.createdAt).toLocaleDateString("ja-JP", {
+                    timeZone: "Asia/Tokyo",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                  {notice.content}
+                </Text>
+              ))
+            )}
+          </Box>
         </Box>
       </Box>
     </>
