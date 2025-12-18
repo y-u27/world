@@ -46,7 +46,7 @@ const Notice = () => {
           position="relative"
           boxShadow="xl"
           borderRadius="10px"
-          overscroll="contain"
+          overflow="scroll"
         >
           <Heading
             position="absolute"
