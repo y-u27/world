@@ -46,6 +46,7 @@ const Notice = () => {
           position="relative"
           boxShadow="xl"
           borderRadius="10px"
+          overscroll="contain"
         >
           <Heading
             position="absolute"
@@ -63,7 +64,7 @@ const Notice = () => {
             お知らせ
           </Heading>
           {/* お知らせAPIを介してNewsテーブルからデータ取得 */}
-          <Box overflowY="scroll">
+          <Box>
             {notices.length === 0 ? (
               <Text mt="30px" ml="2%" color="gray.500">
                 ※お知らせはありません
