@@ -38,7 +38,7 @@ const Notice = () => {
 
   return (
     <>
-      <Box w="100%">
+      <Box w="100%" overflow="scroll">
         <Box
           bgColor="yellow.50"
           p={[4, 6, 8]}
