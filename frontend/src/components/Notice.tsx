@@ -63,7 +63,7 @@ const Notice = () => {
             お知らせ
           </Heading>
           {/* お知らせAPIを介してNewsテーブルからデータ取得 */}
-          <Box height="5em" overflow="auto">
+          <Box height="3em" overflow="auto">
             {notices.length === 0 ? (
               <Text mt="30px" ml="2%" color="gray.500">
                 ※お知らせはありません
