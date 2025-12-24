@@ -42,7 +42,7 @@ const Notice = () => {
         <Box
           bgColor="yellow.50"
           p={[4, 6, 8]}
-          h="90%"
+          h="80%"
           position="relative"
           boxShadow="xl"
           borderRadius="10px"
