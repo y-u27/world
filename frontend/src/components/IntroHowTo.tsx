@@ -23,7 +23,7 @@ const IntroHowTo = () => {
         alignItems="center"
         justifyContent="center"
         w="100%"
-        mb="10px"
+        mb="8px"
         mr="5px"
       >
         <Box
