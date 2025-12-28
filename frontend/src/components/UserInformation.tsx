@@ -25,10 +25,6 @@ type UserInformationProps = {
   email: string;
 };
 
-type CountryNameProps = {
-  countryName: string;
-};
-
 type ApiResponse = {
   data: PostResponse[];
 };
