@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const prismaClient_1 = __importDefault(require("../../../lib/prismaClient"));
 const express_1 = require("express");
 const router = (0, express_1.Router)();
-// ユーザー情報
+// ユーザー情報：登録時
 router.post("/user", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const email = typeof req.body.email === "string" ? req.body.email : undefined;
     if (!email) {
@@ -43,6 +43,29 @@ router.post("/user", (req, res) => __awaiter(void 0, void 0, void 0, function* (
     catch (error) {
         res.status(500).json({ error: "ユーザー情報取得失敗" });
         return;
+    }
+}));
+//画像を更新するAPI
+router.patch("/user", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const email = typeof req.body.email === "string" ? req.body.email : undefined;
+    const image = typeof req.body.image === "string" ? req.body.image : undefined;
+    if (!image) {
+        res.status(400).json({ error: "メールアドレスがありません" });
+        return;
+    }
+    try {
+        const updateImage = yield prismaClient_1.default.user.update({
+            where: { email },
+            data: { image },
+        });
+        res.status(200).json({
+            success: true,
+            message: "プロフィール画像を更新しました",
+            data: updateImage,
+        });
+    }
+    catch (error) {
+        res.status(500).json({ error: "プロフィール画像更新処理に失敗しました" });
     }
 }));
 // コメントを更新するAPI
