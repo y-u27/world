@@ -167,6 +167,11 @@ const UserInformation: React.FC<UserInformationProps> = ({
                 userName={userName}
                 comment={comments}
               />
+              {/* プロフィール画像変更処理 */}
+              {/* ユーザーコメントのhandleSaveClickの処理とhandleUploadPostImageの画像保存処理を合わせて機能実装する？ */}
+              <Box>
+                <Button>画像変更</Button>
+              </Box>
               <Text mt="10px" fontSize={["lg", "xl", "xl"]} fontWeight="bold">
                 {userName}
               </Text>
