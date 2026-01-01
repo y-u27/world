@@ -17,6 +17,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { PostResponse } from "../app/types/postType";
 import { useSession } from "next-auth/react";
+import { v4 as uuidv4 } from "uuid";
+import { supabase } from "../../utils/supabase/supabase";
 
 type UserInformationProps = {
   imagePath: string;
@@ -69,6 +71,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
   const [countryName, setCountryName] = useState<
     { postId: number; name: string }[]
   >([]);
+  const [updataImage, setUpdataImage] = useState<string | null>(null);
   const toast = useToast();
 
   useEffect(() => {
@@ -123,6 +126,33 @@ const UserInformation: React.FC<UserInformationProps> = ({
   if (status === "loading") return <Text>Loading...</Text>;
   if (!session) return <Text>ログインしてください</Text>;
 
+  //プロフィール画像変更関数
+  const handleUpdateImage = async (file: File) => {
+    console.log("画像アップロードを開始", file);
+
+    const fileUpdateImage = `public/${uuidv4()}`;
+    const { data, error } = await supabase.storage
+      .from("user-image-buket")
+      .upload(`${fileUpdateImage}`, file);
+
+    if (error) {
+      console.log("画像アップロードに失敗", error);
+    } else {
+      console.log("画像アップロードに成功", data);
+
+      const { data: urlData } = supabase.storage
+        .from("user-image-buket")
+        .getPublicUrl(`${fileUpdateImage}`);
+
+      if (urlData?.publicUrl) {
+        setUpdataImage(urlData.publicUrl);
+        console.log("更新された画像URL:", urlData.publicUrl);
+      } else {
+        console.error("画像URL取得失敗");
+      }
+    }
+  };
+
   return (
     <>
       <Flex
@@ -170,7 +200,19 @@ const UserInformation: React.FC<UserInformationProps> = ({
               {/* プロフィール画像変更処理 */}
               {/* ユーザーコメントのhandleSaveClickの処理とhandleUploadPostImageの画像保存処理を合わせて機能実装する？ */}
               <Box>
-                <Button>画像変更</Button>
+                <Button as="label" cursor="pointer">
+                  画像変更
+                  <Input
+                    type="file"
+                    accept="imaeg/*"
+                    onChange={(e) => {
+                      const selectedUpdataFiles = e.target.files?.[0] || null;
+                      if (selectedUpdataFiles) {
+                        handleUpdateImage(selectedUpdataFiles);
+                      }
+                    }}
+                  />
+                </Button>
               </Box>
               <Text mt="10px" fontSize={["lg", "xl", "xl"]} fontWeight="bold">
                 {userName}
