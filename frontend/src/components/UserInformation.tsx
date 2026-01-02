@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Avatar,
   Box,
   Button,
   Card,
@@ -126,7 +127,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
   if (status === "loading") return <Text>Loading...</Text>;
   if (!session) return <Text>ログインしてください</Text>;
 
-  //プロフィール画像変更関数
+  //プロフィール画像変更処理
   const handleUpdateImage = async (file: File) => {
     console.log("画像アップロードを開始", file);
 
