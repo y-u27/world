@@ -202,7 +202,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
               {/* ユーザーコメントのhandleSaveClickの処理とhandleUploadPostImageの画像保存処理を合わせて機能実装する？ */}
               <Box>
                 画像変更：
-                <Avatar src={imagePath}/>
+                {/* <Avatar src={imagePath}/> */}
                 <Input
                   type="file"
                   accept="imaeg/*"
