@@ -77,7 +77,6 @@ const Login = () => {
             maxWidth="500px"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="例)test6789@example.com"
           />
           <Text mt="5%">パスワード</Text>
           <Input
