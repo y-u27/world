@@ -200,19 +200,17 @@ const UserInformation: React.FC<UserInformationProps> = ({
               {/* プロフィール画像変更処理 */}
               {/* ユーザーコメントのhandleSaveClickの処理とhandleUploadPostImageの画像保存処理を合わせて機能実装する？ */}
               <Box>
-                <Button as="label" cursor="pointer">
-                  画像変更
-                  <Input
-                    type="file"
-                    accept="imaeg/*"
-                    onChange={(e) => {
-                      const selectedUpdataFiles = e.target.files?.[0] || null;
-                      if (selectedUpdataFiles) {
-                        handleUpdateImage(selectedUpdataFiles);
-                      }
-                    }}
-                  />
-                </Button>
+                画像変更：
+                <Input
+                  type="file"
+                  accept="imaeg/*"
+                  onChange={(e) => {
+                    const selectedUpdataFiles = e.target.files?.[0] || null;
+                    if (selectedUpdataFiles) {
+                      handleUpdateImage(selectedUpdataFiles);
+                    }
+                  }}
+                />
               </Box>
               <Text mt="10px" fontSize={["lg", "xl", "xl"]} fontWeight="bold">
                 {userName}
