@@ -32,13 +32,13 @@ const UserImage: React.FC<UserImageProps> = ({
 
   return (
     <Box>
-      {/* <Avatar
+      <Avatar
         name="User Icon"
         src={imagePath || "/default-avatar.jpeg"}
         bg="blue.300"
         size="md"
         onClick={onOpen}
-      /> */}
+      />
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
