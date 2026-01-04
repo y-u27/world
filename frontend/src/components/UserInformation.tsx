@@ -128,28 +128,58 @@ const UserInformation: React.FC<UserInformationProps> = ({
 
   //プロフィール画像変更処理
   const handleUpdateImage = async (file: File) => {
-    console.log("画像アップロードを開始", file);
+    try {
+      const ext = file.name.split(".").pop();
+      const filePath = `public/${uuidv4()}.${ext}`;
 
-    const fileUpdateImage = `public/${uuidv4()}`;
-    const { data, error } = await supabase.storage
-      .from("user-image-buket")
-      .upload(`${fileUpdateImage}`, file);
-
-    if (error) {
-      console.log("画像アップロードに失敗", error);
-    } else {
-      console.log("画像アップロードに成功", data);
-
-      const { data: urlData } = supabase.storage
+      //Storageにアップロード
+      const { error } = await supabase.storage
         .from("user-image-buket")
-        .getPublicUrl(`${fileUpdateImage}`);
+        .upload(filePath, file);
 
-      if (urlData?.publicUrl) {
-        setUpdataImage(urlData.publicUrl);
-        console.log("更新された画像URL:", urlData.publicUrl);
-      } else {
-        console.error("画像URL取得失敗");
+      if (error) throw error;
+
+      //公開URL取得
+      const { data } = supabase.storage
+        .from("user-image-buket")
+        .getPublicUrl(filePath);
+
+      if (!data?.publicUrl) {
+        throw new Error("画像URL取得失敗");
       }
+
+      //DB更新
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/image`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: email,
+            image: data.publicUrl,
+          }),
+        }
+      );
+
+      if (!res.ok) throw new Error("DB更新失敗");
+
+      //画面即時反映
+      setUpdataImage(data.publicUrl);
+
+      toast({
+        title: "プロフィール画像を更新しました",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+    } catch (err) {
+      console.error(err);
+      toast({
+        title: "画像更新に失敗しました",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
 
@@ -199,7 +229,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
               />
               {/* プロフィール画像変更処理 */}
               {/* ユーザーコメントのhandleSaveClickの処理とhandleUploadPostImageの画像保存処理を合わせて機能実装する？ */}
-              {/* <Box>
+              <Box>
                 画像変更：
                 <Input
                   type="file"
@@ -211,7 +241,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
                     }
                   }}
                 />
-              </Box> */}
+              </Box>
               <Text mt="10px" fontSize={["lg", "xl", "xl"]} fontWeight="bold">
                 {userName}
               </Text>
