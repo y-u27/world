@@ -233,7 +233,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
                 画像変更：
                 <Input
                   type="file"
-                  accept="imaeg/*"
+                  accept="image/*"
                   onChange={(e) => {
                     const selectedUpdataFiles = e.target.files?.[0] || null;
                     if (selectedUpdataFiles) {
