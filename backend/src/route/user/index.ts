@@ -36,12 +36,12 @@ router.post("/user", async (req: Request, res: Response): Promise<void> => {
 });
 
 //画像を更新するAPI
-router.patch("/user", async (req: Request, res: Response): Promise<void> => {
-  const email = typeof req.body.email === "string" ? req.body.email : undefined;
-  const image = typeof req.body.image === "string" ? req.body.image : undefined;
+router.patch("/user/image", async (req: Request, res: Response): Promise<void> => {
+  const email = typeof req.body.email === "string" ? req.body.email : null;
+  const image = typeof req.body.image === "string" ? req.body.image : null;
 
-  if (!image) {
-    res.status(400).json({ error: "メールアドレスがありません" });
+  if (!email || !image) {
+    res.status(400).json({ error: "emailまたはimageがありません" });
     return;
   }
 
