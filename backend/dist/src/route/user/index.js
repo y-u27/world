@@ -46,11 +46,11 @@ router.post("/user", (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 }));
 //画像を更新するAPI
-router.patch("/user", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const email = typeof req.body.email === "string" ? req.body.email : undefined;
-    const image = typeof req.body.image === "string" ? req.body.image : undefined;
-    if (!image) {
-        res.status(400).json({ error: "メールアドレスがありません" });
+router.patch("/user/image", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const email = typeof req.body.email === "string" ? req.body.email : null;
+    const image = typeof req.body.image === "string" ? req.body.image : null;
+    if (!email || !image) {
+        res.status(400).json({ error: "emailまたはimageがありません" });
         return;
     }
     try {
