@@ -18,7 +18,7 @@ import { PostResponse } from "../app/types/postType";
 import { useSession } from "next-auth/react";
 import { v4 as uuidv4 } from "uuid";
 import { supabase } from "../../utils/supabase/supabase";
-import UserImage2 from "./UserImage2";
+import UserPageUserImage from "./UserPageUserImage";
 
 type UserInformationProps = {
   imagePath: string;
@@ -222,7 +222,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
               alignItems="center"
               mt={["15px", "20px", "20px"]}
             >
-              <UserImage2
+              <UserPageUserImage
                 imagePath={imagePath}
               />
               {/* プロフィール画像変更処理 */}

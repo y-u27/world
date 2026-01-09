@@ -38,7 +38,7 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import UserImage from "./UserImage";
+import PostUserImage from "./PostUserImage";
 import Likes from "./Likes";
 
 interface ApiResponse {
@@ -167,7 +167,7 @@ const PostLists: React.FC<CountryProps> = ({
               >
                 <CardHeader>
                   <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-                    <UserImage
+                    <PostUserImage
                       imagePath={mapPost.user.image}
                       userName={mapPost.user.name}
                       comment={mapPost.user.comment || "コメントがありません"}
