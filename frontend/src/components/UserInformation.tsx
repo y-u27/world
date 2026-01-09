@@ -224,8 +224,6 @@ const UserInformation: React.FC<UserInformationProps> = ({
             >
               <UserImage2
                 imagePath={imagePath}
-                userName={userName}
-                comment={comments}
               />
               {/* プロフィール画像変更処理 */}
               <Box>
