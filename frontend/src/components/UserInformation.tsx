@@ -11,7 +11,6 @@ import {
   Text,
   useToast,
 } from "@chakra-ui/react";
-import UserImage from "./UserImage";
 import { TiArrowBackOutline } from "react-icons/ti";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -19,6 +18,7 @@ import { PostResponse } from "../app/types/postType";
 import { useSession } from "next-auth/react";
 import { v4 as uuidv4 } from "uuid";
 import { supabase } from "../../utils/supabase/supabase";
+import UserImage2 from "./UserImage2";
 
 type UserInformationProps = {
   imagePath: string;
@@ -222,7 +222,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
               alignItems="center"
               mt={["15px", "20px", "20px"]}
             >
-              <UserImage
+              <UserImage2
                 imagePath={imagePath}
                 userName={userName}
                 comment={comments}
