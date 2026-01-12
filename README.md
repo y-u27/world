@@ -194,7 +194,6 @@ https://world-frontend.vercel.app/<br/>
 
 - [ ] [複数回ページリロードをした際にログインページへリダイレクトされてしまう仕様の修正（再ログインもできなくなっている点）](https://github.com/y-u27/world/issues/24)
 - [ ] [投稿画像を投稿した時の幅調整](https://github.com/y-u27/world/issues/30)
-- [ ] [投稿項目を空欄（未入力）状態で投稿した時のエラーメッセージ表示](https://github.com/y-u27/world/issues/31)
 - [ ] [お知らせ投稿日時の正確な表示](https://github.com/y-u27/world/issues/29)
 - [ ] [検索機能強化](https://github.com/y-u27/world/issues/32)
 
