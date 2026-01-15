@@ -16,7 +16,10 @@
 
 ---
 
-## 【アプリ URL】<br/>
+## 【アプリURL及び動作確認方法】<br/>
+
+本アプリは Vercel にデプロイ済みです。<br/>
+以下のURLより実際の動作をご確認いただけます。<br/>
 
 https://world-frontend.vercel.app/<br/>
 
