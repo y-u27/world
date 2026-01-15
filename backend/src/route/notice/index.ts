@@ -27,20 +27,19 @@ router.get("/notice", async (req: Request, res: Response): Promise<void> => {
 
 //お知らせデータ作成
 router.post("/notice", async (req: Request, res: Response): Promise<void> => {
-  const { content, createdAt } = req.body;
+  const { content } = req.body;
 
-  if (!content || !createdAt) {
+  if (!content) {
     res.status(400).json({
       success: false,
-      message: "お知らせ内容/日時のどれかが不足しています",
+      message: "お知らせ内容が不足しています",
     });
     return;
   }
 
   const newNewsData = await prisma.news.create({
     data: {
-      content,
-      createdAt,
+      content
     },
   });
   res.status(200).json({
