@@ -195,6 +195,7 @@ https://world-frontend.vercel.app/<br/>
 
 ## 【修正・改善予定】<br/>
 
+- [ ] [トップページUI修正](https://github.com/y-u27/world/issues/27)
 - [ ] [複数回ページリロードをした際にログインページへリダイレクトされてしまう仕様の修正（再ログインもできなくなっている点）](https://github.com/y-u27/world/issues/24)
 - [ ] [投稿画像を投稿した時の幅調整](https://github.com/y-u27/world/issues/30)
 - [ ] [お知らせ投稿日時の正確な表示](https://github.com/y-u27/world/issues/29)
