@@ -225,7 +225,7 @@ const PostLists: React.FC<CountryProps> = ({
                     </Box>
                     <Box>
                       {new Date(mapPost.createdAt).toLocaleDateString("ja-JP", {
-                        timeZone: "Asia/Tokyo",
+                        timeZone: "UTC",
                         year: "numeric",
                         month: "long",
                         day: "numeric",
