@@ -72,7 +72,7 @@ const Notice = () => {
               notices.map((notice) => (
                 <Text display="flex" w="100%" ml="2%" mt="30px" key={notice.id}>
                   {new Date(notice.createdAt).toLocaleDateString("ja-JP", {
-                    timeZone: "Asia/Tokyo",
+                    timeZone: "UTC",
                     year: "numeric",
                     month: "long",
                     day: "numeric",
