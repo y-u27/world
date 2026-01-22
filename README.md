@@ -198,13 +198,13 @@ https://world-frontend.vercel.app/<br/>
 - [ ] [トップページUI修正](https://github.com/y-u27/world/issues/27)
 - [ ] [複数回ページリロードをした際にログインページへリダイレクトされてしまう仕様の修正（再ログインもできなくなっている点）](https://github.com/y-u27/world/issues/24)
 - [ ] [投稿画像を投稿した時の幅調整](https://github.com/y-u27/world/issues/30)
-- [ ] [お知らせ投稿日時の正確な表示](https://github.com/y-u27/world/issues/29)
 - [ ] [検索機能強化](https://github.com/y-u27/world/issues/32)
 
 ---
 
 ## 【修正済み】<br/>
 
+- [x] [お知らせ投稿日時の正確な表示](https://github.com/y-u27/world/issues/29)<br/>
 - [x] 検索窓に入力した場合の国にズームするタイミング<br/>
 - [x] 正確な投稿時刻の表示<br/>
 - [x] 画像を投稿しない時の Input タグの空欄表示<br/>
