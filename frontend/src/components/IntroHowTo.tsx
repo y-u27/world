@@ -149,7 +149,7 @@ const IntroHowTo = () => {
         >
           <Notice />
         </Box>
-        <Box mt="10px" textAlign="center">
+        <Box mt="10%" textAlign="center">
           <Link href="/login">
             <Button
               w={["90%", "90%", "300px"]}
