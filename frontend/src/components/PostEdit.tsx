@@ -14,7 +14,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { TiArrowBackOutline } from "react-icons/ti";
 import { v4 as uuidv4 } from "uuid";
