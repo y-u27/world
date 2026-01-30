@@ -6,7 +6,7 @@ const router = Router();
 
 // 国名取得API
 router.get(
-  "/country-name/:countryname",
+  "/country-name/:countryName",
   async (req: Request, res: Response): Promise<void> => {
     const { countryName } = req.params;
 
