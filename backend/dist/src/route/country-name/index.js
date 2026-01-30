@@ -17,7 +17,7 @@ const prismaClient_1 = __importDefault(require("../../../lib/prismaClient"));
 const express_1 = require("express");
 const router = (0, express_1.Router)();
 // 国名取得API
-router.get("/country-name/:countryname", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get("/country-name/:countryName", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { countryName } = req.params;
     // countrynameが空欄の場合
     if (!countryName) {
