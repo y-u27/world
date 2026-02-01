@@ -37,7 +37,7 @@ async function fetchUserPost(userId: string): Promise<PostResponse[]> {
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts/userId/${userId}`,
     {
       cache: "no-store",
-    }
+    },
   );
 
   const userPostData: ApiResponse = await userPostResponse.json();
@@ -51,7 +51,7 @@ async function fetchCountryName(country: string) {
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts?country-name=${country}`,
     {
       cache: "no-store",
-    }
+    },
   );
   const countryData = await countryNameResponse.json();
   return countryData.data;
@@ -83,7 +83,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
           datas.map(async (data) => {
             const name = await fetchCountryName(data.countryName);
             return { postId: data.id, name };
-          })
+          }),
         );
         setCountryName(countryNames);
       });
@@ -158,7 +158,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
             email: email,
             image: data.publicUrl,
           }),
-        }
+        },
       );
 
       if (!res.ok) throw new Error("DB更新失敗");
@@ -222,9 +222,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
               alignItems="center"
               mt={["15px", "20px", "20px"]}
             >
-              <UserPageUserImage
-                imagePath={imagePath}
-              />
+              <UserPageUserImage imagePath={imagePath} />
               {/* プロフィール画像変更処理 */}
               <Box>
                 画像変更：
@@ -293,23 +291,24 @@ const UserInformation: React.FC<UserInformationProps> = ({
               >
                 投稿記事
               </Heading>
-              {!userPosts || userPosts.length === 0 ? (
-                <Text>投稿はまだありません</Text>
-              ) : (
-                userPosts.map((userPost) => (
-                  <Box
-                    key={userPost.id}
-                    border="1px solid #ccc"
-                    borderRadius="md"
-                    p="10px"
-                    mb="10px"
-                    overflow="auto"
-                  >
-                    <Text>{userPost.countryName}</Text>
-                    <Text>{userPost.content}</Text>
-                  </Box>
-                ))
-              )}
+              <Box height="3em" overflow="auto">
+                {!userPosts || userPosts.length === 0 ? (
+                  <Text>投稿はまだありません</Text>
+                ) : (
+                  userPosts.map((userPost) => (
+                    <Box
+                      key={userPost.id}
+                      border="1px solid #ccc"
+                      borderRadius="md"
+                      p="10px"
+                      mb="10px"
+                    >
+                      <Text>{userPost.countryName}</Text>
+                      <Text>{userPost.content}</Text>
+                    </Box>
+                  ))
+                )}
+              </Box>
             </Box>
           </CardBody>
         </Card>
