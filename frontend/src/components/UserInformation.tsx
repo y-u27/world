@@ -303,6 +303,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
                     borderRadius="md"
                     p="10px"
                     mb="10px"
+                    overflow="auto"
                   >
                     <Text>{userPost.countryName}</Text>
                     <Text>{userPost.content}</Text>
