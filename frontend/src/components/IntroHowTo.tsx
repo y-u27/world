@@ -130,7 +130,7 @@ const IntroHowTo = () => {
                           src="/sample/screenshot-20241122-215117.jpeg"
                           alt="Top Image"
                           width={900}
-                          height={550}
+                          height={450}
                           style={{ width: "100%", height: "auto" }}
                         />
                       </Box>
