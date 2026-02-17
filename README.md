@@ -89,6 +89,7 @@ https://world-frontend.vercel.app/<br/>
 | **認証**           | Next-auth                             |
 | **データベース**   | Supabase                              |
 | **デプロイ**       | Vercel                                |
+| **テスト**         | jest,React Testing Library            |
 
 ---
 
