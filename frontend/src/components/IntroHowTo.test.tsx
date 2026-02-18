@@ -15,6 +15,7 @@ describe("IntroHowTo", () => {
         <IntroHowTo />
       </ChakraProvider>,
     );
+    //IntroHowToコンポーネントでは非同期処理があるため、findByにて要素を非同期に取得できるようにしている
     expect(await screen.findByText("使い方")).toBeInTheDocument();
   });
 });
