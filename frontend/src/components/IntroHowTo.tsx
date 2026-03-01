@@ -35,26 +35,26 @@ const IntroHowTo = () => {
           mt="60px"
           gap="20px"
         >
-          <Box flex="1" minH="400px">
+          <Box flex="1" minH={["auto", "400px"]}>
             <Box
               bgColor="yellow.50"
               p={[4, 6, 8]}
-              h="85%"
               position="relative"
               boxShadow="xl"
               borderRadius="10px"
             >
               <Heading
-                position="absolute"
-                top="-20px"
-                left="20px"
+                position={["static", "absolute"]}
+                top={["auto", "-20px"]}
+                left={["auto", "20px"]}
                 bg="white"
+                mb={[4, 0]}
                 px={[2, 4, 6]}
-                transform="rotate(-3deg)"
+                transform={["none","rotate(-3deg)"]}
                 bgColor="teal.100"
-                borderRadius={10}
+                borderRadius="10px"
                 bgGradient="linear(to-r, teal.300, blue.200,gray.100)"
-                fontWeight="none"
+                fontWeight="normal"
                 size={["md", "lg", "xl"]}
               >
                 サイト説明
@@ -77,22 +77,23 @@ const IntroHowTo = () => {
               borderRadius="10px"
             >
               <Heading
-                position="absolute"
-                top="-20px"
-                left="20px"
+                position={["static", "absolute"]}
+                top={["auto", "-20px"]}
+                left={["auto", "20px"]}
                 bg="white"
+                mb={[4, 0]}
                 px={[2, 4, 6]}
-                transform="rotate(-3deg)"
+                transform={["none","rotate(-3deg)"]}
                 bgColor="teal.100"
-                borderRadius={10}
-                size={["md", "lg", "xl"]}
+                borderRadius="10px"
                 bgGradient="linear(to-r, teal.300, blue.200,gray.100)"
-                fontWeight="none"
+                fontWeight="normal"
+                size={["md", "lg", "xl"]}
               >
                 使い方
               </Heading>
               <VStack>
-                <Tabs variant="enclosed">
+                <Tabs variant="enclosed" mt={[0,8]}>
                   <TabList>
                     <Tab>1.</Tab>
                     <Tab>2.</Tab>
@@ -100,11 +101,11 @@ const IntroHowTo = () => {
                   </TabList>
                   <TabPanels>
                     <TabPanel>
-                      <Box as="span" flex="1" textAlign="left">
+                      <Box textAlign="left">
                         好きな国や行ったことがある国をクリック
                         <Image
                           src="/sample/screenshot-20240930-202838.jpeg"
-                          alt="Top Image"
+                          alt="操作画面1"
                           width={900}
                           height={600}
                           style={{ width: "100%", height: "auto" }}
@@ -112,11 +113,11 @@ const IntroHowTo = () => {
                       </Box>
                     </TabPanel>
                     <TabPanel>
-                      <Box as="span" flex="1" textAlign="left">
+                      <Box textAlign="left">
                         選択した国の地図が表示されたら、右上にある「投稿一覧」ボタンをクリック
                         <Image
                           src="/sample/screenshot-20240930-202854.jpeg"
-                          alt="Top Image"
+                          alt="操作画面2"
                           width={900}
                           height={550}
                           style={{ width: "100%", height: "auto" }}
@@ -128,7 +129,7 @@ const IntroHowTo = () => {
                         「投稿一覧」が表示されたら、実際に投稿してみましょう！
                         <Image
                           src="/sample/screenshot-20241122-215117.jpeg"
-                          alt="Top Image"
+                          alt="操作画面3"
                           width={900}
                           height={600}
                           style={{ width: "100%", height: "auto" }}
