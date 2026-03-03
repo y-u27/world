@@ -111,6 +111,9 @@ const PostCreate = () => {
       return;
     }
 
+    // 投稿内容制限のための機能
+    // 投稿に過激な内容が含まれていた場合、toastにて注意アラートを表示し、投稿自体をできないように制限する
+
     try {
       await createPost(
         selectedCountry,
