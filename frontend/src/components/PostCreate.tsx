@@ -58,6 +58,8 @@ const PostCreate = () => {
   const [selectPostImageUrl, setSelectPostImageUrl] = useState<string | null>(
     null
   );
+  // 投稿内容の制限用useState
+  const [limitContent, setLimitContent] = useState<string>("");
 
   useEffect(() => {
     const country = searchParams.get("country");
@@ -68,7 +70,6 @@ const PostCreate = () => {
   }, [searchParams, setSelectedCountry]);
 
   const handleMapPost = async (e: React.FormEvent) => {
-    console.log("投稿時の image URL:", selectPostImageUrl);
     e.preventDefault();
 
     const title = titleRef.current?.value?.trim();
