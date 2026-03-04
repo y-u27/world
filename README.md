@@ -143,6 +143,7 @@ https://world-frontend.vercel.app/<br/>
   （1 つの投稿に複数のいいねが付く）
 
 ---
+```mermaid
 sequenceDiagram
     autonumber
     
@@ -177,6 +178,7 @@ sequenceDiagram
     API->>API: データベースに保存
     API-->>Frontend: 保存完了レスポンス
     Frontend-->>User: 投稿完了の通知と一覧の更新
+```
 ---
 
 ## 【工夫した点】<br/>
