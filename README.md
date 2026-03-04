@@ -143,6 +143,7 @@ https://world-frontend.vercel.app/<br/>
   （1 つの投稿に複数のいいねが付く）
 
 ---
+## 【アプリ構造】<br/>
 ```mermaid
 sequenceDiagram
     autonumber
