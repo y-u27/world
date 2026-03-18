@@ -72,6 +72,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
     { postId: number; name: string }[]
   >([]);
   const [updataImage, setUpdataImage] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<"profile" | "posts">("profile");
   const toast = useToast();
 
   useEffect(() => {
@@ -185,119 +186,127 @@ const UserInformation: React.FC<UserInformationProps> = ({
 
   return (
     <>
-      <Flex
-        justify="center"
-        align="start"
-        gap={["30px", "50px", "80px"]}
-        mt={["30px", "40px", "50px"]}
-        flexDirection={["column", "column", "row"]}
-        flexWrap="wrap"
-      >
+      <Flex justify="center" mt="30px">
         {/* プロフィール */}
-        <Card
-          width={["90%", "70%", "50%", "380px"]}
-          mx="auto"
-          mt="50px"
-          boxShadow="2xl"
-        >
-          <CardBody>
-            <Text
-              pt="20px"
-              textAlign="center"
-              fontFamily="revert"
-              fontSize="3xl"
-            >
-              プロフィール
-            </Text>
-            <Box
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
-              mt={["15px", "20px", "20px"]}
-            >
-              <UserPageUserImage imagePath={imagePath} />
-              {/* プロフィール画像変更処理 */}
-              <Box>
-                画像変更：
-                <Input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => {
-                    const selectedUpdataFiles = e.target.files?.[0] || null;
-                    if (selectedUpdataFiles) {
-                      handleUpdateImage(selectedUpdataFiles);
-                    }
-                  }}
-                />
-              </Box>
-              <Text mt="10px" fontSize={["lg", "xl", "xl"]} fontWeight="bold">
-                {userName}
-              </Text>
-            </Box>
-            {/* コメント編集 */}
-            <Box mt={["20px", "30px", "30px"]}>
-              <Box display="flex" justifyContent="center">
-                <Input
-                  value={tempComment}
-                  onChange={handleInputChange}
-                  width={["90%", "85%", "80%"]}
-                  placeholder="コメントを入力"
-                />
-              </Box>
-              <Box display="flex" justifyContent="center" mt="10px">
-                {isEditing ? (
-                  <Button onClick={handleSaveClick}>保存</Button>
-                ) : (
-                  <Button onClick={handleEditClick}>編集</Button>
-                )}
-              </Box>
-            </Box>
-            <Box display="flex" alignItems="center" mt="30px" fontWeight="bold">
-              <TiArrowBackOutline />
-              <Link href="/world">
-                <Text ml="5px">地図へに戻る</Text>
-              </Link>
-            </Box>
-          </CardBody>
-        </Card>
-        {/* 投稿記事 */}
-        <Card
-          width={["90%", "70%", "50%", "380px"]}
-          mx="auto"
-          mt="50px"
-          boxShadow="2xl"
-        >
-          <CardBody>
-            <Box>
+        {activeTab === "profile" && (
+          <Card
+            width={["90%", "70%", "50%", "380px"]}
+            mx="auto"
+            mt="50px"
+            boxShadow="2xl"
+          >
+            <CardBody>
               <Text
                 pt="20px"
                 textAlign="center"
                 fontFamily="revert"
                 fontSize="3xl"
               >
-                投稿記事
+                プロフィール
               </Text>
-              <Box height="3em" overflow="auto">
-                {!userPosts || userPosts.length === 0 ? (
-                  <Text>投稿はまだありません</Text>
-                ) : (
-                  userPosts.map((userPost) => (
-                    <Box
-                      key={userPost.id}
-                      border="1px solid #ccc"
-                      borderRadius="md"
-                      p="10px"
-                      mb="10px"
-                    >
-                      <Text>{userPost.countryName}</Text>
-                      <Text>{userPost.content}</Text>
-                    </Box>
-                  ))
-                )}
+              <Box
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                mt={["15px", "20px", "20px"]}
+              >
+                <UserPageUserImage imagePath={imagePath} />
+                {/* プロフィール画像変更処理 */}
+                <Box>
+                  画像変更：
+                  <Input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const selectedUpdataFiles = e.target.files?.[0] || null;
+                      if (selectedUpdataFiles) {
+                        handleUpdateImage(selectedUpdataFiles);
+                      }
+                    }}
+                  />
+                </Box>
+                <Text mt="10px" fontSize={["lg", "xl", "xl"]} fontWeight="bold">
+                  {userName}
+                </Text>
               </Box>
-            </Box>
-          </CardBody>
-        </Card>
+              {/* コメント編集 */}
+              <Box mt={["20px", "30px", "30px"]}>
+                <Box display="flex" justifyContent="center">
+                  <Input
+                    value={tempComment}
+                    onChange={handleInputChange}
+                    width={["90%", "85%", "80%"]}
+                    placeholder="コメントを入力"
+                  />
+                </Box>
+                <Box display="flex" justifyContent="center" mt="10px">
+                  {isEditing ? (
+                    <Button onClick={handleSaveClick}>保存</Button>
+                  ) : (
+                    <Button onClick={handleEditClick}>編集</Button>
+                  )}
+                </Box>
+              </Box>
+              <Box
+                display="flex"
+                alignItems="center"
+                mt="30px"
+                fontWeight="bold"
+              >
+                <TiArrowBackOutline />
+                <Link href="/world">
+                  <Text ml="5px">地図へに戻る</Text>
+                </Link>
+              </Box>
+            </CardBody>
+          </Card>
+        )}
+        {/* 投稿記事 */}
+        {activeTab === "posts" && (
+          <Card
+            width={["90%", "70%", "50%", "380px"]}
+            mx="auto"
+            mt="50px"
+            boxShadow="2xl"
+          >
+            <CardBody>
+              <Box>
+                <Text
+                  pt="20px"
+                  textAlign="center"
+                  fontFamily="revert"
+                  fontSize="3xl"
+                >
+                  投稿記事
+                </Text>
+                <Box height="3em" overflow="auto">
+                  {!userPosts || userPosts.length === 0 ? (
+                    <Text>投稿はまだありません</Text>
+                  ) : (
+                    userPosts.map((userPost) => (
+                      <Box
+                        key={userPost.id}
+                        border="1px solid #ccc"
+                        borderRadius="md"
+                        p="10px"
+                        mb="10px"
+                      >
+                        <Text>{userPost.countryName}</Text>
+                        <Text>{userPost.content}</Text>
+                      </Box>
+                    ))
+                  )}
+                </Box>
+              </Box>
+            </CardBody>
+          </Card>
+        )}
+        <Box textAlign="center" mt="20px">
+          <Button mr="10px" onClick={() => setActiveTab("profile")}>
+            プロフィール
+          </Button>
+          <Button onClick={() => setActiveTab("posts")}>投稿記事</Button>
+        </Box>
       </Flex>
     </>
   );
