@@ -195,27 +195,20 @@ const UserInformation: React.FC<UserInformationProps> = ({
       >
         {/* プロフィール */}
         <Card
-          width={["90%", "70%", "380px"]}
+          width={["90%", "70%", "50%", "380px"]}
+          mx="auto"
+          mt="50px"
           boxShadow="2xl"
-          borderRadius="lg"
-          padding={["10px", "15px", "20px"]}
         >
           <CardBody>
-            <Heading
-              position="absolute"
-              top="-20px"
-              left="20px"
-              bg="white"
-              px={[2, 4, 6]}
-              transform="rotate(-3deg)"
-              bgColor="teal.100"
-              borderRadius={10}
-              size={["md", "lg", "xl"]}
-              bgGradient="linear(to-r, teal.300, blue.200,gray.100)"
-              fontWeight="none"
+            <Text
+              pt="20px"
+              textAlign="center"
+              fontFamily="revert"
+              fontSize="3xl"
             >
               プロフィール
-            </Heading>
+            </Text>
             <Box
               display="flex"
               flexDirection="column"
@@ -269,28 +262,21 @@ const UserInformation: React.FC<UserInformationProps> = ({
         </Card>
         {/* 投稿記事 */}
         <Card
-          width={["90%", "70%", "380px"]}
+          width={["90%", "70%", "50%", "380px"]}
+          mx="auto"
+          mt="50px"
           boxShadow="2xl"
-          borderRadius="lg"
-          padding={["10px", "15px", "20px"]}
         >
           <CardBody>
             <Box>
-              <Heading
-                position="absolute"
-                top="-20px"
-                left="20px"
-                bg="white"
-                px={[2, 4, 6]}
-                transform="rotate(-3deg)"
-                bgColor="teal.100"
-                borderRadius={10}
-                size={["md", "lg", "xl"]}
-                bgGradient="linear(to-r, teal.300, blue.200,gray.100)"
-                fontWeight="none"
+              <Text
+                pt="20px"
+                textAlign="center"
+                fontFamily="revert"
+                fontSize="3xl"
               >
                 投稿記事
-              </Heading>
+              </Text>
               <Box height="3em" overflow="auto">
                 {!userPosts || userPosts.length === 0 ? (
                   <Text>投稿はまだありません</Text>
