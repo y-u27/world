@@ -186,6 +186,14 @@ const UserInformation: React.FC<UserInformationProps> = ({
 
   return (
     <>
+      {/* プロフィールと投稿記事の切り替えボタン */}
+      <Box textAlign="center" mt="20px" mx="30px">
+        <Button mr="10px" onClick={() => setActiveTab("profile")}>
+          プロフィール
+        </Button>
+        <Button onClick={() => setActiveTab("posts")}>投稿記事</Button>
+      </Box>
+
       <Flex justify="center" mt="30px">
         {/* プロフィール */}
         {activeTab === "profile" && (
@@ -264,10 +272,10 @@ const UserInformation: React.FC<UserInformationProps> = ({
         {/* 投稿記事 */}
         {activeTab === "posts" && (
           <Card
-            width={["90%", "70%", "50%", "380px"]}
-            mx="auto"
-            mt="50px"
+            width={["90%", "70%", "380px"]}
             boxShadow="2xl"
+            borderRadius="lg"
+            padding={["10px", "15px", "20px"]}
           >
             <CardBody>
               <Box>
@@ -301,12 +309,6 @@ const UserInformation: React.FC<UserInformationProps> = ({
             </CardBody>
           </Card>
         )}
-        <Box textAlign="center" mt="20px">
-          <Button mr="10px" onClick={() => setActiveTab("profile")}>
-            プロフィール
-          </Button>
-          <Button onClick={() => setActiveTab("posts")}>投稿記事</Button>
-        </Box>
       </Flex>
     </>
   );
