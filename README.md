@@ -145,44 +145,8 @@ https://world-frontend.vercel.app/<br/>
 ---
 ## 【アプリ構造】<br/>
 
-![シーケンス図](image.png)
+![シーケンス図](image.png)<br/>
 
-<!-- ```mermaid
-sequenceDiagram
-    autonumber
-    
-    actor User as ユーザー
-    participant Frontend as フロントエンド (Next.js)
-    participant Auth as 認証システム (Firebase/NextAuth等)
-    participant API as バックエンドAPI / DB
-
-    Note over User, Auth: 1. ログインフェーズ
-    User->>Frontend: 「ログインして投稿してみる」をクリック
-    Frontend->>Auth: ログインリクエスト
-    Auth-->>Frontend: 認証トークン返却
-    Frontend->>User: ログイン成功
-
-    Note over User, Frontend: 2. 国の選択フェーズ
-    User->>Frontend: トップページの世界地図を表示・閲覧
-    User->>Frontend: 任意の国をクリック
-    Frontend->>Frontend: 選択された国の情報をセット
-    Frontend-->>User: 国の詳細・投稿一覧ボタンを表示
-
-    Note over User, API: 3. 投稿の閲覧フェーズ
-    User->>Frontend: 「投稿一覧」ボタンをクリック
-    Frontend->>API: 選択した国の投稿データをリクエスト
-    API-->>Frontend: 投稿リストを返却
-    Frontend-->>User: 投稿一覧を画面に表示
-
-    Note over User, API: 4. 新規投稿フェーズ
-    User-->>Frontend: 投稿一覧の「投稿ボタン」クリック
-    Frontend-->>User: 投稿フォーム表示
-    User->>Frontend: 投稿内容を入力・送信
-    Frontend->>API: 投稿データ + 認証トークンを送信
-    API->>API: データベースに保存
-    API-->>Frontend: 保存完了レスポンス
-    Frontend-->>User: 投稿完了の通知と一覧の更新
-``` -->
 ---
 
 ## 【工夫した点】<br/>
