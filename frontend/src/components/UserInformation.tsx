@@ -272,10 +272,10 @@ const UserInformation: React.FC<UserInformationProps> = ({
         {/* 投稿記事 */}
         {activeTab === "posts" && (
           <Card
-            width={["90%", "70%", "380px"]}
+            width={["90%", "70%", "50%", "380px"]}
+            mx="auto"
+            mt="50px"
             boxShadow="2xl"
-            borderRadius="lg"
-            padding={["10px", "15px", "20px"]}
           >
             <CardBody>
               <Box>
