@@ -144,7 +144,10 @@ https://world-frontend.vercel.app/<br/>
 
 ---
 ## 【アプリ構造】<br/>
-```mermaid
+
+![シーケンス図](image.png)
+
+<!-- ```mermaid
 sequenceDiagram
     autonumber
     
@@ -179,7 +182,7 @@ sequenceDiagram
     API->>API: データベースに保存
     API-->>Frontend: 保存完了レスポンス
     Frontend-->>User: 投稿完了の通知と一覧の更新
-```
+``` -->
 ---
 
 ## 【工夫した点】<br/>
