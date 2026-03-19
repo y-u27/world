@@ -287,7 +287,7 @@ const UserInformation: React.FC<UserInformationProps> = ({
                 >
                   投稿記事
                 </Text>
-                <Box maxH="280px" overflow="auto">
+                <Box maxH="300px" overflow="auto">
                   {!userPosts || userPosts.length === 0 ? (
                     <Text>投稿はまだありません</Text>
                   ) : (
