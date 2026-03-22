@@ -22,7 +22,7 @@ const Header = () => {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email: session.user.email }),
-          }
+          },
         );
         const data = await response.json();
 
@@ -47,12 +47,11 @@ const Header = () => {
       <Box position="relative">
         <Heading
           color="#000080"
-          bgColor="#b0c4de"
+          bgColor="#ffffff"
           textAlign="center"
-          h="100%"
+          h="80%"
           size="md"
-          textShadow="1px 1px #ffffff"
-          p={2}
+          px="10px"
         >
           <Box
             display="flex"
