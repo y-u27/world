@@ -50,8 +50,9 @@ const Header = () => {
           bgColor="#ffffff"
           textAlign="center"
           h="130%"
-          size="lg"
+          size="md"
           px="10px"
+          py="10px"
         >
           <Box
             display="flex"
