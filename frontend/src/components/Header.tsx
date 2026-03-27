@@ -48,7 +48,6 @@ const Header = () => {
         <Heading
           color="#000080"
           bgColor="#ffffff"
-          textAlign="center"
           h="130%"
           size="md"
           px="10px"
