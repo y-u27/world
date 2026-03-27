@@ -49,7 +49,7 @@ const Header = () => {
           color="#000080"
           bgColor="#ffffff"
           textAlign="center"
-          h="100%"
+          h="150%"
           size="md"
           px="10px"
         >
