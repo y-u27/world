@@ -50,7 +50,7 @@ const Header = () => {
           bgColor="#ffffff"
           textAlign="center"
           h="150%"
-          size="md"
+          size="lg"
           px="10px"
         >
           <Box
