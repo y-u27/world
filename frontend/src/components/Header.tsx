@@ -52,7 +52,7 @@ const Header = () => {
           h="130%"
           size="md"
           px="10px"
-          py="10px"
+          py="5px"
         >
           <Box
             display="flex"
