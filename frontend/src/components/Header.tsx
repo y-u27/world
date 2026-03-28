@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BiLogOut } from "react-icons/bi";
 import { useRouter } from "next/navigation";
+import CtaButton from "./CtaButton";
 
 const Header = () => {
   const { data: session } = useSession();
@@ -72,6 +73,10 @@ const Header = () => {
             {/* タイトル */}
             <Box textAlign="center" flexGrow={1}>
               <Link href="/world">World Map SNS</Link>
+            </Box>
+
+            <Box>
+              <CtaButton />
             </Box>
 
             {session && (
