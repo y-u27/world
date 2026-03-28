@@ -75,7 +75,13 @@ const Header = () => {
               <Link href="/world">World Map SNS</Link>
             </Box>
 
-            <Box>
+            <Box
+              display="flex"
+              position="absolute"
+              top="1px"
+              left="30px"
+              padding="10px"
+            >
               <CtaButton />
             </Box>
 
