@@ -27,9 +27,6 @@ const DEFAULT_OPTIONS = {
   scrollwheel: false, // スクロールホイールによるズームを無効化
   disableDoubleClickZoom: true, // ダブルクリックによるズームを無効化
   mapTypeControl: true, // 地図タイプコントロール
-  mapTypeControlOptions: {
-    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-  },
   fullscreenControl: false, // フルスクリーン無効化
 };
 
