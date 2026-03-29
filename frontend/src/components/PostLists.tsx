@@ -243,19 +243,15 @@ const PostLists: React.FC<CountryProps> = ({
             ))}
           </DrawerBody>
           <DrawerFooter>
-            {usersLogin ? (
-              <Link href={`/world/create?country=${countryName}`}>
-                <Button
-                  mr={{ base: "auto", md: "175px" }}
-                  onClick={onClose}
-                  _hover={{ background: "#FAF089", color: "#319795" }}
-                >
-                  投稿
-                </Button>
-              </Link>
-            ) : (
-              <Link href="/login"></Link>
-            )}
+            <Link href={`/world/create?country=${countryName}`}>
+              <Button
+                mr={{ base: "auto", md: "175px" }}
+                onClick={onClose}
+                _hover={{ background: "#FAF089", color: "#319795" }}
+              >
+                投稿
+              </Button>
+            </Link>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
