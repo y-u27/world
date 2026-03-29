@@ -17,7 +17,7 @@ import PostLists from "./PostLists";
 import SearchBar from "./SearchBar";
 
 type Props = {
-  userId: number;
+  userId?: number;
 };
 
 // google map api
