@@ -40,6 +40,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import PostUserImage from "./PostUserImage";
 import Likes from "./Likes";
+import { useSession } from "next-auth/react";
 
 interface ApiResponse {
   data: PostResponse[];
@@ -70,13 +71,26 @@ const PostLists: React.FC<CountryProps> = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<PostResponse[]>([]);
-  const [usersLogin, setUsersLogin] = useState<string>("");
+  const { data: session } = useSession();
   const toast = useToast();
 
   const drawerSize = useBreakpointValue({
     base: { left: "80%", top: "5%" },
     md: { left: "90%", top: "8%" },
   });
+
+  const handleLogin = async () => {
+    if(!session?.user?.id) {
+      toast({
+        title: "エラー",
+        description: "ログインしてください",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
+  };
 
   const handleDeletePost = async (id: number) => {
     try {
@@ -246,7 +260,7 @@ const PostLists: React.FC<CountryProps> = ({
             <Link href={`/world/create?country=${countryName}`}>
               <Button
                 mr={{ base: "auto", md: "175px" }}
-                onClick={onClose}
+                onClick={handleLogin}
                 _hover={{ background: "#FAF089", color: "#319795" }}
               >
                 投稿
