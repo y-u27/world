@@ -56,7 +56,7 @@ async function fetchAllWorldPost(country: string): Promise<PostResponse[]> {
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/world-posts?country-name=${country}`,
     {
       cache: "no-store",
-    }
+    },
   );
 
   const postData: ApiResponse = await res.json();
@@ -70,6 +70,7 @@ const PostLists: React.FC<CountryProps> = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<PostResponse[]>([]);
+  const [usersLogin, setUsersLogin] = useState<string>("");
   const toast = useToast();
 
   const drawerSize = useBreakpointValue({
@@ -87,7 +88,7 @@ const PostLists: React.FC<CountryProps> = ({
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ id }),
-        }
+        },
       );
 
       if (response.ok) {
@@ -100,7 +101,7 @@ const PostLists: React.FC<CountryProps> = ({
         });
         // 削除された投稿を除いた新しいリストに更新
         setMapPostCards((prevPostCards) =>
-          prevPostCards.filter((post) => post.id !== id)
+          prevPostCards.filter((post) => post.id !== id),
         );
       } else {
         toast({
@@ -242,15 +243,19 @@ const PostLists: React.FC<CountryProps> = ({
             ))}
           </DrawerBody>
           <DrawerFooter>
-            <Link href={`/world/create?country=${countryName}`}>
-              <Button
-                mr={{ base: "auto", md: "175px" }}
-                onClick={onClose}
-                _hover={{ background: "#FAF089", color: "#319795" }}
-              >
-                投稿
-              </Button>
-            </Link>
+            {usersLogin ? (
+              <Link href={`/world/create?country=${countryName}`}>
+                <Button
+                  mr={{ base: "auto", md: "175px" }}
+                  onClick={onClose}
+                  _hover={{ background: "#FAF089", color: "#319795" }}
+                >
+                  投稿
+                </Button>
+              </Link>
+            ) : (
+              <Link href="/login"></Link>
+            )}
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
