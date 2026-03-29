@@ -1,11 +1,7 @@
 // 世界地図表示
 "use client";
 
-import {
-  Box,
-  Spinner,
-  useMediaQuery,
-} from "@chakra-ui/react";
+import { Box, Spinner, useMediaQuery } from "@chakra-ui/react";
 import {
   GoogleMap,
   InfoWindow,
@@ -30,7 +26,11 @@ const DEFAULT_OPTIONS = {
   zoomControl: false, // ズーム操作を無効化
   scrollwheel: false, // スクロールホイールによるズームを無効化
   disableDoubleClickZoom: true, // ダブルクリックによるズームを無効化
-  mapTypeControl: false, // 地図タイプコントロール
+  mapTypeControl: true, // 地図タイプコントロール
+  mapTypeControlOptions: {
+    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+  },
+  fullscreenControl: false, // フルスクリーン無効化
 };
 
 const WorldMapPage = ({ userId }: Props) => {
@@ -72,7 +72,7 @@ const WorldMapPage = ({ userId }: Props) => {
       // if文 ①statusがOKかつresultsの場合、resultsからcountryを含むresultを抽出
       if (status === "OK" && results) {
         const country = results.find((result) =>
-          result.types.includes("country")
+          result.types.includes("country"),
         );
         // ②さらにcountryの場合、国の住所・緯度経度が条件に一つでも合う国にマーカーと上部に国名を表示させる
         if (country) {
@@ -81,7 +81,7 @@ const WorldMapPage = ({ userId }: Props) => {
           // ↓以前にマーカーを表示した国が以前の国名と国の住所と一致しているかを判定している
           setMarkedCountries((prevMarkedCountries) => {
             const isExist = prevMarkedCountries.some(
-              (prevCountry) => prevCountry.name === country.formatted_address
+              (prevCountry) => prevCountry.name === country.formatted_address,
             );
             // ③①と②がどちらも存在する場合、マーカーを表示し、マーカー＋国の住所＋緯度経度を表示させる
             if (isExist) return prevMarkedCountries;
@@ -231,7 +231,7 @@ const WorldMapPage = ({ userId }: Props) => {
                 >
                   <Box style={mapStyle}>{country.name}</Box>
                 </InfoWindow>
-              ) : null
+              ) : null,
             )}
           </GoogleMap>
         )}
