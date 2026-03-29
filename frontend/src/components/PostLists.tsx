@@ -47,7 +47,7 @@ interface ApiResponse {
 
 type CountryProps = {
   countryName: string;
-  userId: number;
+  userId?: number;
 };
 
 // ↓全投稿データ取得
