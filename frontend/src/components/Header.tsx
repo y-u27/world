@@ -79,7 +79,7 @@ const Header = () => {
             <Box
               display="flex"
               position="absolute"
-              top="1px"
+              top="3px"
               right="10%"
               padding="10px"
             >
