@@ -264,15 +264,18 @@ const PostLists: React.FC<CountryProps> = ({
             ))}
           </DrawerBody>
           <DrawerFooter>
-            <Link href={`/world/create?country=${countryName}`}>
-              <Button
-                mr={{ base: "auto", md: "175px" }}
-                onClick={handleLogin}
-                _hover={{ background: "#FAF089", color: "#319795" }}
-              >
-                投稿
-              </Button>
-            </Link>
+            {/* 投稿ボタン */}
+            {session && (
+              <Link href={`/world/create?country=${countryName}`}>
+                <Button
+                  mr={{ base: "auto", md: "175px" }}
+                  onClick={handleLogin}
+                  _hover={{ background: "#FAF089", color: "#319795" }}
+                >
+                  投稿
+                </Button>
+              </Link>
+            )}
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
