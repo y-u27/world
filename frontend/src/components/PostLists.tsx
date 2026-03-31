@@ -41,6 +41,7 @@ import { useEffect, useRef, useState } from "react";
 import PostUserImage from "./PostUserImage";
 import Likes from "./Likes";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 interface ApiResponse {
   data: PostResponse[];
@@ -72,6 +73,7 @@ const PostLists: React.FC<CountryProps> = ({
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [mapPostCards, setMapPostCards] = useState<PostResponse[]>([]);
   const { data: session } = useSession();
+  const router = useRouter();
   const toast = useToast();
 
   const drawerSize = useBreakpointValue({
@@ -80,15 +82,20 @@ const PostLists: React.FC<CountryProps> = ({
   });
 
   const handleLogin = async () => {
-    if(!session?.user?.id) {
-      toast({
-        title: "エラー",
-        description: "ログインしてください",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
-      return;
+    try {
+      router.push("/world");
+      router.refresh();
+    } catch (error) {
+      if (!session?.user?.id) {
+        toast({
+          title: "エラー",
+          description: "ログインしてください",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+        return;
+      }
     }
   };
 
