@@ -80,7 +80,7 @@ const Header = () => {
               display="flex"
               position="absolute"
               right="10%"
-              bottom="2px"
+              bottom="1%"
               padding="10px"
             >
               <CtaButton />
