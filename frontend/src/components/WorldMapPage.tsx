@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import PostLists from "./PostLists";
 import SearchBar from "./SearchBar";
+import IntroHowTo from "./IntroHowTo";
 
 type Props = {
   userId?: number;
@@ -232,6 +233,9 @@ const WorldMapPage = ({ userId }: Props) => {
             )}
           </GoogleMap>
         )}
+        <Box>
+          <IntroHowTo />
+        </Box>
       </Box>
     </>
   );
