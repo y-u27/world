@@ -12,6 +12,7 @@ import { useState } from "react";
 import PostLists from "./PostLists";
 import SearchBar from "./SearchBar";
 import IntroHowTo from "./IntroHowTo";
+import { useSession } from "next-auth/react";
 
 type Props = {
   userId?: number;
