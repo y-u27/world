@@ -231,7 +231,7 @@ const WorldMapPage = ({ userId }: Props) => {
                 </InfoWindow>
               ) : null,
             )}
-            <Box py="40%">
+            <Box py="50%">
               <IntroHowTo />
             </Box>
           </GoogleMap>
