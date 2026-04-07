@@ -77,8 +77,8 @@ const PostLists: React.FC<CountryProps> = ({
   const toast = useToast();
 
   const drawerSize = useBreakpointValue({
-    base: { left: "80%", top: "5%" },
-    md: { left: "90%", top: "8%" },
+    base: { left: "70%", top: "5%" },
+    md: { left: "80%", top: "8%" },
   });
 
   const handleLogin = async () => {
