@@ -9,6 +9,8 @@ const IntroHowTo = () => {
     // ログインした後はこのボタンを非表示にする
     <>
       {session ? (
+        ""
+      ) : (
         <Box
           display="flex"
           flexDirection="column"
@@ -67,8 +69,6 @@ const IntroHowTo = () => {
             </Link>
           </Box>
         </Box>
-      ) : (
-        ""
       )}
     </>
   );
