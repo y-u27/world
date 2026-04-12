@@ -158,7 +158,12 @@ const PostLists: React.FC<CountryProps> = ({
 
   return (
     <>
-      <Box position="fixed" left="90%" top="8%" zIndex={1000}>
+      <Box
+        position="fixed"
+        right={{ base: "12px", md: "24px" }}
+        top={{ base: "12px", md: "20px" }}
+        zIndex={1000}
+      >
         <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
           投稿一覧
         </Button>
