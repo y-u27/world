@@ -91,7 +91,7 @@ const Header = () => {
             <Box
               display="flex"
               position="absolute"
-              right="30%"
+              right="15%"
               // bottom="5%"
               padding="10px"
             >
