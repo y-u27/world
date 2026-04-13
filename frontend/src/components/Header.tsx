@@ -73,7 +73,7 @@ const Header = () => {
 
             {/* タイトル */}
             <Box textAlign="center" flexGrow={1}>
-              <Link href="/world">World Map SNS</Link>
+              World Map SNS
             </Box>
 
             {/* CTAボタン */}
