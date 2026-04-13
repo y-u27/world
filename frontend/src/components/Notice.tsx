@@ -1,8 +1,10 @@
 "use client";
 
+import { InfoIcon } from "@chakra-ui/icons";
 import {
   Box,
   Heading,
+  IconButton,
   Modal,
   ModalBody,
   ModalContent,
@@ -58,6 +60,13 @@ const Notice = () => {
           boxShadow="xl"
           borderRadius="10px"
         >
+          <IconButton
+            aria-label="お知らせボタン"
+            onClick={onOpen}
+            icon={<InfoIcon />}
+            size="md"
+            variant="ghost"
+          />
           <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
