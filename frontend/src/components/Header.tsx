@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { BiLogOut } from "react-icons/bi";
 import { useRouter } from "next/navigation";
 import CtaButton from "./CtaButton";
+import Notice from "./Notice";
 
 const Header = () => {
   const { data: session } = useSession();
@@ -84,6 +85,17 @@ const Header = () => {
               padding="10px"
             >
               <CtaButton />
+            </Box>
+
+            {/* お知らせボタン */}
+            <Box
+              display="flex"
+              position="absolute"
+              right="30%"
+              // bottom="5%"
+              padding="10px"
+            >
+              <Notice />
             </Box>
 
             {session && (
