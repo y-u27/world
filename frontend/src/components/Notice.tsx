@@ -3,11 +3,13 @@
 import { InfoIcon } from "@chakra-ui/icons";
 import {
   Box,
+  Button,
   Heading,
   IconButton,
   Modal,
   ModalBody,
   ModalContent,
+  ModalFooter,
   ModalHeader,
   ModalOverlay,
   Text,
@@ -93,6 +95,11 @@ const Notice = () => {
                 )}
               </Box>
             </ModalBody>
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3} onClick={onClose}>
+                Close
+              </Button>
+            </ModalFooter>
           </ModalContent>
         </Modal>
       </Box>
