@@ -64,36 +64,34 @@ const Notice = () => {
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
+            <ModalHeader>お知らせ</ModalHeader>
             <ModalBody>
-              <ModalHeader>お知らせ</ModalHeader>
               {/* お知らせAPIを介してNewsテーブルからデータ取得 */}
-              <Box height="3em">
-                {notices.length === 0 ? (
-                  <Text mt="30px" ml="2%" color="gray.500">
-                    ※お知らせはありません
+              {notices.length === 0 ? (
+                <Text mt="30px" ml="2%" color="gray.500">
+                  ※お知らせはありません
+                </Text>
+              ) : (
+                notices.map((notice) => (
+                  <Text
+                    display="flex"
+                    w="100%"
+                    ml="2%"
+                    mt="30px"
+                    key={notice.id}
+                  >
+                    {new Date(notice.createdAt).toLocaleDateString("ja-JP", {
+                      timeZone: "UTC",
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                    {notice.content}
                   </Text>
-                ) : (
-                  notices.map((notice) => (
-                    <Text
-                      display="flex"
-                      w="100%"
-                      ml="2%"
-                      mt="30px"
-                      key={notice.id}
-                    >
-                      {new Date(notice.createdAt).toLocaleDateString("ja-JP", {
-                        timeZone: "UTC",
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                      {notice.content}
-                    </Text>
-                  ))
-                )}
-              </Box>
+                ))
+              )}
             </ModalBody>
             <ModalFooter>
               <Button colorScheme="blue" mr={3} onClick={onClose}>
