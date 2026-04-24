@@ -28,7 +28,6 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req) {
         if (!credentials?.email || !credentials.password) {
-          console.log("メールアドレスまたはパスワードが未入力です");
           return null;
         }
 
