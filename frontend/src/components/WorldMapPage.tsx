@@ -8,9 +8,9 @@ import {
   Marker,
   useLoadScript,
 } from "@react-google-maps/api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PostLists from "./PostLists";
-import SearchBar from "./SearchBar";
+// import SearchBar from "./SearchBar";
 import IntroHowTo from "./IntroHowTo";
 
 type Props = {
@@ -203,7 +203,7 @@ const WorldMapPage = ({ userId }: Props) => {
               transform="translateX(-50%)"
               zIndex="2"
             >
-              <SearchBar onSearch={handleSearchCountry} />
+              {/* <SearchBar onSearch={handleSearchCountry} /> */}
             </Box>
             {markedCountries.map((country) => (
               <Marker
