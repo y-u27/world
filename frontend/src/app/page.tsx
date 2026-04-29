@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import WorldMapPage from "../components/WorldMapPage";
