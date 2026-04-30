@@ -73,7 +73,7 @@ const Header = () => {
           </Box>
 
           {/* ヘッダー右端 */}
-          <Box display="flex" alignItems="center" gap={{ base: 2, md: 4 }}>
+          <Box display="flex" alignItems="center" gap={{ base: 1, md: 3 }}>
             {/* CTAボタン */}
             <CtaButton />
             {/* お知らせボタン */}
