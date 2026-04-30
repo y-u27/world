@@ -46,79 +46,49 @@ const Header = () => {
 
   return (
     <>
-      <Box position="relative">
-        <Heading
-          color="#000080"
-          bgColor="#ffffff"
-          h="130%"
-          size="md"
-          px="10px"
-          py="8px"
-        >
+      <Box bg="white" px={{ base: 3, md: 6 }} py={2}>
+        <Box display="flex" alignItems="center" justifyContent="space-between">
+          {/* ログアウト */}
+          {/* ヘッダー左端 */}
+          {session && (
+            <IconButton
+              aria-label="ログアウト"
+              icon={<BiLogOut size={17} />}
+              size="sm"
+              onClick={handleLogout}
+              variant="ghost"
+            />
+          )}
+
+          {/* タイトル */}
+          {/* ヘッダー中央 */}
           <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
+            textAlign="center"
+            flexGrow={1}
+            color="#000080"
+            bgColor="#ffffff"
           >
-            {/* ログアウト */}
-            {session && (
-              <IconButton
-                aria-label="ログアウト"
-                icon={<BiLogOut size={17} />}
-                size="sm"
-                onClick={handleLogout}
-                variant="ghost"
-              />
-            )}
+            World Map SNS
+          </Box>
 
-            {/* タイトル */}
-            <Box textAlign="center" flexGrow={1}>
-              World Map SNS
-            </Box>
-
+          {/* ヘッダー右端 */}
+          <Box display="flex" alignItems="center" gap={{ base: 2, md: 4 }}>
             {/* CTAボタン */}
-            <Box
-              display="flex"
-              position="absolute"
-              right="10%"
-              // bottom="5%"
-              padding="10px"
-            >
-              <CtaButton />
-            </Box>
-
+            <CtaButton />
             {/* お知らせボタン */}
-            <Box
-              display="flex"
-              position="absolute"
-              right="20%"
-              // bottom="5%"
-              padding="10px"
-            >
-              <Notice />
-            </Box>
-
+            <Notice />
+            {/* プロフィールアイコン */}
             {session && (
-              <Box
-                display="flex"
-                justifyContent="flex-end"
-                position="absolute"
-                top="1px"
-                right="10px"
-                padding="10px"
-              >
-                {/* プロフィールアイコン */}
-                <Link href={`/user/${userId}`}>
-                  <Avatar
-                    size="sm"
-                    src={avatarUrl ?? "/default-avatar.jpeg"}
-                    name={session.user?.name ?? "ユーザー"}
-                  />
-                </Link>
-              </Box>
+              <Link href={`/user/${userId}`}>
+                <Avatar
+                  size="sm"
+                  src={avatarUrl ?? "/default-avatar.jpeg"}
+                  name={session.user?.name ?? "ユーザー"}
+                />
+              </Link>
             )}
           </Box>
-        </Heading>
+        </Box>
       </Box>
     </>
   );
