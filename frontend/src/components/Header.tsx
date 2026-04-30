@@ -78,7 +78,7 @@ const Header = () => {
             <CtaButton />
             {/* お知らせボタン */}
             <Notice />
-            {/* プロフィールアイコン */}
+            {/* ユーザーアイコン */}
             {session && (
               <Link href={`/user/${userId}`}>
                 <Avatar
