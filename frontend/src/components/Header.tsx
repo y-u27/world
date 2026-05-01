@@ -63,7 +63,7 @@ const Header = () => {
           {/* タイトル */}
           {/* ヘッダー中央 */}
           <Box
-            fontSize="md"
+            fontSize="lg"
             fontWeight="bold"
             textAlign="center"
             flexGrow={1}
