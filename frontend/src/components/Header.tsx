@@ -65,7 +65,7 @@ const Header = () => {
           <Box
             fontSize="lg"
             fontWeight="bold"
-            textAlign="center"
+            textAlign="left"
             flexGrow={1}
             color="#000080"
             bgColor="#ffffff"
