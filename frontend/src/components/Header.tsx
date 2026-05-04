@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, Box, Heading, IconButton } from "@chakra-ui/react";
+import { Avatar, Box, IconButton } from "@chakra-ui/react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -8,11 +8,13 @@ import { BiLogOut } from "react-icons/bi";
 import { useRouter } from "next/navigation";
 import CtaButton from "./CtaButton";
 import Notice from "./Notice";
+import SearchBar from "./SearchBar";
 
 const Header = () => {
   const { data: session } = useSession();
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const [userId, setUserId] = useState<number | null>(null);
+  const [searchCountry, setSearchCountry] = useState<string>("");
   const router = useRouter();
 
   useEffect(() => {
@@ -61,7 +63,7 @@ const Header = () => {
           )}
 
           {/* タイトル */}
-          {/* ヘッダー中央 */}
+          {/* ヘッダー左寄せ */}
           <Box
             fontSize="lg"
             fontWeight="bold"
@@ -75,6 +77,7 @@ const Header = () => {
 
           {/* ヘッダー右端 */}
           <Box display="flex" alignItems="center" gap={{ base: 1, md: 3 }}>
+            <SearchBar onSearch={setSearchCountry} />
             {/* CTAボタン */}
             <CtaButton />
             {/* お知らせボタン */}
