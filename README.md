@@ -131,17 +131,40 @@ https://world-frontend.vercel.app/<br/>
 
 ---
 
-### 🔗 テーブル間のリレーション<br/>
+### 🔗 ER図<br/>
 
-- **User 1 : N Post**  
-  （1 人のユーザーが複数の投稿を持つ）
+```mermaid
+erDiagram
 
-- **User 1 : N Likes**  
-  （1 人のユーザーが複数の投稿にいいねできる）
+    USER ||--o{ POST : "1:N (投稿する)"
+    USER ||--o{ LIKES : "1:N (いいねする)"
+    POST ||--o{ LIKES : "1:N (いいねされる)"
 
-- **Post 1 : N Likes**  
-  （1 つの投稿に複数のいいねが付く）
+    USER {
+        int4 id PK
+        text name
+        text image
+        text email
+        text password
+        text comment
+    }
 
+    POST {
+        int4 id PK
+        text title
+        text content
+        timestamp createdAt
+        text countryName
+        int4 userId FK
+    }
+
+    LIKES {
+        int4 id PK
+        int4 userId FK
+        int4 postId FK
+    }
+
+```
 ---
 
 ## 【アプリ構造】<br/>
