@@ -13,16 +13,6 @@ const SearchBar = ({ onSearch }: Props) => {
   const [query, setQuery] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  const toggleSearchIcon = () => {
-    // ①検索バー開く
-    if (!isSearchOpen) {
-      setIsSearchOpen(true);
-      // ②すでに検索バーが開いているなら、検索実行
-    } else {
-      handleSearch();
-    }
-  };
-
   const handleSearch = () => {
     if (query.trim() !== "") {
       //国ズーム
@@ -31,6 +21,16 @@ const SearchBar = ({ onSearch }: Props) => {
       setQuery("");
       //検索バーを閉じる
       setIsSearchOpen(false);
+    }
+  };
+
+  const toggleSearchIcon = () => {
+    // ①検索バー開く
+    if (!isSearchOpen) {
+      setIsSearchOpen(true);
+      // ②すでに検索バーが開いているなら、検索実行
+    } else {
+      handleSearch();
     }
   };
 
