@@ -97,35 +97,35 @@ const WorldMapPage = ({ userId }: Props) => {
   };
 
   // 国名を検索窓に入力することで緯度・経度を取得して地図に反映
-  const handleSearchCountry = (countryName: string) => {
-    const geocoder = new window.google.maps.Geocoder();
-    geocoder.geocode({ address: countryName }, (results, status) => {
-      if (status === "OK" && results && results[0]) {
-        const location = results[0].geometry.location;
-        const lat = location.lat();
-        const lng = location.lng();
-        const address = results[0].formatted_address;
+  // const handleSearchCountry = (countryName: string) => {
+  //   const geocoder = new window.google.maps.Geocoder();
+  //   geocoder.geocode({ address: countryName }, (results, status) => {
+  //     if (status === "OK" && results && results[0]) {
+  //       const location = results[0].geometry.location;
+  //       const lat = location.lat();
+  //       const lng = location.lng();
+  //       const address = results[0].formatted_address;
 
-        setSelectedCountry(address);
-        setMapCenter({ lat, lng });
-        setZoom(5);
-        setOptions((prev) => ({
-          ...prev,
-          draggable: false,
-          scrollwheel: false,
-          disableDefaultUI: false,
-        }));
+  //       setSelectedCountry(address);
+  //       setMapCenter({ lat, lng });
+  //       setZoom(5);
+  //       setOptions((prev) => ({
+  //         ...prev,
+  //         draggable: false,
+  //         scrollwheel: false,
+  //         disableDefaultUI: false,
+  //       }));
 
-        setMarkedCountries((prev) => {
-          const exists = prev.some((c) => c.name === address);
-          if (exists) return prev;
-          return [...prev, { name: address, lat, lng }];
-        });
-      } else {
-        console.error("国の検索に失敗しました");
-      }
-    });
-  };
+  //       setMarkedCountries((prev) => {
+  //         const exists = prev.some((c) => c.name === address);
+  //         if (exists) return prev;
+  //         return [...prev, { name: address, lat, lng }];
+  //       });
+  //     } else {
+  //       console.error("国の検索に失敗しました");
+  //     }
+  //   });
+  // };
 
   const InfoWindowOptions = {
     maxWidth: 100,
@@ -203,7 +203,7 @@ const WorldMapPage = ({ userId }: Props) => {
               transform="translateX(-50%)"
               zIndex="2"
             >
-              <SearchBar onSearch={handleSearchCountry} />
+              {/* <SearchBar onSearch={handleSearchCountry} /> */}
             </Box>
             {markedCountries.map((country) => (
               <Marker
