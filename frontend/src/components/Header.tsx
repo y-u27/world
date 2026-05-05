@@ -27,23 +27,6 @@ const Header = () => {
   const [userId, setUserId] = useState<number | null>(null);
   const router = useRouter();
 
-  // 国を選択するuseState
-  const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
-  // ↓各国の緯度経度の初期値
-  const [mapCenter, setMapCenter] = useState({ lat: 35.6762, lng: 155.6503 });
-  // ↓それぞれの国をズームの初期値
-  const [zoom, setZoom] = useState(2.3);
-  // ↓各国のマップの名前・緯度経度の型の初期値?
-  const [markedCountries, setMarkedCountries] = useState<
-    {
-      name: string;
-      lat: number;
-      lng: number;
-    }[]
-  >([]);
-  // ↓マップのオプション
-  const [options, setOptions] = useState(DEFAULT_OPTIONS);
-
   useEffect(() => {
     const fetchAvatarUrl = async () => {
       if (session?.user?.email) {
@@ -67,37 +50,6 @@ const Header = () => {
     };
     fetchAvatarUrl();
   }, [session]);
-
-  // ↓にWorldMapPageコンポーネントのhandleSearchCountry関数を持ってくる
-  const handleSearchCountry = (countryName: string) => {
-    const geocoder = new window.google.maps.Geocoder();
-    geocoder.geocode({ address: countryName }, (results, status) => {
-      if (status === "OK" && results && results[0]) {
-        const location = results[0].geometry.location;
-        const lat = location.lat();
-        const lng = location.lng();
-        const address = results[0].formatted_address;
-
-        setSelectedCountry(address);
-        setMapCenter({ lat, lng });
-        setZoom(5);
-        setOptions((prev) => ({
-          ...prev,
-          draggable: false,
-          scrollwheel: false,
-          disableDefaultUI: false,
-        }));
-
-        setMarkedCountries((prev) => {
-          const exists = prev.some((c) => c.name === address);
-          if (exists) return prev;
-          return [...prev, { name: address, lat, lng }];
-        });
-      } else {
-        console.error("国の検索に失敗しました");
-      }
-    });
-  };
 
   const handleLogout = async () => {
     await signOut({ redirect: false });
@@ -135,7 +87,6 @@ const Header = () => {
 
           {/* ヘッダー右端 */}
           <Box display="flex" alignItems="center" gap={{ base: 1, md: 3 }}>
-            <SearchBar onSearch={handleSearchCountry} />
             {/* CTAボタン */}
             <CtaButton />
             {/* お知らせボタン */}
