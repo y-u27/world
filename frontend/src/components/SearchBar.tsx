@@ -34,9 +34,6 @@ const SearchBar = ({ onSearch }: Props) => {
     }
   };
 
-  // ↓にWorldMapPageコンポーネントのhandleSearchCountry関数を持ってくる
-  
-
   return (
     <Box position="relative" display="flex" alignItems="center">
       {/* 検索アイコン */}
