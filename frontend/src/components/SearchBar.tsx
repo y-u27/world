@@ -1,7 +1,6 @@
 "use client";
 
-import { CloseIcon } from "@chakra-ui/icons";
-import { Box, Collapse, IconButton, Input } from "@chakra-ui/react";
+import { Box, IconButton, Input } from "@chakra-ui/react";
 import { useState } from "react";
 import { TbMapSearch } from "react-icons/tb";
 
