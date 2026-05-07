@@ -203,7 +203,7 @@ const WorldMapPage = ({ userId }: Props) => {
               transform="translateX(-50%)"
               zIndex="2"
             >
-              {/* <SearchBar onSearch={handleSearchCountry} /> */}
+              <SearchBar onSearch={handleSearchCountry} />
             </Box>
             {markedCountries.map((country) => (
               <Marker
