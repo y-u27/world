@@ -10,9 +10,8 @@ import {
 } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
 import PostLists from "./PostLists";
-import SearchBar from "./SearchBar";
 import IntroHowTo from "./IntroHowTo";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 type Props = {
   userId?: number;
@@ -58,9 +57,10 @@ const WorldMapPage = ({ userId }: Props) => {
 
   // メディアクエリ（レスポンシブ対応）
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
-  
+
   const searchParams = useSearchParams();
   const countryQuery = searchParams.get("country");
+  const router = useRouter();
 
   // 地図をクリックした時の中心座標と国名を取得
   const handleMapClick = (e: google.maps.MapMouseEvent) => {
@@ -213,9 +213,7 @@ const WorldMapPage = ({ userId }: Props) => {
               left="10%"
               transform="translateX(-50%)"
               zIndex="2"
-            >
-              {/* <SearchBar onSearch={handleSearchCountry} /> */}
-            </Box>
+            ></Box>
             {markedCountries.map((country) => (
               <Marker
                 key={country.name}
@@ -236,6 +234,7 @@ const WorldMapPage = ({ userId }: Props) => {
                     setSelectedCountry(null);
                     setOptions(DEFAULT_OPTIONS);
                     setZoom(2.3);
+                    router.push("/");
                   }}
                 >
                   <Box style={mapStyle}>{country.name}</Box>
