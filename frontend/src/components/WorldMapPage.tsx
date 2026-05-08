@@ -231,9 +231,11 @@ const WorldMapPage = ({ userId }: Props) => {
                   position={{ lat: country.lat, lng: country.lng }}
                   options={InfoWindowOptions}
                   onCloseClick={() => {
+                    // React内の状態をリセット
                     setSelectedCountry(null);
                     setOptions(DEFAULT_OPTIONS);
                     setZoom(2.3);
+                    // ↓URLをリセットしてパラメータを消す
                     router.push("/");
                   }}
                 >
