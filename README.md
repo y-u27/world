@@ -230,7 +230,6 @@ erDiagram
 - [ ] [複数回ページリロードをした際にログインページへリダイレクトされてしまう仕様の修正（再ログインもできなくなっている点）](https://github.com/y-u27/world/issues/24)
 - [ ] [投稿画像を投稿した時の幅調整](https://github.com/y-u27/world/issues/30)
 - [ ] [検索機能強化](https://github.com/y-u27/world/issues/32)
-- [ ] [検索窓の位置修正](https://github.com/y-u27/world/issues/36)
 - [ ] 投稿一覧のUI改善
 
 ---
@@ -243,3 +242,4 @@ erDiagram
 - [x] 画像を投稿しない時の Input タグの空欄表示<br/>
 - [x] ユーザーページにて実装した過去投稿の UI 修正<br/>
 - [x] ユーザーページでのプロフィール画像をクリックした時のコメント表示<br/>
+- [x] [検索窓の位置修正](https://github.com/y-u27/world/issues/36)
