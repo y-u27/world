@@ -40,7 +40,6 @@ const Header = () => {
     fetchAvatarUrl();
   }, [session]);
 
-  // 国名を検索窓に入力することで緯度・経度を取得して地図に反映
   const handleSearchCountry = (countryName: string) => {
     router.push(`/?country=${encodeURIComponent(countryName)}`);
   };
