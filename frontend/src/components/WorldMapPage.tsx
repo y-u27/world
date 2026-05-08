@@ -8,10 +8,11 @@ import {
   Marker,
   useLoadScript,
 } from "@react-google-maps/api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PostLists from "./PostLists";
 import SearchBar from "./SearchBar";
 import IntroHowTo from "./IntroHowTo";
+import { useSearchParams } from "next/navigation";
 
 type Props = {
   userId?: number;
@@ -57,6 +58,9 @@ const WorldMapPage = ({ userId }: Props) => {
 
   // メディアクエリ（レスポンシブ対応）
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
+  
+  const searchParams = useSearchParams();
+  const countryQuery = searchParams.get("country");
 
   // 地図をクリックした時の中心座標と国名を取得
   const handleMapClick = (e: google.maps.MapMouseEvent) => {
@@ -95,6 +99,13 @@ const WorldMapPage = ({ userId }: Props) => {
       }
     });
   };
+
+  // URLの国名が変わった時に実行される処理
+  useEffect(() => {
+    if (countryQuery && isLoaded) {
+      handleSearchCountry(countryQuery);
+    }
+  }, [countryQuery, isLoaded]); // countryQueryが変わるたびに動く
 
   // 国名を検索窓に入力することで緯度・経度を取得して地図に反映
   const handleSearchCountry = (countryName: string) => {
