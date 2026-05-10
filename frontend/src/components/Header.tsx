@@ -76,7 +76,8 @@ const Header = () => {
             >
               World Map SNS
             </Box>
-          <HStack>
+          <HStack
+          px={5}>
             {/* CTAボタン */}
             <CtaButton />
             {/* お知らせボタン */}
