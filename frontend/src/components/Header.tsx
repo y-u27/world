@@ -67,21 +67,19 @@ const Header = () => {
 
           {/* タイトル */}
           {/* ヘッダー左寄せ */}
-          <HStack>
-            <Box
-              fontSize="lg"
-              fontWeight="bold"
-              textAlign="left"
-              flexGrow={1}
-              color="#000080"
-              bgColor="#ffffff"
-            >
+          <HStack
+            fontSize="lg"
+            fontWeight="bold"
+            textAlign="left"
+            flexGrow={1}
+            color="#000080"
+            bgColor="#ffffff"
+          >
               World Map SNS
               {/* CTAボタン */}
               <CtaButton />
               {/* お知らせボタン */}
               <Notice />
-            </Box>
           </HStack>
 
           {/* ヘッダー右端 */}
