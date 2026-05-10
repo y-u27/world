@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, Box, Flex, IconButton } from "@chakra-ui/react";
+import { Avatar, Box, HStack, IconButton } from "@chakra-ui/react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -67,7 +67,7 @@ const Header = () => {
 
           {/* タイトル */}
           {/* ヘッダー左寄せ */}
-          <Flex>
+          <HStack>
             <Box
               fontSize="lg"
               fontWeight="bold"
@@ -82,7 +82,7 @@ const Header = () => {
               {/* お知らせボタン */}
               <Notice />
             </Box>
-          </Flex>
+          </HStack>
 
           {/* ヘッダー右端 */}
           <Box display="flex" alignItems="center" gap={{ base: 1, md: 3 }}>
