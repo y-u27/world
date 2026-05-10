@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, Box, IconButton } from "@chakra-ui/react";
+import { Avatar, Box, Flex, IconButton } from "@chakra-ui/react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -67,24 +67,26 @@ const Header = () => {
 
           {/* タイトル */}
           {/* ヘッダー左寄せ */}
-          <Box
-            fontSize="lg"
-            fontWeight="bold"
-            textAlign="left"
-            flexGrow={1}
-            color="#000080"
-            bgColor="#ffffff"
-          >
-            World Map SNS
-            {/* CTAボタン */}
-            <CtaButton />
-          </Box>
+          <Flex>
+            <Box
+              fontSize="lg"
+              fontWeight="bold"
+              textAlign="left"
+              flexGrow={1}
+              color="#000080"
+              bgColor="#ffffff"
+            >
+              World Map SNS
+              {/* CTAボタン */}
+              <CtaButton />
+              {/* お知らせボタン */}
+              <Notice />
+            </Box>
+          </Flex>
 
           {/* ヘッダー右端 */}
           <Box display="flex" alignItems="center" gap={{ base: 1, md: 3 }}>
             <SearchBar onSearch={handleSearchCountry} />
-            {/* お知らせボタン */}
-            <Notice />
             {/* ユーザーアイコン */}
             {session && (
               <Link href={`/user/${userId}`}>
