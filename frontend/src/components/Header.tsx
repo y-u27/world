@@ -67,7 +67,6 @@ const Header = () => {
 
           {/* タイトル */}
           {/* ヘッダー左寄せ */}
-          <HStack>
             <Box
               fontSize="lg"
               fontWeight="bold"
@@ -77,6 +76,7 @@ const Header = () => {
             >
               World Map SNS
             </Box>
+          <HStack>
             {/* CTAボタン */}
             <CtaButton />
             {/* お知らせボタン */}
