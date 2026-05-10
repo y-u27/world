@@ -76,13 +76,13 @@ const Header = () => {
             bgColor="#ffffff"
           >
             World Map SNS
+            {/* CTAボタン */}
+            <CtaButton />
           </Box>
 
           {/* ヘッダー右端 */}
           <Box display="flex" alignItems="center" gap={{ base: 1, md: 3 }}>
             <SearchBar onSearch={handleSearchCountry} />
-            {/* CTAボタン */}
-            <CtaButton />
             {/* お知らせボタン */}
             <Notice />
             {/* ユーザーアイコン */}
