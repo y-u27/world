@@ -76,13 +76,11 @@ const Header = () => {
           >
             World Map SNS
           </Box>
-          <HStack>
-            <Box px="5px">
-              {/* CTAボタン */}
-              <CtaButton />
-              {/* お知らせボタン */}
-              <Notice />
-            </Box>
+          <HStack px="5%">
+            {/* CTAボタン */}
+            <CtaButton />
+            {/* お知らせボタン */}
+            <Notice />
           </HStack>
 
           {/* ヘッダー右端 */}
