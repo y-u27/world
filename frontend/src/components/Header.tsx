@@ -76,7 +76,7 @@ const Header = () => {
           >
             World Map SNS
           </Box>
-          <HStack pr="80%">
+          <HStack pr="68%">
             {/* CTAボタン */}
             <CtaButton />
             {/* お知らせボタン */}
