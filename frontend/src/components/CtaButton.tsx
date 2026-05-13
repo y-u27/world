@@ -24,7 +24,7 @@ const CtaButton = () => {
         <IconButton
           aria-label="CTAボタン"
           onClick={onOpen}
-          icon={<QuestionOutlineIcon />}
+          icon={<QuestionOutlineIcon bgSize={3} />}
           size="md"
           variant="ghost"
         />
