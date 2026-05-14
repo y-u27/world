@@ -231,6 +231,7 @@ erDiagram
 - [ ] [投稿画像を投稿した時の幅調整](https://github.com/y-u27/world/issues/30)
 - [ ] [検索機能強化](https://github.com/y-u27/world/issues/32)
 - [ ] 投稿一覧のUI改善
+- [ ] [モバイル端末のみクライアントエラーが表示される](https://github.com/y-u27/world/issues/37)
 
 ---
 
