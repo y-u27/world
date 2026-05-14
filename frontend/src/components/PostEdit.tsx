@@ -1,4 +1,4 @@
-// 投稿フォーム
+// 投稿編集cフォーム
 "use client";
 
 import {
