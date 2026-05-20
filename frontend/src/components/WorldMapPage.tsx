@@ -31,11 +31,13 @@ const DEFAULT_OPTIONS = {
   fullscreenControl: false, // フルスクリーン無効化
 };
 
+const LIBRARIES: ("geometry" | "drawing")[] = ["geometry", "drawing"];
+
 const WorldMapPage = ({ userId }: Props) => {
   const { isLoaded } = useLoadScript({
     id: "google-map-script",
     googleMapsApiKey,
-    libraries: ["geometry", "drawing"],
+    libraries: LIBRARIES,
   });
   // 国を選択するuseState
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
@@ -161,7 +163,7 @@ const WorldMapPage = ({ userId }: Props) => {
   const [zoomPostList, setZoomPostList] = useState(false);
 
   const handleZoom = () => {
-    setZoomPostList(!zoomPostList);
+    setZoomPostList(true);
   };
 
   if (!isLoaded) {
