@@ -189,68 +189,66 @@ const WorldMapPage = ({ userId }: Props) => {
           <PostLists countryName={selectedCountry} userId={userId} />
         )}
         {isLoaded && (
-          <>
-            <GoogleMap
-              mapContainerStyle={mapContainerStyle}
-              center={mapCenter}
-              zoom={zoom}
-              options={options}
-              onClick={(e) => {
-                console.log(e);
-                handleMapClick(e);
-                setZoom(5);
-                setOptions((prevOptions) => {
-                  return {
-                    ...prevOptions,
-                    draggable: false,
-                    scrollwheel: false,
-                    disableDefaultUI: false,
-                  };
-                });
-              }}
-              onZoomChanged={handleZoom}
-            >
-              <Box
-                position="absolute"
-                top="13px"
-                left="10%"
-                transform="translateX(-50%)"
-                zIndex="2"
-              ></Box>
-              {markedCountries.map((country) => (
-                <Marker
+          <GoogleMap
+            mapContainerStyle={mapContainerStyle}
+            center={mapCenter}
+            zoom={zoom}
+            options={options}
+            onClick={(e) => {
+              console.log(e);
+              handleMapClick(e);
+              setZoom(5);
+              setOptions((prevOptions) => {
+                return {
+                  ...prevOptions,
+                  draggable: false,
+                  scrollwheel: false,
+                  disableDefaultUI: false,
+                };
+              });
+            }}
+            onZoomChanged={handleZoom}
+          >
+            <Box
+              position="absolute"
+              top="13px"
+              left="10%"
+              transform="translateX(-50%)"
+              zIndex="2"
+            ></Box>
+            {markedCountries.map((country) => (
+              <Marker
+                key={country.name}
+                position={{ lat: country.lat, lng: country.lng }}
+                onClick={() => setSelectedCountry(country.name)}
+              />
+            ))}
+            {markedCountries.map((country) =>
+              selectedCountry === country.name ? (
+                // 4. ウィンドウを閉じた時に投稿一覧ボタンを非表示する
+                // →トリガーは、InfoWindowコンポーネントのonCloseClickを使う
+                // →stateを使ってボタンを非表示する
+                <InfoWindow
                   key={country.name}
                   position={{ lat: country.lat, lng: country.lng }}
-                  onClick={() => setSelectedCountry(country.name)}
-                />
-              ))}
-              {markedCountries.map((country) =>
-                selectedCountry === country.name ? (
-                  // 4. ウィンドウを閉じた時に投稿一覧ボタンを非表示する
-                  // →トリガーは、InfoWindowコンポーネントのonCloseClickを使う
-                  // →stateを使ってボタンを非表示する
-                  <InfoWindow
-                    key={country.name}
-                    position={{ lat: country.lat, lng: country.lng }}
-                    options={InfoWindowOptions}
-                    onCloseClick={() => {
-                      // React内の状態をリセット
-                      setSelectedCountry(null);
-                      setOptions(DEFAULT_OPTIONS);
-                      setZoom(2.3);
-                      // ↓URLをリセットしてパラメータを消す
-                      router.push("/");
-                    }}
-                  >
-                    <Box style={mapStyle}>{country.name}</Box>
-                  </InfoWindow>
-                ) : null,
-              )}
-            </GoogleMap>
+                  options={InfoWindowOptions}
+                  onCloseClick={() => {
+                    // React内の状態をリセット
+                    setSelectedCountry(null);
+                    setOptions(DEFAULT_OPTIONS);
+                    setZoom(2.3);
+                    // ↓URLをリセットしてパラメータを消す
+                    router.push("/");
+                  }}
+                >
+                  <Box style={mapStyle}>{country.name}</Box>
+                </InfoWindow>
+              ) : null,
+            )}
             <Box py="38%">
               <IntroHowTo />
             </Box>
-          </>
+          </GoogleMap>
         )}
       </Box>
     </>
