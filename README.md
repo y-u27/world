@@ -133,38 +133,7 @@ https://world-frontend.vercel.app/<br/>
 
 ### 🔗 ER図<br/>
 
-```mermaid
-erDiagram
-
-    USER ||--o{ POST : "1:N (投稿する)"
-    USER ||--o{ LIKES : "1:N (いいねする)"
-    POST ||--o{ LIKES : "1:N (いいねされる)"
-
-    USER {
-        int4 id PK
-        text name
-        text image
-        text email
-        text password
-        text comment
-    }
-
-    POST {
-        int4 id PK
-        text title
-        text content
-        timestamp createdAt
-        text countryName
-        int4 userId FK
-    }
-
-    LIKES {
-        int4 id PK
-        int4 userId FK
-        int4 postId FK
-    }
-
-```
+![ER図](frontend/public/sample/スクリーンショット 2026-06-03 23.20.06.png)
 ---
 
 ## 【アプリ構造】<br/>
