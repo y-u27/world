@@ -1,7 +1,7 @@
 // 世界地図表示
 "use client";
 
-import { Box, Spinner, useMediaQuery } from "@chakra-ui/react";
+import { Box, Spinner, Text, useMediaQuery } from "@chakra-ui/react";
 import {
   GoogleMap,
   InfoWindow,
@@ -245,6 +245,13 @@ const WorldMapPage = ({ userId }: Props) => {
                 </InfoWindow>
               ) : null,
             )}
+            {markedCountries.map((country) => (
+              <Box>
+                <Text>{country.name}</Text>
+                {/* <Text>{}</Text>
+                <Text></Text> */}
+              </Box>
+            ))}
             <Box py="38%">
               <IntroHowTo />
             </Box>
