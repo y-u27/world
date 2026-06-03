@@ -133,7 +133,7 @@ https://world-frontend.vercel.app/<br/>
 
 ### 🔗 ER図<br/>
 
-![ER図](frontend/public/sample/スクリーンショット 2026-06-03 23.20.06.png)
+![ER図](/Users/yukie/Devlop/nextjs/world/frontend/public/sample/スクリーンショット 2026-06-03 23.20.06.png)
 
 ---
 
