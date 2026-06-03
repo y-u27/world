@@ -245,13 +245,13 @@ const WorldMapPage = ({ userId }: Props) => {
                 </InfoWindow>
               ) : null,
             )}
-            {markedCountries.map((country) => (
+            {/* {markedCountries.map((country) => (
               <Box>
                 <Text>{country.name}</Text>
-                {/* <Text>{}</Text>
-                <Text></Text> */}
+                <Text>{}</Text>
+                <Text></Text>
               </Box>
-            ))}
+            ))} */}
             <Box py="38%">
               <IntroHowTo />
             </Box>
