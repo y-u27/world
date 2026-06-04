@@ -45,7 +45,7 @@ const WorldMapPage = ({ userId }: Props) => {
   const [mapCenter, setMapCenter] = useState({ lat: 35.6762, lng: 155.6503 });
   // ↓それぞれの国をズームの初期値
   const [zoom, setZoom] = useState(2.3);
-  // ↓各国のマップの名前・緯度経度の型の初期値?
+  // ↓各国のマップの名前・緯度経度の型の初期値
   const [markedCountries, setMarkedCountries] = useState<
     {
       name: string;
@@ -245,13 +245,6 @@ const WorldMapPage = ({ userId }: Props) => {
                 </InfoWindow>
               ) : null,
             )}
-            {/* {markedCountries.map((country) => (
-              <Box>
-                <Text>{country.name}</Text>
-                <Text>{}</Text>
-                <Text></Text>
-              </Box>
-            ))} */}
             <Box py="38%">
               <IntroHowTo />
             </Box>
