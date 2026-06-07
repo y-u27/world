@@ -161,7 +161,7 @@ const PostLists: React.FC<CountryProps> = ({
       <Box
         position="fixed"
         right={{ base: "12px", md: "24px" }}
-        top={{ base: "70px", md: "50px" }}
+        top={{ base: "70px", md: "100px" }}
         zIndex={1000}
       >
         <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
