@@ -96,7 +96,7 @@ export const authOptions: NextAuthOptions = {
                 password: "password",
                 image: token.image ?? token.picture ?? null,
               }),
-            }
+            },
           );
 
           if (!res.ok) {
